@@ -18,6 +18,8 @@ Static Next.js app for researching and ranking agent skills by job to be done.
 npm run dev
 npm run build
 npm run lint
+npm run qa:links
+npm run qa:publish
 ```
 
 ## Current Direction

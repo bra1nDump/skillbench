@@ -36,10 +36,22 @@ const pipelineRuns = [
     href: "/runs/2026-03-09_05-35_social-scan_ui-ux-design",
   },
   {
+    name: "Evidence capture",
+    summary:
+      "Captured public screenshots from shipped demos, community workflows, and trust threads so the report can show real artifacts inline.",
+    href: "/runs/2026-03-09_05-21_evidence-capture_ui-ux-design",
+  },
+  {
     name: "QA",
     summary:
       "Checked the full product surface across home, report, storyboard, and rendered run pages.",
     href: "/runs/2026-03-09_06-05_qa_product-surface",
+  },
+  {
+    name: "Link audit",
+    summary:
+      "Validated internal routes, markdown doc links, run assets, and shipped external citations before publish.",
+    href: "/runs/2026-03-09_04-57_qa_link-audit_product-surface",
   },
 ];
 

@@ -22,37 +22,34 @@ Go beyond official docs for the UI/UX design category and look for the live publ
 - The strongest official X signal is the [OpenAI Developers post about the Figma partnership](https://x.com/OpenAIDevs/status/1894796327181273432).
   Trust note: highest trust because it is an official OpenAI developer-facing account and it directly supports the ranking thesis around code-to-design roundtrips.
 
-- A live X community argument is captured in [Grok's trend summary around whether Figma is unnecessary when using Claude Code](https://x.com/i/grok/share/H3vvF6phN15ssxK3OjvDPq98l).
-  Trust note: medium. It is useful as a sign of where the conversation is moving, but it is not as strong as a direct post from the underlying authors.
-
-- The [Figma x Anthropic live broadcast](https://x.com/i/broadcasts/1zqKVYkQkAkxB) is a high-signal public event showing that design-to-code with Claude is now part of the mainstream conversation rather than a fringe hack.
-  Trust note: high. Official host, public artifact, narrow workflow relevance.
-
 - On Reddit, [a workflow to open a Figma file in Claude Code and return to Figma](https://www.reddit.com/r/ClaudeAI/comments/1r7vvmr/new_figma_mcp_lets_you_import_claude_code_ui/) is a strong positive signal because it explicitly values editability and loop closure.
   Trust note: medium-low. Community anecdote, but concrete and directly tied to the job.
 
-- Also on Reddit, [Claude Code and Figma issues](https://www.reddit.com/r/ClaudeAI/comments/1wn3l83/claude_code_and_figma_issues/) is a strong negative signal because it records friction and unofficial alternatives in the wild.
+- Also on Reddit, [Claude Code and Figma issues](https://www.reddit.com/r/ClaudeCode/comments/1rg9a2v/claude_code_and_figma_issues/) is a strong negative signal because it records friction and unofficial alternatives in the wild.
   Trust note: medium-low. Single-user report, but valuable because it describes failure modes rather than hype.
 
-- On Hacker News, [Show HN: Figma-use, an agentic UI framework using Figma as the source of truth](https://news.ycombinator.com/item?id=45963703) is the strongest public head-to-head challenger signal found so far.
-  Trust note: high relative to community posts because it attracted substantial discussion and frames itself as "better than just using the official Figma MCP server" for richer design operations.
+- On Hacker News, [Show HN: Figma-use - CLI to control Figma for AI agents](https://news.ycombinator.com/item?id=46665169) is the strongest public head-to-head challenger signal found so far.
+  Trust note: high relative to community posts because it attracted 115 points and frames itself as a richer alternative to the official Figma MCP path for write access and design mutation.
 
-- Also on Hacker News, [Show HN: Vibma, an open-source write-access alternative to official Figma MCP](https://news.ycombinator.com/item?id=46066199) is useful because it makes the official-vs-write-access split explicit even though traction is currently much lower.
+- Also on Hacker News, [Show HN: Vibma - let agents create professional design system in Figma, directly](https://news.ycombinator.com/item?id=47217411) is useful because it makes the official-vs-write-access split explicit even though traction is currently much lower.
   Trust note: medium-low. Builder post with low traction, but directly relevant to the category.
 
-- The broader job has enough traction to show up in [Ask HN: Tips for agentic coding based on Figma design?](https://news.ycombinator.com/item?id=46205188).
+- The broader job has enough traction to show up in [Ask HN: Any tips for agentic coding or vibe coding based on a Figma Design?](https://news.ycombinator.com/item?id=44840968).
   Trust note: medium-high. Not a solution post, but strong evidence that the workflow is mainstream enough to be asked in public by technical users.
+
+- QA later found that the previously linked X broadcast URL and an earlier set of HN item IDs were not reliable enough to keep shipping as citations.
+  Why this matters: source validation needs to verify not just that a link loads, but that it resolves to the expected discussion.
 
 ## Quotes
 
 - "turn code prompts directly into polished designs with Codex"
   Source: [OpenAI Developers X post](https://x.com/OpenAIDevs/status/1894796327181273432)
 
-- "better than just using the official Figma MCP server"
-  Source: [Show HN: Figma-use](https://news.ycombinator.com/item?id=45963703)
+- "CLI to control Figma for AI agents"
+  Source: [Show HN: Figma-use](https://news.ycombinator.com/item?id=46665169)
 
-- "write-access alternative to official Figma MCP"
-  Source: [Show HN: Vibma](https://news.ycombinator.com/item?id=46066199)
+- "let agents create professional design system in Figma, directly"
+  Source: [Show HN: Vibma](https://news.ycombinator.com/item?id=47217411)
 
 ## Recommended Next Step
 

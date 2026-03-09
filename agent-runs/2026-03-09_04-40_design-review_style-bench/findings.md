@@ -60,6 +60,16 @@ Remaining fixes from the second pass:
 - assets/skillbench-home.png
 - assets/skillbench-report.png
 
+## Screenshot Review
+
+![Vercel reference](assets/vercel-home.png)
+
+![skills.sh reference](assets/skills-home.png)
+
+![Skillbench home](assets/skillbench-home.png)
+
+![Skillbench report](assets/skillbench-report.png)
+
 ## Recommended Next Step
 
 Run one more screenshot comparison after the revised layout and continue reducing anything that still feels like a dashboard instead of a report.

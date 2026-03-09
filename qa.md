@@ -24,7 +24,11 @@ Goal:
 Rules:
 - check homepage, report pages, storyboard/design-system preview, and rendered agent-run pages
 - verify that internal links are clickable
+- verify that markdown links rendered from docs and run logs stay clickable in the site
+- run `npm run qa:links` before publish
 - verify that screenshots and other run assets are actually reachable
+- verify that outbound citations still resolve
+- treat bot-blocked destinations such as Reddit as warnings that still require a browser spot-check
 - flag pages that feel too dashboard-like, too rigid, or too componentized
 - flag reports that rely too heavily on official docs without enough public trust evidence
 - check for layout shifts or inconsistent top-level branding between pages
@@ -33,4 +37,5 @@ Output:
 - write findings into agent-runs using the standard structure
 - separate blockers from polish issues
 - propose concrete fixes instead of vague design commentary
+- block publish on dead internal routes, dead run assets, or dead outbound citations
 ```

@@ -10,20 +10,8 @@ const liveSignals = [
     note:
       "Highest trust. Official OpenAI developer account promoting direct code-to-design workflow with Codex and Figma.",
     href: "https://x.com/OpenAIDevs/status/1894796327181273432",
-  },
-  {
-    label: "X trend / community argument",
-    title: "Grok trend summary: 'Figma不要、Claude Codeでよい？'",
-    note:
-      "Medium trust. Useful because it shows a live community argument that Claude Code may reduce the need for traditional Figma-heavy workflows, but it still needs direct-source verification.",
-    href: "https://x.com/i/grok/share/H3vvF6phN15ssxK3OjvDPq98l",
-  },
-  {
-    label: "X live event",
-    title: "Figma x Anthropic live broadcast on design to code with Claude",
-    note:
-      "High trust. Official Figma-hosted public material focused on Claude-driven design-to-code workflows.",
-    href: "https://x.com/i/broadcasts/1zqKVYkQkAkxB",
+    preview:
+      "/run-assets/2026-03-09_05-21_evidence-capture_ui-ux-design/assets/openai-devs-x-post.png",
   },
   {
     label: "Reddit comparison",
@@ -31,34 +19,41 @@ const liveSignals = [
     note:
       "Medium-low trust, but concrete. Shows users explicitly valuing a loop that stays editable rather than screenshot-driven.",
     href: "https://www.reddit.com/r/ClaudeAI/comments/1r7vvmr/new_figma_mcp_lets_you_import_claude_code_ui/",
+    preview:
+      "/run-assets/2026-03-09_05-21_evidence-capture_ui-ux-design/assets/reddit-figma-claude-workflow.png",
   },
   {
     label: "Reddit friction report",
     title: "Claude Code and Figma issues",
     note:
       "Low-medium trust, but important negative signal. Shows real auth and integration pain, plus community recommendations of unofficial alternatives.",
-    href: "https://www.reddit.com/r/ClaudeAI/comments/1wn3l83/claude_code_and_figma_issues/",
+    href: "https://www.reddit.com/r/ClaudeCode/comments/1rg9a2v/claude_code_and_figma_issues/",
   },
   {
     label: "Hacker News head-to-head",
-    title: "Show HN: Figma-use, an agentic UI framework using Figma as the source of truth",
+    title: "Show HN: Figma-use - CLI to control Figma for AI agents",
     note:
-      "High-signal builder discussion. 115 points / 37 comments. Strongest public evidence that unofficial write-access workflows are emerging against the official Figma MCP path.",
-    href: "https://news.ycombinator.com/item?id=45963703",
+      "High-signal builder discussion. 115 points. Strongest public evidence that unofficial write-access workflows are emerging against the official Figma MCP path.",
+    href: "https://news.ycombinator.com/item?id=46665169",
+    preview:
+      "/run-assets/2026-03-09_05-21_evidence-capture_ui-ux-design/assets/hn-figma-use-thread.png",
   },
   {
     label: "Hacker News challenger",
-    title: "Show HN: Vibma, an open-source write-access alternative to official Figma MCP",
+    title:
+      "Show HN: Vibma - let agents create professional design system in Figma, directly",
     note:
-      "Interesting but lower-trust than Figma-use due to much lower traction. Still useful because it frames the exact official vs write-access split.",
-    href: "https://news.ycombinator.com/item?id=46066199",
+      "Interesting but much lower-trust than Figma-use due to very low traction. Still useful because it frames the exact official vs write-access split.",
+    href: "https://news.ycombinator.com/item?id=47217411",
+    preview:
+      "/run-assets/2026-03-09_05-21_evidence-capture_ui-ux-design/assets/hn-vibma-thread.png",
   },
   {
     label: "Hacker News meta",
-    title: "Ask HN: Tips for agentic coding based on Figma design?",
+    title: "Ask HN: Any tips for agentic coding or vibe coding based on a Figma Design?",
     note:
       "High-signal question showing the workflow itself is now mainstream enough to attract broad technical discussion rather than isolated demos.",
-    href: "https://news.ycombinator.com/item?id=46205188",
+    href: "https://news.ycombinator.com/item?id=44840968",
   },
 ];
 
@@ -69,6 +64,9 @@ const ranking = [
     bestFor: "Design-to-code and code-to-design roundtrips",
     why: "Strongest official trust signal and the clearest public roundtrip story right now.",
     watch: "Still dependent on Figma auth and MCP setup discipline.",
+    preview:
+      "/run-assets/2026-03-09_05-21_evidence-capture_ui-ux-design/assets/openai-devs-x-post.png",
+    previewLabel: "Official public artifact",
   },
   {
     rank: "02",
@@ -76,6 +74,9 @@ const ranking = [
     bestFor: "Teams already standardized on Claude Code",
     why: "Very strong official path with good design context, just not as strong publicly as the Codex partnership story.",
     watch: "Community reports still mention some auth and fidelity friction.",
+    preview:
+      "/run-assets/2026-03-09_05-21_evidence-capture_ui-ux-design/assets/reddit-figma-claude-workflow.png",
+    previewLabel: "User workflow artifact",
   },
   {
     rank: "03",
@@ -83,6 +84,9 @@ const ranking = [
     bestFor: "Direct write-back into the design document itself",
     why: "The clearest contender for live canvas mutation and in-document editing.",
     watch: "Smaller ecosystem and weaker broad public trust than Figma.",
+    preview:
+      "/run-assets/2026-03-09_05-21_evidence-capture_ui-ux-design/assets/paper-mcp-docs.png",
+    previewLabel: "Docs capability artifact",
   },
   {
     rank: "04",
@@ -97,6 +101,33 @@ const ranking = [
     bestFor: "Implementation-heavy tasks after the design is already understood",
     why: "Strong coding agent, but much less differentiated in this category without Figma or Paper attached.",
     watch: "Not competitive with the connected workflows for design-aware work.",
+  },
+];
+
+const observedOutputs = [
+  {
+    title: "Official public roundtrip story",
+    summary:
+      "The clearest trust-building public artifact so far is the OpenAI Developers post around the Figma partnership and Codex workflow.",
+    href: "https://x.com/OpenAIDevs/status/1894796327181273432",
+    image:
+      "/run-assets/2026-03-09_05-21_evidence-capture_ui-ux-design/assets/openai-devs-x-post.png",
+  },
+  {
+    title: "Community write-access challenger",
+    summary:
+      "Figma-use is the strongest public challenger artifact because it shows concrete write access and got real HN attention.",
+    href: "https://github.com/dannote/figma-use",
+    image:
+      "/run-assets/2026-03-09_05-21_evidence-capture_ui-ux-design/assets/figma-use-github.png",
+  },
+  {
+    title: "Direct document mutation wedge",
+    summary:
+      "Paper MCP is narrower, but its public docs clearly emphasize read and write access inside the live document itself.",
+    href: "https://paper.design/docs/mcp",
+    image:
+      "/run-assets/2026-03-09_05-21_evidence-capture_ui-ux-design/assets/paper-mcp-docs.png",
   },
 ];
 
@@ -155,10 +186,22 @@ const runOutputs = [
       "Collected the live X, Reddit, and Hacker News evidence, including head-to-head challenger threads and the failed local Twitter-skill attempt.",
   },
   {
+    name: "Evidence capture run",
+    href: "/runs/2026-03-09_05-21_evidence-capture_ui-ux-design",
+    summary:
+      "Captured the public screenshots now shown inline and on hover throughout this report.",
+  },
+  {
     name: "Product QA run",
     href: "/runs/2026-03-09_06-05_qa_product-surface",
     summary:
       "Reviewed the full visible product surface across home, report, storyboard, and rendered run pages.",
+  },
+  {
+    name: "Link audit run",
+    href: "/runs/2026-03-09_04-57_qa_link-audit_product-surface",
+    summary:
+      "Validated rendered markdown links, internal routes, and outbound citations; removed the dead X broadcast citation.",
   },
 ];
 
@@ -221,6 +264,42 @@ export default function DocumentEditingUiUxPage() {
 
         <section className="border-b border-black/5 py-16">
           <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-zinc-500">
+            Observed public outputs
+          </p>
+          <p className="mt-4 max-w-3xl text-base leading-8 text-zinc-700">
+            These are not synthetic placeholders. They are captured public
+            artifacts from other people shipping, demoing, or arguing about
+            these workflows in the open.
+          </p>
+          <div className="mt-8 grid gap-8 lg:grid-cols-3">
+            {observedOutputs.map((item) => (
+              <article key={item.title} className="border-t border-black/5 pt-4">
+                <a
+                  href={item.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group block"
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="h-44 w-full border border-black/10 object-cover object-top transition-transform duration-200 group-hover:scale-[1.01]"
+                  />
+                  <p className="mt-4 text-sm font-semibold text-zinc-950 underline decoration-black/15 underline-offset-4 group-hover:decoration-black/40">
+                    {item.title}
+                  </p>
+                </a>
+                <p className="mt-3 text-sm leading-7 text-zinc-700">
+                  {item.summary}
+                </p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="border-b border-black/5 py-16">
+          <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-zinc-500">
             The deeper meta
           </p>
           <div className="mt-5 space-y-5 text-base leading-8 text-zinc-700">
@@ -272,8 +351,23 @@ export default function DocumentEditingUiUxPage() {
                     <td className="py-4 pr-4 font-mono text-sm text-zinc-500">
                       {item.rank}
                     </td>
-                    <td className="py-4 pr-4 text-sm font-semibold text-zinc-950">
-                      {item.contender}
+                    <td className="group relative py-4 pr-4 text-sm font-semibold text-zinc-950">
+                      <span>{item.contender}</span>
+                      {item.preview ? (
+                        <>
+                          <p className="mt-2 text-[11px] font-normal text-zinc-500">
+                            {item.previewLabel}
+                          </p>
+                          <div className="pointer-events-none absolute left-0 top-full z-20 hidden w-72 border border-black/10 bg-white p-3 shadow-[0_18px_50px_rgba(0,0,0,0.08)] lg:group-hover:block">
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img
+                              src={item.preview}
+                              alt={item.contender}
+                              className="h-40 w-full border border-black/10 object-cover object-top"
+                            />
+                          </div>
+                        </>
+                      ) : null}
                     </td>
                     <td className="py-4 pr-4 text-sm leading-7 text-zinc-700">
                       {item.bestFor}
@@ -321,7 +415,10 @@ export default function DocumentEditingUiUxPage() {
           </p>
           <div className="mt-6 space-y-6">
             {liveSignals.map((signal) => (
-              <article key={signal.title} className="border-t border-black/5 pt-4">
+              <article
+                key={signal.title}
+                className="group relative border-t border-black/5 pt-4"
+              >
                 <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-zinc-500">
                   {signal.label}
                 </p>
@@ -336,6 +433,16 @@ export default function DocumentEditingUiUxPage() {
                 <p className="mt-3 max-w-3xl text-sm leading-7 text-zinc-700">
                   {signal.note}
                 </p>
+                {signal.preview ? (
+                  <div className="pointer-events-none absolute right-0 top-6 z-20 hidden w-72 border border-black/10 bg-white p-3 shadow-[0_18px_50px_rgba(0,0,0,0.08)] xl:group-hover:block">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={signal.preview}
+                      alt={signal.title}
+                      className="h-40 w-full border border-black/10 object-cover object-top"
+                    />
+                  </div>
+                ) : null}
               </article>
             ))}
           </div>

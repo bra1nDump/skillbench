@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "qa:links": "node scripts/qa/check-links.mjs",
+    "qa:publish": "npm run lint && npm run build && npm run qa:links"
   },
   "dependencies": {
     "next": "16.1.6",

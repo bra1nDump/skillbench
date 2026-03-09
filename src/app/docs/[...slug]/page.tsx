@@ -6,7 +6,7 @@ import remarkGfm from "remark-gfm";
 
 import { CopyButton } from "@/components/copy-button";
 import { SiteFooter } from "@/components/site-footer";
-import { readDocMarkdown } from "@/lib/docs";
+import { readDocMarkdown, resolveDocHref } from "@/lib/docs";
 
 type PageProps = {
   params: Promise<{
@@ -26,11 +26,12 @@ export default async function DocPage({ params }: PageProps) {
 
   const components: Components = {
     a: ({ href = "", children }) => {
-      const external = href.startsWith("http");
+      const target = resolveDocHref(slug, href);
+      const external = target.startsWith("http");
       if (external) {
         return (
           <a
-            href={href}
+            href={target}
             target="_blank"
             rel="noreferrer"
             className="underline decoration-black/20 underline-offset-4 hover:decoration-black/50"
@@ -40,7 +41,25 @@ export default async function DocPage({ params }: PageProps) {
         );
       }
 
-      return <span>{children}</span>;
+      if (target.startsWith("#")) {
+        return (
+          <a
+            href={target}
+            className="underline decoration-black/20 underline-offset-4 hover:decoration-black/50"
+          >
+            {children}
+          </a>
+        );
+      }
+
+      return (
+        <Link
+          href={target}
+          className="underline decoration-black/20 underline-offset-4 hover:decoration-black/50"
+        >
+          {children}
+        </Link>
+      );
     },
     h1: ({ children }) => (
       <h1 className="mt-10 text-4xl font-semibold tracking-[-0.04em] text-zinc-950 first:mt-0">

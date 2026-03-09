@@ -8,6 +8,9 @@ const USER_AGENT = "SkillbenchLinkChecker/1.0 (+https://skillbench.local)";
 const seedRoutes = [
   "/",
   "/jobs/document-editing-ui-ux",
+  "/jobs/product-business-development",
+  "/jobs/teams-of-agents",
+  "/jobs/ux-ui",
   "/storyboard",
   "/docs/agents",
   "/docs/qa",
@@ -250,6 +253,11 @@ async function crawlRoutes() {
     }
 
     for (const src of extractAssetSrcs(page.text)) {
+      if (isExternalUrl(src)) {
+        externalUrls.add(src);
+        continue;
+      }
+
       const normalized = normalizeRoute(src);
       if (!normalized) {
         continue;

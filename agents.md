@@ -47,6 +47,7 @@ Rules:
 - check whether top registries or marketplaces have new top contenders that the current report is missing
 - prefer strong signals such as: official launch, official integration, direct public comparison, clear community adoption spike, or direct evidence of a previously missing capability
 - look for head-to-head comparisons and explicit workflow tradeoff discussions
+- explicitly hunt for recent public artifacts that show real outputs: screenshots, demo repos, posted videos, benchmark charts, or repo images worth preserving
 - ignore long-tail noise and weak SEO posts
 - explicitly note when the "meta" appears to be shifting
 
@@ -84,6 +85,8 @@ Rules:
 - if multiple contenders solve the same job differently, explain the workflow shape difference explicitly
 - record who is making the claim and why that person or thread deserves trust: official source, known builder, high-traction thread, or low-signal anecdote
 - when possible, capture pairwise comparisons directly instead of isolated praise
+- save reusable screenshots or other public artifacts into the run's assets folder whenever they materially strengthen the report
+- if Reddit or another site blocks automation, record that explicitly and keep the backlink even if the screenshot has to be omitted
 
 Output:
 - write findings using the structure in agent-runs/agents.md
@@ -115,6 +118,7 @@ Rules:
 - if one contender is best for a narrow subcase, call that out explicitly
 - if the real answer is "use the platform natively instead of a skill", say so
 - archive or down-rank contenders that are clearly stale, superseded, or weakly trusted
+- do not present a contender as strong if the report cannot point to at least one visible public artifact or credible trust signal
 
 Output:
 - write findings using the structure in agent-runs/agents.md
@@ -147,6 +151,7 @@ Rules:
 - verify that screenshots and other run assets are actually reachable
 - verify that shipped outbound citations still resolve, and remove or replace dead ones
 - treat bot-blocked destinations such as Reddit as warnings that require browser spot-checking, not silent passes
+- verify that any screenshot shown in the product is an actual useful artifact, not a loading state, bot block, or blank hero crop
 - flag pages that feel too dashboard-like, too rigid, or too componentized
 - flag reports that rely too heavily on official docs without enough public trust evidence
 - check for layout shifts or inconsistent top-level branding between pages

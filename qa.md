@@ -29,6 +29,7 @@ Rules:
 - verify that screenshots and other run assets are actually reachable
 - verify that outbound citations still resolve
 - treat bot-blocked destinations such as Reddit as warnings that still require a browser spot-check
+- verify that shipped screenshots are meaningful and not just loading states, bot blocks, or blank hero crops
 - flag pages that feel too dashboard-like, too rigid, or too componentized
 - flag reports that rely too heavily on official docs without enough public trust evidence
 - check for layout shifts or inconsistent top-level branding between pages

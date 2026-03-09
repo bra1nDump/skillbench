@@ -18,8 +18,14 @@ export function SiteFooter() {
             <Link className="hover:text-black" href="/">
               Home
             </Link>
-            <Link className="hover:text-black" href="/jobs/document-editing-ui-ux">
-              Document Editing & UI/UX Design
+            <Link className="hover:text-black" href="/jobs/product-business-development">
+              Product / Business Development
+            </Link>
+            <Link className="hover:text-black" href="/jobs/teams-of-agents">
+              Teams of Agents
+            </Link>
+            <Link className="hover:text-black" href="/jobs/ux-ui">
+              UX / UI
             </Link>
             <Link className="hover:text-black" href="/storyboard">
               Storyboard

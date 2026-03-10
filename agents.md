@@ -9,7 +9,7 @@ When told to change something, ALWAYS follow this order:
 
 ## What this is
 
-Curated, evidence-backed buyer's guide for agent skills. Not a registry, not a marketplace. The core value is: narrow job categories, strong rankings, real citations, head-to-head comparisons.
+Curated, evidence-backed buyer's guide for agent skills. Not a registry, not a marketplace. The core value is: narrow categories, strong rankings, real citations, head-to-head comparisons.
 
 The main user intent: **"What's the best skill for the thing I'm trying to do?"**
 

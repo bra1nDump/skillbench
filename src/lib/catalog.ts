@@ -1073,6 +1073,15 @@ export const skills: Record<SkillSlug, SkillRecord> = {
         gist: "Dominant AI browser agent framework by stars. Zero to 80K+ in ~18 months. Latest release v0.12.1.",
         selfReported: true,
       },
+      {
+        quality: "moderate",
+        title: "The Agentic Browser Landscape in 2026 — independent landscape survey",
+        url: "https://www.nohackspod.com/blog/agentic-browser-landscape-2026",
+        date: "2026-03",
+        engagement: "No Hacks Podcast blog, updated Mar 5, 2026",
+        who: "Slobodan Manic (CXL-certified, WordPress Core Contributor)",
+        gist: "Independent landscape overview calls Browser Use 'the go-to open-source solution for AI-powered browser automation.' Covers Python and TypeScript SDKs, LLM-powered decision making approach.",
+      },
     ],
   },
   "playwright-mcp": {
@@ -1128,6 +1137,15 @@ export const skills: Record<SkillSlug, SkillRecord> = {
         engagement: "Widely referenced in MCP design discussions",
         who: "Nolan Sullivan (Speakeasy)",
         gist: "Independent analysis showing Playwright MCP's 26-tool surface causes agent decision paralysis, and reducing to 8 core tools dramatically improves performance. Validates Playwright MCP as the de facto browser-automation MCP standard others benchmark against.",
+      },
+      {
+        quality: "strong",
+        title: "GitHub Blog: How to debug a web app with Playwright MCP and GitHub Copilot",
+        url: "https://github.blog/ai-and-ml/github-copilot/how-to-debug-a-web-app-with-playwright-mcp-and-github-copilot/",
+        date: "2025-09",
+        engagement: "GitHub official engineering blog",
+        who: "Christopher Harrison (Senior Developer Advocate, GitHub)",
+        gist: "Step-by-step demo of Copilot agent mode using Playwright MCP to reproduce bugs, inspect live pages via accessibility snapshots, identify fixes, and verify them — all autonomously. Shows institutional commitment to Playwright MCP as the browser layer.",
       },
     ],
   },
@@ -1185,6 +1203,15 @@ export const skills: Record<SkillSlug, SkillRecord> = {
         engagement: "DEV Community featured post",
         who: "Marcelo Bairros (Founder of Ledda.ai, independent)",
         gist: "Independent hands-on review concluding Stagehand is a 'Playwright enhancement, not replacement.' Praises act/extract/observe primitives, but notes agent mode remains experimental with unpredictable results.",
+      },
+      {
+        quality: "moderate",
+        title: "The Agentic Browser Landscape in 2026 — independent survey positions Stagehand as OSS Playwright alternative",
+        url: "https://www.nohackspod.com/blog/agentic-browser-landscape-2026",
+        date: "2026-03",
+        engagement: "No Hacks Podcast blog, updated Mar 5, 2026",
+        who: "Slobodan Manic (CXL-certified, WordPress Core Contributor)",
+        gist: "Independent landscape survey describes Stagehand v3 as '44% faster' with an 'AI-native rewrite' that talks directly to browsers via CDP. Positions it as the main OSS alternative to Playwright for AI agents.",
       },
     ],
   },
@@ -1774,36 +1801,59 @@ export const categories: Record<CategorySlug, CategoryRecord> = {
     ],
     observedOutputs: [
       {
-        title: "Browser Use autonomous browsing",
+        title: "Browser Use BU 2.0 model benchmark",
         summary:
-          "Browser Use's GitHub presence and demo artifacts are the strongest visible proof in the autonomous browsing lane.",
-        href: "https://github.com/browser-use/browser-use",
-        date: "2026-03",
+          "83.3% accuracy at 62s average task completion. Outperforms Gemini 3 Pro (81.7%) and GPT-5.2 (70.9%). Concrete, publicly published benchmark with pricing.",
+        href: "https://browser-use.com/changelog/27-1-2026",
+        date: "2026-01",
       },
       {
-        title: "Stagehand act/extract/observe API",
+        title: "GitHub Blog: debugging a web app with Playwright MCP + Copilot",
         summary:
-          "Stagehand's three-primitive API and natural language selectors represent the cleanest developer experience artifact in browser automation.",
-        href: "https://github.com/browserbase/stagehand",
-        date: "2026-03",
+          "Step-by-step demo of Copilot reproducing bugs, inspecting pages via Playwright MCP accessibility snapshots, identifying the fix, and verifying it live.",
+        href: "https://github.blog/ai-and-ml/github-copilot/how-to-debug-a-web-app-with-playwright-mcp-and-github-copilot/",
+        date: "2025-09",
+      },
+      {
+        title: "Stagehand v3 release with CDP-direct architecture",
+        summary:
+          "Stagehand v3 rewrites the core to talk directly to Chrome DevTools Protocol. 20-40% speed gains across act/extract/observe. Enhanced iframe and shadow root support.",
+        href: "https://github.com/browserbase/stagehand/releases",
+        date: "2026-02",
       },
     ],
     liveSignals: [
       {
-        label: "Community traction",
-        title: "Browser Use — make websites accessible for AI agents",
-        href: "https://github.com/browser-use/browser-use",
-        date: "2026-03",
+        label: "Model release",
+        title: "Browser Use BU 2.0 — 83.3% accuracy, matches Opus 4.5 quality at 40% faster speed",
+        href: "https://browser-use.com/changelog/27-1-2026",
+        date: "2026-01",
         note:
-          "Strongest community signal in the browser automation lane by star count and active development. The vision+DOM hybrid approach is becoming the default pattern.",
+          "BU 2.0 jumped from 74.7% to 83.3% accuracy, matching Claude Opus 4.5 while being 40% faster. Beats Gemini 3 Pro (81.7%) and GPT-5.2 (70.9%). Signals that Browser Use is investing in model quality, not just library features.",
       },
       {
-        label: "TypeScript-native",
-        title: "Stagehand by Browserbase — AI web browsing framework",
-        href: "https://github.com/browserbase/stagehand",
+        label: "Major release",
+        title: "Stagehand v3 — 44% faster with AI-native rewrite and direct CDP",
+        href: "https://github.com/browserbase/stagehand/releases",
+        date: "2026-02",
+        note:
+          "Stagehand v3 rewrites the core to talk directly to browsers via Chrome DevTools Protocol. 20-40% faster across act, extract, and observe operations. Enhanced extraction targeting iframes and shadow roots.",
+      },
+      {
+        label: "Institutional adoption",
+        title: "Playwright MCP auto-configured in GitHub Copilot Coding Agent",
+        href: "https://docs.github.com/en/copilot/concepts/agents/coding-agent/mcp-and-coding-agent",
         date: "2026-03",
         note:
-          "Important because it gives TypeScript teams a clean alternative to Python-only browser-use. The natural language selector approach reduces selector fragility.",
+          "Playwright MCP ships pre-configured in GitHub Copilot's Coding Agent — no setup required. The accessibility-snapshot approach gives Copilot browser eyes for testing and debugging. Institutional default by Microsoft.",
+      },
+      {
+        label: "Landscape analysis",
+        title: "The Agentic Browser Landscape in 2026 — independent overview",
+        href: "https://www.nohackspod.com/blog/agentic-browser-landscape-2026",
+        date: "2026-03",
+        note:
+          "Independent landscape survey covering Browser Use, Stagehand, Playwright MCP, and a dozen others. Updated March 2026. Confirms the three-lane split: vision-based (Browser Use), TypeScript-native (Stagehand), MCP-integrated (Playwright).",
       },
     ],
     headToHead: [

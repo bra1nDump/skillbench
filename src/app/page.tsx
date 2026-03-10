@@ -28,7 +28,7 @@ const pipeline = [
     name: "QA",
     summary:
       "Fail the build on broken links, dead assets, and stale citations. Browser spot-check anything that is bot-blocked or visually suspicious.",
-    href: "/docs/qa",
+    href: "/docs/agents/qa",
   },
 ];
 

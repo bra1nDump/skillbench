@@ -167,9 +167,12 @@ export default function Home() {
           <div className="mt-8 grid gap-6 lg:grid-cols-5">
             {evidenceHighlights.map((signal) => (
               <article key={signal.title} className="border-t border-black/5 pt-4">
-                <p className="font-mono text-[9px] uppercase tracking-[0.24em] text-zinc-400">
-                  {signal.jobName}
-                </p>
+                <div className="flex items-center gap-2">
+                  <p className="font-mono text-[9px] uppercase tracking-[0.24em] text-zinc-400">
+                    {signal.jobName}
+                  </p>
+                  <span className="font-mono text-[9px] text-zinc-400">{signal.date}</span>
+                </div>
                 <a
                   href={signal.href}
                   target="_blank"

@@ -326,7 +326,18 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "Less differentiated when you need operational follow-through",
       "Weaker than Workspace MCP for actually running the business surface",
     ],
-    evidence: [],
+    evidence: [
+      {
+        quality: "moderate",
+        title: "Exa announces best agentic search endpoint — faster, cheaper, structured outputs",
+        url: "https://exa.ai/research",
+        date: "2026-03",
+        engagement: "Official announcement",
+        who: "Exa (official)",
+        gist: "New agentic endpoint with field-level grounding, structured outputs. Semantic search across billions of docs including code and papers.",
+        selfReported: true,
+      },
+    ],
   },
   "google-workspace-mcp": {
     slug: "google-workspace-mcp",
@@ -352,8 +363,28 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     weaknesses: [
       "Community-built rather than Google-official",
       "Auth and scope management matter a lot",
+      "Google's own Workspace CLI removed MCP mode 2 days after launch — signals instability in the MCP approach for this surface",
     ],
-    evidence: [],
+    evidence: [
+      {
+        quality: "strong",
+        title: "VentureBeat: Google Workspace CLI brings Gmail, Docs, Sheets into common interface for AI agents",
+        url: "https://venturebeat.com/orchestration/google-workspace-cli-brings-gmail-docs-sheets-and-more-into-a-common",
+        date: "2026-03",
+        engagement: "VentureBeat feature article",
+        who: "VentureBeat (tier-1 tech publication)",
+        gist: "Google released official Workspace CLI with built-in MCP server. But MCP mode was removed 2 days later — CLI approach deemed better for vast API surface.",
+      },
+      {
+        quality: "moderate",
+        title: "DEV: Not Everything Needs MCP — What Google Workspace CLI Taught Us",
+        url: "https://dev.to/gys/not-everything-needs-mcp-what-google-workspace-cli-taught-us-about-ai-agent-architecture-2doe",
+        date: "2026-03",
+        engagement: "DEV Community article",
+        who: "Community developer analysis",
+        gist: "Analysis of why Google removed MCP from their CLI. For broad API surfaces, CLI 'order from the kitchen' approach beats MCP 'spread entire menu' approach.",
+      },
+    ],
   },
   openhands: {
     slug: "openhands",
@@ -606,7 +637,27 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "More setup upfront than plug-and-play IDE extensions",
       "Best for teams with established coding standards, not solo devs",
     ],
-    evidence: [],
+    evidence: [
+      {
+        quality: "strong",
+        title: "VibeCoding: Continue.dev Review 2026 — Continuous AI Agents for PR enforcement",
+        url: "https://vibecoding.app/blog/continue-dev-review",
+        date: "2026-02",
+        engagement: "Independent review",
+        who: "VibeCoding (independent dev tools review site)",
+        gist: "Reviews Continue's pivot from IDE autocomplete to async PR agents. Agents run as GitHub status checks — green if code is good, red with suggested diff if not.",
+      },
+      {
+        quality: "moderate",
+        title: "Continue Blog: Building Cloud Agents with Continue CLI",
+        url: "https://blog.continue.dev/building-async-agents-with-continue-cli",
+        date: "2026-01",
+        engagement: "Official blog",
+        who: "Continue team (official)",
+        gist: "Agents triggered by PR open, cron, GitHub issues, Sentry alerts, Slack, webhooks. Each agent is a markdown file in .continue/checks/.",
+        selfReported: true,
+      },
+    ],
   },
   opencode: {
     slug: "opencode",

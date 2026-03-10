@@ -47,7 +47,7 @@ Discover → Deep-Dive → Rank → QA → Publish
 1. **Discover** — AGGRESSIVELY find ALL contenders using web search, Twitter/X API, Reddit API, HN Algolia, GitHub trending, and registry checks. Missing a key player is a critical failure.
 2. **Deep-Dive** — build MEASURABLE evidence with inline artifacts, hard quality gates, and engagement metrics. Evidence not passing the bar gets DISCARDED. Deep-dive also contributes new finds.
 3. **Rank** — editorial ranking per category. Top 3-4 recommended, rest below the cut line. Evidence-first, opinionated.
-4. **QA** — block publish on dead links, weak signals, single-source claims, stale evidence.
+4. **QA** — block publish on dead links, weak signals, single-source claims, stale evidence. Also verifies content quality: does the page look good, communicate clearly, avoid duplication? Uses parallel subagents (Opus) for independent verification and Codex CLI for cross-tool feedback.
 5. **Publish** — build and deploy to Vercel.
 
 Each agent prompt lives in `agents/<name>.md`. Each run writes to `agent-runs/`.

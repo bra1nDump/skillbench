@@ -217,20 +217,12 @@ export default function Home() {
         </section>
 
         <section className="border-b border-black/5 py-16">
-          <div className="flex items-end justify-between gap-8">
-            <div>
-              <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-zinc-500">
-                Categories
-              </p>
-              <p className="mt-4 max-w-2xl text-base leading-7 text-zinc-600">
-                Each category answers a narrow question fast, then backs it up with visible public proof.
-              </p>
-            </div>
-            <div className="hidden max-w-sm text-sm leading-7 text-zinc-600 lg:block">
-              Demonstrable outputs over generic capability claims. Public trust over registry
-              volume. Pairwise comparisons over isolated praise.
-            </div>
-          </div>
+          <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-zinc-500">
+            Categories
+          </p>
+          <p className="mt-4 max-w-2xl text-base leading-7 text-zinc-600">
+            Each category answers a narrow question fast, then backs it up with visible public proof.
+          </p>
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
             {categoryList.map((category) => (
               <article key={category.slug} className="border border-black/10 px-6 py-6">

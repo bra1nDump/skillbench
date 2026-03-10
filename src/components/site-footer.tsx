@@ -19,11 +19,12 @@ export function SiteFooter() {
             <Link className="hover:text-black" href="/">
               Home
             </Link>
-            {jobList.map((job) => (
-              <Link key={job.slug} className="hover:text-black" href={`/jobs/${job.slug}`}>
-                {job.name}
-              </Link>
-            ))}
+            <Link className="hover:text-black" href="/jobs">
+              All Jobs
+            </Link>
+            <Link className="hover:text-black" href="/skills">
+              All Skills
+            </Link>
             <Link className="hover:text-black" href="/storyboard">
               Storyboard
             </Link>

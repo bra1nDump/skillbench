@@ -7,12 +7,20 @@ export type SkillSlug =
   | "google-workspace-mcp"
   | "openhands"
   | "ralph-loop-agent"
-  | "swe-agent";
+  | "swe-agent"
+  | "claude-code"
+  | "aider"
+  | "continue-dev"
+  | "browser-use"
+  | "playwright-mcp"
+  | "stagehand";
 
 export type JobSlug =
   | "product-business-development"
   | "teams-of-agents"
-  | "ux-ui";
+  | "ux-ui"
+  | "coding-clis"
+  | "web-browsing";
 
 export type SkillRecord = {
   slug: SkillSlug;
@@ -292,6 +300,158 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     weaknesses: [
       "Narrower than OpenHands for broad factory workflows",
       "Less about continuous loops than Ralph",
+    ],
+  },
+  "claude-code": {
+    slug: "claude-code",
+    name: "Claude Code",
+    repo: "anthropics/claude-code",
+    repoUrl: "https://github.com/anthropics/claude-code",
+    readmeBranch: "main",
+    official: true,
+    status: "active",
+    summary:
+      "Anthropic's official agentic coding CLI. Terminal-native, tool-use-driven, with deep file system and shell access.",
+    verdict:
+      "Best default for developers who want a terminal-first agent that reads, writes, and runs code autonomously with minimal setup.",
+    relatedJobs: ["coding-clis", "teams-of-agents"],
+    strengths: [
+      "Official Anthropic support with fastest model access",
+      "Terminal-native with deep shell and filesystem integration",
+      "Strong autonomous multi-step task execution",
+      "Hooks, MCP servers, and extensibility story",
+    ],
+    weaknesses: [
+      "Tied to Anthropic models only",
+      "No GUI — terminal-only workflow",
+      "Requires comfort with CLI-first development",
+    ],
+  },
+  aider: {
+    slug: "aider",
+    name: "Aider",
+    repo: "Aider-AI/aider",
+    repoUrl: "https://github.com/Aider-AI/aider",
+    readmeBranch: "main",
+    official: false,
+    status: "active",
+    summary:
+      "Open-source AI pair programming CLI with broad model support and strong SWE-bench performance.",
+    verdict:
+      "Best open-source CLI when model flexibility and benchmark credibility both matter.",
+    docsUrl: "https://aider.chat",
+    relatedJobs: ["coding-clis"],
+    strengths: [
+      "Works with many model providers (OpenAI, Anthropic, local models)",
+      "Strong SWE-bench performance with public results",
+      "Git-aware: auto-commits changes with clear diffs",
+      "Mature and well-documented",
+    ],
+    weaknesses: [
+      "Less autonomous than Claude Code for multi-step tasks",
+      "Chat-loop interface rather than deep agent autonomy",
+      "Weaker tool-use story compared to integrated CLIs",
+    ],
+  },
+  "continue-dev": {
+    slug: "continue-dev",
+    name: "Continue",
+    repo: "continuedev/continue",
+    repoUrl: "https://github.com/continuedev/continue",
+    readmeBranch: "main",
+    official: false,
+    status: "active",
+    summary:
+      "Open-source IDE extension for VS Code and JetBrains that brings AI coding assistance with full model flexibility.",
+    verdict:
+      "Best open-source IDE-integrated option when the team wants in-editor AI without vendor lock-in.",
+    docsUrl: "https://continue.dev",
+    relatedJobs: ["coding-clis"],
+    strengths: [
+      "IDE-native (VS Code + JetBrains)",
+      "Full model flexibility including local models",
+      "Open-source with active community",
+      "Context-aware with @-mention system for files, docs, and codebase",
+    ],
+    weaknesses: [
+      "Less autonomous than dedicated CLI agents",
+      "IDE-bound — no standalone terminal workflow",
+      "Autocomplete and chat are strong but multi-step agents are weaker",
+    ],
+  },
+  "browser-use": {
+    slug: "browser-use",
+    name: "Browser Use",
+    repo: "browser-use/browser-use",
+    repoUrl: "https://github.com/browser-use/browser-use",
+    readmeBranch: "main",
+    official: false,
+    status: "active",
+    summary:
+      "Python library for controlling a real browser with vision and DOM extraction, built for agent workflows.",
+    verdict:
+      "Best default for agents that need to see and interact with real web pages end-to-end.",
+    docsUrl: "https://browser-use.com",
+    relatedJobs: ["web-browsing"],
+    strengths: [
+      "Vision + DOM hybrid approach for robust page understanding",
+      "Large public traction and active development",
+      "Works with multiple LLM providers",
+      "Handles complex multi-step browser tasks",
+    ],
+    weaknesses: [
+      "Python-only — no native TypeScript/Node support",
+      "Still evolving reliability for complex flows",
+      "Heavier setup than MCP-based browser tools",
+    ],
+  },
+  "playwright-mcp": {
+    slug: "playwright-mcp",
+    name: "Playwright MCP",
+    repo: "anthropics/anthropic-quickstarts",
+    repoUrl: "https://github.com/anthropics/anthropic-quickstarts",
+    readmeBranch: "main",
+    official: true,
+    status: "active",
+    summary:
+      "MCP server wrapping Playwright for structured browser automation accessible to any MCP-compatible agent.",
+    verdict:
+      "Best MCP-native browser option when the agent stack already uses MCP and needs structured browser control.",
+    relatedJobs: ["web-browsing"],
+    strengths: [
+      "MCP-native — works with any MCP-compatible host",
+      "Built on Playwright's mature browser automation",
+      "Structured tool interface rather than raw browser scripting",
+    ],
+    weaknesses: [
+      "Less vision-aware than Browser Use",
+      "Requires MCP host support",
+      "Narrower community than standalone browser-use libraries",
+    ],
+  },
+  stagehand: {
+    slug: "stagehand",
+    name: "Stagehand",
+    repo: "browserbase/stagehand",
+    repoUrl: "https://github.com/browserbase/stagehand",
+    readmeBranch: "main",
+    official: true,
+    status: "active",
+    summary:
+      "AI-native browser automation SDK by Browserbase with natural language selectors and act/extract/observe primitives.",
+    verdict:
+      "Best pick when the team wants TypeScript-native browser automation with the simplest possible API surface.",
+    docsUrl: "https://stagehand.dev",
+    relatedJobs: ["web-browsing"],
+    strengths: [
+      "TypeScript-native with clean act/extract/observe API",
+      "Natural language selectors reduce brittle CSS/XPath dependencies",
+      "Official Browserbase backing with cloud browser infrastructure",
+    ],
+    weaknesses: [
+      "Smaller community than Browser Use",
+      "Tied to Browserbase ecosystem for cloud execution",
+      "Newer — less battle-tested in production agent loops",
     ],
   },
 };
@@ -639,9 +799,185 @@ export const jobs: Record<JobSlug, JobRecord> = {
       "If a challenger starts winning broad public trust instead of just builder attention, the top of the category shifts.",
     ],
   },
+  "coding-clis": {
+    slug: "coding-clis",
+    name: "Coding CLIs / Code Agents",
+    deck:
+      "The meta is splitting by workflow shape: terminal-native autonomous agents vs IDE-integrated assistants vs model-flexible open-source tools. Claude Code wins the autonomous CLI lane; Aider wins the open-source multi-model lane; Continue wins the IDE-embedded lane.",
+    verdict: [
+      "Claude Code is the strongest terminal-first coding agent right now — deepest autonomous task execution, native tool use, and official Anthropic model access.",
+      "Aider is the best open-source CLI when model flexibility and SWE-bench credibility both matter.",
+      "Continue is the best IDE-integrated option for teams that want open-source in-editor AI without leaving VS Code or JetBrains.",
+      "Cursor remains the commercial default for teams that want a polished IDE experience and are willing to pay, but it is closed-source.",
+    ],
+    meta: [
+      "This category keeps splitting. Some people want a terminal agent that runs autonomously. Some want AI inside their existing IDE. Some want model flexibility above everything else.",
+      "The honest comparison is about workflow shape: where does the developer want to work, how autonomous should the agent be, and does model lock-in matter?",
+    ],
+    ranking: [
+      {
+        rank: "01",
+        contender: "Claude Code",
+        skillSlug: "claude-code",
+        bestFor: "Terminal-first autonomous coding with deep shell and file integration",
+        why: "Strongest autonomous multi-step execution and native Anthropic model access.",
+        watch: "Anthropic-only models. No IDE integration.",
+      },
+      {
+        rank: "02",
+        contender: "Aider",
+        skillSlug: "aider",
+        bestFor: "Open-source CLI with broad model support and benchmark credibility",
+        why: "Best model flexibility and strongest open-source SWE-bench results.",
+        watch: "Chat-loop rather than deep agent autonomy.",
+      },
+      {
+        rank: "03",
+        contender: "Continue",
+        skillSlug: "continue-dev",
+        bestFor: "IDE-integrated AI without vendor lock-in",
+        why: "Best open-source in-editor experience across VS Code and JetBrains.",
+        watch: "Weaker on autonomous multi-step tasks than dedicated agents.",
+      },
+      {
+        rank: "04",
+        contender: "Cursor",
+        externalUrl: "https://cursor.com",
+        bestFor: "Polished commercial IDE with integrated AI across the editing experience",
+        why: "Most adopted commercial coding AI IDE. Strong UX, strong composer mode.",
+        watch: "Closed-source, paid, vendor-locked.",
+      },
+    ],
+    observedOutputs: [
+      {
+        title: "Claude Code CLI in action",
+        summary:
+          "Claude Code's terminal workflow is the clearest public artifact in the autonomous CLI lane — direct shell access, multi-file edits, and tool-use-driven task execution.",
+        href: "https://github.com/anthropics/claude-code",
+      },
+      {
+        title: "Aider SWE-bench leaderboard",
+        summary:
+          "Aider's public SWE-bench results and polyglot benchmark are the strongest credibility artifacts in the open-source CLI lane.",
+        href: "https://aider.chat/docs/leaderboards/",
+      },
+      {
+        title: "Continue open-source IDE extension",
+        summary:
+          "Continue's VS Code and JetBrains extensions show the clearest open-source IDE-integrated workflow with @-mention context and model flexibility.",
+        href: "https://github.com/continuedev/continue",
+      },
+    ],
+    liveSignals: [
+      {
+        label: "Official launch",
+        title: "Claude Code — Anthropic's agentic coding CLI",
+        href: "https://github.com/anthropics/claude-code",
+        note:
+          "Strongest official trust signal in the category. Anthropic shipping a CLI agent that directly competes with IDE tools signals a bet on terminal-first workflows.",
+      },
+      {
+        label: "Benchmark artifact",
+        title: "Aider polyglot SWE-bench results",
+        href: "https://aider.chat/docs/leaderboards/",
+        note:
+          "High trust because the benchmarks are public, reproducible, and updated regularly. Aider's multi-model testing is the most transparent in the CLI lane.",
+      },
+      {
+        label: "Community traction",
+        title: "Continue dev — open-source AI code assistant",
+        href: "https://github.com/continuedev/continue",
+        note:
+          "Strongest open-source IDE extension by star count and contributor activity. The model-agnostic story matters for teams avoiding vendor lock-in.",
+      },
+    ],
+    whatChangesThis: [
+      "If Cursor open-sources or another IDE ships stronger agent autonomy, the IDE lane catches the CLI lane.",
+      "If Aider or another open-source CLI matches Claude Code's autonomous execution depth, model flexibility becomes the deciding factor.",
+      "If local models get good enough for real coding tasks, model-flexible tools (Aider, Continue) gain ground over locked-in options.",
+    ],
+  },
+  "web-browsing": {
+    slug: "web-browsing",
+    name: "Web Browsing / Browser Automation",
+    deck:
+      "The meta is splitting between full vision-based browser agents and structured MCP-based browser tools. Browser Use wins the autonomous browsing lane; Stagehand wins the TypeScript-native lane; Playwright MCP wins the MCP-integrated lane.",
+    verdict: [
+      "Browser Use is the strongest default for agents that need to see and interact with real web pages — vision + DOM hybrid, large community, active development.",
+      "Stagehand is the best pick for TypeScript-native teams that want the simplest API surface with natural language selectors.",
+      "Playwright MCP is the best choice when the agent stack already uses MCP and needs structured browser control without a separate browser-use library.",
+    ],
+    meta: [
+      "Browser automation for agents is different from traditional test automation. The agent needs to understand what it sees, not just execute scripted steps.",
+      "The real split is between vision-heavy approaches (screenshot + DOM) and structured tool approaches (MCP-wrapped browser APIs). Both work, but for different workflow shapes.",
+    ],
+    ranking: [
+      {
+        rank: "01",
+        contender: "Browser Use",
+        skillSlug: "browser-use",
+        bestFor: "Full autonomous web browsing with vision and DOM understanding",
+        why: "Largest community, most complete vision+DOM hybrid, broadest model support.",
+        watch: "Python-only. Reliability on complex flows still evolving.",
+      },
+      {
+        rank: "02",
+        contender: "Stagehand",
+        skillSlug: "stagehand",
+        bestFor: "TypeScript-native browser automation with natural language selectors",
+        why: "Cleanest API surface. Best DX for TypeScript teams.",
+        watch: "Smaller community. Browserbase ecosystem tie-in.",
+      },
+      {
+        rank: "03",
+        contender: "Playwright MCP",
+        skillSlug: "playwright-mcp",
+        bestFor: "MCP-integrated browser control for existing MCP agent stacks",
+        why: "Best fit when the agent already speaks MCP and needs browser as a tool.",
+        watch: "Less vision-aware. Narrower community.",
+      },
+    ],
+    observedOutputs: [
+      {
+        title: "Browser Use autonomous browsing",
+        summary:
+          "Browser Use's GitHub presence and demo artifacts are the strongest visible proof in the autonomous browsing lane.",
+        href: "https://github.com/browser-use/browser-use",
+      },
+      {
+        title: "Stagehand act/extract/observe API",
+        summary:
+          "Stagehand's three-primitive API and natural language selectors represent the cleanest developer experience artifact in browser automation.",
+        href: "https://github.com/browserbase/stagehand",
+      },
+    ],
+    liveSignals: [
+      {
+        label: "Community traction",
+        title: "Browser Use — make websites accessible for AI agents",
+        href: "https://github.com/browser-use/browser-use",
+        note:
+          "Strongest community signal in the browser automation lane by star count and active development. The vision+DOM hybrid approach is becoming the default pattern.",
+      },
+      {
+        label: "TypeScript-native",
+        title: "Stagehand by Browserbase — AI web browsing framework",
+        href: "https://github.com/browserbase/stagehand",
+        note:
+          "Important because it gives TypeScript teams a clean alternative to Python-only browser-use. The natural language selector approach reduces selector fragility.",
+      },
+    ],
+    whatChangesThis: [
+      "If browser-use ships a TypeScript SDK, Stagehand's language advantage narrows.",
+      "If MCP adoption accelerates, Playwright MCP could move up as agents standardize on tool protocols.",
+      "If vision models get dramatically better at understanding web pages, vision-first approaches pull ahead of structured DOM approaches.",
+    ],
+  },
 };
 
 export const jobList = [
+  jobs["coding-clis"],
+  jobs["web-browsing"],
   jobs["product-business-development"],
   jobs["teams-of-agents"],
   jobs["ux-ui"],

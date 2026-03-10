@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { jobList } from "@/lib/catalog";
 import { mission } from "@/lib/site-data";
 
 export function SiteFooter() {
@@ -12,21 +13,17 @@ export function SiteFooter() {
           </p>
           <p className="max-w-3xl leading-6">{mission}</p>
         </div>
-        <div className="flex flex-col gap-2 border-t border-black/5 pt-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-2 border-t border-black/5 pt-4 sm:flex-row sm:items-start sm:justify-between">
           <p>Built as a static, evidence-backed buyer&apos;s guide for agent skills.</p>
-          <div className="flex items-center gap-4">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
             <Link className="hover:text-black" href="/">
               Home
             </Link>
-            <Link className="hover:text-black" href="/jobs/product-business-development">
-              Product / Business Development
-            </Link>
-            <Link className="hover:text-black" href="/jobs/teams-of-agents">
-              Teams of Agents
-            </Link>
-            <Link className="hover:text-black" href="/jobs/ux-ui">
-              UX / UI
-            </Link>
+            {jobList.map((job) => (
+              <Link key={job.slug} className="hover:text-black" href={`/jobs/${job.slug}`}>
+                {job.name}
+              </Link>
+            ))}
             <Link className="hover:text-black" href="/storyboard">
               Storyboard
             </Link>

@@ -75,15 +75,7 @@ export default async function JobPage({ params }: PageProps) {
               {job.observedOutputs.map((item) => (
                 <article key={item.title} className="border border-black/10 p-4">
                   <a href={item.href} target="_blank" rel="noreferrer" className="group block">
-                    {item.image ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img
-                        src={item.image}
-                        alt={item.title}
-                        className="h-60 w-full border border-black/10 bg-white object-contain object-top p-1 transition-transform duration-200 group-hover:scale-[1.01]"
-                      />
-                    ) : null}
-                    <p className="mt-4 text-sm font-semibold text-zinc-950 underline decoration-black/15 underline-offset-4 group-hover:decoration-black/40">
+                    <p className="text-sm font-semibold text-zinc-950 underline decoration-black/15 underline-offset-4 group-hover:decoration-black/40">
                       {item.title}
                     </p>
                   </a>
@@ -186,16 +178,6 @@ export default async function JobPage({ params }: PageProps) {
                             ) : null}
                           </div>
                         ) : null}
-                        {skill?.previewImage ? (
-                          <div className="pointer-events-none absolute left-0 top-full z-20 hidden w-72 border border-black/10 bg-white p-3 shadow-[0_18px_50px_rgba(0,0,0,0.08)] lg:group-hover:block">
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img
-                              src={skill.previewImage}
-                              alt={item.contender}
-                              className="h-44 w-full border border-black/10 bg-white object-contain object-top p-1"
-                            />
-                          </div>
-                        ) : null}
                       </td>
                       <td className="py-4 pr-4 text-sm leading-7 text-zinc-700">{item.bestFor}</td>
                       <td className="py-4 pr-4 text-sm leading-7 text-zinc-700">{item.why}</td>
@@ -239,47 +221,24 @@ export default async function JobPage({ params }: PageProps) {
             <div className="mt-6 space-y-6">
               {job.liveSignals.map((signal) => (
                 <article key={signal.title} className="border-t border-black/5 pt-4">
-                  <div
-                    className={
-                      signal.preview
-                        ? "grid gap-6 xl:grid-cols-[minmax(0,1fr)_18rem]"
-                        : "grid gap-6"
-                    }
-                  >
-                    <div>
-                      <div className="flex items-center gap-3">
-                        <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-zinc-500">
-                          {signal.label}
-                        </p>
-                        <span className="font-mono text-[10px] text-zinc-400">{signal.date}</span>
-                      </div>
-                      <a
-                        href={signal.href}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="mt-2 inline-block text-base font-semibold leading-8 text-zinc-950 underline decoration-black/20 underline-offset-4 hover:decoration-black/50"
-                      >
-                        {signal.title}
-                      </a>
-                      <p className="mt-3 max-w-3xl text-sm leading-7 text-zinc-700">
-                        {signal.note}
+                  <div>
+                    <div className="flex items-center gap-3">
+                      <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-zinc-500">
+                        {signal.label}
                       </p>
+                      <span className="font-mono text-[10px] text-zinc-400">{signal.date}</span>
                     </div>
-                    {signal.preview ? (
-                      <a
-                        href={signal.href}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="group block"
-                      >
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                          src={signal.preview}
-                          alt={signal.title}
-                          className="h-52 w-full border border-black/10 bg-white object-contain object-top p-1 transition-transform duration-200 group-hover:scale-[1.01]"
-                        />
-                      </a>
-                    ) : null}
+                    <a
+                      href={signal.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="mt-2 inline-block text-base font-semibold leading-8 text-zinc-950 underline decoration-black/20 underline-offset-4 hover:decoration-black/50"
+                    >
+                      {signal.title}
+                    </a>
+                    <p className="mt-3 max-w-3xl text-sm leading-7 text-zinc-700">
+                      {signal.note}
+                    </p>
                   </div>
                 </article>
               ))}

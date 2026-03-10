@@ -63,7 +63,6 @@ export type SkillRecord = {
   status: "active" | "watch";
   summary: string;
   verdict: string;
-  previewImage?: string;
   docsUrl?: string;
   relatedJobs: JobSlug[];
   strengths: string[];
@@ -93,7 +92,6 @@ export type JobRecord = {
     summary: string;
     href: string;
     date: string;
-    image?: string;
   }>;
   liveSignals: Array<{
     label: string;
@@ -101,7 +99,6 @@ export type JobRecord = {
     href: string;
     date: string;
     note: string;
-    preview?: string;
   }>;
   headToHead: Array<{
     left: string;

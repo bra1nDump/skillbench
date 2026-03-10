@@ -56,14 +56,6 @@ export default async function SkillPage({ params }: PageProps) {
               </h1>
               <p className="mt-6 text-lg leading-8 text-zinc-600">{skill.summary}</p>
             </div>
-            {skill.previewImage ? (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                src={skill.previewImage}
-                alt={skill.name}
-                className="h-52 w-full max-w-md border border-black/10 object-cover object-top"
-              />
-            ) : null}
           </div>
         </div>
 

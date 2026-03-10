@@ -1,16 +1,20 @@
 # Skillbench
 
-Static Next.js app for researching and ranking agent skills by job to be done.
+Static Next.js app for researching and ranking agent skills by category.
 
 ## Docs
 
 - `specification.md` — product specification
 - `human-steering-history.md` — raw steering notes from the user
+- `agents.md` — project overview, pipeline, research tools
 
 ## App
 
 - `src/app/page.tsx` — homepage with search and best-right-now picks
-- `src/app/jobs/[slug]/page.tsx` — dynamic job report pages (5 live categories)
+- `src/app/categories/[slug]/page.tsx` — category report pages (5 live categories)
+- `src/app/skills/[slug]/page.tsx` — skill detail pages (18 skills)
+- `src/app/bundles/[slug]/page.tsx` — bundle pages (3 persona stacks)
+- `src/app/platforms/[slug]/page.tsx` — platform pages (5 platforms)
 
 ## Commands
 

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     "Browse all agent skill categories with ranked contenders, evidence-backed verdicts, and comparison tables.",
 };
 
-export default function JobsIndexPage() {
+export default function CategoriesIndexPage() {
   return (
     <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
       <main className="mx-auto w-full max-w-5xl px-6 py-8 sm:px-8 lg:px-10">

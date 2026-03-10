@@ -48,7 +48,7 @@ const latestRuns = [
   {
     name: "Evidence capture",
     summary:
-      "Validated new screenshots for Google Workspace MCP, Firecrawl, OpenHands, SWE-agent, Figma MCP, Figma-use, and Vibma.",
+      "Validated evidence for Google Workspace MCP, Firecrawl, OpenHands, SWE-agent, Figma MCP, Figma-use, and Vibma.",
     href: "/runs/2026-03-09_12-55_evidence-capture_core-jobs",
   },
 ];

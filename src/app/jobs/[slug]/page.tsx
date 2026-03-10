@@ -170,6 +170,25 @@ export default async function JobPage({ params }: PageProps) {
                         ) : (
                           <span>{item.contender}</span>
                         )}
+                        {skill ? (
+                          <div className="mt-1 flex items-center gap-2">
+                            {skill.githubStars ? (
+                              <span className="font-mono text-[9px] text-zinc-400">
+                                {skill.githubStars} stars
+                              </span>
+                            ) : null}
+                            {skill.evidence.length > 0 ? (
+                              <span className="font-mono text-[9px] text-zinc-400">
+                                {skill.evidence.length} evidence
+                              </span>
+                            ) : null}
+                            {skill.official ? (
+                              <span className="rounded-sm bg-zinc-900 px-1 py-0.5 font-mono text-[8px] uppercase tracking-[0.14em] text-zinc-100">
+                                Official
+                              </span>
+                            ) : null}
+                          </div>
+                        ) : null}
                         {skill?.previewImage ? (
                           <div className="pointer-events-none absolute left-0 top-full z-20 hidden w-72 border border-black/10 bg-white p-3 shadow-[0_18px_50px_rgba(0,0,0,0.08)] lg:group-hover:block">
                             {/* eslint-disable-next-line @next/next/no-img-element */}

@@ -184,6 +184,12 @@ we should remove it and keep / CATEGORY in the header of the website itself
 and lets continue pushing after every commit to prod
 ```
 
+## QA agent overhaul: content quality, subagents, cross-tool feedback
+
+```
+modify qa agent to ensure the content of the page contains good info - does it look weird? does it have duplicative info? does it communicate what the product is about? encourage it to use subagents to verify various aspects independently - also use opus in the subagents, and ask to run codex cli too to get feedback
+```
+
 ## Additional context from assistant responses that informed later notes
 
 These were not user-authored, but they explain terms later referenced by the user:

@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 
 import { ReadmePeek } from "@/components/readme-peek";
 import { SiteFooter } from "@/components/site-footer";
-import { getSkill, jobList, skillList } from "@/lib/catalog";
+import { bundleList, getSkill, jobList, skillList } from "@/lib/catalog";
 import { fetchGitHubReadme } from "@/lib/github-readme";
 
 type PageProps = {
@@ -43,6 +43,7 @@ export default async function SkillPage({ params }: PageProps) {
   });
 
   const relatedJobs = jobList.filter((job) => skill.relatedJobs.includes(job.slug));
+  const relatedBundles = bundleList.filter((b) => b.skills.includes(skill.slug));
 
   return (
     <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
@@ -229,6 +230,33 @@ export default async function SkillPage({ params }: PageProps) {
             })}
           </div>
         </section>
+
+        {relatedBundles.length > 0 ? (
+          <section className="border-b border-black/5 py-16">
+            <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-zinc-500">
+              Featured in bundles
+            </p>
+            <div className="mt-6 grid gap-4 sm:grid-cols-2">
+              {relatedBundles.map((bundle) => (
+                <Link
+                  key={bundle.slug}
+                  href={`/bundles/${bundle.slug}`}
+                  className="group border border-black/10 px-5 py-4 transition-colors hover:border-black/25"
+                >
+                  <p className="font-mono text-[9px] uppercase tracking-[0.24em] text-zinc-400">
+                    {bundle.persona}
+                  </p>
+                  <p className="mt-2 text-sm font-semibold text-zinc-950 group-hover:underline">
+                    {bundle.name}
+                  </p>
+                  <p className="mt-1 text-xs leading-5 text-zinc-500">
+                    {bundle.skills.length} skills &middot; {bundle.date}
+                  </p>
+                </Link>
+              ))}
+            </div>
+          </section>
+        ) : null}
 
         <section className="py-16">
           <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-zinc-500">

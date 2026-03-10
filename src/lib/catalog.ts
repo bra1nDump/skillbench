@@ -202,7 +202,26 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "Less exciting than unofficial write-access challengers",
       "Still tied to Figma auth and setup discipline",
     ],
-    evidence: [],
+    evidence: [
+      {
+        quality: "strong",
+        title: "AIMultiple: Figma MCP Server Tested — reduces initial dev time 50-70%",
+        url: "https://research.aimultiple.com/figma-to-code/",
+        date: "2026-02",
+        engagement: "Independent benchmark by AIMultiple",
+        who: "AIMultiple (independent tech analyst)",
+        gist: "Figma MCP converts designs to functional code with notable inaccuracies requiring oversight. Reduces initial dev time 50-70% for teams with design system maturity.",
+      },
+      {
+        quality: "strong",
+        title: "TechBuzz: Figma Opens Design Code to AI Agents via Expanded MCP Server",
+        url: "https://www.techbuzz.ai/articles/figma-opens-design-code-to-ai-agents-via-expanded-mcp-server",
+        date: "2026-02",
+        engagement: "Tech news coverage",
+        who: "TechBuzz (independent tech news)",
+        gist: "MCP server now supports Figma Make. Reads native properties: variables, design tokens, components, variants, auto layout rules.",
+      },
+    ],
   },
   "figma-use": {
     slug: "figma-use",
@@ -228,7 +247,18 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "Weaker institutional trust than the official Figma path",
       "More likely to matter for power users than broad teams",
     ],
-    evidence: [],
+    evidence: [
+      {
+        quality: "moderate",
+        title: "figma-use: 100+ commands, full read/write access via Chrome DevTools Protocol",
+        url: "https://github.com/dannote/figma-use",
+        date: "2026-01",
+        engagement: "Active GitHub development",
+        who: "dannote (independent developer)",
+        gist: "Key differentiator: Figma's official MCP can read but can't modify. figma-use provides full write access via CDP — 90+ MCP tools for creating shapes, text, components.",
+        selfReported: true,
+      },
+    ],
   },
   vibma: {
     slug: "vibma",
@@ -253,7 +283,18 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "Low public traction so far",
       "Trust is still builder-post level rather than broad adoption",
     ],
-    evidence: [],
+    evidence: [
+      {
+        quality: "moderate",
+        title: "Vibma HN discussion — design-system-specific Figma automation",
+        url: "https://github.com/ufira-ai/Vibma",
+        date: "2025-12",
+        engagement: "Low — early-stage repo",
+        who: "Ufira AI (independent team)",
+        gist: "Watch-status: explicit write-directly positioning for design automation. Traction still builder-post level, no independent reviews yet.",
+        selfReported: true,
+      },
+    ],
   },
   "firecrawl-mcp-server": {
     slug: "firecrawl-mcp-server",
@@ -459,7 +500,18 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "Lighter public artifact surface than OpenHands or SWE-agent",
       "More pattern than full factory out of the box",
     ],
-    evidence: [],
+    evidence: [
+      {
+        quality: "moderate",
+        title: "Ralph Loop Agent: Vercel AI SDK continuous-autonomy pattern",
+        url: "https://github.com/vercel-labs/ralph-loop-agent",
+        date: "2025-12",
+        engagement: "Vercel Labs repo",
+        who: "Vercel (official labs project)",
+        gist: "Reference implementation for continuous AI loop pattern using the AI SDK. Clean pattern surface for teams wanting loop-based agent autonomy without a heavy platform.",
+        selfReported: true,
+      },
+    ],
   },
   "swe-agent": {
     slug: "swe-agent",

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Fragment } from "react";
 
 import { SiteFooter } from "@/components/site-footer";
 import { getJob, getSkill, jobList } from "@/lib/catalog";
@@ -132,9 +133,9 @@ export default async function JobPage({ params }: PageProps) {
                   const showCutLine = item.belowCutLine && !prevItem?.belowCutLine;
 
                   return (
-                    <>
+                    <Fragment key={item.rank}>
                       {showCutLine ? (
-                        <tr key={`cut-${item.rank}`} className="border-b-0">
+                        <tr className="border-b-0">
                           <td colSpan={5} className="py-2">
                             <div className="flex items-center gap-3">
                               <div className="h-px flex-1 bg-amber-300/60" />
@@ -146,7 +147,7 @@ export default async function JobPage({ params }: PageProps) {
                           </td>
                         </tr>
                       ) : null}
-                      <tr key={item.rank} className={`border-b border-black/5 align-top${item.belowCutLine ? " opacity-60" : ""}`}>
+                      <tr className={`border-b border-black/5 align-top${item.belowCutLine ? " opacity-60" : ""}`}>
                       <td className="py-4 pr-4 font-mono text-sm text-zinc-700">{item.rank}</td>
                       <td className="group relative py-4 pr-4 text-sm font-semibold text-zinc-950">
                         {href ? (
@@ -204,7 +205,7 @@ export default async function JobPage({ params }: PageProps) {
                       <td className="py-4 pr-4 text-sm leading-7 text-zinc-700">{item.why}</td>
                       <td className="py-4 text-sm leading-7 text-zinc-700">{item.watch}</td>
                     </tr>
-                    </>
+                    </Fragment>
                   );
                 })}
               </tbody>

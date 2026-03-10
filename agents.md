@@ -23,8 +23,8 @@ human-steering-history.md     ← Design decision log
 agents/                       ← Research pipeline agent prompts
   discover.md                 ← Find fresh signals, new contenders, shifting meta
   deep-dive.md                ← Build evidence base, trust tags, multi-source verification
-  rank.md                     ← Editorial ranking per job
-  qa.md                       ← Publish gate — links, signals, screenshots, claims
+  rank.md                     ← Editorial ranking per category
+  qa.md                       ← Publish gate — content quality, links, signals, cross-tool review
 
 agent-runs/                   ← Research run outputs
   agents.md                   ← Run folder structure and findings template
@@ -34,7 +34,7 @@ agent-runs/                   ← Research run outputs
 
 src/                          ← Next.js application
   app/                        ← Pages (homepage, /categories/[slug], /skills/[slug], /bundles/[slug])
-  lib/catalog.ts              ← Skill and job data (hardcoded, fed by pipeline)
+  lib/catalog.ts              ← Skill, category, bundle, and platform data (hardcoded, fed by pipeline)
   components/                 ← Shared UI components
 ```
 

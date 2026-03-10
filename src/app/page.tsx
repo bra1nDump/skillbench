@@ -81,10 +81,7 @@ export default function Home() {
     <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
       <main className="mx-auto w-full max-w-6xl px-6 py-8 sm:px-8 lg:px-10">
         <div className="border-b border-black/5 pb-8">
-          <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-zinc-500">
-            Skillbench
-          </p>
-          <h1 className="mt-8 max-w-5xl text-4xl font-semibold tracking-[-0.06em] text-balance text-zinc-950 sm:text-6xl">
+          <h1 className="mt-2 max-w-5xl text-4xl font-semibold tracking-[-0.06em] text-balance text-zinc-950 sm:text-6xl">
             Find the actual meta for agent skills before it gets stale.
           </h1>
           <p className="mt-6 max-w-3xl text-lg leading-8 text-zinc-600">

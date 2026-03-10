@@ -189,6 +189,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "Best default when trust, officialness, and team adoption matter more than raw write access.",
     docsUrl:
       "https://help.figma.com/hc/en-us/articles/35281385065751-Figma-MCP-collection-Compare-Figma-s-remote-and-desktop-MCP-servers",
+    githubStars: "372",
     relatedCategories: ["ux-ui"],
     strengths: [
       "Official provider trust",
@@ -439,6 +440,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     verdict:
       "Best broad operating skill for product and business workflows because it turns the agent into an operator, not just a researcher.",
     docsUrl: "https://workspacemcp.com",
+    githubStars: "1.7K+",
     relatedCategories: ["product-business-development"],
     strengths: [
       "Huge breadth across core business tools",
@@ -641,6 +643,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     verdict:
       "Best narrow pick when the question is issue-level repair and benchmark credibility, not general software-factory orchestration.",
     docsUrl: "https://swe-agent.com/latest/",
+    githubStars: "18.7K+",
     relatedCategories: ["teams-of-agents"],
     strengths: [
       "Benchmark-native story",
@@ -817,6 +820,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     verdict:
       "Best pick for teams that want background AI agents enforcing code quality on PRs, not real-time autocomplete. The pivot repositioned it away from individual devs toward team CI workflows.",
     docsUrl: "https://continue.dev",
+    githubStars: "31.8K+",
     relatedCategories: ["coding-clis", "teams-of-agents"],
     strengths: [
       "Async agents that enforce team rules on every PR",

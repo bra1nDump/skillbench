@@ -33,7 +33,7 @@ agent-runs/                   ← Research run outputs
     assets/                   ← Screenshots, artifacts
 
 src/                          ← Next.js application
-  app/                        ← Pages (homepage, /jobs/[slug], /skills/[slug])
+  app/                        ← Pages (homepage, /categories/[slug], /skills/[slug], /bundles/[slug])
   lib/catalog.ts              ← Skill and job data (hardcoded, fed by pipeline)
   components/                 ← Shared UI components
 ```
@@ -69,6 +69,7 @@ Each agent prompt lives in `agents/<name>.md`. Each run writes to `agent-runs/`.
 - Screenshots must show the product in use, not homepages.
 - **NEVER trust the product's own website or promotional material as strong evidence.** Self-reported claims (official docs, launch posts, company blogs) may be referenced for factual details but MUST be marked `selfReported: true`. They do NOT count toward multi-source verification.
 - Evidence on each skill is REQUIRED, not optional. Every skill ships with evidence or it doesn't ship.
+- **EVERY external link MUST be verified as live before it's committed.** Use the appropriate API/tool for each platform (Twitter/X API for tweet URLs, fetch for web pages, etc.). Dead links are a critical failure — never reference a URL that hasn't been confirmed reachable.
 
 Full rules in [specification.md](specification.md) and [agents/deep-dive.md](agents/deep-dive.md).
 

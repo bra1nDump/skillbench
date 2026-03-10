@@ -42,7 +42,7 @@ const latestRuns = [
   {
     name: "Rank",
     summary:
-      "Turned the evidence into concrete rankings for the three live jobs, including native-tool and loop-pattern subcases.",
+      "Turned the evidence into concrete rankings for the three live categories, including native-tool and loop-pattern subcases.",
     href: "/runs/2026-03-09_05-57_rank_core-jobs",
   },
   {

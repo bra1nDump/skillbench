@@ -76,6 +76,28 @@ const bestRightNow = jobList.map((job) => ({
   why: job.ranking[0]?.why ?? "",
 }));
 
+// Pull one highlight signal from each job for the evidence feed
+const evidenceHighlights = jobList
+  .flatMap((job) =>
+    job.liveSignals.slice(0, 1).map((signal) => ({
+      jobName: job.name,
+      jobSlug: job.slug,
+      ...signal,
+    }))
+  )
+  .slice(0, 5);
+
+// Pull one head-to-head from each job
+const topComparisons = jobList
+  .flatMap((job) =>
+    job.headToHead.slice(0, 1).map((pair) => ({
+      jobName: job.name,
+      jobSlug: job.slug,
+      ...pair,
+    }))
+  )
+  .slice(0, 5);
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
@@ -117,6 +139,62 @@ export default function Home() {
                 </p>
                 <p className="mt-2 line-clamp-2 text-xs leading-5 text-zinc-500">
                   {item.why}
+                </p>
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        <section className="border-b border-black/5 py-16">
+          <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-zinc-500">
+            Evidence feed
+          </p>
+          <p className="mt-4 max-w-2xl text-base leading-7 text-zinc-600">
+            Strongest recent signals from across all tracked categories.
+          </p>
+          <div className="mt-8 grid gap-6 lg:grid-cols-5">
+            {evidenceHighlights.map((signal) => (
+              <article key={signal.title} className="border-t border-black/5 pt-4">
+                <p className="font-mono text-[9px] uppercase tracking-[0.24em] text-zinc-400">
+                  {signal.jobName}
+                </p>
+                <a
+                  href={signal.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-2 inline-block text-sm font-semibold leading-6 text-zinc-950 underline decoration-black/20 underline-offset-4 hover:decoration-black/50"
+                >
+                  {signal.title}
+                </a>
+                <p className="mt-2 line-clamp-3 text-xs leading-5 text-zinc-500">
+                  {signal.note}
+                </p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="border-b border-black/5 py-16">
+          <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-zinc-500">
+            Key comparisons
+          </p>
+          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+            {topComparisons.map((pair) => (
+              <Link
+                key={`${pair.left}-${pair.right}`}
+                href={`/jobs/${pair.jobSlug}`}
+                className="group border border-black/10 px-4 py-4 transition-colors hover:border-black/25"
+              >
+                <p className="font-mono text-[9px] uppercase tracking-[0.24em] text-zinc-400">
+                  {pair.jobName}
+                </p>
+                <p className="mt-2 text-sm font-semibold text-zinc-950">
+                  {pair.left}
+                  <span className="mx-1 font-normal text-zinc-400">vs</span>
+                  {pair.right}
+                </p>
+                <p className="mt-2 line-clamp-2 text-xs leading-5 text-zinc-500">
+                  {pair.gist}
                 </p>
               </Link>
             ))}

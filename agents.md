@@ -57,9 +57,11 @@ Full rules in [specification.md](specification.md) and [agents/deep-dive.md](age
 
 ## Current job categories
 
-- **UX / UI** — Figma MCP, write-access challengers, design automation
+- **Coding CLIs / Code Agents** — Claude Code, Aider, Continue, Cursor
+- **Web Browsing / Browser Automation** — Browser Use, Stagehand, Playwright MCP
 - **Product / Business Development** — Google Workspace MCP, Firecrawl, Exa
 - **Teams of Agents / Software Factory** — OpenHands, Ralph Loop, SWE-agent
+- **UX / UI** — Figma MCP, write-access challengers, design automation
 
 ## Stack
 

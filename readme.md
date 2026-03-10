@@ -9,8 +9,8 @@ Static Next.js app for researching and ranking agent skills by job to be done.
 
 ## App
 
-- `src/app/page.tsx` — homepage
-- `src/app/jobs/document-editing-ui-ux/page.tsx` — first ranked category page
+- `src/app/page.tsx` — homepage with search and best-right-now picks
+- `src/app/jobs/[slug]/page.tsx` — dynamic job report pages (5 live categories)
 
 ## Commands
 

@@ -1,7 +1,8 @@
 import Link from "next/link";
 
+import { Search } from "@/components/search";
 import { SiteFooter } from "@/components/site-footer";
-import { jobList } from "@/lib/catalog";
+import { jobList, skillList } from "@/lib/catalog";
 import { mission } from "@/lib/site-data";
 
 const pipeline = [
@@ -52,6 +53,29 @@ const latestRuns = [
   },
 ];
 
+const searchItems = [
+  ...jobList.map((job) => ({
+    label: "Job",
+    name: job.name,
+    href: `/jobs/${job.slug}`,
+    summary: job.deck,
+  })),
+  ...skillList.map((skill) => ({
+    label: "Skill",
+    name: skill.name,
+    href: `/skills/${skill.slug}`,
+    summary: skill.summary,
+  })),
+];
+
+const bestRightNow = jobList.map((job) => ({
+  jobName: job.name,
+  jobSlug: job.slug,
+  topPick: job.ranking[0]?.contender ?? "TBD",
+  skillSlug: job.ranking[0]?.skillSlug,
+  why: job.ranking[0]?.why ?? "",
+}));
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
@@ -66,7 +90,38 @@ export default function Home() {
           <p className="mt-6 max-w-3xl text-lg leading-8 text-zinc-600">
             {mission}
           </p>
+          <div className="mt-8">
+            <Search items={searchItems} />
+          </div>
         </div>
+
+        <section className="border-b border-black/5 py-16">
+          <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-zinc-500">
+            Best right now
+          </p>
+          <p className="mt-4 max-w-2xl text-base leading-7 text-zinc-600">
+            Current top pick for each active job category, based on evidence weight and workflow fit.
+          </p>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+            {bestRightNow.map((item) => (
+              <Link
+                key={item.jobSlug}
+                href={`/jobs/${item.jobSlug}`}
+                className="group border border-black/10 px-5 py-5 transition-colors hover:border-black/25"
+              >
+                <p className="font-mono text-[9px] uppercase tracking-[0.24em] text-zinc-400">
+                  {item.jobName}
+                </p>
+                <p className="mt-3 text-base font-semibold tracking-[-0.02em] text-zinc-950">
+                  {item.topPick}
+                </p>
+                <p className="mt-2 line-clamp-2 text-xs leading-5 text-zinc-500">
+                  {item.why}
+                </p>
+              </Link>
+            ))}
+          </div>
+        </section>
 
         <section className="border-b border-black/5 py-16">
           <div className="flex items-end justify-between gap-8">
@@ -75,8 +130,7 @@ export default function Home() {
                 Core jobs
               </p>
               <p className="mt-4 max-w-2xl text-base leading-7 text-zinc-600">
-                These are the job surfaces that are live right now. Each one is meant to answer a
-                narrow question fast, then back it up with visible public proof.
+                Each job surface answers a narrow question fast, then backs it up with visible public proof.
               </p>
             </div>
             <div className="hidden max-w-sm text-sm leading-7 text-zinc-600 lg:block">
@@ -84,13 +138,13 @@ export default function Home() {
               volume. Pairwise comparisons over isolated praise.
             </div>
           </div>
-          <div className="mt-10 grid gap-6 lg:grid-cols-3">
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
             {jobList.map((job) => (
               <article key={job.slug} className="border border-black/10 px-6 py-6">
-                <p className="text-2xl font-semibold tracking-[-0.04em] text-zinc-950">
+                <p className="text-xl font-semibold tracking-[-0.04em] text-zinc-950">
                   {job.name}
                 </p>
-                <p className="mt-4 text-sm leading-7 text-zinc-700">{job.deck}</p>
+                <p className="mt-4 line-clamp-3 text-sm leading-7 text-zinc-700">{job.deck}</p>
                 <p className="mt-6 font-mono text-[10px] uppercase tracking-[0.24em] text-zinc-500">
                   Current top pick
                 </p>
@@ -172,9 +226,16 @@ export default function Home() {
               Current surface
             </p>
             <div className="mt-5 space-y-4 text-base leading-7 text-zinc-700">
-              <p>Product / Business Development</p>
-              <p>Teams of Agents / Software Factory / Ralph Loop</p>
-              <p>UX / UI</p>
+              {jobList.map((job) => (
+                <p key={job.slug}>
+                  <Link
+                    href={`/jobs/${job.slug}`}
+                    className="underline decoration-black/20 underline-offset-4 hover:decoration-black/50"
+                  >
+                    {job.name}
+                  </Link>
+                </p>
+              ))}
             </div>
           </div>
           <div>

@@ -1,6 +1,5 @@
 import Link from "next/link";
 
-import { jobList } from "@/lib/catalog";
 import { mission } from "@/lib/site-data";
 
 export function SiteFooter() {

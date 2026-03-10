@@ -2,7 +2,7 @@
 
 ## Product Summary
 
-Skillbench is a curated website for finding the best skill, platform, or native capability for a specific agent job to be done.
+Skillbench is a curated website for finding the best skill, platform, or native capability for a specific agent task category.
 
 The product is not a broad marketplace and not a generic registry mirror. The core value is:
 
@@ -62,7 +62,7 @@ Examples:
 
 ### 2. Platform
 
-The underlying product, environment, or native capability used to solve the job.
+The underlying product, environment, or native capability used to solve the category.
 
 Examples:
 
@@ -76,7 +76,7 @@ Examples:
 - Claude Code native browser
 - Cursor native support
 
-Important: a platform may solve the job natively without a separate skill.
+Important: a platform may solve the category natively without a separate skill.
 
 ### 3. Skill
 
@@ -109,14 +109,14 @@ Examples:
 The data model is tiered:
 
 ```text
-Job
+Category
   -> Platform
     -> Skill
 ```
 
-The browsing experience should still feel flat. Users should mostly start at the homepage, then go to a job page, and only drill down if needed.
+The browsing experience should still feel flat. Users should mostly start at the homepage, then go to a category page, and only drill down if needed.
 
-This structure solves the case where multiple platforms can address the same job.
+This structure solves the case where multiple platforms can address the same category.
 
 Example:
 
@@ -140,22 +140,22 @@ V1 should have only four page types:
 
 Primary goals:
 
-- show core jobs
+- show core categories
 - show top current recommendations
 - show recent changes
 - surface strong evidence and comparisons
 
-### 2. Job Page
+### 2. Category Page
 
 This is the main product surface.
 
-A job page should include:
+A category page should include:
 
 - ranked options
 - comparison table
 - short explanation of the ranking
 - supporting evidence
-- related platforms and related jobs
+- related platforms and related categories
 
 ### 3. Platform Page
 
@@ -170,7 +170,7 @@ A platform page answers:
 A skill page answers:
 
 - what this skill is good for
-- how it ranks inside its platform or job
+- how it ranks inside its platform or category
 - what evidence supports it
 - what better alternatives exist
 
@@ -181,12 +181,12 @@ The homepage should be simple and editorial.
 Suggested sections:
 
 - search bar
-- core jobs
+- core categories
 - best right now
 - what changed
 - evidence feed
 
-The homepage is not meant to be exhaustive. It should route users into narrow jobs quickly.
+The homepage is not meant to be exhaustive. It should route users into narrow categories quickly.
 
 ## Ranking Model
 
@@ -194,7 +194,7 @@ The site should rank options clearly rather than presenting them as an unordered
 
 Ranking should happen at two levels:
 
-- within a job
+- within a category
 - within a platform
 
 The output should be a clear ranked table, not a vague prose-only recommendation.
@@ -365,7 +365,7 @@ Typical discovery triggers:
 
 Goal:
 
-- gather structured evidence for a job, platform, or skill
+- gather structured evidence for a category, platform, or skill
 
 Tasks:
 
@@ -389,7 +389,7 @@ Goal:
 Tasks:
 
 - rank skills inside each platform
-- rank platforms inside each job
+- rank platforms inside each category
 - assign `active`, `watch`, or `archived`
 - update short verdicts
 - update which items appear in default comparison tables
@@ -403,7 +403,7 @@ Goal:
 Tasks:
 
 - update homepage
-- update job pages
+- update category pages
 - update platform pages
 - update skill pages
 
@@ -492,8 +492,8 @@ The research and content generation pipeline still runs locally. Vercel is only 
 
 These are still open and can be refined after the first real category pages:
 
-- which initial jobs should appear on the homepage
-- how much detail should appear directly on the homepage versus job pages
+- which initial categories should appear on the homepage
+- how much detail should appear directly on the homepage versus category pages
 - whether platform pages should be fully first-class in navigation or mostly supporting pages
 - how much of the source material should be embedded inline versus linked out
 - how we visually show a pairwise comparison without making tables too heavy
@@ -503,7 +503,7 @@ These are still open and can be refined after the first real category pages:
 V1 is successful if a user can:
 
 - land on the homepage
-- identify their job quickly
+- identify their category quickly
 - see the best options ranked
 - understand why the top option wins
 - inspect real public evidence

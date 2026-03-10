@@ -20,7 +20,7 @@ export default function PlatformsIndexPage() {
           </h1>
           <p className="mt-6 max-w-3xl text-lg leading-8 text-zinc-600">
             {platformList.length} platforms tracked. A platform is the underlying product or
-            environment that skills build on top of. Some platforms solve the job natively
+            environment that skills build on top of. Some platforms solve the category natively
             without a separate skill.
           </p>
         </div>

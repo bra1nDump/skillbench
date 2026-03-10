@@ -1294,7 +1294,7 @@ export const categories: Record<CategorySlug, CategoryRecord> = {
       {
         left: "Ralph Loop Agent",
         right: "SWE-agent",
-        gist: "Ralph is about loop-shaped continuous work. SWE-agent is about one-shot issue repair. Ralph is a pattern; SWE-agent is a tool. They solve different subcases of the same meta-job.",
+        gist: "Ralph is about loop-shaped continuous work. SWE-agent is about one-shot issue repair. Ralph is a pattern; SWE-agent is a tool. They solve different subcases of the same meta-category.",
       },
     ],
     whatChangesThis: [

@@ -26,7 +26,7 @@ export default function SkillsIndexPage() {
             All Skills
           </h1>
           <p className="mt-6 max-w-3xl text-lg leading-8 text-zinc-600">
-            {skillList.length} skills tracked across {jobList.length} job categories.
+            {skillList.length} skills tracked across {jobList.length} categories.
             Each skill has an editorial verdict, source links, and evidence-backed strengths and weaknesses.
           </p>
         </div>
@@ -57,9 +57,21 @@ export default function SkillsIndexPage() {
                         >
                           {skill.name}
                         </Link>
-                        <p className="mt-1 font-mono text-[10px] text-zinc-400">
-                          {skill.repo}
-                        </p>
+                        <div className="mt-1 flex items-center gap-2">
+                          <span className="font-mono text-[10px] text-zinc-400">
+                            {skill.repo}
+                          </span>
+                          {skill.githubStars ? (
+                            <span className="font-mono text-[10px] text-zinc-400">
+                              {skill.githubStars}
+                            </span>
+                          ) : null}
+                        </div>
+                        {skill.evidence.length > 0 ? (
+                          <span className="mt-1 inline-block font-mono text-[9px] text-emerald-600">
+                            {skill.evidence.length} evidence item{skill.evidence.length !== 1 ? "s" : ""}
+                          </span>
+                        ) : null}
                       </td>
                       <td className="py-4 pr-4">
                         <span

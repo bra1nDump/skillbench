@@ -8,26 +8,30 @@ import { mission } from "@/lib/site-data";
 const pipeline = [
   {
     name: "Discover",
+    icon: "🔍",
     summary:
-      "Search the last 7 to 30 days across official launches, major registries, X, Reddit, Hacker News, and explicit pairwise language like 'vs', 'replaced', or 'better than'.",
+      "Search the last 7–30 days across launches, registries, X, Reddit, HN, and pairwise language like 'vs', 'replaced', 'better than'.",
     href: "/docs/agents",
   },
   {
     name: "Deep-dive",
+    icon: "🔬",
     summary:
-      "Pull the strongest trust-building sources, quotes, screenshots, and workflow-shape differences. The goal is proof, not volume.",
+      "Pull the strongest trust-building sources, quotes, screenshots, and workflow differences. Proof, not volume.",
     href: "/docs/agents",
   },
   {
     name: "Rank",
+    icon: "🏆",
     summary:
-      "Turn the evidence into a category-level recommendation. Weight workflow fit, public trust, official support, and demonstrability above raw chatter.",
+      "Turn evidence into category-level recommendations. Workflow fit and public trust over raw chatter.",
     href: "/docs/agents",
   },
   {
     name: "QA",
+    icon: "🛡️",
     summary:
-      "Fail the build on broken links, dead assets, and stale citations. Browser spot-check anything that is bot-blocked or visually suspicious.",
+      "Fail the build on broken links, dead assets, stale citations. Browser spot-check anything suspicious.",
     href: "/docs/agents/qa",
   },
 ];
@@ -86,98 +90,152 @@ const bestRightNow = categoryList.map((category) => ({
   topPick: category.ranking[0]?.contender ?? "TBD",
   skillSlug: category.ranking[0]?.skillSlug,
   why: category.ranking[0]?.why ?? "",
+  rank: category.ranking.length,
 }));
 
-// Pull one highlight signal from each category for the evidence feed
 const evidenceHighlights = categoryList
   .flatMap((category) =>
     category.liveSignals.slice(0, 1).map((signal) => ({
       categoryName: category.name,
       categorySlug: category.slug,
       ...signal,
-    }))
+    })),
   )
   .slice(0, 5);
 
-// Pull one head-to-head from each category
 const topComparisons = categoryList
   .flatMap((category) =>
     category.headToHead.slice(0, 1).map((pair) => ({
       categoryName: category.name,
       categorySlug: category.slug,
       ...pair,
-    }))
+    })),
   )
   .slice(0, 5);
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
-      <main className="mx-auto w-full max-w-5xl px-6 py-8 sm:px-8 lg:px-10">
-        <div className="border-b border-black/5 pb-8">
-          <h1 className="mt-2 max-w-5xl text-4xl font-semibold tracking-[-0.06em] text-balance text-zinc-950 sm:text-6xl">
-            Find the actual meta for agent skills before it gets stale.
+    <div className="min-h-screen">
+      <main className="mx-auto w-full max-w-6xl px-6 sm:px-8">
+        {/* Hero */}
+        <div className="pb-12 pt-16 sm:pt-20">
+          <div className="inline-flex items-center gap-2 rounded-full border border-indigo-500/20 bg-indigo-500/[0.07] px-3 py-1">
+            <span className="h-1.5 w-1.5 rounded-full bg-indigo-400 animate-pulse" />
+            <span className="text-xs font-medium text-indigo-400">
+              {categoryList.length} categories · {skillList.length} skills ranked
+            </span>
+          </div>
+          <h1 className="mt-6 max-w-3xl text-4xl font-bold tracking-[-0.04em] text-white sm:text-5xl lg:text-6xl">
+            Find the actual meta for{" "}
+            <span className=" text-indigo-400 ">
+              agent skills
+            </span>
           </h1>
-          <p className="mt-6 max-w-3xl text-lg leading-8 text-zinc-600">
+          <p className="mt-6 max-w-2xl text-base leading-7 text-zinc-400">
             {mission}
-          </p>
-          <p className="mt-3 font-mono text-[11px] uppercase tracking-[0.24em] text-zinc-400">
-            {categoryList.length} categories · {skillList.length} skills · {bundleList.length} bundles · {platformList.length} platforms
           </p>
           <div className="mt-8">
             <Search items={searchItems} />
           </div>
         </div>
 
-        <section className="border-b border-black/5 py-16">
-          <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-zinc-500">
-            Best right now
-          </p>
-          <p className="mt-4 max-w-2xl text-base leading-7 text-zinc-600">
-            Current top pick for each active category, based on evidence weight and workflow fit.
-          </p>
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+        {/* Top picks per category */}
+        <section className="border-t border-white/[0.06] py-14">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <p className="font-mono uppercase tracking-widest text-indigo-400">
+                Best right now
+              </p>
+              <p className="mt-2 text-sm text-zinc-500">
+                Top pick per category, ranked by evidence weight and workflow fit.
+              </p>
+            </div>
+            <Link href="/categories" className="group inline-flex w-fit items-center gap-1 rounded-lg border border-white/[0.06] px-3 py-1.5 text-xs font-medium text-zinc-400 transition-all hover:border-white/[0.12] hover:bg-white/[0.04] hover:text-white">
+              All categories <span className="inline-block transition-transform group-hover:translate-x-0.5">→</span>
+            </Link>
+          </div>
+          <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
             {bestRightNow.map((item) => (
               <Link
                 key={item.categorySlug}
                 href={`/categories/${item.categorySlug}`}
-                className="group border border-black/10 px-5 py-5 transition-colors hover:border-black/25"
+                className="group relative overflow-hidden rounded-xl border border-white/[0.06] bg-[var(--surface)] p-5 transition-all hover:border-white/[0.12] hover:bg-[var(--surface-2)]"
               >
-                <p className="font-mono text-[9px] uppercase tracking-[0.24em] text-zinc-400">
+                <p className="font-mono text-[10px] uppercase tracking-wider text-zinc-500">
                   {item.categoryName}
                 </p>
-                <p className="mt-3 text-base font-semibold tracking-[-0.02em] text-zinc-950">
+                <p className="mt-3 text-lg font-semibold tracking-tight text-white">
                   {item.topPick}
                 </p>
                 <p className="mt-2 line-clamp-2 text-xs leading-5 text-zinc-500">
                   {item.why}
+                </p>
+                <div className="mt-3 flex items-center gap-1.5">
+                  <span className="inline-flex items-center rounded bg-emerald-500/10 px-1.5 py-0.5 font-mono text-[9px] font-medium text-emerald-400">
+                    #1
+                  </span>
+                  <span className="text-[10px] text-zinc-600">
+                    of {item.rank} ranked
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        {/* Key comparisons */}
+        <section className="border-t border-white/[0.06] py-14">
+          <p className="font-mono uppercase tracking-widest text-indigo-400">
+            Head to head
+          </p>
+          <p className="mt-2 text-sm text-zinc-500">
+            The matchups that matter most right now.
+          </p>
+          <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+            {topComparisons.map((pair) => (
+              <Link
+                key={`${pair.left}-${pair.right}`}
+                href={`/categories/${pair.categorySlug}`}
+                className="group rounded-xl border border-white/[0.06] bg-[var(--surface)] p-5 transition-all hover:border-white/[0.12] hover:bg-[var(--surface-2)]"
+              >
+                <p className="font-mono text-[10px] uppercase tracking-wider text-zinc-500">
+                  {pair.categoryName}
+                </p>
+                <div className="mt-3 flex items-center gap-2">
+                  <span className="text-sm font-semibold text-white">{pair.left}</span>
+                  <span className="rounded bg-white/[0.06] px-1.5 py-0.5 text-[10px] font-medium text-zinc-500">vs</span>
+                  <span className="text-sm font-semibold text-white">{pair.right}</span>
+                </div>
+                <p className="mt-2 line-clamp-2 text-xs leading-5 text-zinc-500">
+                  {pair.gist}
                 </p>
               </Link>
             ))}
           </div>
         </section>
 
-        <section className="border-b border-black/5 py-16">
-          <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-zinc-500">
-            Evidence feed
+        {/* Evidence feed */}
+        <section className="border-t border-white/[0.06] py-14">
+          <p className="font-mono  uppercase tracking-widest text-indigo-400">
+            Latest signals
           </p>
-          <p className="mt-4 max-w-2xl text-base leading-7 text-zinc-600">
-            Strongest recent signals from across all tracked categories.
+          <p className="mt-2 text-sm text-zinc-500">
+            Strongest recent evidence from across all tracked categories.
           </p>
-          <div className="mt-8 grid gap-6 lg:grid-cols-5">
+          <div className="mt-8 grid gap-4 lg:grid-cols-5">
             {evidenceHighlights.map((signal) => (
-              <article key={signal.title} className="border-t border-black/5 pt-4">
+              <article key={signal.title} className="rounded-lg border border-white/[0.04] bg-[var(--surface)] p-4">
                 <div className="flex items-center gap-2">
-                  <p className="font-mono text-[9px] uppercase tracking-[0.24em] text-zinc-400">
+                  <span className="inline-flex rounded bg-white/[0.06] px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-wider text-zinc-500">
                     {signal.categoryName}
-                  </p>
-                  <span className="font-mono text-[9px] text-zinc-400">{signal.date}</span>
+                  </span>
+                  <span className="font-mono text-[10px] text-zinc-600">{signal.date}</span>
                 </div>
                 <a
                   href={signal.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="mt-2 inline-block text-sm font-semibold leading-6 text-zinc-950 underline decoration-black/20 underline-offset-4 hover:decoration-black/50"
+                  className="mt-3 inline-block text-sm font-medium leading-snug text-zinc-200 transition-colors hover:text-white"
                 >
                   {signal.title}
                 </a>
@@ -189,100 +247,93 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="border-b border-black/5 py-16">
-          <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-zinc-500">
-            Key comparisons
-          </p>
-          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-            {topComparisons.map((pair) => (
+        {/* Categories */}
+        <section className="border-t border-white/[0.06] py-14">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <p className="font-mono uppercase tracking-widest text-indigo-400">
+                Categories
+              </p>
+              <p className="mt-2 text-sm text-zinc-500">
+                Each answers a narrow question, backed by visible public proof.
+              </p>
+            </div>
+            <Link href="/categories" className="group inline-flex w-fit items-center gap-1 rounded-lg border border-white/[0.06] px-3 py-1.5 text-xs font-medium text-zinc-400 transition-all hover:border-white/[0.12] hover:bg-white/[0.04] hover:text-white">
+              View all <span className="inline-block transition-transform group-hover:translate-x-0.5">→</span>
+            </Link>
+          </div>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {categoryList.map((category) => (
               <Link
-                key={`${pair.left}-${pair.right}`}
-                href={`/categories/${pair.categorySlug}`}
-                className="group border border-black/10 px-4 py-4 transition-colors hover:border-black/25"
+                key={category.slug}
+                href={`/categories/${category.slug}`}
+                className="group rounded-xl border border-white/[0.06] bg-[var(--surface)] p-6 transition-all hover:border-indigo-500/20 hover:bg-[var(--surface-2)]"
               >
-                <p className="font-mono text-[9px] uppercase tracking-[0.24em] text-zinc-400">
-                  {pair.categoryName}
+                <p className="text-lg font-semibold tracking-tight text-white">
+                  {category.name}
                 </p>
-                <p className="mt-2 text-sm font-semibold text-zinc-950">
-                  {pair.left}
-                  <span className="mx-1 font-normal text-zinc-400">vs</span>
-                  {pair.right}
+                <p className="mt-3 line-clamp-2 text-sm leading-6 text-zinc-500">
+                  {category.deck}
                 </p>
-                <p className="mt-2 line-clamp-2 text-xs leading-5 text-zinc-500">
-                  {pair.gist}
+                <div className="mt-5 border-t border-white/[0.04] pt-4">
+                  <p className="font-mono text-[9px] uppercase tracking-wider text-zinc-600">
+                    Top 3
+                  </p>
+                  <div className="mt-2 space-y-1">
+                    {category.ranking.slice(0, 3).map((item) => (
+                      <div key={item.rank} className="flex items-center gap-2 text-sm">
+                        <span className="w-5 font-mono text-xs text-zinc-600">{item.rank}</span>
+                        <span className="font-medium text-zinc-300">{item.contender}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <p className="mt-4 text-xs font-medium text-indigo-400 opacity-0 transition-opacity group-hover:opacity-100">
+                  Open report →
                 </p>
               </Link>
             ))}
           </div>
         </section>
 
-        <section className="border-b border-black/5 py-16">
-          <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-zinc-500">
-            Categories
-          </p>
-          <p className="mt-4 max-w-2xl text-base leading-7 text-zinc-600">
-            Each category answers a narrow question fast, then backs it up with visible public proof.
-          </p>
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-            {categoryList.map((category) => (
-              <article key={category.slug} className="border border-black/10 px-6 py-6">
-                <p className="text-xl font-semibold tracking-[-0.04em] text-zinc-950">
-                  {category.name}
-                </p>
-                <p className="mt-4 line-clamp-3 text-sm leading-7 text-zinc-700">{category.deck}</p>
-                <p className="mt-6 font-mono text-[10px] uppercase tracking-[0.24em] text-zinc-500">
-                  Current top pick
-                </p>
-                <p className="mt-2 text-sm font-semibold text-zinc-950">
-                  {category.ranking[0]?.contender}
-                </p>
-                <Link
-                  href={`/categories/${category.slug}`}
-                  className="mt-6 inline-block text-sm font-semibold text-zinc-950 underline decoration-black/20 underline-offset-4 hover:decoration-black/50"
-                >
-                  Open report →
-                </Link>
-              </article>
-            ))}
-          </div>
-        </section>
-
+        {/* Bundles */}
         {bundleList.length > 0 ? (
-          <section className="border-b border-black/5 py-16">
-            <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-zinc-500">
+          <section className="border-t border-white/[0.06] py-14">
+            <p className="font-mono uppercase tracking-widest text-indigo-400">
               Bundles
             </p>
-            <p className="mt-4 max-w-2xl text-base leading-7 text-zinc-600">
+            <p className="mt-2 text-sm text-zinc-500">
               What known builders actually ship with. Full setups from people with public track records.
             </p>
             <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {bundleList.map((bundle) => {
                 const bundleSkills = bundle.skills.map((s) => getSkill(s)).filter(Boolean);
+
                 return (
                   <Link
                     key={bundle.slug}
                     href={`/bundles/${bundle.slug}`}
-                    className="group border border-black/10 px-5 py-5 transition-colors hover:border-black/25"
+                    className="group rounded-xl border border-white/[0.06] bg-[var(--surface)] p-5 transition-all hover:border-white/[0.12] hover:bg-[var(--surface-2)]"
                   >
-                    <p className="font-mono text-[9px] uppercase tracking-[0.24em] text-zinc-400">
+                    <p className="font-mono text-[10px] uppercase tracking-wider text-zinc-500">
                       {bundle.personaHandle}
                     </p>
-                    <p className="mt-2 text-base font-semibold tracking-[-0.02em] text-zinc-950">
+                    <p className="mt-2 text-base font-semibold tracking-tight text-white">
                       {bundle.name}
                     </p>
                     <p className="mt-2 line-clamp-2 text-xs leading-5 text-zinc-500">
                       {bundle.summary}
                     </p>
-                    <div className="mt-3 flex flex-wrap gap-1">
+                    <div className="mt-4 flex flex-wrap gap-1.5">
                       {bundleSkills.map((skill) =>
                         skill ? (
                           <span
                             key={skill.slug}
-                            className="rounded-sm bg-zinc-900 px-1.5 py-0.5 font-mono text-[8px] uppercase tracking-[0.14em] text-zinc-100"
+                            className="rounded bg-indigo-500/10 px-2 py-0.5 font-mono text-[9px] text-indigo-400"
                           >
                             {skill.name}
                           </span>
-                        ) : null
+                        ) : null,
                       )}
                     </div>
                   </Link>
@@ -292,64 +343,77 @@ export default function Home() {
           </section>
         ) : null}
 
-        <section className="grid gap-14 border-b border-black/5 py-16 lg:grid-cols-[1.35fr_0.65fr]">
+        {/* Pipeline + Values */}
+        <section className="grid gap-14 border-t border-white/[0.06] py-14 lg:grid-cols-[1.35fr_0.65fr]">
           <div>
-            <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-zinc-500">
-              Pipeline
+            <p className="font-mono uppercase tracking-widest text-indigo-400">
+              How we rank
             </p>
-            <div className="mt-6 grid gap-4 md:grid-cols-2">
-              {pipeline.map((step) => (
-                <article key={step.name} className="border-t border-black/5 pt-4">
-                  <p className="text-base font-semibold tracking-[-0.02em] text-zinc-950">
-                    {step.name}
-                  </p>
-                  <p className="mt-3 text-sm leading-7 text-zinc-700">{step.summary}</p>
-                  <Link
-                    href={step.href}
-                    className="mt-4 inline-block text-sm font-semibold text-zinc-950 underline decoration-black/20 underline-offset-4 hover:decoration-black/50"
-                  >
-                    Open prompt →
-                  </Link>
-                </article>
+            <p className="mt-2 text-sm text-zinc-500">
+              Every recommendation goes through a 4-step research pipeline.
+            </p>
+            <div className="mt-8 grid gap-3 md:grid-cols-2">
+              {pipeline.map((step, i) => (
+                <Link
+                  key={step.name}
+                  href={step.href}
+                  className="group rounded-lg border border-white/[0.04] bg-[var(--surface)] p-4 transition-all hover:border-white/[0.08]"
+                >
+                  <div className="flex items-center gap-3">
+                    <span className="flex h-7 w-7 items-center justify-center rounded-md bg-white/[0.04] font-mono text-xs text-zinc-500">
+                      {i + 1}
+                    </span>
+                    <p className="text-sm font-semibold text-white">{step.name}</p>
+                  </div>
+                  <p className="mt-3 text-xs leading-5 text-zinc-500">{step.summary}</p>
+                </Link>
               ))}
             </div>
           </div>
 
-          <div className="pt-1">
-            <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-zinc-500">
+          <div>
+            <p className="font-mono uppercase tracking-widest text-indigo-400">
               What we optimize for
             </p>
-            <div className="mt-4 space-y-4 text-sm leading-7 text-zinc-700">
-              <p>Demonstrable outputs over generic capability claims.</p>
-              <p>Public trust over registry volume.</p>
-              <p>Pairwise comparisons over isolated praise.</p>
-              <p>Workflow shape over fake universal scores.</p>
+            <div className="mt-6 space-y-3">
+              {[
+                "Demonstrable outputs over generic capability claims.",
+                "Public trust over registry volume.",
+                "Pairwise comparisons over isolated praise.",
+                "Workflow shape over fake universal scores.",
+              ].map((item) => (
+                <div key={item} className="flex items-start gap-3">
+                  <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-indigo-500/50" />
+                  <p className="text-sm leading-6 text-zinc-400">{item}</p>
+                </div>
+              ))}
             </div>
           </div>
         </section>
 
-        <section className="border-b border-black/5 py-16">
-          <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-zinc-500">
-            Latest research artifacts
+        {/* Latest runs */}
+        <section className="border-t border-white/[0.06] py-14">
+          <p className="font-mono uppercase tracking-widest text-indigo-400">
+            Latest research
           </p>
-          <div className="mt-6 grid gap-8 lg:grid-cols-3">
+          <div className="mt-6 grid gap-4 lg:grid-cols-3">
             {latestRuns.map((run) => (
-              <article key={run.name} className="border-t border-black/5 pt-4">
-                <p className="text-sm font-semibold text-zinc-950">{run.name}</p>
-                <p className="mt-3 text-sm leading-7 text-zinc-600">
+              <Link
+                key={run.name}
+                href={run.href}
+                className="group rounded-lg border border-white/[0.04] bg-[var(--surface)] p-5 transition-all hover:border-white/[0.08]"
+              >
+                <p className="text-sm font-semibold text-white">{run.name}</p>
+                <p className="mt-2 text-xs leading-5 text-zinc-500">
                   {run.summary}
                 </p>
-                <Link
-                  href={run.href}
-                  className="mt-4 inline-block text-sm font-semibold text-zinc-950 underline decoration-black/20 underline-offset-4 hover:decoration-black/50"
-                >
-                  Open run →
-                </Link>
-              </article>
+                <p className="mt-3 text-xs font-medium text-indigo-400 opacity-0 transition-opacity group-hover:opacity-100">
+                  View run →
+                </p>
+              </Link>
             ))}
           </div>
         </section>
-
       </main>
 
       <SiteFooter />

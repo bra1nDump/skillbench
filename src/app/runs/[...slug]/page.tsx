@@ -1,4 +1,3 @@
-import type { Components } from "react-markdown";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
@@ -10,6 +9,8 @@ import {
   resolveRunAssetHref,
   resolveRunMarkdownHref,
 } from "@/lib/run-docs";
+
+import type { Components } from "react-markdown";
 
 type PageProps = {
   params: Promise<{
@@ -31,13 +32,14 @@ export default async function RunPage({ params }: PageProps) {
     a: ({ href = "", children }) => {
       const target = resolveRunMarkdownHref(slug, href);
       const external = target.startsWith("http");
+
       if (external) {
         return (
           <a
             href={target}
             target="_blank"
             rel="noreferrer"
-            className="underline decoration-black/20 underline-offset-4 hover:decoration-black/50"
+            className="text-indigo-400 transition-colors hover:text-indigo-300"
           >
             {children}
           </a>
@@ -45,10 +47,7 @@ export default async function RunPage({ params }: PageProps) {
       }
 
       return (
-        <Link
-          href={target}
-          className="underline decoration-black/20 underline-offset-4 hover:decoration-black/50"
-        >
+        <Link href={target} className="text-indigo-400 transition-colors hover:text-indigo-300">
           {children}
         </Link>
       );
@@ -58,60 +57,60 @@ export default async function RunPage({ params }: PageProps) {
       <img
         src={resolveRunAssetHref(slug, typeof src === "string" ? src : "")}
         alt={alt}
-        className="my-6 w-full border border-black/10"
+        className="my-6 w-full rounded-lg border border-white/[0.06]"
       />
     ),
     h1: ({ children }) => (
-      <h1 className="mt-10 text-4xl font-semibold tracking-[-0.04em] text-zinc-950 first:mt-0">
+      <h1 className="mt-10 text-3xl font-bold tracking-tight text-white first:mt-0">
         {children}
       </h1>
     ),
     h2: ({ children }) => (
-      <h2 className="mt-10 font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-zinc-700">
+      <h2 className="mt-10 font-mono text-[11px] font-semibold uppercase tracking-widest text-indigo-400">
         {children}
       </h2>
     ),
     h3: ({ children }) => (
-      <h3 className="mt-8 text-lg font-semibold text-zinc-950">{children}</h3>
+      <h3 className="mt-8 text-lg font-semibold text-white">{children}</h3>
     ),
     p: ({ children }) => (
-      <p className="mt-4 text-base leading-8 text-zinc-700">{children}</p>
+      <p className="mt-4 text-[15px] leading-7 text-zinc-400">{children}</p>
     ),
     ul: ({ children }) => (
-      <ul className="mt-4 list-disc space-y-2 pl-6 text-base leading-8 text-zinc-700">
+      <ul className="mt-4 list-disc space-y-2 pl-6 text-[15px] leading-7 text-zinc-400">
         {children}
       </ul>
     ),
     ol: ({ children }) => (
-      <ol className="mt-4 list-decimal space-y-2 pl-6 text-base leading-8 text-zinc-700">
+      <ol className="mt-4 list-decimal space-y-2 pl-6 text-[15px] leading-7 text-zinc-400">
         {children}
       </ol>
     ),
     blockquote: ({ children }) => (
-      <blockquote className="mt-6 border-l border-black/15 pl-5 text-zinc-700">
+      <blockquote className="mt-6 border-l-2 border-indigo-500/30 pl-5 text-zinc-400">
         {children}
       </blockquote>
     ),
     code: ({ children }) => (
-      <code className="rounded-[2px] bg-black/5 px-1.5 py-0.5 text-[0.92em] text-zinc-900">
+      <code className="rounded bg-white/[0.06] px-1.5 py-0.5 text-[0.92em] text-zinc-300">
         {children}
       </code>
     ),
     pre: ({ children }) => (
-      <pre className="mt-6 overflow-x-auto border border-black/10 bg-white px-4 py-4 text-sm leading-7 text-zinc-800">
+      <pre className="mt-6 overflow-x-auto rounded-lg border border-white/[0.06] bg-[var(--surface)] px-4 py-4 text-sm leading-7 text-zinc-300">
         {children}
       </pre>
     ),
   };
 
   return (
-    <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
-      <main className="mx-auto w-full max-w-4xl px-6 py-8 sm:px-8 lg:px-10">
-        <div className="border-b border-black/5 pb-8">
-          <p className="text-xs text-zinc-500">{relativePath}</p>
+    <div className="min-h-screen">
+      <main className="mx-auto w-full max-w-4xl px-6 py-10 sm:px-8">
+        <div className="pb-6">
+          <p className="font-mono text-xs text-zinc-600">{relativePath}</p>
         </div>
 
-        <article className="prose-none py-12">
+        <article className="prose-none py-8">
           <ReactMarkdown remarkPlugins={[remarkGfm]} components={components}>
             {source}
           </ReactMarkdown>

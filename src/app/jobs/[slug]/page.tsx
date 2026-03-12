@@ -6,5 +6,6 @@ type PageProps = {
 
 export default async function CategorySlugRedirect({ params }: PageProps) {
   const { slug } = await params;
+
   redirect(`/categories/${slug}`);
 }

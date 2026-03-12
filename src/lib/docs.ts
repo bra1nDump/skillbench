@@ -23,6 +23,7 @@ export async function readDocMarkdown(slug: string[]) {
   for (const candidate of candidates) {
     try {
       const source = await fs.readFile(candidate, "utf8");
+
       return {
         source,
         filePath: candidate,
@@ -53,10 +54,10 @@ export function resolveDocHref(currentSlug: string[], href: string) {
 
   const targetPath = rawTarget.startsWith("/")
     ? ensureInsideRoot(
-        rawTarget.startsWith(DOCS_ROOT)
-          ? rawTarget
-          : path.join(DOCS_ROOT, rawTarget.replace(/^\/+/, "")),
-      )
+      rawTarget.startsWith(DOCS_ROOT)
+        ? rawTarget
+        : path.join(DOCS_ROOT, rawTarget.replace(/^\/+/, "")),
+    )
     : ensureInsideRoot(path.resolve(currentDir, rawTarget));
 
   const relative = path.relative(DOCS_ROOT, targetPath).replace(/\\/g, "/");

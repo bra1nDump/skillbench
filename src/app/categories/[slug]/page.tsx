@@ -1,10 +1,11 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Fragment } from "react";
 
 import { SiteFooter } from "@/components/site-footer";
 import { categoryList, getCategory, getSkill } from "@/lib/catalog";
+
+import type { Metadata } from "next";
 
 type PageProps = {
   params: Promise<{
@@ -19,6 +20,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const category = getCategory(slug);
+
   if (!category) return {};
   return {
     title: `${category.name} — Skillbench`,
@@ -35,61 +37,68 @@ export default async function CategoryPage({ params }: PageProps) {
   }
 
   return (
-    <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
-      <main className="mx-auto w-full max-w-5xl px-6 py-8 sm:px-8 lg:px-10">
-        <div className="border-b border-black/5 pb-8">
-          <h1 className="text-4xl font-semibold tracking-[-0.06em] text-zinc-950 sm:text-6xl">
+    <div className="min-h-screen">
+      <main className="mx-auto w-full max-w-6xl px-6 py-10 sm:px-8">
+        {/* Header */}
+        <div className="pb-10">
+          <Link href="/categories" className="mb-4 inline-flex items-center gap-1 text-xs text-zinc-500 transition-colors hover:text-zinc-300">
+            ← All categories
+          </Link>
+          <h1 className="text-3xl font-bold tracking-tight text-white sm:text-5xl">
             {category.name}
           </h1>
-          <p className="mt-6 max-w-4xl text-lg leading-8 text-zinc-600">{category.deck}</p>
+          <p className="mt-4 max-w-3xl text-base leading-7 text-zinc-400">{category.deck}</p>
         </div>
 
-        <section className="border-b border-black/5 py-16">
-          <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-zinc-500">
+        {/* Verdict */}
+        <section className="border-t border-white/[0.06] py-12">
+          <p className="font-mono text-[11px] uppercase tracking-widest text-indigo-400">
             Verdict
           </p>
-          <div className="mt-5 space-y-5 text-base leading-8 text-zinc-700">
+          <div className="mt-5 space-y-4 text-[15px] leading-7 text-zinc-300">
             {category.verdict.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
             ))}
           </div>
         </section>
 
-        <section className="border-b border-black/5 py-16">
-          <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-zinc-500">
+        {/* Deeper read */}
+        <section className="border-t border-white/[0.06] py-12">
+          <p className="font-mono text-[11px] uppercase tracking-widest text-indigo-400">
             The deeper read
           </p>
-          <div className="mt-5 space-y-5 text-base leading-8 text-zinc-700">
+          <div className="mt-5 space-y-4 text-[15px] leading-7 text-zinc-400">
             {category.meta.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
             ))}
           </div>
         </section>
 
+        {/* Observed outputs */}
         {category.observedOutputs.length > 0 ? (
-          <section className="border-b border-black/5 py-16">
-            <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-zinc-500">
+          <section className="border-t border-white/[0.06] py-12">
+            <p className="font-mono text-[11px] uppercase tracking-widest text-indigo-400">
               Observed outputs
             </p>
-            <div className="mt-8 grid gap-8 lg:grid-cols-2">
+            <div className="mt-6 grid gap-4 lg:grid-cols-2">
               {category.observedOutputs.map((item) => (
-                <article key={item.title} className="border border-black/10 p-4">
+                <article key={item.title} className="rounded-xl border border-white/[0.06] bg-[var(--surface)] p-5">
                   <a href={item.href} target="_blank" rel="noreferrer" className="group block">
-                    <p className="text-sm font-semibold text-zinc-950 underline decoration-black/15 underline-offset-4 group-hover:decoration-black/40">
+                    <p className="text-sm font-semibold text-zinc-200 transition-colors group-hover:text-white">
                       {item.title}
                     </p>
                   </a>
-                  <p className="mt-3 text-sm leading-7 text-zinc-700">{item.summary}</p>
+                  <p className="mt-2 text-sm leading-6 text-zinc-500">{item.summary}</p>
                   <div className="mt-4 flex items-center gap-3">
                     <a
                       href={item.href}
                       target="_blank"
                       rel="noreferrer"
-                      className="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500 underline decoration-black/15 underline-offset-4 hover:text-black"
+                      className="text-xs font-medium text-indigo-400 transition-colors hover:text-indigo-300"
                     >
-                      View source
+                      View source →
                     </a>
-                    <span className="font-mono text-[10px] text-zinc-400">{item.date}</span>
+                    <span className="font-mono text-[10px] text-zinc-600">{item.date}</span>
                   </div>
                 </article>
               ))}
@@ -97,114 +106,92 @@ export default async function CategoryPage({ params }: PageProps) {
           </section>
         ) : null}
 
-        <section className="border-b border-black/5 py-16">
-          <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-zinc-500">
+        {/* Ranking */}
+        <section className="border-t border-white/[0.06] py-12">
+          <p className="font-mono text-[11px] uppercase tracking-widest text-indigo-400">
             Current ranking
           </p>
-          <div className="mt-6 overflow-x-auto">
-            <table className="min-w-full border-collapse text-left">
-              <thead>
-                <tr className="border-b border-black/5 text-[10px] uppercase tracking-[0.18em] text-zinc-500">
-                  <th className="py-3 pr-4 font-medium">Rank</th>
-                  <th className="py-3 pr-4 font-medium">Contender</th>
-                  <th className="py-3 pr-4 font-medium">Best for</th>
-                  <th className="py-3 pr-4 font-medium">Why it ranks here</th>
-                  <th className="py-3 font-medium">Watch for</th>
-                </tr>
-              </thead>
-              <tbody>
-                {category.ranking.map((item, idx) => {
-                  const skill = item.skillSlug ? getSkill(item.skillSlug) : null;
-                  const href = skill ? `/skills/${skill.slug}` : item.externalUrl;
-                  const external = Boolean(item.externalUrl && !skill);
-                  const prevItem = idx > 0 ? category.ranking[idx - 1] : null;
-                  const showCutLine = item.belowCutLine && !prevItem?.belowCutLine;
+          <div className="mt-6 space-y-3">
+            {category.ranking.map((item, idx) => {
+              const skill = item.skillSlug ? getSkill(item.skillSlug) : null;
+              const href = skill ? `/skills/${skill.slug}` : item.externalUrl;
+              const external = Boolean(item.externalUrl && !skill);
+              const prevItem = idx > 0 ? category.ranking[idx - 1] : null;
+              const showCutLine = item.belowCutLine && !prevItem?.belowCutLine;
 
-                  return (
-                    <Fragment key={item.rank}>
-                      {showCutLine ? (
-                        <tr className="border-b-0">
-                          <td colSpan={5} className="py-2">
-                            <div className="flex items-center gap-3">
-                              <div className="h-px flex-1 bg-amber-300/60" />
-                              <span className="font-mono text-[9px] uppercase tracking-[0.24em] text-amber-500">
-                                Below the cut line — tracked, not recommended
-                              </span>
-                              <div className="h-px flex-1 bg-amber-300/60" />
-                            </div>
-                          </td>
-                        </tr>
-                      ) : null}
-                      <tr className={`border-b border-black/5 align-top${item.belowCutLine ? " opacity-60" : ""}`}>
-                      <td className="py-4 pr-4 font-mono text-sm text-zinc-700">{item.rank}</td>
-                      <td className="group relative py-4 pr-4 text-sm font-semibold text-zinc-950">
+              return (
+                <Fragment key={item.rank}>
+                  {showCutLine ? (
+                    <div className="flex items-center gap-3 py-2">
+                      <div className="h-px flex-1 bg-amber-500/20" />
+                      <span className="font-mono text-[10px] uppercase tracking-wider text-amber-500/70">
+                        Below the cut line
+                      </span>
+                      <div className="h-px flex-1 bg-amber-500/20" />
+                    </div>
+                  ) : null}
+                  <div className={`flex gap-4 rounded-xl border border-white/[0.06] bg-[var(--surface)] p-5 transition-colors hover:border-white/[0.1]${item.belowCutLine ? " opacity-50" : ""}`}>
+                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-white/[0.04] font-mono text-lg font-bold text-zinc-500">
+                      {item.rank}
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-center gap-2">
                         {href ? (
                           external ? (
-                            <a
-                              href={href}
-                              target="_blank"
-                              rel="noreferrer"
-                              className="underline decoration-black/20 underline-offset-4"
-                            >
+                            <a href={href} target="_blank" rel="noreferrer" className="text-base font-semibold text-white transition-colors hover:text-indigo-400">
                               {item.contender}
                             </a>
                           ) : (
-                            <Link
-                              href={href}
-                              className="underline decoration-black/20 underline-offset-4"
-                            >
+                            <Link href={href} className="text-base font-semibold text-white transition-colors hover:text-indigo-400">
                               {item.contender}
                             </Link>
                           )
                         ) : (
-                          <span>{item.contender}</span>
+                          <span className="text-base font-semibold text-white">{item.contender}</span>
                         )}
-                        {skill ? (
-                          <div className="mt-1 flex items-center gap-2">
-                            {skill.githubStars ? (
-                              <span className="font-mono text-[9px] text-zinc-400">
-                                {skill.githubStars} stars
-                              </span>
-                            ) : null}
-                            {skill.evidence.length > 0 ? (
-                              <span className="font-mono text-[9px] text-zinc-400">
-                                {skill.evidence.length} evidence
-                              </span>
-                            ) : null}
-                            {skill.official ? (
-                              <span className="rounded-sm bg-zinc-900 px-1 py-0.5 font-mono text-[8px] uppercase tracking-[0.14em] text-zinc-100">
-                                Official
-                              </span>
-                            ) : null}
-                          </div>
+                        {skill?.official ? (
+                          <span className="rounded bg-indigo-500/15 px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-wider text-indigo-400">
+                            Official
+                          </span>
                         ) : null}
-                      </td>
-                      <td className="py-4 pr-4 text-sm leading-7 text-zinc-700">{item.bestFor}</td>
-                      <td className="py-4 pr-4 text-sm leading-7 text-zinc-700">{item.why}</td>
-                      <td className="py-4 text-sm leading-7 text-zinc-700">{item.watch}</td>
-                    </tr>
-                    </Fragment>
-                  );
-                })}
-              </tbody>
-            </table>
+                        {skill?.githubStars ? (
+                          <span className="font-mono text-[10px] text-zinc-600">
+                            ★ {skill.githubStars}
+                          </span>
+                        ) : null}
+                      </div>
+                      <p className="mt-1 text-sm text-zinc-500">
+                        <span className="font-medium text-zinc-400">Best for:</span> {item.bestFor}
+                      </p>
+                      <p className="mt-1 text-xs leading-5 text-zinc-500">{item.why}</p>
+                      {item.watch ? (
+                        <p className="mt-2 text-xs text-amber-500/70">
+                          ⚡ {item.watch}
+                        </p>
+                      ) : null}
+                    </div>
+                  </div>
+                </Fragment>
+              );
+            })}
           </div>
         </section>
 
+        {/* Head to head */}
         {category.headToHead.length > 0 ? (
-          <section className="border-b border-black/5 py-16">
-            <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-zinc-500">
+          <section className="border-t border-white/[0.06] py-12">
+            <p className="font-mono text-[11px] uppercase tracking-widest text-indigo-400">
               Head to head
             </p>
-            <div className="mt-6 grid gap-4 lg:grid-cols-3">
+            <div className="mt-6 grid gap-3 lg:grid-cols-3">
               {category.headToHead.map((pair) => (
-                <article key={`${pair.left}-${pair.right}`} className="border border-black/10 px-5 py-5">
-                  <p className="text-sm font-semibold text-zinc-950">
-                    {pair.left}
-                    <span className="mx-2 font-normal text-zinc-400">vs</span>
-                    {pair.right}
-                  </p>
-                  <p className="mt-3 text-sm leading-7 text-zinc-600">
+                <article key={`${pair.left}-${pair.right}`} className="rounded-xl border border-white/[0.06] bg-[var(--surface)] p-5">
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm font-semibold text-white">{pair.left}</span>
+                    <span className="rounded bg-white/[0.06] px-1.5 py-0.5 text-[10px] font-medium text-zinc-500">vs</span>
+                    <span className="text-sm font-semibold text-white">{pair.right}</span>
+                  </div>
+                  <p className="mt-3 text-sm leading-6 text-zinc-500">
                     {pair.gist}
                   </p>
                 </article>
@@ -213,46 +200,49 @@ export default async function CategoryPage({ params }: PageProps) {
           </section>
         ) : null}
 
+        {/* Public signals */}
         {category.liveSignals.length > 0 ? (
-          <section className="border-b border-black/5 py-16">
-            <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-zinc-500">
+          <section className="border-t border-white/[0.06] py-12">
+            <p className="font-mono text-[11px] uppercase tracking-widest text-indigo-400">
               Public signals
             </p>
-            <div className="mt-6 space-y-6">
+            <div className="mt-6 space-y-3">
               {category.liveSignals.map((signal) => (
-                <article key={signal.title} className="border-t border-black/5 pt-4">
-                  <div>
-                    <div className="flex items-center gap-3">
-                      <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-zinc-500">
-                        {signal.label}
-                      </p>
-                      <span className="font-mono text-[10px] text-zinc-400">{signal.date}</span>
-                    </div>
-                    <a
-                      href={signal.href}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="mt-2 inline-block text-base font-semibold leading-8 text-zinc-950 underline decoration-black/20 underline-offset-4 hover:decoration-black/50"
-                    >
-                      {signal.title}
-                    </a>
-                    <p className="mt-3 max-w-3xl text-sm leading-7 text-zinc-700">
-                      {signal.note}
-                    </p>
+                <article key={signal.title} className="rounded-lg border border-white/[0.04] bg-[var(--surface)] p-5">
+                  <div className="flex items-center gap-3">
+                    <span className="inline-flex rounded bg-white/[0.06] px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-wider text-zinc-500">
+                      {signal.label}
+                    </span>
+                    <span className="font-mono text-[10px] text-zinc-600">{signal.date}</span>
                   </div>
+                  <a
+                    href={signal.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mt-2 inline-block text-[15px] font-medium text-zinc-200 transition-colors hover:text-white"
+                  >
+                    {signal.title}
+                  </a>
+                  <p className="mt-2 max-w-3xl text-sm leading-6 text-zinc-500">
+                    {signal.note}
+                  </p>
                 </article>
               ))}
             </div>
           </section>
         ) : null}
 
-        <section className="py-16">
-          <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-zinc-500">
+        {/* What changes this */}
+        <section className="border-t border-white/[0.06] py-12">
+          <p className="font-mono text-[11px] uppercase tracking-widest text-indigo-400">
             What changes this
           </p>
-          <div className="mt-5 space-y-4 text-base leading-8 text-zinc-700">
+          <div className="mt-5 space-y-3">
             {category.whatChangesThis.map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
+              <div key={paragraph} className="flex items-start gap-3">
+                <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-amber-500/40" />
+                <p className="text-sm leading-6 text-zinc-400">{paragraph}</p>
+              </div>
             ))}
           </div>
         </section>

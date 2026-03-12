@@ -21,6 +21,7 @@ export async function readRunMarkdown(slug: string[]) {
     : ensureInsideRuns(path.join(requested, "findings.md"));
 
   const source = await fs.readFile(finalPath, "utf8");
+
   return {
     source,
     filePath: finalPath,

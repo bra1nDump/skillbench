@@ -1,12 +1,13 @@
-import type { Metadata } from "next";
-import { JetBrains_Mono, Manrope } from "next/font/google";
+import { JetBrains_Mono, Plus_Jakarta_Sans } from "next/font/google";
 
 import { SiteHeader } from "@/components/site-header";
 
+import type { Metadata } from "next";
+
 import "./globals.css";
 
-const manrope = Manrope({
-  variable: "--font-manrope",
+const plusJakarta = Plus_Jakarta_Sans({
+  variable: "--font-plus-jakarta",
   subsets: ["latin"],
 });
 
@@ -29,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${manrope.variable} ${jetBrainsMono.variable} antialiased`}
+        className={`${plusJakarta.variable} ${jetBrainsMono.variable} antialiased`}
       >
         <SiteHeader />
         {children}

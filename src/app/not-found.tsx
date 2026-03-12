@@ -4,37 +4,30 @@ import { SiteFooter } from "@/components/site-footer";
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
-      <main className="mx-auto w-full max-w-5xl px-6 py-8 sm:px-8 lg:px-10">
+    <div className="min-h-screen">
+      <main className="mx-auto w-full max-w-6xl px-6 py-8 sm:px-8">
         <div className="py-24 text-center">
-          <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-zinc-400">
-            404
-          </p>
-          <h1 className="mt-4 text-4xl font-semibold tracking-[-0.06em] text-zinc-950">
+          <p className="font-mono text-6xl font-bold text-zinc-800">404</p>
+          <h1 className="mt-4 text-2xl font-bold tracking-tight text-white">
             Page not found
           </h1>
-          <p className="mx-auto mt-6 max-w-md text-base leading-8 text-zinc-600">
+          <p className="mx-auto mt-4 max-w-md text-sm leading-6 text-zinc-500">
             This page doesn&apos;t exist yet. Try browsing categories or skills instead.
           </p>
-          <div className="mt-10 flex items-center justify-center gap-4">
-            <Link
-              href="/"
-              className="border border-black/10 px-5 py-3 text-sm font-semibold text-zinc-950 hover:border-black/25"
-            >
-              Home
-            </Link>
-            <Link
-              href="/categories"
-              className="border border-black/10 px-5 py-3 text-sm font-semibold text-zinc-950 hover:border-black/25"
-            >
-              Browse Categories
-            </Link>
-            <Link
-              href="/skills"
-              className="border border-black/10 px-5 py-3 text-sm font-semibold text-zinc-950 hover:border-black/25"
-            >
-              Browse Skills
-            </Link>
+          <div className="mt-8 flex items-center justify-center gap-3">
+            {[
+              { href: "/", label: "Home" },
+              { href: "/categories", label: "Categories" },
+              { href: "/skills", label: "Skills" },
+            ].map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="rounded-lg border border-white/[0.06] bg-[var(--surface)] px-5 py-2.5 text-sm font-medium text-zinc-300 transition-all hover:border-white/[0.12] hover:text-white"
+              >
+                {item.label}
+              </Link>
+            ))}
           </div>
         </div>
       </main>

@@ -2,9 +2,13 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Fragment } from "react";
 
+import { CategorySkillsChart } from "@/components/charts/category-skills-chart";
+import { MultiMetricsChart } from "@/components/charts/metrics-chart";
 import { SiteFooter } from "@/components/site-footer";
 import { categoryList, getCategory, getSkill } from "@/lib/catalog";
+import { parseStars } from "@/lib/parse-stars";
 
+import type { CategorySkillData } from "@/components/charts/category-skills-chart";
 import type { Metadata } from "next";
 
 type PageProps = {
@@ -176,6 +180,77 @@ export default async function CategoryPage({ params }: PageProps) {
             })}
           </div>
         </section>
+
+        {/* Skills comparison chart */}
+        {(() => {
+          const chartData: CategorySkillData[] = category.ranking
+            .map((item) => {
+              const skill = item.skillSlug ? getSkill(item.skillSlug) : null;
+
+              return {
+                name: item.contender,
+                stars: skill ? parseStars(skill.githubStars) : 0,
+                evidence: skill ? skill.evidence.length : 0,
+                strongEvidence: skill ? skill.evidence.filter((e) => e.quality === "strong").length : 0,
+                rank: item.rank,
+              };
+            })
+            .filter((d) => d.stars > 0 || d.evidence > 0);
+
+          const top10 = chartData.slice(0, 10);
+          const remaining = chartData.length - top10.length;
+
+          return top10.length > 1 ? (
+            <section className="border-t border-white/[0.06] py-12">
+              <p className="font-mono text-[11px] uppercase tracking-widest text-indigo-400">
+                Skills comparison
+              </p>
+              <p className="mt-2 text-sm text-zinc-500">
+                GitHub stars and evidence count for top ranked skills.
+              </p>
+              <div className="mt-6">
+                <CategorySkillsChart data={top10} />
+              </div>
+              {remaining > 0 && (
+                <p className="mt-3 text-center text-xs text-zinc-600">
+                  +{remaining} more not shown
+                </p>
+              )}
+            </section>
+          ) : null;
+        })()}
+
+        {/* Star growth over time */}
+        {(() => {
+          const LINE_COLORS = ["#818cf8", "#34d399", "#fbbf24", "#f472b6", "#38bdf8", "#a78bfa"];
+          const lines = category.ranking
+            .slice(0, 6)
+            .map((item, i) => {
+              const skill = item.skillSlug ? getSkill(item.skillSlug) : null;
+
+              if (!skill?.metrics?.stars || skill.metrics.stars.length < 2) return null;
+              return {
+                name: item.contender,
+                color: LINE_COLORS[i % LINE_COLORS.length],
+                data: skill.metrics.stars,
+              };
+            })
+            .filter((l): l is NonNullable<typeof l> => l !== null);
+
+          return lines.length > 0 ? (
+            <section className="border-t border-white/[0.06] py-12">
+              <p className="font-mono text-[11px] uppercase tracking-widest text-indigo-400">
+                Star growth over time
+              </p>
+              <p className="mt-2 text-sm text-zinc-500">
+                GitHub stars trajectory for top skills in this category.
+              </p>
+              <div className="mt-6">
+                <MultiMetricsChart lines={lines} label="GitHub Stars" />
+              </div>
+            </section>
+          ) : null;
+        })()}
 
         {/* Head to head */}
         {category.headToHead.length > 0 ? (

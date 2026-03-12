@@ -8,13 +8,16 @@
     "start": "next start",
     "lint": "eslint",
     "qa:links": "node scripts/qa/check-links.mjs",
-    "qa:publish": "npm run lint && npm run build && npm run qa:links"
+    "qa:publish": "npm run lint && npm run build && npm run qa:links",
+    "screenshots": "node scripts/capture-screenshots.mjs",
+    "metrics:collect": "node scripts/collect-stars.mjs"
   },
   "dependencies": {
     "next": "16.1.6",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-markdown": "^10.1.0",
+    "recharts": "^3.8.0",
     "remark-gfm": "^4.0.1"
   },
   "devDependencies": {
@@ -27,6 +30,7 @@
     "eslint-config-next": "16.1.6",
     "eslint-plugin-perfectionist": "^5.6.0",
     "eslint-plugin-sonarjs": "^4.0.2",
+    "playwright": "^1.58.2",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

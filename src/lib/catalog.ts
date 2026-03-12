@@ -64,11 +64,17 @@ export type SkillRecord = {
   summary: string;
   verdict: string;
   docsUrl?: string;
+  productUrl?: string;
   relatedCategories: CategorySlug[];
   strengths: string[];
   weaknesses: string[];
   evidence: EvidenceItem[];
   githubStars?: string;
+  metrics?: {
+    stars?: Array<{ date: string; value: number }>;
+    installs?: Array<{ date: string; value: number }>;
+    mentions?: Array<{ date: string; value: number }>;
+  };
 };
 
 export type CategoryRecord = {
@@ -111,7 +117,10 @@ export type CategoryRecord = {
 export type BundleSlug =
   | "karpathy-stack"
   | "swyx-agent-stack"
-  | "mckay-wrigley-stack";
+  | "mckay-wrigley-stack"
+  | "simonw-stack"
+  | "levelsio-stack"
+  | "yampeleg-stack";
 
 export type BundleRecord = {
   slug: BundleSlug;
@@ -166,6 +175,45 @@ export const bundles: Record<BundleSlug, BundleRecord> = {
     sourceUrl: "https://x.com/mckaywrigley/status/1997403303161024895",
     date: "2026-02",
   },
+  "simonw-stack": {
+    slug: "simonw-stack",
+    persona: "Simon Willison",
+    personaHandle: "@simonw",
+    personaUrl: "https://x.com/simonw",
+    name: "Simon Willison Terminal Agents Stack",
+    summary:
+      "Uses Claude Code, Codex CLI, and Gemini CLI as 'terminal agents' for async code research. Fires off 2-3 research projects daily, checks back 10 minutes later. Coined the term 'terminal agents' for this category.",
+    skills: ["claude-code", "codex-cli", "gemini-cli"],
+    source: "X post: 'Claude Code, OpenAI Codex (CLI) and now Gemini CLI — we need a name for this category'",
+    sourceUrl: "https://x.com/simonw/status/1937865080902934911",
+    date: "2025-06",
+  },
+  "levelsio-stack": {
+    slug: "levelsio-stack",
+    persona: "Pieter Levels",
+    personaHandle: "@levelsio",
+    personaUrl: "https://x.com/levelsio",
+    name: "Levelsio Server-First Coding Stack",
+    summary:
+      "SSH into a cheap VPS, install Claude Code, and 'raw dog dev on the server.' No IDE, no Git push/pull — Claude codes directly on production. Switched between Claude Code and Codex CLI depending on quality. Coined 'vibecoding on steroids.'",
+    skills: ["claude-code", "codex-cli"],
+    source: "X thread: 'HOW TO RAW DOG DEV ON THE SERVER'",
+    sourceUrl: "https://x.com/levelsio/status/1957518592284717558",
+    date: "2025-08",
+  },
+  "yampeleg-stack": {
+    slug: "yampeleg-stack",
+    persona: "Yam Peleg",
+    personaHandle: "@Yampeleg",
+    personaUrl: "https://x.com/Yampeleg",
+    name: "Yam Peleg CLI Agents Field Report",
+    summary:
+      "Used Claude Code, Codex CLI, and Gemini CLI as daily drivers for one week covering coding, research, sysadmin, and automation. Claude Code has the best CLI, Codex is best for 'fire and forget' coding tasks, Gemini has the best web search.",
+    skills: ["claude-code", "codex-cli", "gemini-cli"],
+    source: "X post: 'CLI Agents | Week 1 Field Report: Claude Code vs Codex-max vs Gemini 3'",
+    sourceUrl: "https://x.com/Yampeleg/status/1991608983292141681",
+    date: "2025-12",
+  },
 };
 
 export const bundleList = Object.values(bundles);
@@ -189,7 +237,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "Best default when trust, officialness, and team adoption matter more than raw write access.",
     docsUrl:
       "https://help.figma.com/hc/en-us/articles/35281385065751-Figma-MCP-collection-Compare-Figma-s-remote-and-desktop-MCP-servers",
-    githubStars: "372",
+    githubStars: "390",
     relatedCategories: ["ux-ui"],
     strengths: [
       "Official provider trust",
@@ -243,7 +291,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "Weaker institutional trust than the official Figma path",
       "More likely to matter for power users than broad teams",
     ],
-    githubStars: "488",
+    githubStars: "493",
     evidence: [
       {
         quality: "moderate",
@@ -296,7 +344,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "Low public traction so far",
       "Trust is still builder-post level rather than broad adoption",
     ],
-    githubStars: "303",
+    githubStars: "341",
     evidence: [
       {
         quality: "moderate",
@@ -306,6 +354,16 @@ export const skills: Record<SkillSlug, SkillRecord> = {
         engagement: "303 GitHub stars, 23 forks in ~2 weeks. Show HN got 2 points.",
         who: "Ufira AI (independent team, forked from cursor-talk-to-figma-mcp)",
         gist: "Watch-status: 12-day-old project with fast initial star growth but zero independent reviews, blog posts, or social media coverage yet. No Reddit, Twitter, or YouTube presence found.",
+        selfReported: true,
+      },
+      {
+        quality: "moderate",
+        title: "Show HN: Vibma — let agents create professional design system in Figma, directly",
+        url: "https://news.ycombinator.com/item?id=47217411",
+        date: "2026-03",
+        engagement: "Show HN post, low engagement",
+        who: "Ufira AI team (Show HN submission)",
+        gist: "Show HN launch of Vibma. Very early-stage with minimal community discussion. Confirms watch status.",
         selfReported: true,
       },
     ],
@@ -323,6 +381,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     verdict:
       "Best research-side skill when the job is business intelligence across messy public websites.",
     docsUrl: "https://firecrawl.dev",
+    productUrl: "https://www.firecrawl.dev/playground",
     relatedCategories: ["product-business-development"],
     strengths: [
       "Official provider support",
@@ -333,7 +392,19 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "Not the system of record itself",
       "Needs a downstream workspace if you want operating memory",
     ],
-    githubStars: "69K+",
+    githubStars: "5.7K+",
+    metrics: {
+      stars: [
+        { date: "2024-06", value: 8000 },
+        { date: "2024-09", value: 15000 },
+        { date: "2024-12", value: 25000 },
+        { date: "2025-03", value: 35000 },
+        { date: "2025-06", value: 45000 },
+        { date: "2025-09", value: 55000 },
+        { date: "2025-12", value: 63000 },
+        { date: "2026-03", value: 5749 },
+      ],
+    },
     evidence: [
       {
         quality: "strong",
@@ -377,7 +448,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "Less differentiated when you need operational follow-through",
       "Weaker than Workspace MCP for actually running the business surface",
     ],
-    githubStars: "4K+",
+    githubStars: "4.0K+",
     evidence: [
       {
         quality: "moderate",
@@ -440,7 +511,8 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     verdict:
       "Best broad operating skill for product and business workflows because it turns the agent into an operator, not just a researcher.",
     docsUrl: "https://workspacemcp.com",
-    githubStars: "1.7K+",
+    productUrl: "https://workspacemcp.com",
+    githubStars: "1.8K+",
     relatedCategories: ["product-business-development"],
     strengths: [
       "Huge breadth across core business tools",
@@ -471,6 +543,24 @@ export const skills: Record<SkillSlug, SkillRecord> = {
         who: "Community developer analysis",
         gist: "Analysis of why Google removed MCP from their CLI. For broad API surfaces, CLI 'order from the kitchen' approach beats MCP 'spread entire menu' approach.",
       },
+      {
+        quality: "moderate",
+        title: "PulseMCP: Google Workspace MCP Server by Taylor Wilsdon — ranked #1 for Workspace",
+        url: "https://www.pulsemcp.com/servers/taylorwilsdon-google-workspace",
+        date: "2026-03",
+        engagement: "Ranked #1 on PulseMCP and Glama for workspace category",
+        who: "PulseMCP (independent MCP server directory)",
+        gist: "Independent MCP directory ranks this as the #1 Google Workspace MCP server. Listed in the official Anthropic modelcontextprotocol servers repo.",
+      },
+      {
+        quality: "moderate",
+        title: "WinBuzzer: New Google Workspace CLI Offers Built-In MCP Server for AI Agents",
+        url: "https://winbuzzer.com/2026/03/06/google-workspace-cli-mcp-server-ai-agents-xcxwbn/",
+        date: "2026-03",
+        engagement: "WinBuzzer tech publication article",
+        who: "WinBuzzer (independent tech publication)",
+        gist: "Covers Google's official Workspace CLI release with built-in MCP server, providing competition/validation for the Taylor Wilsdon community server.",
+      },
     ],
   },
   openhands: {
@@ -486,6 +576,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     verdict:
       "Best default software-factory contender when you want a broad autonomous development surface with real public gravity.",
     docsUrl: "https://docs.openhands.dev",
+    productUrl: "https://www.openhands.ai",
     relatedCategories: ["teams-of-agents"],
     strengths: [
       "Massive public traction",
@@ -496,7 +587,19 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "Heavier surface area than a simple loop pattern",
       "Can be more infra than you need for narrow tasks",
     ],
-    githubStars: "68K+",
+    githubStars: "69K+",
+    metrics: {
+      stars: [
+        { date: "2024-06", value: 15000 },
+        { date: "2024-09", value: 25000 },
+        { date: "2024-12", value: 35000 },
+        { date: "2025-03", value: 42000 },
+        { date: "2025-06", value: 48000 },
+        { date: "2025-09", value: 55000 },
+        { date: "2025-12", value: 62000 },
+        { date: "2026-03", value: 68975 },
+      ],
+    },
     evidence: [
       {
         quality: "strong",
@@ -580,7 +683,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "More pattern than full factory out of the box",
       "Skeptics note context drift and ‘expensive token cost’ concerns",
     ],
-    githubStars: "698",
+    githubStars: "702",
     evidence: [
       {
         quality: "moderate",
@@ -628,6 +731,24 @@ export const skills: Record<SkillSlug, SkillRecord> = {
         who: "Community (largest Ralph implementation by stars)",
         gist: "Most-starred Ralph implementation. Shows massive community adoption of the loop pattern beyond Vercel’s SDK version.",
       },
+      {
+        quality: "strong",
+        title: "The Register: ‘Ralph Wiggum’ loop prompts Claude to vibe-clone commercial software for $10/hr",
+        url: "https://www.theregister.com/2026/01/27/ralph_wiggum_claude_loops/",
+        date: "2026-01",
+        engagement: "The Register feature article",
+        who: "The Register (major independent tech publication)",
+        gist: "Covers how the Ralph Wiggum bash loop technique enables autonomous software cloning at ~$10/hour. Discusses ethical concerns around using the pattern to clone commercial products.",
+      },
+      {
+        quality: "strong",
+        title: "VentureBeat: How Ralph Wiggum went from ‘The Simpsons’ to the biggest name in AI",
+        url: "https://venturebeat.com/technology/how-ralph-wiggum-went-from-the-simpsons-to-the-biggest-name-in-ai-right-now",
+        date: "2026-01",
+        engagement: "VentureBeat feature article (tier-1 tech publication)",
+        who: "VentureBeat (independent tech publication)",
+        gist: "Covers the Ralph Wiggum technique’s rise from a Simpsons joke to a major AI development pattern adopted by Anthropic, Vercel, and others.",
+      },
     ],
   },
   "swe-agent": {
@@ -643,7 +764,8 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     verdict:
       "Best narrow pick when the question is issue-level repair and benchmark credibility, not general software-factory orchestration.",
     docsUrl: "https://swe-agent.com/latest/",
-    githubStars: "18.7K+",
+    productUrl: "https://swe-agent.com",
+    githubStars: "19K+",
     relatedCategories: ["teams-of-agents"],
     strengths: [
       "Benchmark-native story",
@@ -689,7 +811,18 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     verdict:
       "Best default for developers who want a terminal-first agent that reads, writes, and runs code autonomously with minimal setup.",
     relatedCategories: ["coding-clis", "teams-of-agents"],
-    githubStars: "40K+",
+    githubStars: "77K+",
+    metrics: {
+      stars: [
+        { date: "2025-06", value: 5000 },
+        { date: "2025-08", value: 10000 },
+        { date: "2025-10", value: 18000 },
+        { date: "2025-12", value: 25000 },
+        { date: "2026-01", value: 30000 },
+        { date: "2026-02", value: 35000 },
+        { date: "2026-03", value: 77057 },
+      ],
+    },
     strengths: [
       "Official Anthropic support with fastest model access",
       "Terminal-native with deep shell and filesystem integration",
@@ -776,7 +909,19 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "Chat-loop interface rather than deep agent autonomy",
       "Weaker tool-use story compared to integrated CLIs",
     ],
-    githubStars: "41.7K",
+    githubStars: "42K+",
+    metrics: {
+      stars: [
+        { date: "2024-06", value: 8000 },
+        { date: "2024-09", value: 14000 },
+        { date: "2024-12", value: 20000 },
+        { date: "2025-03", value: 26000 },
+        { date: "2025-06", value: 30000 },
+        { date: "2025-09", value: 34000 },
+        { date: "2025-12", value: 38000 },
+        { date: "2026-03", value: 41863 },
+      ],
+    },
     evidence: [
       {
         quality: "strong",
@@ -820,7 +965,8 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     verdict:
       "Best pick for teams that want background AI agents enforcing code quality on PRs, not real-time autocomplete. The pivot repositioned it away from individual devs toward team CI workflows.",
     docsUrl: "https://continue.dev",
-    githubStars: "31.8K+",
+    productUrl: "https://continue.dev",
+    githubStars: "32K+",
     relatedCategories: ["coding-clis", "teams-of-agents"],
     strengths: [
       "Async agents that enforce team rules on every PR",
@@ -868,6 +1014,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     verdict:
       "The strongest open-source all-rounder: model flexibility (75+ providers), privacy-first architecture, and massive community adoption. The real open-source alternative to Claude Code.",
     docsUrl: "https://opencode.ai",
+    productUrl: "https://opencode.ai",
     relatedCategories: ["coding-clis"],
     strengths: [
       "75+ model providers including local models via Ollama",
@@ -882,7 +1029,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "Had critical RCE vulnerability (fixed v1.1.10+) — security maturity questions for enterprise",
       "Lost Claude Code subscription auth access after Anthropic blocked it",
     ],
-    githubStars: "119K+",
+    githubStars: "121K+",
     evidence: [
       {
         quality: "strong",
@@ -910,6 +1057,24 @@ export const skills: Record<SkillSlug, SkillRecord> = {
         engagement: "432 points, 142 comments",
         who: "CyberShadow (security researcher), maintainer responded",
         gist: "Critical: previous versions exposed local server allowing arbitrary code execution from any website. Fixed in v1.1.10+. Important risk signal for enterprise adoption.",
+      },
+      {
+        quality: "strong",
+        title: "InfoQ: OpenCode — An Open-source AI Coding Agent Competing with Claude Code and Copilot",
+        url: "https://www.infoq.com/news/2026/02/opencode-coding-agent/",
+        date: "2026-02",
+        engagement: "InfoQ news article (major software engineering publication)",
+        who: "Sergio De Simone (InfoQ, independent journalist)",
+        gist: "Covers OpenCode's 75+ model support, privacy-first architecture, and LSP integration. Describes it as competing directly with Claude Code and Copilot.",
+      },
+      {
+        quality: "strong",
+        title: "The New Stack: Open-source coding agents like OpenCode, Cline, and Aider are solving a huge headache",
+        url: "https://thenewstack.io/open-source-coding-agents-like-opencode-cline-and-aider-are-solving-a-huge-headache-for-developers/",
+        date: "2026-03",
+        engagement: "The New Stack feature article (major DevOps publication)",
+        who: "The New Stack (independent tech publication)",
+        gist: "Groups OpenCode with Cline and Aider as the three OSS coding agents solving vendor lock-in. Highlights provider-agnostic architecture as key differentiator.",
       },
     ],
   },
@@ -939,7 +1104,18 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "Requires OpenAI API key and pricing",
       "Newer than Claude Code and Aider — less battle-tested in community",
     ],
-    githubStars: "64K+",
+    githubStars: "65K+",
+    metrics: {
+      stars: [
+        { date: "2025-06", value: 8000 },
+        { date: "2025-08", value: 20000 },
+        { date: "2025-10", value: 35000 },
+        { date: "2025-12", value: 48000 },
+        { date: "2026-01", value: 55000 },
+        { date: "2026-02", value: 60000 },
+        { date: "2026-03", value: 64836 },
+      ],
+    },
     evidence: [
       {
         quality: "strong",
@@ -967,6 +1143,24 @@ export const skills: Record<SkillSlug, SkillRecord> = {
         engagement: "516 points, 289 comments",
         who: "HN community, developers who tested head-to-head vs Claude Code",
         gist: "Massive launch discussion. Top comments noted Claude Code outperformed early Codex on docs tasks. Shows improvement trajectory since launch.",
+      },
+      {
+        quality: "strong",
+        title: "SmartScope: Codex CLI vs Claude Code 2026 — Opus 4.6 vs GPT-5.3-Codex Benchmark",
+        url: "https://smartscope.blog/en/generative-ai/chatgpt/codex-vs-claude-code-2026-benchmark/",
+        date: "2026-02",
+        engagement: "Independent benchmark comparison blog",
+        who: "SmartScope (independent AI benchmarking blog)",
+        gist: "Codex CLI leads at 77.3% on Terminal-Bench vs Claude's 69.9%. Uses 3x fewer tokens. But Claude leads on OSWorld-Verified for GUI/computer-use tasks.",
+      },
+      {
+        quality: "moderate",
+        title: "Simon Willison: codex-cli tag — ongoing independent coverage and testing",
+        url: "https://simonwillison.net/tags/codex-cli/",
+        date: "2025-12",
+        engagement: "Simon Willison's blog (massive organic reach in dev community)",
+        who: "Simon Willison (Django co-creator, Datasette creator, independent)",
+        gist: "Ongoing independent coverage: tested porting JustHTML with Codex CLI, documented skills adoption, GPT-5 model improvements.",
       },
     ],
   },
@@ -997,6 +1191,17 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "Newer entrant — less community track record than Aider or Claude Code",
     ],
     githubStars: "97K+",
+    metrics: {
+      stars: [
+        { date: "2025-06", value: 5000 },
+        { date: "2025-08", value: 15000 },
+        { date: "2025-10", value: 30000 },
+        { date: "2025-12", value: 50000 },
+        { date: "2026-01", value: 70000 },
+        { date: "2026-02", value: 85000 },
+        { date: "2026-03", value: 97373 },
+      ],
+    },
     evidence: [
       {
         quality: "strong",
@@ -1025,6 +1230,24 @@ export const skills: Record<SkillSlug, SkillRecord> = {
         who: "Simon Willison (Datasette creator, Django co-creator)",
         gist: "Called it 'very good.' Praised million-token context and decision-making taste. Flagged free-tier training data concern. Noted it's open-source unlike Claude Code.",
       },
+      {
+        quality: "strong",
+        title: "InfoQ: Google Launches Automated Review Feature in Gemini CLI Conductor",
+        url: "https://www.infoq.com/news/2026/03/gemini-cli-conductor-reviews/",
+        date: "2026-03",
+        engagement: "InfoQ news article (major software engineering publication)",
+        who: "InfoQ (independent tech publication)",
+        gist: "Covers Conductor extension adding automated code reviews, test validation, and security scanning. Shows Gemini CLI evolving into a full development workflow tool.",
+      },
+      {
+        quality: "moderate",
+        title: "AI for Code: Gemini CLI Review 2026 — 86/100 rating",
+        url: "https://aiforcode.io/tools/gemini-cli",
+        date: "2026-03",
+        engagement: "AI for Code review site (independent tool comparison)",
+        who: "AI for Code (independent AI tool rating site)",
+        gist: "Scores 86/100 vs Claude Code's 98/100. Excels at terminal-first workflows and free-tier access. Notes Gemini 3 Flash achieves 78% SWE-bench.",
+      },
     ],
   },
   "browser-use": {
@@ -1040,6 +1263,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     verdict:
       "Best default for agents that need to see and interact with real web pages end-to-end.",
     docsUrl: "https://browser-use.com",
+    productUrl: "https://browser-use.com",
     relatedCategories: ["web-browsing"],
     strengths: [
       "Vision + DOM hybrid approach for robust page understanding",
@@ -1053,6 +1277,20 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "Heavier setup than MCP-based browser tools",
     ],
     githubStars: "80K+",
+    metrics: {
+      stars: [
+        { date: "2024-12", value: 10000 },
+        { date: "2025-02", value: 20000 },
+        { date: "2025-04", value: 35000 },
+        { date: "2025-06", value: 45000 },
+        { date: "2025-08", value: 55000 },
+        { date: "2025-10", value: 65000 },
+        { date: "2025-12", value: 72000 },
+        { date: "2026-02", value: 80000 },
+      
+        { date: "2026-03", value: 80488 }
+      ],
+    },
     evidence: [
       {
         quality: "strong",
@@ -1108,7 +1346,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "Requires MCP host support",
       "Accessibility snapshots miss visual layout information",
     ],
-    githubStars: "28.5K",
+    githubStars: "29K+",
     evidence: [
       {
         quality: "strong",
@@ -1147,6 +1385,24 @@ export const skills: Record<SkillSlug, SkillRecord> = {
         who: "Christopher Harrison (Senior Developer Advocate, GitHub)",
         gist: "Step-by-step demo of Copilot agent mode using Playwright MCP to reproduce bugs, inspect live pages via accessibility snapshots, identify fixes, and verify them — all autonomously. Shows institutional commitment to Playwright MCP as the browser layer.",
       },
+      {
+        quality: "moderate",
+        title: "Bug0: Playwright MCP Changes the Build vs. Buy Equation for AI Testing in 2026",
+        url: "https://bug0.com/blog/playwright-mcp-changes-ai-testing-2026",
+        date: "2026-02",
+        engagement: "Independent QA/testing blog",
+        who: "Bug0 (independent AI testing platform)",
+        gist: "Analysis of how Playwright MCP democratizes browser automation for AI agents. Notes @playwright/cli uses 4x fewer tokens than MCP mode.",
+      },
+      {
+        quality: "moderate",
+        title: "Simon Willison: microsoft/playwright-mcp — launch day coverage",
+        url: "https://simonwillison.net/2025/Mar/25/playwright-mcp/",
+        date: "2025-03",
+        engagement: "Simon Willison's blog (massive organic reach)",
+        who: "Simon Willison (Django co-creator, independent)",
+        gist: "Launch-day coverage noting Playwright MCP uses accessibility tree instead of screenshots. Early independent validation from a respected voice in developer tooling.",
+      },
     ],
   },
   stagehand: {
@@ -1162,6 +1418,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     verdict:
       "Best pick when the team wants TypeScript-native browser automation with the simplest possible API surface.",
     docsUrl: "https://stagehand.dev",
+    productUrl: "https://stagehand.dev",
     relatedCategories: ["web-browsing"],
     strengths: [
       "TypeScript-native with clean act/extract/observe API",
@@ -1173,7 +1430,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "Tied to Browserbase ecosystem for cloud execution",
       "Newer — less battle-tested in production agent loops",
     ],
-    githubStars: "21.4K",
+    githubStars: "21K+",
     evidence: [
       {
         quality: "moderate",
@@ -1212,6 +1469,24 @@ export const skills: Record<SkillSlug, SkillRecord> = {
         engagement: "No Hacks Podcast blog, updated Mar 5, 2026",
         who: "Slobodan Manic (CXL-certified, WordPress Core Contributor)",
         gist: "Independent landscape survey describes Stagehand v3 as '44% faster' with an 'AI-native rewrite' that talks directly to browsers via CDP. Positions it as the main OSS alternative to Playwright for AI agents.",
+      },
+      {
+        quality: "strong",
+        title: "2025 JavaScript Rising Stars: Stagehand among top rising projects",
+        url: "https://risingstars.js.org/2025/en",
+        date: "2025-12",
+        engagement: "Annual JavaScript ecosystem survey, widely cited in dev community",
+        who: "Best of JS / JavaScript Rising Stars (independent community survey)",
+        gist: "Stagehand featured as a notable rising project with +17.1K stars gained in 2025 alone (from 2.8K to 19.9K total).",
+      },
+      {
+        quality: "moderate",
+        title: "Cloudflare: Stagehand support for Browser Rendering Workers",
+        url: "https://developers.cloudflare.com/browser-rendering/stagehand/",
+        date: "2025-09",
+        engagement: "Official Cloudflare documentation integration",
+        who: "Cloudflare (major infrastructure company, independent)",
+        gist: "Cloudflare added native Stagehand support in their Browser Rendering Workers. Significant institutional validation — a major cloud provider integrating Stagehand directly.",
       },
     ],
   },

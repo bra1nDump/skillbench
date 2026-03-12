@@ -9,6 +9,7 @@ const navItems = [
   { href: "/skills", label: "Skills" },
   { href: "/bundles", label: "Bundles" },
   { href: "/platforms", label: "Platforms" },
+  { href: "/compare", label: "Compare" },
 ];
 
 export function SiteHeader() {

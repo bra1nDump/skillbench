@@ -15,6 +15,7 @@ type SkillItem = {
   evidenceCount: number;
   verdict: string;
   categories: Array<{ slug: string; name: string }>;
+  screenshotUrl: string | null;
 };
 
 type Toggle = "official" | "active" | "watch" | "has-evidence";
@@ -193,15 +194,28 @@ export function SkillsList({ skills }: { skills: SkillItem[] }) {
                 {skill.verdict}
               </p>
             </div>
-            <div className="flex flex-wrap gap-1.5 sm:flex-shrink-0">
-              {skill.categories.map((j) => (
-                <span
-                  key={j.slug}
-                  className="rounded bg-white/[0.04] px-2 py-0.5 text-[10px] text-zinc-500"
-                >
-                  {j.name}
-                </span>
-              ))}
+            <div className="flex flex-col items-end gap-2 sm:flex-shrink-0">
+              {skill.screenshotUrl && (
+                <div className="overflow-hidden rounded-lg border border-white/[0.06]" style={{ width: 128 }}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={skill.screenshotUrl}
+                    alt=""
+                    className="h-auto w-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+              )}
+              <div className="flex flex-wrap gap-1.5">
+                {skill.categories.map((j) => (
+                  <span
+                    key={j.slug}
+                    className="rounded bg-white/[0.04] px-2 py-0.5 text-[10px] text-zinc-500"
+                  >
+                    {j.name}
+                  </span>
+                ))}
+              </div>
             </div>
           </Link>
         ))}

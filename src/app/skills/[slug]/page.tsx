@@ -1,10 +1,13 @@
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import { SkillMetricsChart } from "@/components/charts/metrics-chart";
 import { ReadmePeek } from "@/components/readme-peek";
 import { SiteFooter } from "@/components/site-footer";
 import { bundleList, categoryList, getSkill, skillList } from "@/lib/catalog";
 import { fetchGitHubReadme } from "@/lib/github-readme";
+import { getScreenshotUrl } from "@/lib/screenshots";
 
 import type { Metadata } from "next";
 
@@ -93,6 +96,29 @@ export default async function SkillPage({ params }: PageProps) {
           </div>
         </div>
 
+        {/* Product screenshot */}
+        {(() => {
+          const screenshotUrl = getScreenshotUrl(skill.slug);
+
+          return screenshotUrl ? (
+            <section className="border-t border-white/[0.06] py-12">
+              <p className="font-mono text-[11px] uppercase tracking-widest text-indigo-400">
+                Product screenshot
+              </p>
+              <div className="mt-6 overflow-hidden rounded-xl border border-white/[0.06]">
+                <Image
+                  src={screenshotUrl}
+                  alt={`${skill.name} in action`}
+                  width={1280}
+                  height={800}
+                  className="w-full"
+                />
+              </div>
+            </section>
+          ) : null;
+        })()
+        }
+
         {/* Verdict + source */}
         <section className="grid gap-8 border-t border-white/[0.06] py-12 lg:grid-cols-[1.2fr_0.8fr]">
           <div>
@@ -172,6 +198,21 @@ export default async function SkillPage({ params }: PageProps) {
             </div>
           </section>
         ) : null}
+
+        {/* Growth metrics */}
+        {skill.metrics?.stars && skill.metrics.stars.length >= 2 && (
+          <section className="border-t border-white/[0.06] py-12">
+            <p className="font-mono text-[11px] uppercase tracking-widest text-indigo-400">
+              Growth
+            </p>
+            <p className="mt-2 text-sm text-zinc-500">
+              GitHub stars over time.
+            </p>
+            <div className="mt-6">
+              <SkillMetricsChart data={skill.metrics.stars} label="GitHub Stars" />
+            </div>
+          </section>
+        )}
 
         {/* Strengths / Weaknesses */}
         <section className="grid gap-8 border-t border-white/[0.06] py-12 lg:grid-cols-2">

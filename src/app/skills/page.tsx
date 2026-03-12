@@ -1,6 +1,7 @@
 import { SiteFooter } from "@/components/site-footer";
 import { SkillsList } from "@/components/skills-list";
 import { categoryList, skillList } from "@/lib/catalog";
+import { getScreenshotUrl } from "@/lib/screenshots";
 
 import type { Metadata } from "next";
 
@@ -20,6 +21,7 @@ export default function SkillsIndexPage() {
     githubStars: skill.githubStars,
     evidenceCount: skill.evidence.length,
     verdict: skill.verdict,
+    screenshotUrl: getScreenshotUrl(skill.slug),
     categories: categoryList
       .filter((j) => skill.relatedCategories.includes(j.slug))
       .map((j) => ({ slug: j.slug, name: j.name })),

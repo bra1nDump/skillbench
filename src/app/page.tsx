@@ -1,9 +1,13 @@
 import Link from "next/link";
 
+import { TopSkillsChart } from "@/components/charts/top-skills-chart";
 import { Search } from "@/components/search";
 import { SiteFooter } from "@/components/site-footer";
 import { bundleList, categoryList, getSkill, platformList, skillList } from "@/lib/catalog";
+import { parseStars } from "@/lib/parse-stars";
 import { mission } from "@/lib/site-data";
+
+import type { TopSkillData } from "@/components/charts/top-skills-chart";
 
 const pipeline = [
   {
@@ -182,6 +186,36 @@ export default function Home() {
             ))}
           </div>
         </section>
+
+        {/* Popularity by stars */}
+        {(() => {
+          const topByStars: TopSkillData[] = skillList
+            .map((s) => ({ name: s.name, stars: parseStars(s.githubStars), slug: s.slug }))
+            .filter((s) => s.stars > 0)
+            .sort((a, b) => b.stars - a.stars)
+            .slice(0, 10);
+
+          return topByStars.length > 1 ? (
+            <section className="border-t border-white/[0.06] py-14">
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                  <p className="font-mono uppercase tracking-widest text-indigo-400">
+                    Popularity by stars
+                  </p>
+                  <p className="mt-2 text-sm text-zinc-500">
+                    Top skills by GitHub stars. Click a bar to see details.
+                  </p>
+                </div>
+                <Link href="/compare" className="group inline-flex w-fit items-center gap-1 rounded-lg border border-white/[0.06] px-3 py-1.5 text-xs font-medium text-zinc-400 transition-all hover:border-white/[0.12] hover:bg-white/[0.04] hover:text-white">
+                  Compare skills <span className="inline-block transition-transform group-hover:translate-x-0.5">→</span>
+                </Link>
+              </div>
+              <div className="mt-8">
+                <TopSkillsChart data={topByStars} />
+              </div>
+            </section>
+          ) : null;
+        })()}
 
         {/* Key comparisons */}
         <section className="border-t border-white/[0.06] py-14">

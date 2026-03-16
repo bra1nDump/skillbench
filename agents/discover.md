@@ -1,5 +1,7 @@
 # Discover Agent
 
+> **Orchestrator note:** When run via `ralph.mjs`, Twitter/X and Reddit tools may not be available. Use them if present, skip gracefully if not. HN Algolia, GitHub API, web search, and WebFetch are always available. Write findings to the path specified in the task prompt (or stdout if none given), using the agent-runs findings.md format.
+
 ## Job
 
 Find what is newly relevant, newly hot, newly official, or newly compared. Be AGGRESSIVE. Missing a key player is an unforgivable failure.

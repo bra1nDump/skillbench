@@ -10,7 +10,9 @@
     "qa:links": "node scripts/qa/check-links.mjs",
     "qa:publish": "npm run lint && npm run build && npm run qa:links",
     "screenshots": "node scripts/capture-screenshots.mjs",
-    "metrics:collect": "node scripts/collect-stars.mjs"
+    "metrics:collect": "node scripts/collect-stars.mjs",
+    "ralph": "node scripts/ralph.mjs",
+    "ralph:loop": "node scripts/ralph.mjs --loop"
   },
   "dependencies": {
     "next": "16.1.6",

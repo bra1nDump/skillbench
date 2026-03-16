@@ -6,7 +6,8 @@
       "Bash(npm run:*)",
       "WebFetch(domain:skills.sh)",
       "WebSearch",
-      "Bash(npx next:*)"
+      "Bash(npx next:*)",
+      "Bash(ls:*)"
     ]
   }
 }

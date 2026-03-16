@@ -1,5 +1,7 @@
 # Deep-Dive Agent
 
+> **Orchestrator note:** When run via `ralph.mjs`, Twitter/X and Reddit tools may not be available. Use them if present, skip gracefully if not. HN Algolia, GitHub API, web search, and WebFetch are always available. Write findings to the path specified in the task prompt (or stdout if none given), using the agent-runs findings.md format.
+
 ## Job
 
 Turn discoveries into EVIDENCE-BACKED understanding. Every claim ships with proof or it doesn't ship. The deep-dive agent also CONTRIBUTES NEW FINDS — if research reveals a contender the discovery missed, add it immediately.

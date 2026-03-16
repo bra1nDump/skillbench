@@ -28,21 +28,15 @@ export function SiteHeader() {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/[0.06] bg-[var(--background)]/80 backdrop-blur-xl">
+    <header className="sticky top-0 z-50 border-b border-[var(--border)] bg-white/90 backdrop-blur-xl">
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-3.5 sm:px-8">
         <Link
           href="/"
           onClick={close}
           className="flex items-center gap-2.5 transition-opacity hover:opacity-80"
         >
-          <div className="flex h-7 w-7 items-center justify-center rounded-md bg-indigo-500/15 text-indigo-400">
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-              <path d="M2 4l6-3 6 3v8l-6 3-6-3V4z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/>
-              <path d="M8 7v6M2 4l6 3 6-3" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/>
-            </svg>
-          </div>
-          <span className="text-sm font-semibold tracking-tight text-white">
-            Skillbench
+          <span className="font-mono text-[15px] font-bold tracking-tight text-gray-900">
+            SKILL<span className="text-[var(--accent)]">BENCH</span>
           </span>
         </Link>
 
@@ -52,8 +46,8 @@ export function SiteHeader() {
             <Link
               key={item.href}
               href={item.href}
-              className={`rounded-md px-3 py-1.5 text-[13px] transition-colors hover:bg-white/[0.05] hover:text-white ${
-                pathname.startsWith(item.href) ? "text-white" : "text-zinc-400"
+              className={`rounded-md px-3 py-1.5 text-[15px] transition-colors hover:bg-gray-50 hover:text-gray-900 ${
+                pathname.startsWith(item.href) ? "font-semibold text-gray-900" : "text-gray-500"
               }`}
             >
               {item.label}
@@ -65,7 +59,7 @@ export function SiteHeader() {
         <button
           type="button"
           onClick={() => setOpen(!open)}
-          className="flex h-8 w-8 items-center justify-center rounded-md text-zinc-400 transition-colors hover:bg-white/[0.05] hover:text-white sm:hidden"
+          className="flex h-11 w-11 items-center justify-center rounded-md text-gray-500 transition-colors hover:bg-gray-50 hover:text-gray-900 sm:hidden"
           aria-label="Toggle menu"
         >
           {open ? (
@@ -82,14 +76,14 @@ export function SiteHeader() {
 
       {/* Mobile menu */}
       {open && (
-        <nav className="border-t border-white/[0.04] bg-[var(--background)] px-6 pb-4 pt-2 sm:hidden">
+        <nav className="border-t border-[var(--border)] bg-white px-6 pb-4 pt-2 sm:hidden">
           {navItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
               onClick={close}
-              className={`block rounded-lg px-3 py-2.5 text-sm font-medium transition-colors hover:bg-white/[0.05] ${
-                pathname.startsWith(item.href) ? "text-white" : "text-zinc-400"
+              className={`block rounded-lg px-3 py-3 text-[15px] font-medium transition-colors hover:bg-gray-50 ${
+                pathname.startsWith(item.href) ? "text-gray-900" : "text-gray-500"
               }`}
             >
               {item.label}

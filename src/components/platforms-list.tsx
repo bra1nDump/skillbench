@@ -43,31 +43,31 @@ export function PlatformsList({ platforms }: { platforms: PlatformItem[] }) {
           <Link
             key={platform.slug}
             href={`/platforms/${platform.slug}`}
-            className="group rounded-xl border border-white/[0.06] bg-[var(--surface)] p-6 transition-all hover:border-white/[0.12] hover:bg-[var(--surface-2)]"
+            className="group rounded-lg border border-[var(--border)] bg-[var(--surface)] p-6 transition-all hover:border-[var(--border-hover)] hover:bg-[var(--surface-2)]"
           >
-            <p className="text-lg font-semibold tracking-tight text-white">
+            <p className="text-lg font-semibold tracking-tight text-gray-900">
               {platform.name}
             </p>
-            <p className="mt-2 text-sm leading-6 text-zinc-500">
+            <p className="mt-2 text-[15px] leading-6 text-gray-500">
               {platform.summary}
             </p>
             <div className="mt-4 flex flex-wrap gap-1.5">
               {platform.categories.map((j) => (
                 <span
                   key={j.slug}
-                  className="rounded bg-white/[0.06] px-2 py-0.5 text-[10px] text-zinc-500"
+                  className="rounded bg-gray-100 px-2 py-0.5 text-[12px] text-gray-500"
                 >
                   {j.name}
                 </span>
               ))}
             </div>
-            <p className="mt-3 text-xs text-zinc-600">
+            <p className="mt-3 text-[13px] text-gray-500">
               {platform.skillCount} skill{platform.skillCount !== 1 ? "s" : ""}
             </p>
           </Link>
         ))}
         {filtered.length === 0 && (
-          <p className="py-8 text-sm text-zinc-500 lg:col-span-2">
+          <p className="py-8 text-[15px] text-gray-500 lg:col-span-2">
             No platforms match &ldquo;{query}&rdquo;
           </p>
         )}

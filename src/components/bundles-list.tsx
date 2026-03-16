@@ -48,35 +48,35 @@ export function BundlesList({ bundles }: { bundles: BundleItem[] }) {
           <Link
             key={bundle.slug}
             href={`/bundles/${bundle.slug}`}
-            className="group rounded-xl border border-white/[0.06] bg-[var(--surface)] p-6 transition-all hover:border-white/[0.12] hover:bg-[var(--surface-2)]"
+            className="group rounded-lg border border-[var(--border)] bg-[var(--surface)] p-6 transition-all hover:border-[var(--border-hover)] hover:bg-[var(--surface-2)]"
           >
-            <p className="text-lg font-semibold tracking-tight text-white">
+            <p className="text-lg font-semibold tracking-tight text-gray-900">
               {bundle.name}
             </p>
-            <p className="mt-1 font-mono text-[11px] text-zinc-500">
+            <p className="mt-1 font-mono text-[13px] text-gray-500">
               {bundle.persona}{" "}
-              <span className="text-zinc-600">{bundle.personaHandle}</span>
+              <span className="text-gray-500">{bundle.personaHandle}</span>
             </p>
-            <p className="mt-3 text-sm leading-6 text-zinc-500">
+            <p className="mt-3 text-[15px] leading-6 text-gray-500">
               {bundle.summary}
             </p>
             <div className="mt-4 flex flex-wrap gap-1.5">
               {bundle.skills.map((skill) => (
                 <span
                   key={skill.slug}
-                  className="rounded bg-indigo-500/10 px-2 py-0.5 font-mono text-[9px] text-indigo-400"
+                  className="rounded bg-[var(--accent)]/10 px-2 py-0.5 font-mono text-[13px] text-[var(--accent)]"
                 >
                   {skill.name}
                 </span>
               ))}
             </div>
-            <p className="mt-3 font-mono text-[10px] text-zinc-600">
+            <p className="mt-3 font-mono text-[12px] text-gray-500">
               {bundle.date} · {bundle.source}
             </p>
           </Link>
         ))}
         {filtered.length === 0 && (
-          <p className="py-8 text-sm text-zinc-500 lg:col-span-2">
+          <p className="py-8 text-[15px] text-gray-500 lg:col-span-2">
             No bundles match &ldquo;{query}&rdquo;
           </p>
         )}

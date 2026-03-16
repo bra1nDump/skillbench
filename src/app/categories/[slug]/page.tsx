@@ -45,21 +45,21 @@ export default async function CategoryPage({ params }: PageProps) {
       <main className="mx-auto w-full max-w-6xl px-6 py-10 sm:px-8">
         {/* Header */}
         <div className="pb-10">
-          <Link href="/categories" className="mb-4 inline-flex items-center gap-1 text-xs text-zinc-500 transition-colors hover:text-zinc-300">
+          <Link href="/categories" className="mb-4 inline-flex items-center gap-1 text-[13px] text-gray-500 transition-colors hover:text-gray-700">
             ← All categories
           </Link>
-          <h1 className="text-3xl font-bold tracking-tight text-white sm:text-5xl">
+          <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl">
             {category.name}
           </h1>
-          <p className="mt-4 max-w-3xl text-base leading-7 text-zinc-400">{category.deck}</p>
+          <p className="mt-4 max-w-3xl text-base leading-7 text-gray-500">{category.deck}</p>
         </div>
 
         {/* Verdict */}
-        <section className="border-t border-white/[0.06] py-12">
-          <p className="font-mono text-[11px] uppercase tracking-widest text-indigo-400">
+        <section className="border-t border-[var(--border)] py-14">
+          <p className="font-mono text-[13px] uppercase tracking-widest text-[var(--accent)]">
             Verdict
           </p>
-          <div className="mt-5 space-y-4 text-[15px] leading-7 text-zinc-300">
+          <div className="mt-5 space-y-4 text-[15px] leading-7 text-gray-700">
             {category.verdict.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
             ))}
@@ -67,11 +67,11 @@ export default async function CategoryPage({ params }: PageProps) {
         </section>
 
         {/* Deeper read */}
-        <section className="border-t border-white/[0.06] py-12">
-          <p className="font-mono text-[11px] uppercase tracking-widest text-indigo-400">
+        <section className="border-t border-[var(--border)] py-14">
+          <p className="font-mono text-[13px] uppercase tracking-widest text-[var(--accent)]">
             The deeper read
           </p>
-          <div className="mt-5 space-y-4 text-[15px] leading-7 text-zinc-400">
+          <div className="mt-5 space-y-4 text-[15px] leading-7 text-gray-500">
             {category.meta.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
             ))}
@@ -80,29 +80,29 @@ export default async function CategoryPage({ params }: PageProps) {
 
         {/* Observed outputs */}
         {category.observedOutputs.length > 0 ? (
-          <section className="border-t border-white/[0.06] py-12">
-            <p className="font-mono text-[11px] uppercase tracking-widest text-indigo-400">
+          <section className="border-t border-[var(--border)] py-14">
+            <p className="font-mono text-[13px] uppercase tracking-widest text-[var(--accent)]">
               Observed outputs
             </p>
             <div className="mt-6 grid gap-4 lg:grid-cols-2">
               {category.observedOutputs.map((item) => (
-                <article key={item.title} className="rounded-xl border border-white/[0.06] bg-[var(--surface)] p-5">
+                <article key={item.title} className="rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5">
                   <a href={item.href} target="_blank" rel="noreferrer" className="group block">
-                    <p className="text-sm font-semibold text-zinc-200 transition-colors group-hover:text-white">
+                    <p className="text-[15px] font-semibold text-gray-800 transition-colors group-hover:text-gray-900">
                       {item.title}
                     </p>
                   </a>
-                  <p className="mt-2 text-sm leading-6 text-zinc-500">{item.summary}</p>
+                  <p className="mt-2 text-[15px] leading-6 text-gray-500">{item.summary}</p>
                   <div className="mt-4 flex items-center gap-3">
                     <a
                       href={item.href}
                       target="_blank"
                       rel="noreferrer"
-                      className="text-xs font-medium text-indigo-400 transition-colors hover:text-indigo-300"
+                      className="text-[13px] font-medium text-[var(--accent)] transition-colors hover:text-[var(--accent)]"
                     >
                       View source →
                     </a>
-                    <span className="font-mono text-[10px] text-zinc-600">{item.date}</span>
+                    <span className="font-mono text-[12px] text-gray-500">{item.date}</span>
                   </div>
                 </article>
               ))}
@@ -111,8 +111,8 @@ export default async function CategoryPage({ params }: PageProps) {
         ) : null}
 
         {/* Ranking */}
-        <section className="border-t border-white/[0.06] py-12">
-          <p className="font-mono text-[11px] uppercase tracking-widest text-indigo-400">
+        <section className="border-t border-[var(--border)] py-14">
+          <p className="font-mono text-[13px] uppercase tracking-widest text-[var(--accent)]">
             Current ranking
           </p>
           <div className="mt-6 space-y-3">
@@ -127,49 +127,49 @@ export default async function CategoryPage({ params }: PageProps) {
                 <Fragment key={item.rank}>
                   {showCutLine ? (
                     <div className="flex items-center gap-3 py-2">
-                      <div className="h-px flex-1 bg-amber-500/20" />
-                      <span className="font-mono text-[10px] uppercase tracking-wider text-amber-500/70">
+                      <div className="h-px flex-1 bg-amber-100" />
+                      <span className="font-mono text-[12px] uppercase tracking-wider text-amber-600">
                         Below the cut line
                       </span>
-                      <div className="h-px flex-1 bg-amber-500/20" />
+                      <div className="h-px flex-1 bg-amber-100" />
                     </div>
                   ) : null}
-                  <div className={`flex gap-4 rounded-xl border border-white/[0.06] bg-[var(--surface)] p-5 transition-colors hover:border-white/[0.1]${item.belowCutLine ? " opacity-50" : ""}`}>
-                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-white/[0.04] font-mono text-lg font-bold text-zinc-500">
+                  <div className={`flex gap-4 rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5 transition-colors hover:border-[var(--border-hover)]${item.belowCutLine ? " opacity-50" : ""}`}>
+                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-gray-50 font-mono text-lg font-bold text-gray-500">
                       {item.rank}
                     </div>
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center gap-2">
                         {href ? (
                           external ? (
-                            <a href={href} target="_blank" rel="noreferrer" className="text-base font-semibold text-white transition-colors hover:text-indigo-400">
+                            <a href={href} target="_blank" rel="noreferrer" className="text-base font-semibold text-gray-900 transition-colors hover:text-[var(--accent)]">
                               {item.contender}
                             </a>
                           ) : (
-                            <Link href={href} className="text-base font-semibold text-white transition-colors hover:text-indigo-400">
+                            <Link href={href} className="text-base font-semibold text-gray-900 transition-colors hover:text-[var(--accent)]">
                               {item.contender}
                             </Link>
                           )
                         ) : (
-                          <span className="text-base font-semibold text-white">{item.contender}</span>
+                          <span className="text-base font-semibold text-gray-900">{item.contender}</span>
                         )}
                         {skill?.official ? (
-                          <span className="rounded bg-indigo-500/15 px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-wider text-indigo-400">
+                          <span className="rounded bg-[var(--accent)]/10 px-1.5 py-0.5 font-mono text-[13px] uppercase tracking-wider text-[var(--accent)]">
                             Official
                           </span>
                         ) : null}
                         {skill?.githubStars ? (
-                          <span className="font-mono text-[10px] text-zinc-600">
+                          <span className="font-mono text-[12px] text-gray-500">
                             ★ {skill.githubStars}
                           </span>
                         ) : null}
                       </div>
-                      <p className="mt-1 text-sm text-zinc-500">
-                        <span className="font-medium text-zinc-400">Best for:</span> {item.bestFor}
+                      <p className="mt-1 text-[15px] text-gray-500">
+                        <span className="font-medium text-gray-500">Best for:</span> {item.bestFor}
                       </p>
-                      <p className="mt-1 text-xs leading-5 text-zinc-500">{item.why}</p>
+                      <p className="mt-1 text-[13px] leading-5 text-gray-500">{item.why}</p>
                       {item.watch ? (
-                        <p className="mt-2 text-xs text-amber-500/70">
+                        <p className="mt-2 text-[13px] text-amber-600">
                           ⚡ {item.watch}
                         </p>
                       ) : null}
@@ -201,18 +201,18 @@ export default async function CategoryPage({ params }: PageProps) {
           const remaining = chartData.length - top10.length;
 
           return top10.length > 1 ? (
-            <section className="border-t border-white/[0.06] py-12">
-              <p className="font-mono text-[11px] uppercase tracking-widest text-indigo-400">
+            <section className="border-t border-[var(--border)] py-14">
+              <p className="font-mono text-[13px] uppercase tracking-widest text-[var(--accent)]">
                 Skills comparison
               </p>
-              <p className="mt-2 text-sm text-zinc-500">
+              <p className="mt-2 text-[15px] text-gray-500">
                 GitHub stars and evidence count for top ranked skills.
               </p>
               <div className="mt-6">
                 <CategorySkillsChart data={top10} />
               </div>
               {remaining > 0 && (
-                <p className="mt-3 text-center text-xs text-zinc-600">
+                <p className="mt-3 text-center text-[13px] text-gray-500">
                   +{remaining} more not shown
                 </p>
               )}
@@ -222,7 +222,7 @@ export default async function CategoryPage({ params }: PageProps) {
 
         {/* Star growth over time */}
         {(() => {
-          const LINE_COLORS = ["#818cf8", "#34d399", "#fbbf24", "#f472b6", "#38bdf8", "#a78bfa"];
+          const LINE_COLORS = ["#E63946", "#34d399", "#fbbf24", "#f472b6", "#38bdf8", "#a78bfa"];
           const lines = category.ranking
             .slice(0, 6)
             .map((item, i) => {
@@ -238,11 +238,11 @@ export default async function CategoryPage({ params }: PageProps) {
             .filter((l): l is NonNullable<typeof l> => l !== null);
 
           return lines.length > 0 ? (
-            <section className="border-t border-white/[0.06] py-12">
-              <p className="font-mono text-[11px] uppercase tracking-widest text-indigo-400">
+            <section className="border-t border-[var(--border)] py-14">
+              <p className="font-mono text-[13px] uppercase tracking-widest text-[var(--accent)]">
                 Star growth over time
               </p>
-              <p className="mt-2 text-sm text-zinc-500">
+              <p className="mt-2 text-[15px] text-gray-500">
                 GitHub stars trajectory for top skills in this category.
               </p>
               <div className="mt-6">
@@ -254,19 +254,19 @@ export default async function CategoryPage({ params }: PageProps) {
 
         {/* Head to head */}
         {category.headToHead.length > 0 ? (
-          <section className="border-t border-white/[0.06] py-12">
-            <p className="font-mono text-[11px] uppercase tracking-widest text-indigo-400">
+          <section className="border-t border-[var(--border)] py-14">
+            <p className="font-mono text-[13px] uppercase tracking-widest text-[var(--accent)]">
               Head to head
             </p>
             <div className="mt-6 grid gap-3 lg:grid-cols-3">
               {category.headToHead.map((pair) => (
-                <article key={`${pair.left}-${pair.right}`} className="rounded-xl border border-white/[0.06] bg-[var(--surface)] p-5">
+                <article key={`${pair.left}-${pair.right}`} className="rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5">
                   <div className="flex items-center gap-2">
-                    <span className="text-sm font-semibold text-white">{pair.left}</span>
-                    <span className="rounded bg-white/[0.06] px-1.5 py-0.5 text-[10px] font-medium text-zinc-500">vs</span>
-                    <span className="text-sm font-semibold text-white">{pair.right}</span>
+                    <span className="text-[15px] font-semibold text-gray-900">{pair.left}</span>
+                    <span className="rounded bg-gray-100 px-1.5 py-0.5 text-[12px] font-medium text-gray-500">vs</span>
+                    <span className="text-[15px] font-semibold text-gray-900">{pair.right}</span>
                   </div>
-                  <p className="mt-3 text-sm leading-6 text-zinc-500">
+                  <p className="mt-3 text-[15px] leading-6 text-gray-500">
                     {pair.gist}
                   </p>
                 </article>
@@ -277,28 +277,28 @@ export default async function CategoryPage({ params }: PageProps) {
 
         {/* Public signals */}
         {category.liveSignals.length > 0 ? (
-          <section className="border-t border-white/[0.06] py-12">
-            <p className="font-mono text-[11px] uppercase tracking-widest text-indigo-400">
+          <section className="border-t border-[var(--border)] py-14">
+            <p className="font-mono text-[13px] uppercase tracking-widest text-[var(--accent)]">
               Public signals
             </p>
             <div className="mt-6 space-y-3">
               {category.liveSignals.map((signal) => (
-                <article key={signal.title} className="rounded-lg border border-white/[0.04] bg-[var(--surface)] p-5">
+                <article key={signal.title} className="rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5">
                   <div className="flex items-center gap-3">
-                    <span className="inline-flex rounded bg-white/[0.06] px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-wider text-zinc-500">
+                    <span className="inline-flex rounded bg-gray-100 px-1.5 py-0.5 font-mono text-[13px] uppercase tracking-wider text-gray-500">
                       {signal.label}
                     </span>
-                    <span className="font-mono text-[10px] text-zinc-600">{signal.date}</span>
+                    <span className="font-mono text-[12px] text-gray-500">{signal.date}</span>
                   </div>
                   <a
                     href={signal.href}
                     target="_blank"
                     rel="noreferrer"
-                    className="mt-2 inline-block text-[15px] font-medium text-zinc-200 transition-colors hover:text-white"
+                    className="mt-2 inline-block text-[15px] font-medium text-gray-800 transition-colors hover:text-gray-900"
                   >
                     {signal.title}
                   </a>
-                  <p className="mt-2 max-w-3xl text-sm leading-6 text-zinc-500">
+                  <p className="mt-2 max-w-3xl text-[15px] leading-6 text-gray-500">
                     {signal.note}
                   </p>
                 </article>
@@ -308,15 +308,15 @@ export default async function CategoryPage({ params }: PageProps) {
         ) : null}
 
         {/* What changes this */}
-        <section className="border-t border-white/[0.06] py-12">
-          <p className="font-mono text-[11px] uppercase tracking-widest text-indigo-400">
+        <section className="border-t border-[var(--border)] py-14">
+          <p className="font-mono text-[13px] uppercase tracking-widest text-[var(--accent)]">
             What changes this
           </p>
           <div className="mt-5 space-y-3">
             {category.whatChangesThis.map((paragraph) => (
               <div key={paragraph} className="flex items-start gap-3">
                 <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-amber-500/40" />
-                <p className="text-sm leading-6 text-zinc-400">{paragraph}</p>
+                <p className="text-[15px] leading-6 text-gray-500">{paragraph}</p>
               </div>
             ))}
           </div>

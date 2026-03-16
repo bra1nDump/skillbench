@@ -63,24 +63,24 @@ function CompareContent() {
   return (
     <div className="min-h-screen">
       <main className="mx-auto w-full max-w-6xl px-6 py-10 sm:px-8">
-        <Link href="/" className="mb-4 inline-flex items-center gap-1 text-xs text-zinc-500 transition-colors hover:text-zinc-300">
+        <Link href="/" className="mb-4 inline-flex items-center gap-1 text-[13px] text-gray-500 transition-colors hover:text-gray-700">
           ← Home
         </Link>
-        <h1 className="text-3xl font-bold tracking-tight text-white sm:text-5xl">
+        <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl">
           Compare skills
         </h1>
-        <p className="mt-4 text-base text-zinc-400">
+        <p className="mt-4 text-base text-gray-500">
           Select skills to compare side by side.
         </p>
 
         {/* Skill selector */}
-        <section className="mt-8 rounded-xl border border-white/[0.06] bg-[var(--surface)] p-5">
+        <section className="mt-8 rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5">
           <input
             type="text"
             value={filterText}
             onChange={(e) => setFilterText(e.target.value)}
             placeholder="Filter skills..."
-            className="mb-4 w-full rounded-lg border border-white/[0.06] bg-white/[0.03] px-3 py-2 text-sm text-white placeholder-zinc-600 outline-none transition-colors focus:border-indigo-500/40"
+            className="mb-4 w-full rounded-lg border border-[var(--border)] bg-white px-3 py-2 text-[15px] text-gray-900 placeholder-gray-400 outline-none transition-colors focus:border-[var(--accent)]/40"
           />
           <div className="flex flex-wrap gap-2">
             {filteredSkills.map((skill) => {
@@ -91,10 +91,10 @@ function CompareContent() {
                   key={skill.slug}
                   type="button"
                   onClick={() => toggleSkill(skill.slug)}
-                  className={`rounded-lg px-3 py-1.5 font-mono text-xs transition-all ${
+                  className={`rounded-lg px-3 py-1.5 font-mono text-[13px] transition-all ${
                     isSelected
-                      ? "border border-indigo-500/40 bg-indigo-500/15 text-indigo-300"
-                      : "border border-white/[0.06] text-zinc-400 hover:border-white/[0.12] hover:text-zinc-200"
+                      ? "border border-[var(--accent)] bg-[var(--accent)]/10 text-[var(--accent)]"
+                      : "border border-[var(--border)] text-gray-500 hover:border-[var(--border-hover)] hover:text-gray-800"
                   }`}
                 >
                   {skill.name}
@@ -106,7 +106,7 @@ function CompareContent() {
             <button
               type="button"
               onClick={() => router.replace("/compare", { scroll: false })}
-              className="mt-3 text-xs text-zinc-500 transition-colors hover:text-zinc-300"
+              className="mt-3 text-[13px] text-gray-500 transition-colors hover:text-gray-700"
             >
               Clear all
             </button>
@@ -125,16 +125,16 @@ function CompareContent() {
             </section>
 
             {/* Rank matrix */}
-            <section className="mt-6 overflow-x-auto rounded-xl border border-white/[0.06] bg-[var(--surface)] p-5">
-              <p className="mb-4 font-mono text-[11px] uppercase tracking-widest text-zinc-500">
+            <section className="mt-6 overflow-x-auto rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5">
+              <p className="mb-4 font-mono text-[13px] uppercase tracking-widest text-gray-500">
                 Category rankings
               </p>
-              <table className="w-full text-sm">
+              <table className="w-full text-[15px]">
                 <thead>
-                  <tr className="border-b border-white/[0.06]">
-                    <th className="pb-3 pr-4 text-left font-mono text-[10px] uppercase tracking-wider text-zinc-500">Category</th>
+                  <tr className="border-b border-[var(--border)]">
+                    <th className="pb-3 pr-4 text-left font-mono text-[12px] uppercase tracking-wider text-gray-500">Category</th>
                     {selected.map((s) => (
-                      <th key={s.slug} className="pb-3 px-3 text-center font-mono text-[10px] uppercase tracking-wider text-zinc-500">
+                      <th key={s.slug} className="pb-3 px-3 text-center font-mono text-[12px] uppercase tracking-wider text-gray-500">
                         {s.name}
                       </th>
                     ))}
@@ -142,20 +142,20 @@ function CompareContent() {
                 </thead>
                 <tbody>
                   {allCategories.map((cat) => (
-                    <tr key={cat.slug} className="border-b border-white/[0.04]">
-                      <td className="py-3 pr-4 text-zinc-300">{cat.name}</td>
+                    <tr key={cat.slug} className="border-b border-[var(--border)]">
+                      <td className="py-3 pr-4 text-gray-700">{cat.name}</td>
                       {selected.map((skill) => {
                         const catEntry = skill.categories.find((c) => c.slug === cat.slug);
 
                         return (
                           <td key={skill.slug} className="px-3 py-3 text-center">
                             {catEntry ? (
-                              <span className={`font-mono font-bold ${catEntry.rank === 1 ? "text-emerald-400" : "text-zinc-300"}`}>
+                              <span className={`font-mono font-bold ${catEntry.rank === 1 ? "text-emerald-600" : "text-gray-700"}`}>
                                 #{catEntry.rank}
-                                <span className="ml-1 text-[10px] font-normal text-zinc-600">/{catEntry.total}</span>
+                                <span className="ml-1 text-[12px] font-normal text-gray-500">/{catEntry.total}</span>
                               </span>
                             ) : (
-                              <span className="text-zinc-700">—</span>
+                              <span className="text-gray-500">—</span>
                             )}
                           </td>
                         );
@@ -167,58 +167,58 @@ function CompareContent() {
             </section>
 
             {/* Quick stats table */}
-            <section className="mt-6 overflow-x-auto rounded-xl border border-white/[0.06] bg-[var(--surface)] p-5">
-              <p className="mb-4 font-mono text-[11px] uppercase tracking-widest text-zinc-500">
+            <section className="mt-6 overflow-x-auto rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5">
+              <p className="mb-4 font-mono text-[13px] uppercase tracking-widest text-gray-500">
                 Quick stats
               </p>
-              <table className="w-full text-sm">
+              <table className="w-full text-[15px]">
                 <thead>
-                  <tr className="border-b border-white/[0.06]">
-                    <th className="pb-3 pr-4 text-left font-mono text-[10px] uppercase tracking-wider text-zinc-500">Metric</th>
+                  <tr className="border-b border-[var(--border)]">
+                    <th className="pb-3 pr-4 text-left font-mono text-[12px] uppercase tracking-wider text-gray-500">Metric</th>
                     {selected.map((s) => (
-                      <th key={s.slug} className="pb-3 px-3 text-center font-mono text-[10px] uppercase tracking-wider text-zinc-500">
+                      <th key={s.slug} className="pb-3 px-3 text-center font-mono text-[12px] uppercase tracking-wider text-gray-500">
                         {s.name}
                       </th>
                     ))}
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className="border-b border-white/[0.04]">
-                    <td className="py-3 pr-4 text-zinc-400">Stars</td>
+                  <tr className="border-b border-[var(--border)]">
+                    <td className="py-3 pr-4 text-gray-500">Stars</td>
                     {selected.map((s) => (
-                      <td key={s.slug} className="px-3 py-3 text-center font-mono text-zinc-300">{s.starsDisplay}</td>
+                      <td key={s.slug} className="px-3 py-3 text-center font-mono text-gray-700">{s.starsDisplay}</td>
                     ))}
                   </tr>
-                  <tr className="border-b border-white/[0.04]">
-                    <td className="py-3 pr-4 text-zinc-400">Evidence</td>
+                  <tr className="border-b border-[var(--border)]">
+                    <td className="py-3 pr-4 text-gray-500">Evidence</td>
                     {selected.map((s) => (
-                      <td key={s.slug} className="px-3 py-3 text-center font-mono text-zinc-300">{s.evidenceCount}</td>
+                      <td key={s.slug} className="px-3 py-3 text-center font-mono text-gray-700">{s.evidenceCount}</td>
                     ))}
                   </tr>
-                  <tr className="border-b border-white/[0.04]">
-                    <td className="py-3 pr-4 text-zinc-400">Strong evidence</td>
+                  <tr className="border-b border-[var(--border)]">
+                    <td className="py-3 pr-4 text-gray-500">Strong evidence</td>
                     {selected.map((s) => (
-                      <td key={s.slug} className="px-3 py-3 text-center font-mono text-emerald-400">{s.strongEvidence}</td>
+                      <td key={s.slug} className="px-3 py-3 text-center font-mono text-emerald-600">{s.strongEvidence}</td>
                     ))}
                   </tr>
-                  <tr className="border-b border-white/[0.04]">
-                    <td className="py-3 pr-4 text-zinc-400">Official</td>
+                  <tr className="border-b border-[var(--border)]">
+                    <td className="py-3 pr-4 text-gray-500">Official</td>
                     {selected.map((s) => (
                       <td key={s.slug} className="px-3 py-3 text-center">
                         {s.official ? (
-                          <span className="text-emerald-400">Yes</span>
+                          <span className="text-emerald-600">Yes</span>
                         ) : (
-                          <span className="text-zinc-600">No</span>
+                          <span className="text-gray-500">No</span>
                         )}
                       </td>
                     ))}
                   </tr>
                   <tr>
-                    <td className="py-3 pr-4 text-zinc-400">Status</td>
+                    <td className="py-3 pr-4 text-gray-500">Status</td>
                     {selected.map((s) => (
                       <td key={s.slug} className="px-3 py-3 text-center">
-                        <span className={`rounded px-2 py-0.5 font-mono text-[10px] uppercase ${
-                          s.status === "active" ? "bg-emerald-500/10 text-emerald-400" : "bg-amber-500/10 text-amber-400"
+                        <span className={`rounded px-2 py-0.5 font-mono text-[12px] uppercase ${
+                          s.status === "active" ? "bg-emerald-50 text-emerald-600" : "bg-amber-50 text-amber-600"
                         }`}>
                           {s.status}
                         </span>
@@ -230,11 +230,11 @@ function CompareContent() {
             </section>
           </>
         ) : selected.length === 1 ? (
-          <p className="mt-10 text-center text-sm text-zinc-500">
+          <p className="mt-10 text-center text-[15px] text-gray-500">
             Select at least one more skill to compare.
           </p>
         ) : (
-          <p className="mt-10 text-center text-sm text-zinc-500">
+          <p className="mt-10 text-center text-[15px] text-gray-500">
             Select two or more skills above to start comparing.
           </p>
         )}
@@ -249,7 +249,7 @@ export default function ComparePage() {
   return (
     <Suspense fallback={
       <div className="flex min-h-screen items-center justify-center">
-        <p className="text-sm text-zinc-500">Loading...</p>
+        <p className="text-[15px] text-gray-500">Loading...</p>
       </div>
     }>
       <CompareContent />

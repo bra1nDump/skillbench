@@ -1,24 +1,24 @@
 @import "tailwindcss";
 
 :root {
-  --background: #09090b;
-  --foreground: #e4e4eb;
-  --surface: #111118;
-  --surface-2: #18181f;
-  --border: rgba(255, 255, 255, 0.06);
-  --border-hover: rgba(255, 255, 255, 0.12);
-  --muted: #71717a;
-  --accent: #818cf8;
-  --accent-bright: #a5b4fc;
-  --green: #34d399;
-  --amber: #fbbf24;
+  --background: #FFFFFF;
+  --foreground: #171717;
+  --surface: #FAFAFA;
+  --surface-2: #F5F5F5;
+  --border: #E5E5E5;
+  --border-hover: #D4D4D4;
+  --muted: #737373;
+  --accent: #E63946;
+  --accent-bright: #FFE0E3;
+  --green: #059669;
+  --amber: #D97706;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-plus-jakarta);
-  --font-mono: var(--font-jetbrains-mono);
+  --font-sans: var(--font-lato);
+  --font-mono: var(--font-ibm-plex-mono);
 }
 
 * {
@@ -32,7 +32,7 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-plus-jakarta), system-ui, sans-serif;
+  font-family: var(--font-lato), system-ui, sans-serif;
 }
 
 a {
@@ -41,8 +41,8 @@ a {
 }
 
 ::selection {
-  background: rgba(129, 140, 248, 0.3);
-  color: #fff;
+  background: rgba(230, 57, 70, 0.2);
+  color: #000;
 }
 
 ::-webkit-scrollbar {
@@ -55,10 +55,10 @@ a {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.12);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(0, 0, 0, 0.2);
 }

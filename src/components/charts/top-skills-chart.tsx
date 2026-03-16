@@ -26,7 +26,7 @@ export function TopSkillsChart({ data }: { data: TopSkillData[] }) {
   if (data.length === 0) return null;
 
   return (
-    <div className="rounded-xl border border-white/[0.06] bg-[var(--surface)] p-5">
+    <div className="rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5">
       <ResponsiveContainer width="100%" height={data.length * 40 + 30}>
         <BarChart
           data={data}

@@ -25,7 +25,7 @@ export type CategorySkillData = {
 function StarsChart({ data }: { data: CategorySkillData[] }) {
   return (
     <div>
-      <p className="mb-3 font-mono text-[10px] uppercase tracking-widest text-zinc-500">
+      <p className="mb-3 font-mono text-[12px] uppercase tracking-widest text-gray-500">
         GitHub Stars
       </p>
       <ResponsiveContainer width="100%" height={data.length * 40 + 20}>
@@ -71,7 +71,7 @@ function StarsChart({ data }: { data: CategorySkillData[] }) {
 function EvidenceChart({ data }: { data: CategorySkillData[] }) {
   return (
     <div>
-      <p className="mb-3 font-mono text-[10px] uppercase tracking-widest text-zinc-500">
+      <p className="mb-3 font-mono text-[12px] uppercase tracking-widest text-gray-500">
         Evidence items
       </p>
       <ResponsiveContainer width="100%" height={data.length * 40 + 20}>
@@ -115,11 +115,11 @@ function EvidenceChart({ data }: { data: CategorySkillData[] }) {
       <div className="mt-2 flex items-center justify-center gap-5">
         <div className="flex items-center gap-1.5">
           <span className="h-2 w-2 rounded-sm" style={{ background: CHART_COLORS.green }} />
-          <span className="font-mono text-[10px] text-zinc-600">Strong</span>
+          <span className="font-mono text-[12px] text-gray-500">Strong</span>
         </div>
         <div className="flex items-center gap-1.5">
           <span className="h-2 w-2 rounded-sm" style={{ background: CHART_COLORS.amber }} />
-          <span className="font-mono text-[10px] text-zinc-600">Moderate</span>
+          <span className="font-mono text-[12px] text-gray-500">Moderate</span>
         </div>
       </div>
     </div>
@@ -135,7 +135,7 @@ export function CategorySkillsChart({ data }: { data: CategorySkillData[] }) {
   }));
 
   return (
-    <div className="grid gap-6 rounded-xl border border-white/[0.06] bg-[var(--surface)] p-5 lg:grid-cols-2">
+    <div className="grid gap-6 rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5 lg:grid-cols-2">
       <StarsChart data={enriched} />
       <EvidenceChart data={enriched} />
     </div>

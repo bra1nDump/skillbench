@@ -35,7 +35,7 @@ export default async function DocPage({ params }: PageProps) {
             href={target}
             target="_blank"
             rel="noreferrer"
-            className="text-indigo-400 transition-colors hover:text-indigo-300"
+            className="text-[var(--accent)] transition-colors hover:opacity-80"
           >
             {children}
           </a>
@@ -44,53 +44,53 @@ export default async function DocPage({ params }: PageProps) {
 
       if (target.startsWith("#")) {
         return (
-          <a href={target} className="text-indigo-400 transition-colors hover:text-indigo-300">
+          <a href={target} className="text-[var(--accent)] transition-colors hover:opacity-80">
             {children}
           </a>
         );
       }
 
       return (
-        <Link href={target} className="text-indigo-400 transition-colors hover:text-indigo-300">
+        <Link href={target} className="text-[var(--accent)] transition-colors hover:opacity-80">
           {children}
         </Link>
       );
     },
     h1: ({ children }) => (
-      <h1 className="mt-10 text-3xl font-bold tracking-tight text-white first:mt-0">
+      <h1 className="mt-10 text-3xl font-bold tracking-tight text-gray-900 first:mt-0">
         {children}
       </h1>
     ),
     h2: ({ children }) => (
-      <h2 className="mt-10 font-mono text-[11px] font-semibold uppercase tracking-widest text-indigo-400">
+      <h2 className="mt-10 font-mono text-[13px] font-semibold uppercase tracking-widest text-[var(--accent)]">
         {children}
       </h2>
     ),
     p: ({ children }) => (
-      <p className="mt-4 text-[15px] leading-7 text-zinc-400">{children}</p>
+      <p className="mt-4 text-[15px] leading-7 text-gray-500">{children}</p>
     ),
     ul: ({ children }) => (
-      <ul className="mt-4 list-disc space-y-2 pl-6 text-[15px] leading-7 text-zinc-400">
+      <ul className="mt-4 list-disc space-y-2 pl-6 text-[15px] leading-7 text-gray-500">
         {children}
       </ul>
     ),
     ol: ({ children }) => (
-      <ol className="mt-4 list-decimal space-y-2 pl-6 text-[15px] leading-7 text-zinc-400">
+      <ol className="mt-4 list-decimal space-y-2 pl-6 text-[15px] leading-7 text-gray-500">
         {children}
       </ol>
     ),
     blockquote: ({ children }) => (
-      <blockquote className="mt-6 border-l-2 border-indigo-500/30 pl-5 text-zinc-400">
+      <blockquote className="mt-6 border-l-2 border-[var(--accent)]/30 pl-5 text-gray-500">
         {children}
       </blockquote>
     ),
     code: ({ children }) => (
-      <code className="rounded bg-white/[0.06] px-1.5 py-0.5 text-[0.92em] text-zinc-300">
+      <code className="rounded bg-gray-100 px-1.5 py-0.5 text-[0.92em] text-gray-700">
         {children}
       </code>
     ),
     pre: ({ children }) => (
-      <pre className="mt-6 overflow-x-auto rounded-lg border border-white/[0.06] bg-[var(--surface)] px-4 py-4 text-sm leading-7 text-zinc-300">
+      <pre className="mt-6 overflow-x-auto rounded-lg border border-[var(--border)] bg-[var(--surface)] px-4 py-4 text-[15px] leading-7 text-gray-700">
         {children}
       </pre>
     ),
@@ -100,7 +100,7 @@ export default async function DocPage({ params }: PageProps) {
     <div className="min-h-screen">
       <main className="mx-auto w-full max-w-4xl px-6 py-10 sm:px-8">
         <div className="pb-6">
-          <p className="font-mono text-xs text-zinc-600">{relativePath}</p>
+          <p className="font-mono text-[13px] text-gray-500">{relativePath}</p>
         </div>
 
         <article className="prose-none py-8">

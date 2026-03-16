@@ -73,11 +73,11 @@ export function SkillsList({ skills }: { skills: SkillItem[] }) {
   }, [skills, query, toggles, categoryFilter]);
 
   const chipBase =
-    "cursor-pointer select-none rounded-lg border px-3 py-1.5 text-xs font-medium transition-all";
+    "cursor-pointer select-none rounded-lg border px-3 py-1.5 text-[13px] font-medium transition-all";
   const chipOff =
-    "border-white/[0.06] text-zinc-500 hover:border-white/[0.12] hover:text-zinc-300";
+    "border-[var(--border)] text-gray-500 hover:border-[var(--border-hover)] hover:text-gray-700";
   const chipOn =
-    "border-indigo-500/30 bg-indigo-500/10 text-indigo-400";
+    "border-[var(--accent)] bg-[var(--accent)]/10 text-[var(--accent)]";
 
   return (
     <>
@@ -120,13 +120,13 @@ export function SkillsList({ skills }: { skills: SkillItem[] }) {
             Has evidence
           </button>
 
-          <span className="mx-1 h-4 w-px bg-white/[0.06]" />
+          <span className="mx-1 h-4 w-px bg-[var(--border)]" />
 
           {/* Category dropdown */}
           <select
             value={categoryFilter ?? ""}
             onChange={(e) => setCategoryFilter(e.target.value || null)}
-            className="cursor-pointer rounded-lg border border-white/[0.06] bg-transparent px-3 py-1.5 text-xs font-medium text-zinc-500 transition-all hover:border-white/[0.12] hover:text-zinc-300 focus:border-indigo-500/30 focus:text-indigo-400 focus:outline-none"
+            className="cursor-pointer rounded-lg border border-[var(--border)] bg-white px-3 py-1.5 text-[13px] font-medium text-gray-500 transition-all hover:border-[var(--border-hover)] hover:text-gray-700 focus:border-[var(--accent)]/30 focus:text-[var(--accent)] focus:outline-none"
           >
             <option value="">All categories</option>
             {allCategories.map((c) => (
@@ -144,7 +144,7 @@ export function SkillsList({ skills }: { skills: SkillItem[] }) {
                 setToggles(new Set());
                 setCategoryFilter(null);
               }}
-              className="text-xs text-zinc-600 transition-colors hover:text-zinc-300"
+              className="text-[13px] text-gray-500 transition-colors hover:text-gray-700"
             >
               Clear filters
             </button>
@@ -157,46 +157,46 @@ export function SkillsList({ skills }: { skills: SkillItem[] }) {
           <Link
             key={skill.slug}
             href={`/skills/${skill.slug}`}
-            className="group flex flex-col gap-4 rounded-xl border border-white/[0.06] bg-[var(--surface)] p-5 transition-all hover:border-white/[0.12] hover:bg-[var(--surface-2)] sm:flex-row sm:items-start"
+            className="group flex flex-col gap-4 rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5 transition-all hover:border-[var(--border-hover)] hover:bg-[var(--surface-2)] sm:flex-row sm:items-start"
           >
             <div className="min-w-0 flex-1">
               <div className="flex items-center gap-2.5">
-                <p className="text-base font-semibold text-white transition-colors group-hover:text-indigo-400">
+                <p className="text-base font-semibold text-gray-900 transition-colors group-hover:text-[var(--accent)]">
                   {skill.name}
                 </p>
                 <span
-                  className={`rounded px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-wider ${
+                  className={`rounded px-1.5 py-0.5 font-mono text-[13px] uppercase tracking-wider ${
                     skill.status === "active"
-                      ? "bg-emerald-500/10 text-emerald-400"
-                      : "bg-amber-500/10 text-amber-400"
+                      ? "bg-emerald-50 text-emerald-600"
+                      : "bg-amber-50 text-amber-600"
                   }`}
                 >
                   {skill.status}
                 </span>
                 {skill.official ? (
-                  <span className="rounded bg-indigo-500/15 px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-wider text-indigo-400">
+                  <span className="rounded bg-[var(--accent)]/10 px-1.5 py-0.5 font-mono text-[13px] uppercase tracking-wider text-[var(--accent)]">
                     Official
                   </span>
                 ) : null}
               </div>
               <div className="mt-1 flex items-center gap-3">
-                <span className="font-mono text-[11px] text-zinc-600">{skill.repo}</span>
+                <span className="font-mono text-[13px] text-gray-500">{skill.repo}</span>
                 {skill.githubStars ? (
-                  <span className="font-mono text-[11px] text-zinc-600">★ {skill.githubStars}</span>
+                  <span className="font-mono text-[13px] text-gray-500">★ {skill.githubStars}</span>
                 ) : null}
                 {skill.evidenceCount > 0 ? (
-                  <span className="font-mono text-[11px] text-emerald-500/70">
+                  <span className="font-mono text-[13px] text-emerald-600">
                     {skill.evidenceCount} evidence
                   </span>
                 ) : null}
               </div>
-              <p className="mt-2 text-sm leading-6 text-zinc-500">
+              <p className="mt-2 text-[15px] leading-6 text-gray-500">
                 {skill.verdict}
               </p>
             </div>
             <div className="flex flex-col items-end gap-2 sm:flex-shrink-0">
               {skill.screenshotUrl && (
-                <div className="overflow-hidden rounded-lg border border-white/[0.06]" style={{ width: 128 }}>
+                <div className="overflow-hidden rounded-lg border border-[var(--border)]" style={{ width: 128 }}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={skill.screenshotUrl}
@@ -210,7 +210,7 @@ export function SkillsList({ skills }: { skills: SkillItem[] }) {
                 {skill.categories.map((j) => (
                   <span
                     key={j.slug}
-                    className="rounded bg-white/[0.04] px-2 py-0.5 text-[10px] text-zinc-500"
+                    className="rounded bg-gray-100 px-2 py-0.5 text-[12px] text-gray-500"
                   >
                     {j.name}
                   </span>
@@ -220,7 +220,7 @@ export function SkillsList({ skills }: { skills: SkillItem[] }) {
           </Link>
         ))}
         {filtered.length === 0 && (
-          <p className="py-8 text-center text-sm text-zinc-500">
+          <p className="py-8 text-center text-[15px] text-gray-500">
             No skills match your filters
           </p>
         )}

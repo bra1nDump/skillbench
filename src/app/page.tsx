@@ -12,28 +12,28 @@ import type { TopSkillData } from "@/components/charts/top-skills-chart";
 const pipeline = [
   {
     name: "Discover",
-    icon: "🔍",
+    icon: "1",
     summary:
       "Search the last 7–30 days across launches, registries, X, Reddit, HN, and pairwise language like 'vs', 'replaced', 'better than'.",
     href: "/docs/agents",
   },
   {
     name: "Deep-dive",
-    icon: "🔬",
+    icon: "2",
     summary:
       "Pull the strongest trust-building sources, quotes, screenshots, and workflow differences. Proof, not volume.",
     href: "/docs/agents",
   },
   {
     name: "Rank",
-    icon: "🏆",
+    icon: "3",
     summary:
       "Turn evidence into category-level recommendations. Workflow fit and public trust over raw chatter.",
     href: "/docs/agents",
   },
   {
     name: "QA",
-    icon: "🛡️",
+    icon: "4",
     summary:
       "Fail the build on broken links, dead assets, stale citations. Browser spot-check anything suspicious.",
     href: "/docs/agents/qa",
@@ -123,19 +123,19 @@ export default function Home() {
       <main className="mx-auto w-full max-w-6xl px-6 sm:px-8">
         {/* Hero */}
         <div className="pb-12 pt-16 sm:pt-20">
-          <div className="inline-flex items-center gap-2 rounded-full border border-indigo-500/20 bg-indigo-500/[0.07] px-3 py-1">
-            <span className="h-1.5 w-1.5 rounded-full bg-indigo-400 animate-pulse" />
-            <span className="text-xs font-medium text-indigo-400">
+          <div className="inline-flex items-center gap-2 rounded-full border border-[var(--accent)]/20 bg-[var(--accent)]/[0.07] px-3 py-1">
+            <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent)] animate-pulse" />
+            <span className="text-[13px] font-medium text-[var(--accent)]">
               {categoryList.length} categories · {skillList.length} skills ranked
             </span>
           </div>
-          <h1 className="mt-6 max-w-3xl text-4xl font-bold tracking-[-0.04em] text-white sm:text-5xl lg:text-6xl">
+          <h1 className="mt-6 max-w-3xl text-4xl font-bold tracking-[-0.04em] text-gray-900 sm:text-5xl lg:text-6xl">
             Find the actual meta for{" "}
-            <span className=" text-indigo-400 ">
+            <span className="text-[var(--accent)]">
               agent skills
             </span>
           </h1>
-          <p className="mt-6 max-w-2xl text-base leading-7 text-zinc-400">
+          <p className="mt-6 max-w-2xl text-base leading-7 text-gray-500">
             {mission}
           </p>
           <div className="mt-8">
@@ -144,17 +144,17 @@ export default function Home() {
         </div>
 
         {/* Top picks per category */}
-        <section className="border-t border-white/[0.06] py-14">
+        <section className="border-t border-[var(--border)] py-14">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <p className="font-mono uppercase tracking-widest text-indigo-400">
+              <p className="font-mono text-[13px] uppercase tracking-widest text-[var(--accent)]">
                 Best right now
               </p>
-              <p className="mt-2 text-sm text-zinc-500">
+              <p className="mt-2 text-[15px] text-gray-500">
                 Top pick per category, ranked by evidence weight and workflow fit.
               </p>
             </div>
-            <Link href="/categories" className="group inline-flex w-fit items-center gap-1 rounded-lg border border-white/[0.06] px-3 py-1.5 text-xs font-medium text-zinc-400 transition-all hover:border-white/[0.12] hover:bg-white/[0.04] hover:text-white">
+            <Link href="/categories" className="group inline-flex w-fit items-center gap-1 rounded-lg border border-[var(--border)] px-3 py-1.5 text-[13px] font-medium text-gray-500 transition-all hover:border-[var(--border-hover)] hover:bg-gray-50 hover:text-gray-900">
               All categories <span className="inline-block transition-transform group-hover:translate-x-0.5">→</span>
             </Link>
           </div>
@@ -163,22 +163,22 @@ export default function Home() {
               <Link
                 key={item.categorySlug}
                 href={`/categories/${item.categorySlug}`}
-                className="group relative overflow-hidden rounded-xl border border-white/[0.06] bg-[var(--surface)] p-5 transition-all hover:border-white/[0.12] hover:bg-[var(--surface-2)]"
+                className="group relative overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5 transition-all hover:border-[var(--border-hover)] hover:bg-[var(--surface-2)]"
               >
-                <p className="font-mono text-[10px] uppercase tracking-wider text-zinc-500">
+                <p className="font-mono text-[12px] uppercase tracking-wider text-gray-500">
                   {item.categoryName}
                 </p>
-                <p className="mt-3 text-lg font-semibold tracking-tight text-white">
+                <p className="mt-3 text-lg font-semibold tracking-tight text-gray-900">
                   {item.topPick}
                 </p>
-                <p className="mt-2 line-clamp-2 text-xs leading-5 text-zinc-500">
+                <p className="mt-2 line-clamp-2 text-[13px] leading-5 text-gray-500">
                   {item.why}
                 </p>
                 <div className="mt-3 flex items-center gap-1.5">
-                  <span className="inline-flex items-center rounded bg-emerald-500/10 px-1.5 py-0.5 font-mono text-[9px] font-medium text-emerald-400">
+                  <span className="inline-flex items-center rounded bg-emerald-50 px-1.5 py-0.5 font-mono text-[13px] font-medium text-emerald-600">
                     #1
                   </span>
-                  <span className="text-[10px] text-zinc-600">
+                  <span className="text-[12px] text-gray-500">
                     of {item.rank} ranked
                   </span>
                 </div>
@@ -196,17 +196,17 @@ export default function Home() {
             .slice(0, 10);
 
           return topByStars.length > 1 ? (
-            <section className="border-t border-white/[0.06] py-14">
+            <section className="border-t border-[var(--border)] py-14">
               <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <div>
-                  <p className="font-mono uppercase tracking-widest text-indigo-400">
+                  <p className="font-mono text-[13px] uppercase tracking-widest text-[var(--accent)]">
                     Popularity by stars
                   </p>
-                  <p className="mt-2 text-sm text-zinc-500">
+                  <p className="mt-2 text-[15px] text-gray-500">
                     Top skills by GitHub stars. Click a bar to see details.
                   </p>
                 </div>
-                <Link href="/compare" className="group inline-flex w-fit items-center gap-1 rounded-lg border border-white/[0.06] px-3 py-1.5 text-xs font-medium text-zinc-400 transition-all hover:border-white/[0.12] hover:bg-white/[0.04] hover:text-white">
+                <Link href="/compare" className="group inline-flex w-fit items-center gap-1 rounded-lg border border-[var(--border)] px-3 py-1.5 text-[13px] font-medium text-gray-500 transition-all hover:border-[var(--border-hover)] hover:bg-gray-50 hover:text-gray-900">
                   Compare skills <span className="inline-block transition-transform group-hover:translate-x-0.5">→</span>
                 </Link>
               </div>
@@ -218,11 +218,11 @@ export default function Home() {
         })()}
 
         {/* Key comparisons */}
-        <section className="border-t border-white/[0.06] py-14">
-          <p className="font-mono uppercase tracking-widest text-indigo-400">
+        <section className="border-t border-[var(--border)] py-14">
+          <p className="font-mono text-[13px] uppercase tracking-widest text-[var(--accent)]">
             Head to head
           </p>
-          <p className="mt-2 text-sm text-zinc-500">
+          <p className="mt-2 text-[15px] text-gray-500">
             The matchups that matter most right now.
           </p>
           <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
@@ -230,17 +230,17 @@ export default function Home() {
               <Link
                 key={`${pair.left}-${pair.right}`}
                 href={`/categories/${pair.categorySlug}`}
-                className="group rounded-xl border border-white/[0.06] bg-[var(--surface)] p-5 transition-all hover:border-white/[0.12] hover:bg-[var(--surface-2)]"
+                className="group rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5 transition-all hover:border-[var(--border-hover)] hover:bg-[var(--surface-2)]"
               >
-                <p className="font-mono text-[10px] uppercase tracking-wider text-zinc-500">
+                <p className="font-mono text-[12px] uppercase tracking-wider text-gray-500">
                   {pair.categoryName}
                 </p>
                 <div className="mt-3 flex items-center gap-2">
-                  <span className="text-sm font-semibold text-white">{pair.left}</span>
-                  <span className="rounded bg-white/[0.06] px-1.5 py-0.5 text-[10px] font-medium text-zinc-500">vs</span>
-                  <span className="text-sm font-semibold text-white">{pair.right}</span>
+                  <span className="text-[15px] font-semibold text-gray-900">{pair.left}</span>
+                  <span className="rounded bg-gray-100 px-1.5 py-0.5 text-[12px] font-medium text-gray-500">vs</span>
+                  <span className="text-[15px] font-semibold text-gray-900">{pair.right}</span>
                 </div>
-                <p className="mt-2 line-clamp-2 text-xs leading-5 text-zinc-500">
+                <p className="mt-2 line-clamp-2 text-[13px] leading-5 text-gray-500">
                   {pair.gist}
                 </p>
               </Link>
@@ -249,31 +249,31 @@ export default function Home() {
         </section>
 
         {/* Evidence feed */}
-        <section className="border-t border-white/[0.06] py-14">
-          <p className="font-mono  uppercase tracking-widest text-indigo-400">
+        <section className="border-t border-[var(--border)] py-14">
+          <p className="font-mono text-[13px] uppercase tracking-widest text-[var(--accent)]">
             Latest signals
           </p>
-          <p className="mt-2 text-sm text-zinc-500">
+          <p className="mt-2 text-[15px] text-gray-500">
             Strongest recent evidence from across all tracked categories.
           </p>
           <div className="mt-8 grid gap-4 lg:grid-cols-5">
             {evidenceHighlights.map((signal) => (
-              <article key={signal.title} className="rounded-lg border border-white/[0.04] bg-[var(--surface)] p-4">
+              <article key={signal.title} className="rounded-lg border border-[var(--border)] bg-[var(--surface)] p-4">
                 <div className="flex items-center gap-2">
-                  <span className="inline-flex rounded bg-white/[0.06] px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-wider text-zinc-500">
+                  <span className="inline-flex rounded bg-gray-100 px-1.5 py-0.5 font-mono text-[13px] uppercase tracking-wider text-gray-500">
                     {signal.categoryName}
                   </span>
-                  <span className="font-mono text-[10px] text-zinc-600">{signal.date}</span>
+                  <span className="font-mono text-[12px] text-gray-500">{signal.date}</span>
                 </div>
                 <a
                   href={signal.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="mt-3 inline-block text-sm font-medium leading-snug text-zinc-200 transition-colors hover:text-white"
+                  className="mt-3 inline-block text-[15px] font-medium leading-snug text-gray-800 transition-colors hover:text-gray-900"
                 >
                   {signal.title}
                 </a>
-                <p className="mt-2 line-clamp-3 text-xs leading-5 text-zinc-500">
+                <p className="mt-2 line-clamp-3 text-[13px] leading-5 text-gray-500">
                   {signal.note}
                 </p>
               </article>
@@ -282,17 +282,17 @@ export default function Home() {
         </section>
 
         {/* Categories */}
-        <section className="border-t border-white/[0.06] py-14">
+        <section className="border-t border-[var(--border)] py-14">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <p className="font-mono uppercase tracking-widest text-indigo-400">
+              <p className="font-mono text-[13px] uppercase tracking-widest text-[var(--accent)]">
                 Categories
               </p>
-              <p className="mt-2 text-sm text-zinc-500">
+              <p className="mt-2 text-[15px] text-gray-500">
                 Each answers a narrow question, backed by visible public proof.
               </p>
             </div>
-            <Link href="/categories" className="group inline-flex w-fit items-center gap-1 rounded-lg border border-white/[0.06] px-3 py-1.5 text-xs font-medium text-zinc-400 transition-all hover:border-white/[0.12] hover:bg-white/[0.04] hover:text-white">
+            <Link href="/categories" className="group inline-flex w-fit items-center gap-1 rounded-lg border border-[var(--border)] px-3 py-1.5 text-[13px] font-medium text-gray-500 transition-all hover:border-[var(--border-hover)] hover:bg-gray-50 hover:text-gray-900">
               View all <span className="inline-block transition-transform group-hover:translate-x-0.5">→</span>
             </Link>
           </div>
@@ -301,28 +301,28 @@ export default function Home() {
               <Link
                 key={category.slug}
                 href={`/categories/${category.slug}`}
-                className="group rounded-xl border border-white/[0.06] bg-[var(--surface)] p-6 transition-all hover:border-indigo-500/20 hover:bg-[var(--surface-2)]"
+                className="group rounded-lg border border-[var(--border)] bg-[var(--surface)] p-6 transition-all hover:border-[var(--accent)]/20 hover:bg-[var(--surface-2)]"
               >
-                <p className="text-lg font-semibold tracking-tight text-white">
+                <p className="text-lg font-semibold tracking-tight text-gray-900">
                   {category.name}
                 </p>
-                <p className="mt-3 line-clamp-2 text-sm leading-6 text-zinc-500">
+                <p className="mt-3 line-clamp-2 text-[15px] leading-6 text-gray-500">
                   {category.deck}
                 </p>
-                <div className="mt-5 border-t border-white/[0.04] pt-4">
-                  <p className="font-mono text-[9px] uppercase tracking-wider text-zinc-600">
+                <div className="mt-5 border-t border-[var(--border)] pt-4">
+                  <p className="font-mono text-[13px] uppercase tracking-wider text-gray-500">
                     Top 3
                   </p>
                   <div className="mt-2 space-y-1">
                     {category.ranking.slice(0, 3).map((item) => (
-                      <div key={item.rank} className="flex items-center gap-2 text-sm">
-                        <span className="w-5 font-mono text-xs text-zinc-600">{item.rank}</span>
-                        <span className="font-medium text-zinc-300">{item.contender}</span>
+                      <div key={item.rank} className="flex items-center gap-2 text-[15px]">
+                        <span className="w-5 font-mono text-[13px] text-gray-500">{item.rank}</span>
+                        <span className="font-medium text-gray-700">{item.contender}</span>
                       </div>
                     ))}
                   </div>
                 </div>
-                <p className="mt-4 text-xs font-medium text-indigo-400 opacity-0 transition-opacity group-hover:opacity-100">
+                <p className="mt-4 text-[13px] font-medium text-[var(--accent)] opacity-0 transition-opacity group-hover:opacity-100">
                   Open report →
                 </p>
               </Link>
@@ -332,11 +332,11 @@ export default function Home() {
 
         {/* Bundles */}
         {bundleList.length > 0 ? (
-          <section className="border-t border-white/[0.06] py-14">
-            <p className="font-mono uppercase tracking-widest text-indigo-400">
+          <section className="border-t border-[var(--border)] py-14">
+            <p className="font-mono text-[13px] uppercase tracking-widest text-[var(--accent)]">
               Bundles
             </p>
-            <p className="mt-2 text-sm text-zinc-500">
+            <p className="mt-2 text-[15px] text-gray-500">
               What known builders actually ship with. Full setups from people with public track records.
             </p>
             <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -347,15 +347,15 @@ export default function Home() {
                   <Link
                     key={bundle.slug}
                     href={`/bundles/${bundle.slug}`}
-                    className="group rounded-xl border border-white/[0.06] bg-[var(--surface)] p-5 transition-all hover:border-white/[0.12] hover:bg-[var(--surface-2)]"
+                    className="group rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5 transition-all hover:border-[var(--border-hover)] hover:bg-[var(--surface-2)]"
                   >
-                    <p className="font-mono text-[10px] uppercase tracking-wider text-zinc-500">
+                    <p className="font-mono text-[12px] uppercase tracking-wider text-gray-500">
                       {bundle.personaHandle}
                     </p>
-                    <p className="mt-2 text-base font-semibold tracking-tight text-white">
+                    <p className="mt-2 text-base font-semibold tracking-tight text-gray-900">
                       {bundle.name}
                     </p>
-                    <p className="mt-2 line-clamp-2 text-xs leading-5 text-zinc-500">
+                    <p className="mt-2 line-clamp-2 text-[13px] leading-5 text-gray-500">
                       {bundle.summary}
                     </p>
                     <div className="mt-4 flex flex-wrap gap-1.5">
@@ -363,7 +363,7 @@ export default function Home() {
                         skill ? (
                           <span
                             key={skill.slug}
-                            className="rounded bg-indigo-500/10 px-2 py-0.5 font-mono text-[9px] text-indigo-400"
+                            className="rounded bg-[var(--accent)]/10 px-2 py-0.5 font-mono text-[13px] text-[var(--accent)]"
                           >
                             {skill.name}
                           </span>
@@ -378,12 +378,12 @@ export default function Home() {
         ) : null}
 
         {/* Pipeline + Values */}
-        <section className="grid gap-14 border-t border-white/[0.06] py-14 lg:grid-cols-[1.35fr_0.65fr]">
+        <section className="grid gap-14 border-t border-[var(--border)] py-14 lg:grid-cols-[1.35fr_0.65fr]">
           <div>
-            <p className="font-mono uppercase tracking-widest text-indigo-400">
+            <p className="font-mono text-[13px] uppercase tracking-widest text-[var(--accent)]">
               How we rank
             </p>
-            <p className="mt-2 text-sm text-zinc-500">
+            <p className="mt-2 text-[15px] text-gray-500">
               Every recommendation goes through a 4-step research pipeline.
             </p>
             <div className="mt-8 grid gap-3 md:grid-cols-2">
@@ -391,22 +391,22 @@ export default function Home() {
                 <Link
                   key={step.name}
                   href={step.href}
-                  className="group rounded-lg border border-white/[0.04] bg-[var(--surface)] p-4 transition-all hover:border-white/[0.08]"
+                  className="group rounded-lg border border-[var(--border)] bg-[var(--surface)] p-4 transition-all hover:border-[var(--border-hover)]"
                 >
                   <div className="flex items-center gap-3">
-                    <span className="flex h-7 w-7 items-center justify-center rounded-md bg-white/[0.04] font-mono text-xs text-zinc-500">
+                    <span className="flex h-7 w-7 items-center justify-center rounded-md bg-gray-100 font-mono text-[13px] text-gray-500">
                       {i + 1}
                     </span>
-                    <p className="text-sm font-semibold text-white">{step.name}</p>
+                    <p className="text-[15px] font-semibold text-gray-900">{step.name}</p>
                   </div>
-                  <p className="mt-3 text-xs leading-5 text-zinc-500">{step.summary}</p>
+                  <p className="mt-3 text-[13px] leading-5 text-gray-500">{step.summary}</p>
                 </Link>
               ))}
             </div>
           </div>
 
           <div>
-            <p className="font-mono uppercase tracking-widest text-indigo-400">
+            <p className="font-mono text-[13px] uppercase tracking-widest text-[var(--accent)]">
               What we optimize for
             </p>
             <div className="mt-6 space-y-3">
@@ -417,8 +417,8 @@ export default function Home() {
                 "Workflow shape over fake universal scores.",
               ].map((item) => (
                 <div key={item} className="flex items-start gap-3">
-                  <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-indigo-500/50" />
-                  <p className="text-sm leading-6 text-zinc-400">{item}</p>
+                  <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[var(--accent)]/50" />
+                  <p className="text-[15px] leading-6 text-gray-500">{item}</p>
                 </div>
               ))}
             </div>
@@ -426,8 +426,8 @@ export default function Home() {
         </section>
 
         {/* Latest runs */}
-        <section className="border-t border-white/[0.06] py-14">
-          <p className="font-mono uppercase tracking-widest text-indigo-400">
+        <section className="border-t border-[var(--border)] py-14">
+          <p className="font-mono text-[13px] uppercase tracking-widest text-[var(--accent)]">
             Latest research
           </p>
           <div className="mt-6 grid gap-4 lg:grid-cols-3">
@@ -435,13 +435,13 @@ export default function Home() {
               <Link
                 key={run.name}
                 href={run.href}
-                className="group rounded-lg border border-white/[0.04] bg-[var(--surface)] p-5 transition-all hover:border-white/[0.08]"
+                className="group rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5 transition-all hover:border-[var(--border-hover)]"
               >
-                <p className="text-sm font-semibold text-white">{run.name}</p>
-                <p className="mt-2 text-xs leading-5 text-zinc-500">
+                <p className="text-[15px] font-semibold text-gray-900">{run.name}</p>
+                <p className="mt-2 text-[13px] leading-5 text-gray-500">
                   {run.summary}
                 </p>
-                <p className="mt-3 text-xs font-medium text-indigo-400 opacity-0 transition-opacity group-hover:opacity-100">
+                <p className="mt-3 text-[13px] font-medium text-[var(--accent)] opacity-0 transition-opacity group-hover:opacity-100">
                   View run →
                 </p>
               </Link>

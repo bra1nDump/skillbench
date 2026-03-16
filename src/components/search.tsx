@@ -62,7 +62,7 @@ export function Search({ items }: { items: SearchItem[] }) {
   return (
     <div ref={ref} className="relative w-full max-w-xl">
       <div className="relative">
-        <svg className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-zinc-500" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <svg className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-500" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <circle cx="11" cy="11" r="8" />
           <path d="M21 21l-4.35-4.35" />
         </svg>
@@ -76,14 +76,14 @@ export function Search({ items }: { items: SearchItem[] }) {
           }}
           onFocus={() => setOpen(true)}
           placeholder="Search skills, categories, bundles..."
-          className="w-full rounded-lg border border-white/[0.06] bg-white/[0.03] py-2.5 pl-10 pr-12 text-sm text-zinc-200 placeholder:text-zinc-500 focus:border-indigo-500/50 focus:bg-white/[0.05] focus:outline-none focus:ring-1 focus:ring-indigo-500/30"
+          className="w-full rounded-lg border border-[var(--border)] bg-white py-2.5 pl-10 pr-12 text-[15px] text-gray-900 placeholder:text-gray-500 focus:border-[var(--accent)]/50 focus:bg-white focus:outline-none focus:ring-1 focus:ring-[var(--accent)]/30"
         />
-        <kbd className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 rounded border border-white/[0.08] bg-white/[0.04] px-1.5 py-0.5 font-mono text-[10px] text-zinc-500">
+        <kbd className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 rounded border border-[var(--border)] bg-gray-50 px-1.5 py-0.5 font-mono text-[12px] text-gray-500">
           /
         </kbd>
       </div>
       {open && filtered.length > 0 && (
-        <div className="absolute top-full z-30 mt-2 max-h-80 w-full overflow-y-auto rounded-lg border border-white/[0.08] bg-[#111118] shadow-2xl shadow-black/40">
+        <div className="absolute top-full z-30 mt-2 max-h-80 w-full overflow-y-auto rounded-lg border border-[var(--border)] bg-white shadow-lg shadow-gray-200/60">
           {filtered.map((item) => (
             <Link
               key={item.href}
@@ -92,25 +92,25 @@ export function Search({ items }: { items: SearchItem[] }) {
                 setOpen(false);
                 setQuery("");
               }}
-              className="block border-b border-white/[0.04] px-4 py-3 last:border-b-0 hover:bg-white/[0.04]"
+              className="block border-b border-[var(--border)] px-4 py-3 last:border-b-0 hover:bg-gray-50"
             >
               <span
-                className={`inline-block rounded px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-wider ${
+                className={`inline-block rounded px-1.5 py-0.5 font-mono text-[13px] uppercase tracking-wider ${
                   item.label === "Skill"
-                    ? "bg-indigo-500/15 text-indigo-400"
+                    ? "bg-[var(--accent)]/10 text-[var(--accent)]"
                     : item.label === "Bundle"
-                      ? "bg-violet-500/15 text-violet-400"
+                      ? "bg-violet-50 text-violet-600"
                       : item.label === "Category"
-                        ? "bg-emerald-500/15 text-emerald-400"
-                        : "bg-white/[0.06] text-zinc-400"
+                        ? "bg-emerald-50 text-emerald-600"
+                        : "bg-gray-100 text-gray-500"
                 }`}
               >
                 {item.label}
               </span>
-              <p className="mt-1 text-sm font-medium text-zinc-200">
+              <p className="mt-1 text-[15px] font-medium text-gray-800">
                 {item.name}
               </p>
-              <p className="mt-0.5 line-clamp-1 text-xs text-zinc-500">
+              <p className="mt-0.5 line-clamp-1 text-[13px] text-gray-500">
                 {item.summary}
               </p>
             </Link>
@@ -118,8 +118,8 @@ export function Search({ items }: { items: SearchItem[] }) {
         </div>
       )}
       {open && query.length >= 2 && filtered.length === 0 && (
-        <div className="absolute top-full z-30 mt-2 w-full rounded-lg border border-white/[0.08] bg-[#111118] px-4 py-4 shadow-2xl shadow-black/40">
-          <p className="text-sm text-zinc-500">No results for &ldquo;{query}&rdquo;</p>
+        <div className="absolute top-full z-30 mt-2 w-full rounded-lg border border-[var(--border)] bg-white px-4 py-4 shadow-lg shadow-gray-200/60">
+          <p className="text-[15px] text-gray-500">No results for &ldquo;{query}&rdquo;</p>
         </div>
       )}
     </div>

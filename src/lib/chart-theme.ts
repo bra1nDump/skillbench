@@ -1,17 +1,17 @@
 export const CHART_COLORS = {
-  accent: "#818cf8",
-  green: "#34d399",
-  amber: "#fbbf24",
-  muted: "#71717a",
-  gridLine: "rgba(255, 255, 255, 0.06)",
-  tooltipBg: "#18181f",
-  tooltipBorder: "rgba(255, 255, 255, 0.08)",
-  text: "#e4e4eb",
+  accent: "#E63946",
+  green: "#059669",
+  amber: "#D97706",
+  muted: "#737373",
+  gridLine: "#E5E5E5",
+  tooltipBg: "#FFFFFF",
+  tooltipBorder: "#E5E5E5",
+  text: "#171717",
 } as const;
 
 export const AXIS_STYLE = {
-  fontSize: 11,
-  fontFamily: "var(--font-jetbrains-mono), monospace",
+  fontSize: 13,
+  fontFamily: "var(--font-ibm-plex-mono), monospace",
   fill: CHART_COLORS.muted,
 };
 
@@ -20,8 +20,8 @@ export const TOOLTIP_STYLE = {
     background: CHART_COLORS.tooltipBg,
     border: `1px solid ${CHART_COLORS.tooltipBorder}`,
     borderRadius: 8,
-    fontSize: 12,
+    fontSize: 14,
     color: CHART_COLORS.text,
   },
-  cursor: { fill: "rgba(129, 140, 248, 0.06)" },
+  cursor: { fill: "rgba(230, 57, 70, 0.06)" },
 };

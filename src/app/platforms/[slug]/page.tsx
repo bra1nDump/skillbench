@@ -44,28 +44,28 @@ export default async function PlatformPage({ params }: PageProps) {
     <div className="min-h-screen">
       <main className="mx-auto w-full max-w-6xl px-6 py-10 sm:px-8">
         <div className="pb-10">
-          <Link href="/platforms" className="mb-4 inline-flex items-center gap-1 text-xs text-zinc-500 transition-colors hover:text-zinc-300">
+          <Link href="/platforms" className="mb-4 inline-flex items-center gap-1 text-[13px] text-gray-500 transition-colors hover:text-gray-700">
             ← All platforms
           </Link>
-          <h1 className="text-3xl font-bold tracking-tight text-white sm:text-5xl">
+          <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl">
             {platform.name}
           </h1>
-          <p className="mt-4 max-w-3xl text-base leading-7 text-zinc-400">
+          <p className="mt-4 max-w-3xl text-base leading-7 text-gray-500">
             {platform.summary}
           </p>
         </div>
 
-        <section className="border-t border-white/[0.06] py-12">
-          <p className="font-mono text-[11px] uppercase tracking-widest text-indigo-400">
+        <section className="border-t border-[var(--border)] py-14">
+          <p className="font-mono text-[13px] uppercase tracking-widest text-[var(--accent)]">
             Native agent support
           </p>
-          <p className="mt-5 max-w-3xl text-[15px] leading-7 text-zinc-300">
+          <p className="mt-5 max-w-3xl text-[15px] leading-7 text-gray-700">
             {platform.nativeSupport}
           </p>
         </section>
 
-        <section className="border-t border-white/[0.06] py-12">
-          <p className="font-mono text-[11px] uppercase tracking-widest text-indigo-400">
+        <section className="border-t border-[var(--border)] py-14">
+          <p className="font-mono text-[13px] uppercase tracking-widest text-[var(--accent)]">
             Skills on this platform
           </p>
           <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -75,24 +75,24 @@ export default async function PlatformPage({ params }: PageProps) {
                 <Link
                   key={skill.slug}
                   href={`/skills/${skill.slug}`}
-                  className="group rounded-xl border border-white/[0.06] bg-[var(--surface)] p-5 transition-all hover:border-indigo-500/20 hover:bg-[var(--surface-2)]"
+                  className="group rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5 transition-all hover:border-[var(--accent)]/20 hover:bg-[var(--surface-2)]"
                 >
                   <div className="flex items-start justify-between gap-2">
-                    <p className="text-sm font-semibold text-white transition-colors group-hover:text-indigo-400">{skill.name}</p>
+                    <p className="text-[15px] font-semibold text-gray-900 transition-colors group-hover:text-[var(--accent)]">{skill.name}</p>
                     <span
-                      className={`shrink-0 rounded px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-wider ${
+                      className={`shrink-0 rounded px-1.5 py-0.5 font-mono text-[13px] uppercase tracking-wider ${
                         skill.status === "active"
-                          ? "bg-emerald-500/10 text-emerald-400"
-                          : "bg-amber-500/10 text-amber-400"
+                          ? "bg-emerald-50 text-emerald-600"
+                          : "bg-amber-50 text-amber-600"
                       }`}
                     >
                       {skill.status}
                     </span>
                   </div>
-                  <p className="mt-2 line-clamp-2 text-xs leading-5 text-zinc-500">
+                  <p className="mt-2 line-clamp-2 text-[13px] leading-5 text-gray-500">
                     {skill.verdict}
                   </p>
-                  <p className="mt-2 font-mono text-[10px] text-zinc-600">
+                  <p className="mt-2 font-mono text-[12px] text-gray-500">
                     {skill.official ? "Official" : "Community"} · {skill.repo}
                   </p>
                 </Link>
@@ -101,8 +101,8 @@ export default async function PlatformPage({ params }: PageProps) {
           </div>
         </section>
 
-        <section className="border-t border-white/[0.06] py-12">
-          <p className="font-mono text-[11px] uppercase tracking-widest text-indigo-400">
+        <section className="border-t border-[var(--border)] py-14">
+          <p className="font-mono text-[13px] uppercase tracking-widest text-[var(--accent)]">
             Related categories
           </p>
           <div className="mt-6 grid gap-3 sm:grid-cols-2">
@@ -110,10 +110,10 @@ export default async function PlatformPage({ params }: PageProps) {
               <Link
                 key={category.slug}
                 href={`/categories/${category.slug}`}
-                className="group rounded-xl border border-white/[0.06] bg-[var(--surface)] p-5 transition-all hover:border-indigo-500/20 hover:bg-[var(--surface-2)]"
+                className="group rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5 transition-all hover:border-[var(--accent)]/20 hover:bg-[var(--surface-2)]"
               >
-                <p className="text-base font-semibold text-white">{category.name}</p>
-                <p className="mt-2 line-clamp-2 text-sm leading-6 text-zinc-500">
+                <p className="text-base font-semibold text-gray-900">{category.name}</p>
+                <p className="mt-2 line-clamp-2 text-[15px] leading-6 text-gray-500">
                   {category.deck}
                 </p>
               </Link>

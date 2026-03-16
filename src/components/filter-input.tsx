@@ -14,7 +14,7 @@ export function FilterInput({
   return (
     <div className="relative">
       <svg
-        className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-zinc-500"
+        className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-500"
         width="16"
         height="16"
         viewBox="0 0 24 24"
@@ -32,9 +32,9 @@ export function FilterInput({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
-        className="w-full rounded-lg border border-white/[0.06] bg-white/[0.03] py-2.5 pl-10 pr-20 text-sm text-zinc-200 placeholder:text-zinc-500 focus:border-indigo-500/50 focus:bg-white/[0.05] focus:outline-none focus:ring-1 focus:ring-indigo-500/30"
+        className="w-full rounded-lg border border-[var(--border)] bg-white py-2.5 pl-10 pr-20 text-[15px] text-gray-900 placeholder:text-gray-500 focus:border-[var(--accent)]/50 focus:outline-none focus:ring-1 focus:ring-[var(--accent)]/30"
       />
-      <span className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 font-mono text-[11px] text-zinc-600">
+      <span className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 font-mono text-[13px] text-gray-500">
         {count} results
       </span>
     </div>

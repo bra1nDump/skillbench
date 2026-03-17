@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
-import { SiteFooter } from "@/components/site-footer";
 import { readDocMarkdown, resolveDocHref } from "@/lib/docs";
 
 import type { Components } from "react-markdown";
@@ -97,7 +96,6 @@ export default async function DocPage({ params }: PageProps) {
   };
 
   return (
-    <div className="min-h-screen">
       <main className="mx-auto w-full max-w-4xl px-6 py-10 sm:px-8">
         <div className="pb-6">
           <p className="font-mono text-[13px] text-gray-500">{relativePath}</p>
@@ -109,8 +107,5 @@ export default async function DocPage({ params }: PageProps) {
           </ReactMarkdown>
         </article>
       </main>
-
-      <SiteFooter />
-    </div>
   );
 }

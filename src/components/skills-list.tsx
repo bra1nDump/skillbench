@@ -4,21 +4,26 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 
 import { FilterInput } from "./filter-input";
+import { TrendArrow } from "./trend-arrow";
+
+import type { Trend } from "@/lib/trend";
 
 type SkillItem = {
   slug: string;
   name: string;
-  repo: string;
-  status: "active" | "watch";
+  repo?: string;
+  status: "active" | "watch" | "stale";
   official: boolean;
   githubStars?: string;
   evidenceCount: number;
   verdict: string;
+  trustScore: number;
+  starsTrend: Trend | null;
   categories: Array<{ slug: string; name: string }>;
   screenshotUrl: string | null;
 };
 
-type Toggle = "official" | "active" | "watch" | "has-evidence";
+type Toggle = "official" | "active" | "watch" | "stale" | "has-evidence";
 
 export function SkillsList({ skills }: { skills: SkillItem[] }) {
   const [query, setQuery] = useState("");
@@ -63,7 +68,7 @@ export function SkillsList({ skills }: { skills: SkillItem[] }) {
       list = list.filter(
         (s) =>
           s.name.toLowerCase().includes(q) ||
-          s.repo.toLowerCase().includes(q) ||
+          (s.repo?.toLowerCase().includes(q) ?? false) ||
           s.verdict.toLowerCase().includes(q) ||
           s.categories.some((c) => c.name.toLowerCase().includes(q)),
       );
@@ -178,11 +183,16 @@ export function SkillsList({ skills }: { skills: SkillItem[] }) {
                     Official
                   </span>
                 ) : null}
+                <span className={`rounded px-1.5 py-0.5 font-mono text-[11px] font-bold ${
+                  skill.trustScore >= 80 ? "bg-emerald-500/10 text-emerald-600" : skill.trustScore >= 50 ? "bg-amber-500/10 text-amber-600" : "bg-red-500/10 text-red-500"
+                }`}>
+                  {skill.trustScore}
+                </span>
               </div>
               <div className="mt-1 flex items-center gap-3">
                 <span className="font-mono text-[13px] text-gray-500">{skill.repo}</span>
                 {skill.githubStars ? (
-                  <span className="font-mono text-[13px] text-gray-500">★ {skill.githubStars}</span>
+                  <span className="inline-flex items-center gap-1 font-mono text-[13px] text-gray-500">★ {skill.githubStars} <TrendArrow trend={skill.starsTrend} /></span>
                 ) : null}
                 {skill.evidenceCount > 0 ? (
                   <span className="font-mono text-[13px] text-emerald-600">

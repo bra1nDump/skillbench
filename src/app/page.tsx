@@ -1,11 +1,13 @@
 import Link from "next/link";
 
 import { TopSkillsChart } from "@/components/charts/top-skills-chart";
-import { Search } from "@/components/search";
-import { SiteFooter } from "@/components/site-footer";
+import { DarkCTA } from "@/components/dark-cta";
+import { DarkHero } from "@/components/dark-hero";
+import { TrustBadge } from "@/components/trust-badge";
 import { bundleList, categoryList, getSkill, platformList, skillList } from "@/lib/catalog";
+import { getTopMovers } from "@/lib/changelog";
 import { parseStars } from "@/lib/parse-stars";
-import { mission } from "@/lib/site-data";
+import { computeTrend } from "@/lib/trend";
 
 import type { TopSkillData } from "@/components/charts/top-skills-chart";
 
@@ -40,26 +42,7 @@ const pipeline = [
   },
 ];
 
-const latestRuns = [
-  {
-    name: "Discover",
-    summary:
-      "Mapped the live contenders and the strongest recent public signals for product/business development, software factories, and UX/UI.",
-    href: "/runs/2026-03-09_05-40_discover_core-jobs",
-  },
-  {
-    name: "Rank",
-    summary:
-      "Turned the evidence into concrete rankings for the three live categories, including native-tool and loop-pattern subcases.",
-    href: "/runs/2026-03-09_05-57_rank_core-jobs",
-  },
-  {
-    name: "Evidence capture",
-    summary:
-      "Validated evidence for Google Workspace MCP, Firecrawl, OpenHands, SWE-agent, Figma MCP, Figma-use, and Vibma.",
-    href: "/runs/2026-03-09_12-55_evidence-capture_core-jobs",
-  },
-];
+const topMovers = getTopMovers(5);
 
 const searchItems = [
   ...categoryList.map((category) => ({
@@ -86,6 +69,43 @@ const searchItems = [
     href: `/bundles/${bundle.slug}`,
     summary: `${bundle.persona} — ${bundle.summary}`,
   })),
+];
+
+const totalStars = skillList.reduce((sum, s) => sum + parseStars(s.githubStars), 0);
+const totalDownloads = skillList.reduce((sum, s) => {
+  const dl = s.metrics?.downloads;
+  return sum + (dl && dl.length > 0 ? dl[dl.length - 1].value : 0);
+}, 0);
+
+function formatBigNumber(n: number): string {
+  if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(1)}M+`;
+  if (n >= 1_000) return `${(n / 1_000).toFixed(0)}K+`;
+  return String(n);
+}
+
+// Aggregate trends
+const allStarsData = skillList.flatMap((s) => s.metrics?.stars ?? []);
+const starsByMonth = new Map<string, number>();
+for (const p of allStarsData) {
+  starsByMonth.set(p.date, (starsByMonth.get(p.date) ?? 0) + p.value);
+}
+const starsSorted = [...starsByMonth.entries()].sort();
+const totalStarsTrend = starsSorted.length >= 2
+  ? computeTrend([
+      { date: starsSorted[starsSorted.length - 2][0], value: starsSorted[starsSorted.length - 2][1] },
+      { date: starsSorted[starsSorted.length - 1][0], value: starsSorted[starsSorted.length - 1][1] },
+    ])
+  : null;
+
+const starsTrendStr = totalStarsTrend && totalStarsTrend.direction !== "flat"
+  ? ` ${totalStarsTrend.direction === "up" ? "↑" : "↓"}${totalStarsTrend.pct}%`
+  : "";
+
+const heroStats = [
+  { label: "categories", value: String(categoryList.length) },
+  { label: "skills ranked", value: String(skillList.length) },
+  { label: "total stars", value: `${formatBigNumber(totalStars)}${starsTrendStr}`, color: "#E63946" },
+  { label: "downloads/wk", value: formatBigNumber(totalDownloads), color: "#059669" },
 ];
 
 const bestRightNow = categoryList.map((category) => ({
@@ -119,30 +139,12 @@ const topComparisons = categoryList
 
 export default function Home() {
   return (
-    <div className="min-h-screen">
-      <main className="mx-auto w-full max-w-6xl px-6 sm:px-8">
-        {/* Hero */}
-        <div className="pb-12 pt-16 sm:pt-20">
-          <div className="inline-flex items-center gap-2 rounded-full border border-[var(--accent)]/20 bg-[var(--accent)]/[0.07] px-3 py-1">
-            <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent)] animate-pulse" />
-            <span className="text-[13px] font-medium text-[var(--accent)]">
-              {categoryList.length} categories · {skillList.length} skills ranked
-            </span>
-          </div>
-          <h1 className="mt-6 max-w-3xl text-4xl font-bold tracking-[-0.04em] text-gray-900 sm:text-5xl lg:text-6xl">
-            Find the actual meta for{" "}
-            <span className="text-[var(--accent)]">
-              agent skills
-            </span>
-          </h1>
-          <p className="mt-6 max-w-2xl text-base leading-7 text-gray-500">
-            {mission}
-          </p>
-          <div className="mt-8">
-            <Search items={searchItems} />
-          </div>
-        </div>
+    <>
+      {/* Dark Hero */}
+      <DarkHero searchItems={searchItems} stats={heroStats} />
 
+      {/* Content sections */}
+      <div className="px-6 sm:px-8">
         {/* Top picks per category */}
         <section className="border-t border-[var(--border)] py-14">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
@@ -186,7 +188,18 @@ export default function Home() {
             ))}
           </div>
         </section>
+      </div>
 
+      {/* Dark CTA #1 */}
+      <DarkCTA
+        title="Every ranking shows its proof."
+        subtitle="GitHub stars, social signals, head-to-head comparisons — not opinions."
+        buttonText="HOW WE RANK →"
+        buttonHref="/docs/agents"
+        variant="primary"
+      />
+
+      <div className="px-6 sm:px-8">
         {/* Popularity by stars */}
         {(() => {
           const topByStars: TopSkillData[] = skillList
@@ -280,7 +293,18 @@ export default function Home() {
             ))}
           </div>
         </section>
+      </div>
 
+      {/* Dark CTA #2 */}
+      <DarkCTA
+        title="Know a skill we're missing?"
+        subtitle="Submit it. We'll run the full pipeline and publish the evidence."
+        buttonText="SUBMIT A SKILL →"
+        buttonHref="/docs/agents"
+        variant="ghost"
+      />
+
+      <div className="px-6 sm:px-8">
         {/* Categories */}
         <section className="border-t border-[var(--border)] py-14">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
@@ -425,32 +449,37 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Latest runs */}
-        <section className="border-t border-[var(--border)] py-14">
-          <p className="font-mono text-[13px] uppercase tracking-widest text-[var(--accent)]">
-            Latest research
-          </p>
-          <div className="mt-6 grid gap-4 lg:grid-cols-3">
-            {latestRuns.map((run) => (
-              <Link
-                key={run.name}
-                href={run.href}
-                className="group rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5 transition-all hover:border-[var(--border-hover)]"
-              >
-                <p className="text-[15px] font-semibold text-gray-900">{run.name}</p>
-                <p className="mt-2 text-[13px] leading-5 text-gray-500">
-                  {run.summary}
-                </p>
-                <p className="mt-3 text-[13px] font-medium text-[var(--accent)] opacity-0 transition-opacity group-hover:opacity-100">
-                  View run →
-                </p>
-              </Link>
-            ))}
-          </div>
-        </section>
-      </main>
-
-      <SiteFooter />
-    </div>
+        {/* Top movers */}
+        {topMovers.length > 0 && (
+          <section className="border-t border-[var(--border)] py-14">
+            <p className="font-mono text-[13px] uppercase tracking-widest text-[var(--accent)]">
+              Top movers this month
+            </p>
+            <p className="mt-2 text-[15px] text-gray-500">
+              Skills with the biggest star growth since last data collection.
+            </p>
+            <div className="mt-6 space-y-3">
+              {topMovers.map((item) => (
+                <Link
+                  key={item.slug}
+                  href={`/skills/${item.slug}`}
+                  className="group flex items-center justify-between rounded-lg border border-[var(--border)] bg-[var(--surface)] px-5 py-4 transition-all hover:border-[var(--border-hover)] hover:bg-[var(--surface-2)]"
+                >
+                  <div className="flex items-center gap-3">
+                    <p className="text-[15px] font-semibold text-gray-900 transition-colors group-hover:text-[var(--accent)]">
+                      {item.name}
+                    </p>
+                    <TrustBadge score={item.trustScore} />
+                  </div>
+                  <span className="font-mono text-[13px] font-bold text-emerald-600">
+                    {item.detail}
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
+      </div>
+    </>
   );
 }

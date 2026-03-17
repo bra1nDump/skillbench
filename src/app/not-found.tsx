@@ -1,11 +1,8 @@
 import Link from "next/link";
 
-import { SiteFooter } from "@/components/site-footer";
-
 export default function NotFound() {
   return (
-    <div className="min-h-screen">
-      <main className="mx-auto w-full max-w-6xl px-6 py-8 sm:px-8">
+    <main className="mx-auto w-full max-w-6xl px-6 py-8 sm:px-8">
         <div className="py-24 text-center">
           <p className="font-mono text-6xl font-bold text-gray-200">404</p>
           <h1 className="mt-4 text-2xl font-bold tracking-tight text-gray-900">
@@ -30,9 +27,6 @@ export default function NotFound() {
             ))}
           </div>
         </div>
-      </main>
-
-      <SiteFooter />
-    </div>
+    </main>
   );
 }

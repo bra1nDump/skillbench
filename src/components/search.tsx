@@ -10,7 +10,7 @@ type SearchItem = {
   summary: string;
 };
 
-export function Search({ items }: { items: SearchItem[] }) {
+export function Search({ items, dark }: { items: SearchItem[]; dark?: boolean }) {
   const [query, setQuery] = useState("");
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -76,7 +76,11 @@ export function Search({ items }: { items: SearchItem[] }) {
           }}
           onFocus={() => setOpen(true)}
           placeholder="Search skills, categories, bundles..."
-          className="w-full rounded-lg border border-[var(--border)] bg-white py-2.5 pl-10 pr-12 text-[15px] text-gray-900 placeholder:text-gray-500 focus:border-[var(--accent)]/50 focus:bg-white focus:outline-none focus:ring-1 focus:ring-[var(--accent)]/30"
+          className={`w-full rounded-lg border py-2.5 pl-10 pr-12 text-[15px] focus:outline-none focus:ring-1 focus:ring-[var(--accent)]/30 ${
+            dark
+              ? "border-[var(--dark-dim)] bg-transparent text-white placeholder:text-[var(--dark-subtle)] focus:border-[var(--dark-muted)]"
+              : "border-[var(--border)] bg-white text-gray-900 placeholder:text-gray-500 focus:border-[var(--accent)]/50 focus:bg-white"
+          }`}
         />
         <kbd className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 rounded border border-[var(--border)] bg-gray-50 px-1.5 py-0.5 font-mono text-[12px] text-gray-500">
           /

@@ -3,11 +3,16 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { SkillMetricsChart } from "@/components/charts/metrics-chart";
+import { DarkCTA } from "@/components/dark-cta";
+import { DarkPageHeader } from "@/components/dark-page-header";
 import { ReadmePeek } from "@/components/readme-peek";
-import { SiteFooter } from "@/components/site-footer";
+import { TrustBadge } from "@/components/trust-badge";
 import { bundleList, categoryList, getSkill, skillList } from "@/lib/catalog";
+import { formatTimeAgo } from "@/lib/format-time";
 import { fetchGitHubReadme } from "@/lib/github-readme";
 import { getScreenshotUrl } from "@/lib/screenshots";
+import { computeTrend } from "@/lib/trend";
+import { computeTrustScore } from "@/lib/trust-score";
 
 import type { Metadata } from "next";
 
@@ -40,62 +45,34 @@ export default async function SkillPage({ params }: PageProps) {
     notFound();
   }
 
-  const [owner, repo] = skill.repo.split("/");
-  const readme = await fetchGitHubReadme({
+  const [owner, repo] = skill.repo ? skill.repo.split("/") : [undefined, undefined];
+  const readme = owner && repo ? await fetchGitHubReadme({
     owner,
     repo,
     branch: skill.readmeBranch,
-  });
+  }) : null;
 
   const relatedCategories = categoryList.filter((category) => skill.relatedCategories.includes(category.slug));
   const relatedBundles = bundleList.filter((b) => b.skills.includes(skill.slug));
+  const trustScore = computeTrustScore(skill);
+  const starsTrend = computeTrend(skill.metrics?.stars);
+  const dlTrend = computeTrend(skill.metrics?.downloads);
 
   return (
-    <div className="min-h-screen">
+      <>
+      <DarkPageHeader
+        backLink={{ href: "/skills", label: "All skills" }}
+        title={skill.name}
+        subtitle={skill.summary}
+        badge={{ text: skill.status, variant: skill.status }}
+        stats={[
+          { label: "Trust", value: `${trustScore}/100` },
+          ...(skill.githubStars ? [{ label: "Stars", value: `${skill.githubStars}${starsTrend && starsTrend.direction !== "flat" ? ` ${starsTrend.direction === "up" ? "↑" : "↓"}${starsTrend.pct}%` : ""}` }] : []),
+          { label: "Evidence", value: String(skill.evidence.length) },
+          ...(skill.packageSize ? [{ label: "Repo size", value: skill.packageSize.repoSizeKb >= 1024 ? `${(skill.packageSize.repoSizeKb / 1024).toFixed(1)} MB` : `${skill.packageSize.repoSizeKb} KB` }] : []),
+        ]}
+      />
       <main className="mx-auto w-full max-w-6xl px-6 py-10 sm:px-8">
-        {/* Header */}
-        <div className="pb-10">
-          <Link href="/skills" className="mb-4 inline-flex items-center gap-1 text-[13px] text-gray-500 transition-colors hover:text-gray-700">
-            ← All skills
-          </Link>
-          <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
-            <div className="max-w-3xl">
-              <div className="flex flex-wrap items-center gap-3">
-                <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl">
-                  {skill.name}
-                </h1>
-                <span
-                  className={`rounded px-2 py-0.5 font-mono text-[12px] uppercase tracking-wider ${
-                    skill.status === "active"
-                      ? "bg-emerald-50 text-emerald-600"
-                      : "bg-amber-50 text-amber-600"
-                  }`}
-                >
-                  {skill.status}
-                </span>
-              </div>
-              <p className="mt-4 text-base leading-7 text-gray-500">{skill.summary}</p>
-            </div>
-            {/* Quick stats */}
-            <div className="flex flex-wrap gap-3 lg:flex-shrink-0">
-              {skill.githubStars ? (
-                <div className="rounded-lg border border-[var(--border)] bg-[var(--surface)] px-4 py-3 text-center">
-                  <p className="text-lg font-bold text-gray-900">{skill.githubStars}</p>
-                  <p className="font-mono text-[13px] uppercase tracking-wider text-gray-500">Stars</p>
-                </div>
-              ) : null}
-              <div className="rounded-lg border border-[var(--border)] bg-[var(--surface)] px-4 py-3 text-center">
-                <p className="text-lg font-bold text-gray-900">{skill.evidence.length}</p>
-                <p className="font-mono text-[13px] uppercase tracking-wider text-gray-500">Evidence</p>
-              </div>
-              <div className="rounded-lg border border-[var(--border)] bg-[var(--surface)] px-4 py-3 text-center">
-                <p className="text-lg font-bold text-gray-900">{skill.official ? "Yes" : "No"}</p>
-                <p className="font-mono text-[13px] uppercase tracking-wider text-gray-500">Official</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
         {/* Product screenshot */}
         {(() => {
           const screenshotUrl = getScreenshotUrl(skill.slug);
@@ -119,6 +96,45 @@ export default async function SkillPage({ params }: PageProps) {
         })()
         }
 
+        {/* Repo health */}
+        {skill.repoHealth && (
+          <section className="border-t border-[var(--border)] py-14">
+            <div className="flex items-center gap-3">
+              <p className="font-mono text-[13px] uppercase tracking-widest text-[var(--accent)]">
+                Repo health
+              </p>
+              <TrustBadge score={trustScore} size="md" />
+            </div>
+            <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-4">
+              <div className="rounded-lg border border-[var(--border)] bg-[var(--surface)] px-4 py-3">
+                <p className={`text-lg font-bold ${skill.repoHealth.lastPushDays < 30 ? "text-emerald-600" : skill.repoHealth.lastPushDays < 90 ? "text-amber-600" : "text-red-500"}`}>
+                  {formatTimeAgo(skill.repoHealth.lastPushAt)}
+                </p>
+                <p className="font-mono text-[11px] uppercase tracking-wider text-gray-500">Last push</p>
+              </div>
+              <div className="rounded-lg border border-[var(--border)] bg-[var(--surface)] px-4 py-3">
+                <p className="text-lg font-bold text-gray-900">{skill.repoHealth.openIssues.toLocaleString()}</p>
+                <p className="font-mono text-[11px] uppercase tracking-wider text-gray-500">Open issues</p>
+              </div>
+              <div className="rounded-lg border border-[var(--border)] bg-[var(--surface)] px-4 py-3">
+                <p className="text-lg font-bold text-gray-900">{skill.repoHealth.forks.toLocaleString()}</p>
+                <p className="font-mono text-[11px] uppercase tracking-wider text-gray-500">Forks</p>
+              </div>
+              {skill.repoHealth.contributors && (
+                <div className="rounded-lg border border-[var(--border)] bg-[var(--surface)] px-4 py-3">
+                  <p className="text-lg font-bold text-gray-900">{skill.repoHealth.contributors.toLocaleString()}</p>
+                  <p className="font-mono text-[11px] uppercase tracking-wider text-gray-500">Contributors</p>
+                </div>
+              )}
+            </div>
+            {skill.repoHealth.archived && (
+              <div className="mt-4 rounded-lg bg-red-50 px-4 py-3 text-[13px] font-medium text-red-600">
+                This repository is archived and no longer maintained.
+              </div>
+            )}
+          </section>
+        )}
+
         {/* Verdict + source */}
         <section className="grid gap-8 border-t border-[var(--border)] py-14 lg:grid-cols-[1.2fr_0.8fr]">
           <div>
@@ -132,12 +148,14 @@ export default async function SkillPage({ params }: PageProps) {
               Source
             </p>
             <div className="mt-5 space-y-3 text-[15px] text-gray-500">
+              {skill.repo && skill.repoUrl && (
               <p>
                 GitHub:{" "}
                 <a href={skill.repoUrl} target="_blank" rel="noreferrer" className="text-gray-800 transition-colors hover:text-[var(--accent)]">
                   {skill.repo}
                 </a>
               </p>
+              )}
               {skill.docsUrl ? (
                 <p>
                   Docs:{" "}
@@ -198,6 +216,14 @@ export default async function SkillPage({ params }: PageProps) {
             </div>
           </section>
         ) : null}
+
+        <DarkCTA
+          title="How does this compare?"
+          subtitle="See side-by-side metrics against other skills in the same category."
+          buttonText="COMPARE SKILLS →"
+          buttonHref={`/compare?skills=${skill.slug}`}
+          variant="primary"
+        />
 
         {/* Growth metrics */}
         {skill.metrics?.stars && skill.metrics.stars.length >= 2 && (
@@ -326,6 +352,14 @@ export default async function SkillPage({ params }: PageProps) {
           </section>
         ) : null}
 
+        <DarkCTA
+          title="Know a better alternative?"
+          subtitle="Submit evidence and we'll run the full pipeline."
+          buttonText="SUBMIT →"
+          buttonHref="/docs/agents"
+          variant="ghost"
+        />
+
         {/* README */}
         <section className="border-t border-[var(--border)] py-14">
           <p className="font-mono text-[13px] uppercase tracking-widest text-[var(--accent)]">
@@ -342,8 +376,6 @@ export default async function SkillPage({ params }: PageProps) {
           </div>
         </section>
       </main>
-
-      <SiteFooter />
-    </div>
+      </>
   );
 }

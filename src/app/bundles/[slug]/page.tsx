@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import { SiteFooter } from "@/components/site-footer";
+import { DarkCTA } from "@/components/dark-cta";
+import { DarkPageHeader } from "@/components/dark-page-header";
 import { bundleList, getBundle, getSkill } from "@/lib/catalog";
 
 import type { Metadata } from "next";
@@ -38,18 +39,17 @@ export default async function BundlePage({ params }: PageProps) {
   const skills = bundle.skills.map((s) => getSkill(s)).filter(Boolean);
 
   return (
-    <div className="min-h-screen">
+      <>
+      <DarkPageHeader
+        backLink={{ href: "/bundles", label: "All bundles" }}
+        title={bundle.name}
+        subtitle={bundle.summary}
+        stats={[
+          { label: "Skills", value: String(bundle.skills.length) },
+          { label: "Verified", value: bundle.date },
+        ]}
+      />
       <main className="mx-auto w-full max-w-6xl px-6 py-10 sm:px-8">
-        <div className="pb-10">
-          <Link href="/bundles" className="mb-4 inline-flex items-center gap-1 text-[13px] text-gray-500 transition-colors hover:text-gray-700">
-            ← All bundles
-          </Link>
-          <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl">
-            {bundle.name}
-          </h1>
-          <p className="mt-4 text-base leading-7 text-gray-500">{bundle.summary}</p>
-        </div>
-
         {/* Persona */}
         <section className="border-t border-[var(--border)] py-14">
           <p className="font-mono text-[13px] uppercase tracking-widest text-[var(--accent)]">
@@ -98,6 +98,14 @@ export default async function BundlePage({ params }: PageProps) {
           </div>
         </section>
 
+        <DarkCTA
+          title="Build your own stack."
+          subtitle="See all ranked skills and find the best fit for your workflow."
+          buttonText="BROWSE SKILLS →"
+          buttonHref="/skills"
+          variant="primary"
+        />
+
         {/* Source */}
         <section className="border-t border-[var(--border)] py-14">
           <p className="font-mono text-[13px] uppercase tracking-widest text-[var(--accent)]">
@@ -119,8 +127,6 @@ export default async function BundlePage({ params }: PageProps) {
           </div>
         </section>
       </main>
-
-      <SiteFooter />
-    </div>
+      </>
   );
 }

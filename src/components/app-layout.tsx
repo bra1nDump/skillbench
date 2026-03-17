@@ -1,0 +1,29 @@
+import { DesktopSidebar, MobileNav } from "./app-sidebar";
+
+export function AppLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <>
+      {/* Mobile: top bar + overlay menu */}
+      <MobileNav />
+
+      <div className="flex w-full min-h-screen">
+        {/* Desktop: sticky sidebar */}
+        <DesktopSidebar />
+
+        <main className="flex w-full min-w-0 flex-1 flex-col overflow-x-hidden bg-white">
+          <div className="flex-1">{children}</div>
+          <footer className="border-t border-[var(--border)] px-8 py-4">
+            <div className="flex items-center justify-between">
+              <span className="font-mono text-[12px] font-bold text-[var(--foreground)]">
+                SKILL<span className="text-[var(--accent)]">BENCH</span>
+              </span>
+              <p className="text-[11px] text-[var(--muted)]">
+                Evidence-backed rankings for agent skills.
+              </p>
+            </div>
+          </footer>
+        </main>
+      </div>
+    </>
+  );
+}

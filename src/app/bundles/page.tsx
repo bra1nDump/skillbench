@@ -1,5 +1,5 @@
 import { BundlesList } from "@/components/bundles-list";
-import { SiteFooter } from "@/components/site-footer";
+import { DarkPageHeader } from "@/components/dark-page-header";
 import { bundleList, getSkill } from "@/lib/catalog";
 
 import type { Metadata } from "next";
@@ -26,22 +26,15 @@ export default function BundlesIndexPage() {
   }));
 
   return (
-    <div className="min-h-screen">
+    <>
+      <DarkPageHeader
+        title="Bundles"
+        subtitle={`Full setups from known builders. What do the people actually shipping with agents use day to day? ${bundleList.length} stacks tracked.`}
+        stats={[{ label: "Stacks", value: String(bundleList.length) }]}
+      />
       <main className="mx-auto w-full max-w-6xl px-6 py-10 sm:px-8">
-        <div className="pb-10">
-          <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            Bundles
-          </h1>
-          <p className="mt-3 max-w-2xl text-[15px] leading-6 text-gray-500">
-            Full setups from known builders. What do the people actually shipping
-            with agents use day to day? {bundleList.length} stacks tracked.
-          </p>
-        </div>
-
         <BundlesList bundles={items} />
       </main>
-
-      <SiteFooter />
-    </div>
+    </>
   );
 }

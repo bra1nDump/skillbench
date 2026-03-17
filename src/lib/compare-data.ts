@@ -1,5 +1,6 @@
 import { categoryList, skillList } from "./catalog";
 import { parseStars } from "./parse-stars";
+import { computeTrustScore } from "./trust-score";
 
 import type { CategorySlug } from "./catalog";
 
@@ -12,6 +13,7 @@ export type CompareSkill = {
   strongEvidence: number;
   official: boolean;
   status: string;
+  trustScore: number;
   categories: Array<{
     slug: CategorySlug;
     name: string;
@@ -44,6 +46,7 @@ export const compareSkills: CompareSkill[] = skillList.map((skill) => {
     strongEvidence: skill.evidence.filter((e) => e.quality === "strong").length,
     official: skill.official,
     status: skill.status,
+    trustScore: computeTrustScore(skill),
     categories,
   };
 });

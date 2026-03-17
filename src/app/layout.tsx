@@ -1,6 +1,6 @@
 import { IBM_Plex_Mono, Lato } from "next/font/google";
 
-import { SiteHeader } from "@/components/site-header";
+import { AppLayout } from "@/components/app-layout";
 
 import type { Metadata } from "next";
 
@@ -34,8 +34,7 @@ export default function RootLayout({
       <body
         className={`${lato.variable} ${ibmPlexMono.variable} antialiased`}
       >
-        <SiteHeader />
-        {children}
+        <AppLayout>{children}</AppLayout>
       </body>
     </html>
   );

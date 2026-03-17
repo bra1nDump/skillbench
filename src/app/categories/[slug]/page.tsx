@@ -4,9 +4,14 @@ import { Fragment } from "react";
 
 import { CategorySkillsChart } from "@/components/charts/category-skills-chart";
 import { MultiMetricsChart } from "@/components/charts/metrics-chart";
-import { SiteFooter } from "@/components/site-footer";
+import { DarkCTA } from "@/components/dark-cta";
+import { DarkPageHeader } from "@/components/dark-page-header";
+import { TrendArrow } from "@/components/trend-arrow";
+import { TrustBadge } from "@/components/trust-badge";
 import { categoryList, getCategory, getSkill } from "@/lib/catalog";
 import { parseStars } from "@/lib/parse-stars";
+import { computeTrend } from "@/lib/trend";
+import { computeTrustScore } from "@/lib/trust-score";
 
 import type { CategorySkillData } from "@/components/charts/category-skills-chart";
 import type { Metadata } from "next";
@@ -41,19 +46,17 @@ export default async function CategoryPage({ params }: PageProps) {
   }
 
   return (
-    <div className="min-h-screen">
+      <>
+      <DarkPageHeader
+        backLink={{ href: "/categories", label: "All categories" }}
+        title={category.name}
+        subtitle={category.deck}
+        stats={[
+          { label: "Ranked", value: String(category.ranking.length) },
+          { label: "Signals", value: String(category.liveSignals.length) },
+        ]}
+      />
       <main className="mx-auto w-full max-w-6xl px-6 py-10 sm:px-8">
-        {/* Header */}
-        <div className="pb-10">
-          <Link href="/categories" className="mb-4 inline-flex items-center gap-1 text-[13px] text-gray-500 transition-colors hover:text-gray-700">
-            ← All categories
-          </Link>
-          <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl">
-            {category.name}
-          </h1>
-          <p className="mt-4 max-w-3xl text-base leading-7 text-gray-500">{category.deck}</p>
-        </div>
-
         {/* Verdict */}
         <section className="border-t border-[var(--border)] py-14">
           <p className="font-mono text-[13px] uppercase tracking-widest text-[var(--accent)]">
@@ -159,10 +162,11 @@ export default async function CategoryPage({ params }: PageProps) {
                           </span>
                         ) : null}
                         {skill?.githubStars ? (
-                          <span className="font-mono text-[12px] text-gray-500">
-                            ★ {skill.githubStars}
+                          <span className="inline-flex items-center gap-1 font-mono text-[12px] text-gray-500">
+                            ★ {skill.githubStars} <TrendArrow trend={computeTrend(skill.metrics?.stars)} />
                           </span>
                         ) : null}
+                        {skill && <TrustBadge score={computeTrustScore(skill)} />}
                       </div>
                       <p className="mt-1 text-[15px] text-gray-500">
                         <span className="font-medium text-gray-500">Best for:</span> {item.bestFor}
@@ -180,6 +184,14 @@ export default async function CategoryPage({ params }: PageProps) {
             })}
           </div>
         </section>
+
+        <DarkCTA
+          title="See the full comparison."
+          subtitle="Stars, downloads, evidence — all skills side by side."
+          buttonText="COMPARE →"
+          buttonHref={`/compare?skills=${category.ranking.slice(0, 3).map((r) => r.skillSlug).filter(Boolean).join(",")}`}
+          variant="primary"
+        />
 
         {/* Skills comparison chart */}
         {(() => {
@@ -307,6 +319,14 @@ export default async function CategoryPage({ params }: PageProps) {
           </section>
         ) : null}
 
+        <DarkCTA
+          title="Missing a contender?"
+          subtitle="If there's a skill we haven't ranked, submit it."
+          buttonText="SUBMIT A SKILL →"
+          buttonHref="/docs/agents"
+          variant="ghost"
+        />
+
         {/* Public signals */}
         {category.liveSignals.length > 0 ? (
           <section className="border-t border-[var(--border)] py-14">
@@ -354,8 +374,6 @@ export default async function CategoryPage({ params }: PageProps) {
           </div>
         </section>
       </main>
-
-      <SiteFooter />
-    </div>
+      </>
   );
 }

@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import { SiteFooter } from "@/components/site-footer";
+import { DarkCTA } from "@/components/dark-cta";
+import { DarkPageHeader } from "@/components/dark-page-header";
 import { categoryList, getPlatform, getSkill, platformList } from "@/lib/catalog";
 
 import type { Metadata } from "next";
@@ -41,20 +42,17 @@ export default async function PlatformPage({ params }: PageProps) {
     .filter(Boolean);
 
   return (
-    <div className="min-h-screen">
+      <>
+      <DarkPageHeader
+        backLink={{ href: "/platforms", label: "All platforms" }}
+        title={platform.name}
+        subtitle={platform.summary}
+        stats={[
+          { label: "Skills", value: String(relatedSkills.length) },
+          { label: "Categories", value: String(relatedCategories.length) },
+        ]}
+      />
       <main className="mx-auto w-full max-w-6xl px-6 py-10 sm:px-8">
-        <div className="pb-10">
-          <Link href="/platforms" className="mb-4 inline-flex items-center gap-1 text-[13px] text-gray-500 transition-colors hover:text-gray-700">
-            ← All platforms
-          </Link>
-          <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl">
-            {platform.name}
-          </h1>
-          <p className="mt-4 max-w-3xl text-base leading-7 text-gray-500">
-            {platform.summary}
-          </p>
-        </div>
-
         <section className="border-t border-[var(--border)] py-14">
           <p className="font-mono text-[13px] uppercase tracking-widest text-[var(--accent)]">
             Native agent support
@@ -101,6 +99,14 @@ export default async function PlatformPage({ params }: PageProps) {
           </div>
         </section>
 
+        <DarkCTA
+          title="See how these skills rank."
+          subtitle="Category-level rankings with evidence and head-to-head comparisons."
+          buttonText="VIEW CATEGORIES →"
+          buttonHref="/categories"
+          variant="primary"
+        />
+
         <section className="border-t border-[var(--border)] py-14">
           <p className="font-mono text-[13px] uppercase tracking-widest text-[var(--accent)]">
             Related categories
@@ -121,8 +127,6 @@ export default async function PlatformPage({ params }: PageProps) {
           </div>
         </section>
       </main>
-
-      <SiteFooter />
-    </div>
+      </>
   );
 }

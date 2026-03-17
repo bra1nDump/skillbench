@@ -1,9 +1,6 @@
-import { SiteFooter } from "@/components/site-footer";
-
 export default function StoryboardPage() {
   return (
-    <div className="min-h-screen">
-      <main className="mx-auto w-full max-w-6xl px-6 py-10 sm:px-8">
+    <main className="mx-auto w-full max-w-6xl px-6 py-10 sm:px-8">
         <div className="pb-10">
           <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
             Storyboard
@@ -93,9 +90,6 @@ export default function StoryboardPage() {
             real workflow output. Not repo pages, HN threads, or marketing homepages.
           </p>
         </section>
-      </main>
-
-      <SiteFooter />
-    </div>
+    </main>
   );
 }

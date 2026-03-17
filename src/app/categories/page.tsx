@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { SiteFooter } from "@/components/site-footer";
+import { DarkPageHeader } from "@/components/dark-page-header";
 import { categoryList } from "@/lib/catalog";
 
 import type { Metadata } from "next";
@@ -13,18 +13,13 @@ export const metadata: Metadata = {
 
 export default function CategoriesIndexPage() {
   return (
-    <div className="min-h-screen">
+    <>
+      <DarkPageHeader
+        title="All Categories"
+        subtitle={`${categoryList.length} categories, each with ranked contenders and public evidence. A category is the narrow thing the agent needs to do.`}
+        stats={[{ label: "Categories", value: String(categoryList.length) }]}
+      />
       <main className="mx-auto w-full max-w-6xl px-6 py-10 sm:px-8">
-        <div className="pb-10">
-          <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            All Categories
-          </h1>
-          <p className="mt-3 max-w-2xl text-[15px] leading-6 text-gray-500">
-            {categoryList.length} categories, each with ranked contenders and public evidence.
-            A category is the narrow thing the agent needs to do.
-          </p>
-        </div>
-
         <div className="grid gap-4 lg:grid-cols-2">
           {categoryList.map((category) => (
             <Link
@@ -58,8 +53,6 @@ export default function CategoriesIndexPage() {
           ))}
         </div>
       </main>
-
-      <SiteFooter />
-    </div>
+    </>
   );
 }

@@ -7,6 +7,17 @@
 import fs from "node:fs";
 import path from "node:path";
 
+// Load .env if present
+try {
+  const envPath = path.resolve(".env");
+  if (fs.existsSync(envPath)) {
+    for (const line of fs.readFileSync(envPath, "utf-8").split("\n")) {
+      const m = line.match(/^([A-Z_]+)=(.+)$/);
+      if (m && !process.env[m[1]]) process.env[m[1]] = m[2].trim();
+    }
+  }
+} catch {}
+
 const CATALOG_PATH = path.resolve("src/lib/catalog.ts");
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const CURRENT_MONTH = new Date().toISOString().slice(0, 7); // "YYYY-MM"

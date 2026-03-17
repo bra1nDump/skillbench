@@ -319,6 +319,13 @@ Based on these findings, update src/lib/catalog.ts for the "${category}" categor
 - Add any NEW CONTENDER entries to the skills array if flagged
 - Keep existing data that isn't contradicted by new findings
 
+CRITICAL RULE — every contender in a category ranking MUST have a full skill entry:
+- Every ranking item MUST use "skillSlug" pointing to a skill entry in the skills object — NEVER use "externalUrl" alone.
+- If a contender does not yet have a skill entry, CREATE one with at minimum: slug, name, repo/repoUrl (if available), summary, verdict, relatedCategories, strengths, weaknesses, and evidence.
+- The skill slug should be kebab-case (e.g. "brave-search-api", "salesforce-mcp").
+- Add the new slug to the SkillSlug union type at the top of catalog.ts.
+- This ensures every skill on the site has its own internal page at /skills/[slug].
+
 Also run: npm run metrics:collect to refresh star counts.
 
 Be conservative — only change what the evidence supports. Preserve the existing TypeScript types.`;
@@ -338,6 +345,8 @@ function stageMetrics() {
     { name: "stars", cmd: "node scripts/collect-stars.mjs" },
     { name: "downloads", cmd: "node scripts/collect-downloads.mjs" },
     { name: "mentions", cmd: "node scripts/collect-mentions.mjs" },
+    { name: "package-size", cmd: "node scripts/collect-package-size.mjs" },
+    { name: "repo-health", cmd: "node scripts/collect-repo-health.mjs" },
   ];
 
   for (const s of scripts) {

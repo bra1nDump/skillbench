@@ -12,6 +12,13 @@
   --accent-bright: #FFE0E3;
   --green: #059669;
   --amber: #D97706;
+  --dark-bg: #000000;
+  --dark-surface: #171717;
+  --dark-border: #262626;
+  --dark-text: #FFFFFF;
+  --dark-muted: #737373;
+  --dark-subtle: #525252;
+  --dark-dim: #404040;
 }
 
 @theme inline {
@@ -36,7 +43,6 @@ body {
 }
 
 a {
-  color: inherit;
   text-decoration: none;
 }
 

@@ -22,6 +22,23 @@ We also need a **CHANGELOG page** on the site — a log of major leaderboard shi
 ### Radical UI Simplification
 Fewer screens, fewer components, more consistency. Every screen should use similar card components. Less maintenance, better look.
 
+### Terminology Reframe: Problems & Solutions (not Categories & Skills)
+
+**Categories → Problems.** Each "category" is really a **problem space**. The header on every problem page should lead with: **name + the exact problem it solves.** Not a description of the tools — a description of the pain. Route should be `/problems/` not `/categories/`.
+
+**Skills → Solutions.** Each "skill" is really a **solution** to one or more problems. Route should be `/solutions/` not `/skills/`.
+
+**Why this matters:**
+- A solution can apply to **multiple problems** and be ranked differently in each. Notion is a top knowledge management solution but a mediocre project management one. Claude Code is a coding CLI solution AND an agent harness.
+- Solutions can be **built on top of other solutions.** Notion MCP is built on Notion — they're related but distinct solutions solving different problems (AI-accessible knowledge vs. knowledge management itself).
+- Framing around problems makes the value proposition instantly clear to visitors: "I have this problem, what's the best solution?"
+
+**Example problem page headers:**
+- **Coding** — "How do I write code with AI?" Today it's CLIs (Claude Code, Cursor), tomorrow it's Slack with coding agents talking to each other. The problem stays the same, solutions evolve.
+- **Memory** — "How do agents remember context across sessions?"
+- **Knowledge Management** — "How do I organize and retrieve team knowledge?" (Notion, Google Workspace — sounds unrelated to AI but these are the foundation MCP tools build on)
+- **Agent Orchestration** — "How do I coordinate multi-step agent workflows?"
+
 ---
 
 ## Page-by-Page Feedback
@@ -112,6 +129,8 @@ Fewer screens, fewer components, more consistency. Every screen should use simil
 - **Missing category: Analytics / LLM Tracing** — observability and tracing for LLM calls and agent runs. PostHog (top pick), Braintrust. Also: LangSmith, Helicone, Arize Phoenix, Weights & Biases
 - **Missing category: Web Development / UI Frameworks** — frontend frameworks and component libraries for building AI-powered UIs (Vercel AI SDK, Streamlit, Gradio, v0, Bolt, Lovable)
 - **Missing category: Agent Harnesses** — frameworks for orchestrating and running agents. Minor overlap with coding CLIs but distinct focus. Candidates: pi.exe, Pydantic AI, LangChain, LangGraph, CrewAI, OpenAI Agents SDK, Claude Agent SDK
+- **Missing category: Knowledge Management** — organizing and retrieving team knowledge. Notion, Google Workspace, Obsidian. Sounds unrelated to AI but these are the foundations MCP tools build on — the underlying solutions that AI-accessible layers sit on top of
+- **Missing category: AI Adoption / Best Practices** — "How do I adopt AI effectively?" Meta-tracking, best practices, ecosystem navigation. SkillBench itself lives in this category. This is our own problem space.
 - **Category audit via external registries** — cross-reference our categories against awesome lists (awesome-mcp, awesome-ai-agents, awesome-llm-apps), official plugin directories (skills.sh, mcpservers.org), and other tool registries to identify category gaps
 - Trust scores generally feel too low — even large projects like VIBMA show as weak. Needs tuning.
 - Methodology should be visible on the site — tooltips on hover linking to explanation of how scores are calculated. Good for users AND for search indexing AND for reviewing to generate pipeline ideas.

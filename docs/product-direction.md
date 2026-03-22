@@ -107,6 +107,12 @@ Fewer screens, fewer components, more consistency. Every screen should use simil
 - **AutoGen ranked first with trust 100 but it's in maintenance mode** — pipeline should flag maintenance mode as a red flag
 - **Research demeanor:** Be very skeptical of newcomers, but big established players should be clear
 - **Missing category: Personal assistants** — ChatGPT, Claude (Anthropic), Gemini, and now OpenClaw as contender. Big comparison area.
+- **Missing category: Memory Systems** — vector DBs, context/memory management for agents (Mem0, Chroma, Pinecone, Weaviate, LangMem)
+- **Missing category: Performance** — profiling, benchmarking, speed optimization tools for AI/agent workloads
+- **Missing category: Analytics / LLM Tracing** — observability and tracing for LLM calls and agent runs. PostHog (top pick), Braintrust. Also: LangSmith, Helicone, Arize Phoenix, Weights & Biases
+- **Missing category: Web Development / UI Frameworks** — frontend frameworks and component libraries for building AI-powered UIs (Vercel AI SDK, Streamlit, Gradio, v0, Bolt, Lovable)
+- **Missing category: Agent Harnesses** — frameworks for orchestrating and running agents. Minor overlap with coding CLIs but distinct focus. Candidates: pi.exe, Pydantic AI, LangChain, LangGraph, CrewAI, OpenAI Agents SDK, Claude Agent SDK
+- **Category audit via external registries** — cross-reference our categories against awesome lists (awesome-mcp, awesome-ai-agents, awesome-llm-apps), official plugin directories (skills.sh, mcpservers.org), and other tool registries to identify category gaps
 - Trust scores generally feel too low — even large projects like VIBMA show as weak. Needs tuning.
 - Methodology should be visible on the site — tooltips on hover linking to explanation of how scores are calculated. Good for users AND for search indexing AND for reviewing to generate pipeline ideas.
 

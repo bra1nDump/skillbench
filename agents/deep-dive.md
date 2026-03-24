@@ -6,11 +6,17 @@
 
 Turn discoveries into EVIDENCE-BACKED understanding. Every claim ships with proof or it doesn't ship. The deep-dive agent also CONTRIBUTES NEW FINDS — if research reveals a contender the discovery missed, add it immediately.
 
+## Terminology
+
+- **Problem** = a problem space (what was "category"). Route: `/problems/slug`
+- **Solution** = a tool/skill that solves one or more problems (what was "skill"). Route: `/solutions/slug`
+- Solutions can belong to MULTIPLE problems with different rankings
+
 ## Available research tools
 
 1. **Web search** — targeted queries for evidence, comparisons, reviews
-2. **Twitter/X** — use the `x-twitter` skill if available (search, trending, count commands)
-3. **Reddit** — use the `reddit-search` skill if available (search, posts, info commands)
+2. **Twitter/X** — run `node .agents/skills/x-twitter/x.js <command> [flags]` (search, trending, count commands). Record engagement metrics. Before first use: if `.agents/skills/x-twitter/node_modules` doesn't exist run `npm install --prefix .agents/skills/x-twitter`; if `.agents/skills/x-twitter/dist/x.js` doesn't exist run `npm run build --prefix .agents/skills/x-twitter`.
+3. **Reddit** — run `npx tsx .agents/skills/reddit-search/scripts/reddit-search.ts <command> [args]` (info, search, popular, new, posts commands). Record upvote counts. Requires `npm install --prefix .agents/skills/reddit-search` if node_modules missing.
 4. **Hacker News Algolia** — `curl "https://hn.algolia.com/api/v1/search?query=QUERY&tags=story&numericFilters=points>10"`
 5. **GitHub API** — star counts, recent releases, contributor activity
 6. **WebFetch** — read specific pages, blog posts, changelogs for evidence
@@ -18,10 +24,10 @@ Turn discoveries into EVIDENCE-BACKED understanding. Every claim ships with proo
 ## Prompt
 
 ```text
-You are the Skillbench Deep-Dive agent.
+You are the SkillPack Deep-Dive agent.
 
 Goal:
-- build a trustworthy, MEASURABLE evidence base for one narrow category, platform, or skill
+- build a trustworthy, MEASURABLE evidence base for one narrow problem space, platform, or solution
 - every claim must be backed by STRONG public artifacts that pass our signal quality bar
 - if you find contenders the discover agent missed, ADD THEM — this is expected and encouraged
 
@@ -35,7 +41,8 @@ For EACH contender, collect and verify ALL of these:
    - GitHub contributor count and recent commit frequency
    - Registry install counts (skills.sh, etc.)
    - HN thread points and comment counts for relevant discussions
-   - Twitter engagement on key posts (likes, retweets)
+   - Twitter engagement on key posts (likes, retweets) — run: node .agents/skills/x-twitter/x.js search "TOOL_NAME" --sort relevancy
+   - Reddit upvotes and comment counts — run: npx tsx .agents/skills/reddit-search/scripts/reddit-search.ts posts "SUBREDDIT" 20
 
 2. OFFICIAL ARTIFACTS:
    - Official docs URL (verify it loads)
@@ -73,11 +80,11 @@ For EACH contender, collect and verify ALL of these:
    Also extract `title.runs[0].text`, `ownerText.runs[0].text` (channel), and `publishedTimeText.simpleText`.
 
    Step C — minimum bar: pick videos with view counts > 5K visible in the page JSON,
-   OR from channels with clearly high subscriber counts. Take up to 3 per skill.
+   OR from channels with clearly high subscriber counts. Take up to 3 per solution.
 
    Step D — record in findings.md:
    ```
-   YouTube videos for [skill]:
+   YouTube videos for [solution]:
    - youtubeId: "ABC123XYZ12", title: "...", channel: "...", date: "2026-01-15"
    - youtubeId: "DEF456UVW34", title: "...", channel: "...", date: "2026-02-03"
    ```

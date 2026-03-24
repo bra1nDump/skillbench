@@ -161,7 +161,7 @@ export function SkillsList({ skills }: { skills: SkillItem[] }) {
         {filtered.map((skill) => (
           <Link
             key={skill.slug}
-            href={`/skills/${skill.slug}`}
+            href={`/solutions/${skill.slug}`}
             className="group flex flex-col gap-4 rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5 transition-all hover:border-[var(--border-hover)] hover:bg-[var(--surface-2)] sm:flex-row sm:items-start"
           >
             <div className="min-w-0 flex-1">

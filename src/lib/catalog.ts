@@ -214,7 +214,15 @@ export type CategorySlug =
   | "automation"
   | "security"
   | "documentation"
-  | "data-analytics";
+  | "data-analytics"
+  | "personal-assistants"
+  | "memory-systems"
+  | "performance"
+  | "analytics-llm-tracing"
+  | "web-dev-ui-frameworks"
+  | "agent-harnesses"
+  | "knowledge-management"
+  | "ai-adoption";
 
 export type SkillType = "Expertise" | "Generator" | "Guardian" | "Connector";
 export type SkillTier = "Atomic" | "Composite" | "Orchestrator" | "Pack";
@@ -263,6 +271,7 @@ export type SkillRecord = {
   status: "active" | "watch" | "stale";
   summary: string;
   verdict: string;
+  gettingStarted?: string;
   docsUrl?: string;
   productUrl?: string;
   relatedCategories: CategorySlug[];
@@ -502,10 +511,10 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "The trust leader with unmatched long-term durability — triple partnership with OpenAI Codex, GitHub Copilot, and Claude Code. Bidirectional since Mar 6 2026. Wins specifically when your team has Code Connect configured. Without it, Framelink produces cleaner context. Pricing is the primary barrier: free tier (6 calls/month) is non-functional.",
     docsUrl:
       "https://help.figma.com/hc/en-us/articles/35281385065751-Figma-MCP-collection-Compare-Figma-s-remote-and-desktop-MCP-servers",
-    githubStars: "434",
+    githubStars: "456",
     metrics: {
       stars: [
-        { date: "2026-03", value: 434 },
+        { date: "2026-03", value: 456 },
       ],
       mentionsPositive: [
         { date: "2026-03", value: 0 },
@@ -513,8 +522,8 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     },
     relatedCategories: ["ux-ui"],
     packageSize: { repoSizeKb: 91 },
-    repoHealth: { lastPushAt: "2026-03-11T23:09:37Z", lastPushDays: 8, openIssues: 1, forks: 28, archived: false, contributors: 6 },
-    daysOld: 226,
+    repoHealth: { lastPushAt: "2026-03-11T23:09:37Z", lastPushDays: 12, openIssues: 2, forks: 32, archived: false, contributors: 6 },
+    daysOld: 230,
     complexity: 1,
     tags: ["design", "ui"],
     skillType: "Connector",
@@ -610,9 +619,9 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     verdict:
       "Best read-only design-to-code MCP. Use this unless you have Code Connect configured — 25% smaller output than Official, avoids prescriptive code that poisons LLM context. Works on free Figma plans with broadest editor support.",
     relatedCategories: ["ux-ui"],
-    packageSize: { repoSizeKb: 821, languages: { "TypeScript": 140059, "JavaScript": 1418 } },
-    repoHealth: { lastPushAt: "2026-03-19T20:55:43Z", lastPushDays: 0, openIssues: 34, forks: 1091, archived: false, contributors: 25 },
-    daysOld: 400,
+    packageSize: { repoSizeKb: 833, languages: { "TypeScript": 140463, "JavaScript": 1418 } },
+    repoHealth: { lastPushAt: "2026-03-20T15:23:44Z", lastPushDays: 3, openIssues: 34, forks: 1098, archived: false, contributors: 25 },
+    daysOld: 403,
     complexity: 3,
     tags: ["design", "ui"],
     skillType: "Connector",
@@ -635,7 +644,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     githubStars: "14K+",
     metrics: {
       downloads: [
-        { date: "2026-03", value: 675 },
+        { date: "2026-03", value: 402 },
       ],
       stars: [
         { date: "2026-03", value: 13792 },
@@ -718,8 +727,8 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "Conditional pick. Strongest HN validation in the write-access lane, but solo maintainer and potential OpenPencil pivot raise durability concerns. Use if you want CLI-first workflow without a Figma plugin.",
     relatedCategories: ["ux-ui"],
     packageSize: { repoSizeKb: 1118, languages: { "TypeScript": 749839, "JavaScript": 196 } },
-    repoHealth: { lastPushAt: "2026-03-01T19:55:59Z", lastPushDays: 18, openIssues: 2, forks: 34, archived: false, contributors: 1 },
-    daysOld: 61,
+    repoHealth: { lastPushAt: "2026-03-01T19:55:59Z", lastPushDays: 22, openIssues: 3, forks: 36, archived: false, contributors: 1 },
+    daysOld: 65,
     complexity: 3,
     tags: ["design", "ui"],
     skillType: "Connector",
@@ -736,10 +745,10 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "OpenPencil announcement in latest commits suggests maintainer attention may be shifting",
       "HN security concern raised: 'CLI tools don't do auth and session management in a consistent way'",
     ],
-    githubStars: "507",
+    githubStars: "513",
     metrics: {
       stars: [
-        { date: "2026-03", value: 507 },
+        { date: "2026-03", value: 513 },
       ],
       mentionsPositive: [
         { date: "2026-03", value: 0 },
@@ -789,9 +798,9 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     verdict:
       "Emerging. Only tool publishing model-specific design quality benchmarks. Harness engineering angle is genuinely differentiated, but HN Show got only 2 points and no independent reviews found.",
     relatedCategories: ["ux-ui"],
-    packageSize: { repoSizeKb: 9301, languages: { "TypeScript": 846347, "HTML": 39689, "JavaScript": 23416, "Shell": 3293, "Dockerfile": 187 } },
-    repoHealth: { lastPushAt: "2026-03-20T02:07:33Z", lastPushDays: 0, openIssues: 13, forks: 28, archived: false, contributors: 11 },
-    daysOld: 21,
+    packageSize: { repoSizeKb: 9219, languages: { "TypeScript": 861303, "HTML": 39685, "JavaScript": 30089, "Shell": 3293, "Dockerfile": 187 } },
+    repoHealth: { lastPushAt: "2026-03-23T03:34:46Z", lastPushDays: 0, openIssues: 15, forks: 31, archived: false, contributors: 11 },
+    daysOld: 25,
     complexity: 5,
     tags: ["design", "ui"],
     skillType: "Connector",
@@ -806,10 +815,10 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "No independent comparisons, reviews, or practitioner testimonials found",
       "Built on top of cursor-talk-to-figma-mcp — derivative, not foundational",
     ],
-    githubStars: "433",
+    githubStars: "460",
     metrics: {
       stars: [
-        { date: "2026-03", value: 433 },
+        { date: "2026-03", value: 460 },
       ],
       mentionsPositive: [
         { date: "2026-03", value: 1 },
@@ -855,8 +864,8 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     verdict:
       "Best general-purpose write-access Figma MCP for individual developers and small teams. More accessible than Console MCP, works on free Figma plans, lower setup complexity. Dropped to #4 as Console MCP's Uber validation is stronger enterprise evidence.",
     relatedCategories: ["ux-ui"],
-    repoHealth: { lastPushAt: "2026-03-07T06:29:17Z", lastPushDays: 12, openIssues: 73, forks: 701, archived: false, contributors: 6 },
-    daysOld: 368,
+    repoHealth: { lastPushAt: "2026-03-07T06:29:17Z", lastPushDays: 16, openIssues: 73, forks: 702, archived: false, contributors: 6 },
+    daysOld: 372,
     complexity: 4,
     tags: ["design", "ui"],
     skillType: "Connector",
@@ -877,7 +886,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     githubStars: "6.5K+",
     metrics: {
       downloads: [
-        { date: "2026-03", value: 3310 },
+        { date: "2026-03", value: 1596 },
       ],
       stars: [
         { date: "2026-03", value: 6508 },
@@ -944,13 +953,13 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     verdict:
       "The enterprise write-access leader. Uber's production uSpec validates this at scale — automated component specs across 7 stacks, accessibility in under 2 minutes. Hockey-stick npm trajectory is fastest-growing in the category. Local WebSocket means no rate limits and no data leaving your network.",
     relatedCategories: ["ux-ui"],
-    repoHealth: { lastPushAt: "2026-03-20T03:36:53Z", lastPushDays: 0, openIssues: 20, forks: 125, archived: false, contributors: 7 },
-    daysOld: 165,
+    repoHealth: { lastPushAt: "2026-03-22T18:31:35Z", lastPushDays: 1, openIssues: 20, forks: 137, archived: false, contributors: 9 },
+    daysOld: 169,
     complexity: 5,
     tags: ["design", "ui"],
     skillType: "Connector",
     skillTier: "Composite",
-    packageSize: { repoSizeKb: 1930, languages: { "TypeScript": 1024774, "JavaScript": 415751, "HTML": 113390, "Shell": 17583, "PowerShell": 3879 } },
+    packageSize: { repoSizeKb: 2313, languages: { "TypeScript": 1114859, "JavaScript": 453773, "HTML": 119146, "Shell": 17742, "PowerShell": 3879 } },
     strengths: [
       "Uber uSpec production usage — strongest enterprise validation in the entire category (thousands of engineers, hundreds of components, 7 stacks)",
       "57+ tools (22 read + 35+ write, 11 variable/token management) — broadest surface area",
@@ -967,10 +976,10 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "1,136 stars — much lower raw community adoption than Framelink or Grab",
       "Self-reported tool counts from creator (TJ Pitre, Southleft CEO), though objectively verifiable",
     ],
-    githubStars: "1.1K+",
+    githubStars: "1.2K+",
     metrics: {
       downloads: [
-        { date: "2026-03", value: 17356 },
+        { date: "2026-03", value: 13452 },
       ],
       stars: [
         { date: "2026-03", value: 1137 },
@@ -1148,8 +1157,8 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     verdict:
       "Different lane from Figma MCP tools — not a Figma bridge, but a direct design-in-code editor. 24,918 stars and two HN hits above 200 points make this the most-starred tool in the UX/UI category. Best for frontend teams where designers work directly in the Next.js + Tailwind codebase and want to eliminate the Figma-to-code translation step.",
     relatedCategories: ["ux-ui"],
-    repoHealth: { lastPushAt: "2026-02-27T02:35:09Z", lastPushDays: 21, openIssues: 353, forks: 1876, archived: false, contributors: 107 },
-    daysOld: 632,
+    repoHealth: { lastPushAt: "2026-02-27T02:35:09Z", lastPushDays: 24, openIssues: 353, forks: 1879, archived: false, contributors: 107 },
+    daysOld: 636,
     complexity: 5,
     tags: ["design", "ui"],
     skillType: "Connector",
@@ -1172,7 +1181,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     githubStars: "25K+",
     metrics: {
       stars: [
-        { date: "2026-03", value: 24923 },
+        { date: "2026-03", value: 24947 },
       ],
       mentionsPositive: [
         { date: "2026-03", value: 0 },
@@ -1213,8 +1222,8 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     verdict:
       "Clear diagramming lane leader. 3,371 stars and official Excalidraw org backing make it the default for AI-assisted diagramming. Different workflow from design-to-code — listed in UX/UI for visibility but doesn't compete with Figma MCPs.",
     relatedCategories: ["ux-ui"],
-    repoHealth: { lastPushAt: "2026-02-20T21:25:13Z", lastPushDays: 27, openIssues: 25, forks: 271, archived: false, contributors: 5 },
-    daysOld: 43,
+    repoHealth: { lastPushAt: "2026-02-20T21:25:13Z", lastPushDays: 31, openIssues: 28, forks: 275, archived: false, contributors: 5 },
+    daysOld: 47,
     complexity: 3,
     tags: ["design", "ui"],
     weekGrowth: -0.9083,
@@ -1231,10 +1240,10 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "Diagramming lane, not design-to-code — different workflow entirely",
       "Does not compete with Figma MCPs for production UI implementation",
     ],
-    githubStars: "3.4K+",
+    githubStars: "3.5K+",
     metrics: {
       stars: [
-        { date: "2026-03", value: 3422 },
+        { date: "2026-03", value: 3475 },
       ],
       mentionsPositive: [
         { date: "2026-03", value: 0 },
@@ -1373,7 +1382,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     docsUrl: "https://firecrawl.dev",
     productUrl: "https://www.firecrawl.dev/playground",
     relatedCategories: ["product-business-development", "search-news"],
-    daysOld: 468,
+    daysOld: 472,
     complexity: 3,
     tags: ["business", "productivity", "search", "research"],
     weekGrowth: -0.9083,
@@ -1390,11 +1399,11 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "AGPL-3.0 license may complicate enterprise adoption",
     ],
     githubStars: "5.8K+",
-    packageSize: { repoSizeKb: 3304, languages: { "JavaScript": 87099, "TypeScript": 1810, "Dockerfile": 1379, "Shell": 158 } },
-    repoHealth: { lastPushAt: "2026-03-13T17:06:11Z", lastPushDays: 6, openIssues: 85, forks: 651, archived: false, contributors: 21 },
+    packageSize: { repoSizeKb: 3312, languages: { "JavaScript": 90857, "TypeScript": 1810, "Dockerfile": 1379, "Shell": 158 } },
+    repoHealth: { lastPushAt: "2026-03-23T20:05:47Z", lastPushDays: 0, openIssues: 86, forks: 654, archived: false, contributors: 21 },
     metrics: {
       downloads: [
-        { date: "2026-03", value: 50577 },
+        { date: "2026-03", value: 19823 },
       ],
       stars: [
         { date: "2024-06", value: 8000 },
@@ -1540,9 +1549,9 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     verdict:
       "#8 in product-business-development, #2 research tool. 4,050 stars, 9.3K npm/wk, 19.7K PulseMCP/wk (#56 global). Best for semantic discovery ('find companies like X'). exa-code for coding agents is a unique differentiator. AIMultiple benchmark tested extraction, not discovery — 23% undersells Exa's actual strength.",
     relatedCategories: ["product-business-development", "search-news"],
-    packageSize: { repoSizeKb: 4131, languages: { "TypeScript": 103301, "JavaScript": 3279, "Dockerfile": 962 } },
-    repoHealth: { lastPushAt: "2026-03-20T00:07:16Z", lastPushDays: 0, openIssues: 45, forks: 303, archived: false, contributors: 21 },
-    daysOld: 477,
+    packageSize: { repoSizeKb: 4167, languages: { "TypeScript": 112039, "JavaScript": 3279, "Dockerfile": 962 } },
+    repoHealth: { lastPushAt: "2026-03-23T22:15:02Z", lastPushDays: 0, openIssues: 44, forks: 307, archived: false, contributors: 21 },
+    daysOld: 481,
     complexity: 3,
     tags: ["business", "productivity", "search", "research"],
     skillType: "Connector",
@@ -1563,7 +1572,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     githubStars: "4.1K+",
     metrics: {
       downloads: [
-        { date: "2026-03", value: 269905 },
+        { date: "2026-03", value: 150742 },
       ],
       stars: [
         { date: "2026-03", value: 4052 },
@@ -1716,8 +1725,8 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "#2 overall, #1 enterprise operating surface for teams on the Atlassian stack. 4,666 stars, deepest tool set (72 tools), 139K PyPI weekly downloads, 140K PulseMCP/wk (#14 global). On-prem/Data Center support is the key moat vs official Rovo MCP.",
     relatedCategories: ["product-business-development"],
     packageSize: { repoSizeKb: 3454, languages: { "Python": 3133076, "Shell": 14639, "Dockerfile": 2071, "Go Template": 1668, "Jinja": 935 } },
-    repoHealth: { lastPushAt: "2026-03-02T14:51:28Z", lastPushDays: 17, openIssues: 182, forks: 1021, archived: false, contributors: 96 },
-    daysOld: 471,
+    repoHealth: { lastPushAt: "2026-03-02T14:51:28Z", lastPushDays: 21, openIssues: 186, forks: 1029, archived: false, contributors: 96 },
+    daysOld: 475,
     complexity: 5,
     tags: ["business", "productivity"],
     skillType: "Connector",
@@ -1737,7 +1746,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     githubStars: "4.7K+",
     metrics: {
       downloads: [
-        { date: "2026-03", value: 132422 },
+        { date: "2026-03", value: 134943 },
       ],
       stars: [
         { date: "2026-03", value: 4667 },
@@ -1833,8 +1842,8 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "#3 overall, #1 startup operating surface — 47K+ npm weekly downloads (17x Atlassian official MCP). Token-optimized Markdown responses show MCP-specific engineering. Notion 3.3 Custom Agents ecosystem positions MCP as multi-tool hub.",
     relatedCategories: ["product-business-development"],
     packageSize: { repoSizeKb: 1318, languages: { "TypeScript": 183247, "Dockerfile": 957, "JavaScript": 811 } },
-    repoHealth: { lastPushAt: "2026-03-18T00:25:06Z", lastPushDays: 2, openIssues: 120, forks: 510, archived: false, contributors: 22 },
-    daysOld: 374,
+    repoHealth: { lastPushAt: "2026-03-18T00:25:06Z", lastPushDays: 5, openIssues: 120, forks: 515, archived: false, contributors: 22 },
+    daysOld: 378,
     complexity: 3,
     tags: ["business", "productivity"],
     skillType: "Connector",
@@ -1854,7 +1863,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     githubStars: "4.1K+",
     metrics: {
       downloads: [
-        { date: "2026-03", value: 5294 },
+        { date: "2026-03", value: 2305 },
       ],
       stars: [
         { date: "2026-03", value: 4065 },
@@ -1952,8 +1961,8 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     docsUrl: "https://docs.slack.dev",
     relatedCategories: ["product-business-development"],
     packageSize: { repoSizeKb: 16576, languages: { "Go": 374112, "Makefile": 5786, "JavaScript": 2450, "Dockerfile": 874 } },
-    repoHealth: { lastPushAt: "2026-03-12T17:16:35Z", lastPushDays: 7, openIssues: 59, forks: 263, archived: false, contributors: 40 },
-    daysOld: 341,
+    repoHealth: { lastPushAt: "2026-03-12T17:16:35Z", lastPushDays: 11, openIssues: 62, forks: 267, archived: false, contributors: 40 },
+    daysOld: 345,
     complexity: 4,
     tags: ["business", "productivity"],
     skillType: "Connector",
@@ -1973,7 +1982,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     githubStars: "1.5K+",
     metrics: {
       stars: [
-        { date: "2026-03", value: 1461 },
+        { date: "2026-03", value: 1473 },
       ],
       mentionsPositive: [
         { date: "2026-03", value: 2 },
@@ -2050,7 +2059,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     githubStars: "1.9K+",
     metrics: {
       downloads: [
-        { date: "2026-03", value: 622 },
+        { date: "2026-03", value: 864 },
       ],
       stars: [
         { date: "2026-03", value: 1860 },
@@ -2061,9 +2070,9 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     },
     npmPackage: "google-workspace-mcp",
     relatedCategories: ["product-business-development"],
-    packageSize: { repoSizeKb: 13703, languages: { "Python": 1251351, "Go Template": 1841, "Dockerfile": 1250 } },
-    repoHealth: { lastPushAt: "2026-03-19T19:04:10Z", lastPushDays: 0, openIssues: 74, forks: 541, archived: false, contributors: 86 },
-    daysOld: 326,
+    packageSize: { repoSizeKb: 13750, languages: { "Python": 1266336, "Go Template": 1841, "Dockerfile": 1250 } },
+    repoHealth: { lastPushAt: "2026-03-22T15:13:07Z", lastPushDays: 1, openIssues: 73, forks: 545, archived: false, contributors: 86 },
+    daysOld: 330,
     complexity: 4,
     tags: ["business", "productivity"],
     skillType: "Connector",
@@ -2137,7 +2146,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     docsUrl: "https://docs.openhands.dev",
     productUrl: "https://www.openhands.ai",
     relatedCategories: ["teams-of-agents", "software-factories", "coding-clis"],
-    daysOld: 737,
+    daysOld: 740,
     complexity: 5,
     tags: ["agents", "orchestration", "automation", "factory"],
     weekGrowth: 0.1161,
@@ -2159,12 +2168,12 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "Enterprise adoption evidence thin beyond logo slides",
       "Development velocity plateaued relative to Codex CLI (896/mo) and Gemini CLI (709/mo)",
     ],
-    githubStars: "69K+",
-    packageSize: { repoSizeKb: 292897, languages: { "Python": 10157621, "TypeScript": 3405095, "Go Template": 91342, "Jinja": 85567, "JavaScript": 34515, "Makefile": 17184, "CSS": 16500, "Shell": 14304, "Dockerfile": 8363, "Mako": 1339 } },
-    repoHealth: { lastPushAt: "2026-03-20T03:07:03Z", lastPushDays: 0, openIssues: 325, forks: 8708, archived: false, contributors: 459 },
+    githubStars: "70K+",
+    packageSize: { repoSizeKb: 293830, languages: { "Python": 10165670, "TypeScript": 3464886, "Go Template": 91342, "Jinja": 85567, "JavaScript": 34515, "Makefile": 17184, "CSS": 16500, "Shell": 14304, "Dockerfile": 8363, "Mako": 1339 } },
+    repoHealth: { lastPushAt: "2026-03-23T23:29:44Z", lastPushDays: 0, openIssues: 340, forks: 8725, archived: false, contributors: 461 },
     metrics: {
       downloads: [
-        { date: "2026-03", value: 154070 },
+        { date: "2026-03", value: 115543 },
       ],
       stars: [
         { date: "2024-06", value: 15000 },
@@ -2306,8 +2315,8 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     docsUrl: "https://ai-sdk.dev",
     relatedCategories: ["teams-of-agents"],
     packageSize: { repoSizeKb: 355, languages: { "TypeScript": 72705 } },
-    repoHealth: { lastPushAt: "2026-01-08T16:35:06Z", lastPushDays: 70, openIssues: 3, forks: 74, archived: false, contributors: 1 },
-    daysOld: 75,
+    repoHealth: { lastPushAt: "2026-01-08T16:35:06Z", lastPushDays: 74, openIssues: 3, forks: 76, archived: false, contributors: 1 },
+    daysOld: 79,
     complexity: 2,
     tags: ["agents", "orchestration"],
     skillType: "Generator",
@@ -2323,10 +2332,10 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "More pattern than full factory out of the box",
       "Skeptics note context drift and ‘expensive token cost’ concerns",
     ],
-    githubStars: "722",
+    githubStars: "730",
     metrics: {
       stars: [
-        { date: "2026-03", value: 722 },
+        { date: "2026-03", value: 730 },
       ],
       mentionsPositive: [
         { date: "2026-03", value: 0 },
@@ -2420,7 +2429,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     githubStars: "19K+",
     metrics: {
       downloads: [
-        { date: "2026-03", value: 73 },
+        { date: "2026-03", value: 67 },
       ],
       stars: [
         { date: "2026-03", value: 18787 },
@@ -2430,9 +2439,9 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       ],
     },
     relatedCategories: ["teams-of-agents", "coding-clis"],
-    packageSize: { repoSizeKb: 71491, languages: { "Python": 644251, "JavaScript": 10968, "CSS": 9035, "Shell": 5339, "C++": 3405, "Perl": 1876, "Dockerfile": 1724, "HTML": 1526, "C": 1330 } },
-    repoHealth: { lastPushAt: "2026-03-16T22:42:50Z", lastPushDays: 3, openIssues: 26, forks: 2025, archived: false, contributors: 96 },
-    daysOld: 716,
+    packageSize: { repoSizeKb: 71489, languages: { "Python": 644251, "JavaScript": 10968, "CSS": 9035, "Shell": 5339, "C++": 3405, "Perl": 1876, "Dockerfile": 1724, "HTML": 1526, "C": 1330 } },
+    repoHealth: { lastPushAt: "2026-03-23T21:33:56Z", lastPushDays: 0, openIssues: 30, forks: 2029, archived: false, contributors: 96 },
+    daysOld: 720,
     complexity: 5,
     tags: ["agents", "orchestration", "cli", "coding"],
     weekGrowth: 1.211,
@@ -2483,12 +2492,12 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     verdict:
       "The #1 coding CLI agent. Leads SWE-bench Pro standardized (45.89%), wins independent head-to-heads on reasoning depth, ~4% of GitHub commits. Rate limits are the #1 complaint. Costs 2-3x more per task than Codex CLI due to higher token consumption.",
     relatedCategories: ["coding-clis", "teams-of-agents", "software-factories"],
-    githubStars: "80K+",
-    packageSize: { repoSizeKb: 27377, languages: { "Shell": 61221, "Python": 38265, "TypeScript": 23117, "PowerShell": 5319, "Dockerfile": 2507 } },
-    repoHealth: { lastPushAt: "2026-03-19T22:08:48Z", lastPushDays: 0, openIssues: 7102, forks: 6629, archived: false, contributors: 49 },
+    githubStars: "82K+",
+    packageSize: { repoSizeKb: 27430, languages: { "Shell": 61221, "Python": 38265, "TypeScript": 23117, "PowerShell": 5319, "Dockerfile": 2507 } },
+    repoHealth: { lastPushAt: "2026-03-20T22:24:50Z", lastPushDays: 3, openIssues: 7445, forks: 6816, archived: false, contributors: 49 },
     metrics: {
       downloads: [
-        { date: "2026-03", value: 7884635 },
+        { date: "2026-03", value: 4022597 },
       ],
       stars: [
         { date: "2025-06", value: 5000 },
@@ -2503,7 +2512,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
         { date: "2026-03", value: 45 },
       ],
     },
-    daysOld: 390,
+    daysOld: 394,
     complexity: 3,
     tags: ["cli", "coding", "agents", "orchestration"],
     weekGrowth: 1.211,
@@ -2734,7 +2743,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "#7 coding CLI — strong verification story (191K PyPI/week, 5.7M lifetime), but Codex CLI at 2.49M npm/week and Gemini CLI at 678K/week have overtaken Aider's download rank. Category pressure is real: HN thread 'Claude Code with Sonnet 4 is so good I have stopped using Aider' (#44154020). Best for Python devs who want fine-grained model control and git-native workflow. v0.86.2 (2026-02-12) is 5 weeks behind competitors shipping daily.",
     docsUrl: "https://aider.chat",
     relatedCategories: ["coding-clis", "software-factories"],
-    daysOld: 1045,
+    daysOld: 1049,
     complexity: 5,
     tags: ["cli", "coding", "automation", "factory"],
     weekGrowth: 0.1077,
@@ -2756,10 +2765,10 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     ],
     githubStars: "42K+",
     packageSize: { repoSizeKb: 140296, languages: { "Python": 1331380, "CSS": 67532, "Shell": 66537, "Tree-sitter Query": 64347, "JavaScript": 60909, "HTML": 44976, "PowerShell": 19648, "Dockerfile": 4405, "SCSS": 1957, "Ruby": 196 } },
-    repoHealth: { lastPushAt: "2026-03-17T01:21:34Z", lastPushDays: 3, openIssues: 1445, forks: 4056, archived: false, contributors: 180 },
+    repoHealth: { lastPushAt: "2026-03-17T01:21:34Z", lastPushDays: 6, openIssues: 1452, forks: 4061, archived: false, contributors: 180 },
     metrics: {
       downloads: [
-        { date: "2026-03", value: 185067 },
+        { date: "2026-03", value: 180151 },
       ],
       stars: [
         { date: "2024-06", value: 8000 },
@@ -2837,16 +2846,16 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     githubStars: "32K+",
     metrics: {
       stars: [
-        { date: "2026-03", value: 31950 },
+        { date: "2026-03", value: 32009 },
       ],
       mentionsPositive: [
         { date: "2026-03", value: 0 },
       ],
     },
     relatedCategories: ["coding-clis", "teams-of-agents"],
-    packageSize: { repoSizeKb: 866356, languages: { "TypeScript": 9289277, "JavaScript": 824193, "Kotlin": 421240, "Python": 249328, "Rust": 76465, "Tree-sitter Query": 57082, "CSS": 52430, "Shell": 36934, "PowerShell": 17001, "Java": 4898, "HTML": 3606, "PHP": 1460, "C#": 673, "Jupyter Notebook": 541, "Scheme": 441, "Ruby": 363, "Dockerfile": 347, "Go": 166 } },
-    repoHealth: { lastPushAt: "2026-03-20T04:05:55Z", lastPushDays: 0, openIssues: 985, forks: 4279, archived: false, contributors: 501 },
-    daysOld: 1031,
+    packageSize: { repoSizeKb: 865330, languages: { "TypeScript": 9294565, "JavaScript": 824193, "Kotlin": 421240, "Python": 249328, "Rust": 76465, "Tree-sitter Query": 57082, "CSS": 52430, "Shell": 36934, "PowerShell": 17001, "Java": 4898, "HTML": 3606, "PHP": 1460, "C#": 673, "Jupyter Notebook": 541, "Scheme": 441, "Ruby": 363, "Dockerfile": 347, "Go": 166 } },
+    repoHealth: { lastPushAt: "2026-03-23T16:05:20Z", lastPushDays: 0, openIssues: 766, forks: 4295, archived: false, contributors: 501 },
+    daysOld: 1034,
     complexity: 5,
     tags: ["cli", "coding", "agents", "orchestration"],
     skillType: "Guardian",
@@ -2904,9 +2913,9 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     docsUrl: "https://opencode.ai",
     productUrl: "https://opencode.ai",
     relatedCategories: ["coding-clis"],
-    packageSize: { repoSizeKb: 218230, languages: { "TypeScript": 9435448, "MDX": 7025293, "CSS": 540895, "Rust": 86790, "Astro": 31596, "JavaScript": 22252, "Shell": 17910, "Nix": 8487, "HTML": 4758, "Dockerfile": 2594 } },
-    repoHealth: { lastPushAt: "2026-03-20T04:00:24Z", lastPushDays: 0, openIssues: 7196, forks: 13257, archived: false, contributors: 827 },
-    daysOld: 323,
+    packageSize: { repoSizeKb: 218473, languages: { "TypeScript": 9530054, "MDX": 7025391, "CSS": 541440, "Rust": 86790, "Astro": 31596, "JavaScript": 22252, "Shell": 17910, "Nix": 8487, "HTML": 4758, "Dockerfile": 2595 } },
+    repoHealth: { lastPushAt: "2026-03-23T23:49:28Z", lastPushDays: 0, openIssues: 7401, forks: 13647, archived: false, contributors: 829 },
+    daysOld: 327,
     complexity: 5,
     tags: ["cli", "coding"],
     skillType: "Connector",
@@ -2925,10 +2934,10 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "No published SWE-bench or Terminal-Bench scores",
       "Trust story is messier than competitors due to RCE + corporate conflict history",
     ],
-    githubStars: "126K+",
+    githubStars: "129K+",
     metrics: {
       stars: [
-        { date: "2026-03", value: 125703 },
+        { date: "2026-03", value: 128828 },
       ],
       mentionsPositive: [
         { date: "2026-03", value: 7 },
@@ -3011,7 +3020,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "#2 coding CLI. Rust rewrite eliminates Node.js dependency — unique in category. Terminal-Bench 77.3% (#2) and 3-4x more token-efficient. Cleanest security record among Tier 1 tools. GPT-5.4 shipped March 2026. Trails Claude Code by ~5pp on SWE-bench Pro standardized (41.04% vs 45.89%) and first-pass quality (67% vs 95%).",
     docsUrl: "https://developers.openai.com/codex/cli/",
     relatedCategories: ["coding-clis", "software-factories"],
-    daysOld: 340,
+    daysOld: 344,
     complexity: 5,
     tags: ["cli", "coding", "automation", "factory"],
     weekGrowth: 0.0835,
@@ -3034,12 +3043,12 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "Tied to OpenAI models only",
       "Headline 56.8% SWE-bench Pro number uses custom scaffold — not comparable to standardized results",
     ],
-    githubStars: "66K+",
-    packageSize: { repoSizeKb: 360999, languages: { "Rust": 23200165, "Python": 561495, "TypeScript": 308890, "JavaScript": 89138, "Starlark": 34572, "Jupyter Notebook": 23732, "Shell": 23716, "PowerShell": 20389, "HTML": 11005, "Nix": 4427, "Just": 2789, "Dockerfile": 2371, "Smarty": 2015, "C": 76 } },
-    repoHealth: { lastPushAt: "2026-03-20T04:07:34Z", lastPushDays: 0, openIssues: 2145, forks: 8867, archived: false, contributors: 383 },
+    githubStars: "67K+",
+    packageSize: { repoSizeKb: 365305, languages: { "Rust": 23710242, "Python": 561525, "TypeScript": 310530, "JavaScript": 61486, "Starlark": 38899, "Shell": 25891, "Jupyter Notebook": 23732, "PowerShell": 20389, "HTML": 11005, "Nix": 4427, "Just": 2789, "Dockerfile": 2371, "Smarty": 2015, "C": 76 } },
+    repoHealth: { lastPushAt: "2026-03-23T23:45:55Z", lastPushDays: 0, openIssues: 2207, forks: 8980, archived: false, contributors: 383 },
     metrics: {
       downloads: [
-        { date: "2026-03", value: 2494468 },
+        { date: "2026-03", value: 1622983 },
       ],
       stars: [
         { date: "2025-06", value: 8000 },
@@ -3141,7 +3150,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "#3 coding CLI — best free entry point and Terminal-Bench leader (78.4% #1). 1K req/day free tier is unmatched, 1M context is the largest. SWE-bench Pro standardized 43.30% is competitive. Plan Mode (March 2026) closes last major feature gap. File deletion incident (AI Incident Database #1178) and 50-60% first-pass correctness (roughly half of Claude Code) are real concerns.",
     docsUrl: "https://developers.google.com/gemini-code-assist/docs/gemini-cli",
     relatedCategories: ["coding-clis", "software-factories"],
-    daysOld: 336,
+    daysOld: 340,
     complexity: 5,
     tags: ["cli", "coding", "automation", "factory"],
     weekGrowth: 0.1471,
@@ -3167,12 +3176,12 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "50-60% first-pass correctness (Educative.io) — roughly half of Claude Code's ~95%. Requires significantly more iteration",
       "CLI scaffolding acknowledged as behind the model's capabilities, even by Gemini enthusiasts",
     ],
-    githubStars: "98K+",
-    packageSize: { repoSizeKb: 63995, languages: { "TypeScript": 16309408, "JavaScript": 292774, "Shell": 22919, "C#": 15818, "Dockerfile": 1580, "Makefile": 1336, "HTML": 592 } },
-    repoHealth: { lastPushAt: "2026-03-20T04:05:17Z", lastPushDays: 0, openIssues: 3025, forks: 12441, archived: false, contributors: 587 },
+    githubStars: "99K+",
+    packageSize: { repoSizeKb: 65282, languages: { "TypeScript": 16441641, "JavaScript": 296091, "Shell": 22919, "C#": 15818, "Dockerfile": 1580, "Makefile": 1336, "HTML": 592 } },
+    repoHealth: { lastPushAt: "2026-03-23T23:49:05Z", lastPushDays: 0, openIssues: 3168, forks: 12563, archived: false, contributors: 590 },
     metrics: {
       downloads: [
-        { date: "2026-03", value: 678181 },
+        { date: "2026-03", value: 327637 },
       ],
       stars: [
         { date: "2025-06", value: 5000 },
@@ -3376,8 +3385,8 @@ export const skills: Record<SkillSlug, SkillRecord> = {
         { date: "2026-03", value: 2 },
       ],
     },
-    repoHealth: { lastPushAt: "2025-10-30T21:18:49Z", lastPushDays: 140, openIssues: 63, forks: 89, archived: true, contributors: 5 },
-    daysOld: 875,
+    repoHealth: { lastPushAt: "2025-10-30T21:18:49Z", lastPushDays: 144, openIssues: 63, forks: 89, archived: true, contributors: 5 },
+    daysOld: 879,
     complexity: 1,
     tags: ["cli", "coding"],
     skillType: "Connector",
@@ -3449,7 +3458,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     githubStars: "N/A",
     metrics: {
       downloads: [
-        { date: "2026-03", value: 1473024 },
+        { date: "2026-03", value: 810498 },
       ],
       mentionsPositive: [
         { date: "2026-03", value: 4 },
@@ -3516,19 +3525,19 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     githubStars: "33K+",
     metrics: {
       stars: [
-        { date: "2026-03", value: 33283 },
+        { date: "2026-03", value: 33499 },
       ],
       mentionsPositive: [
         { date: "2026-03", value: 0 },
       ],
     },
-    repoHealth: { lastPushAt: "2026-03-20T04:04:23Z", lastPushDays: 0, openIssues: 321, forks: 3084, archived: false, contributors: 401 },
-    daysOld: 573,
+    repoHealth: { lastPushAt: "2026-03-23T23:30:16Z", lastPushDays: 0, openIssues: 310, forks: 3116, archived: false, contributors: 404 },
+    daysOld: 577,
     complexity: 5,
     tags: ["cli", "coding", "automation", "factory"],
     skillType: "Connector",
     skillTier: "Orchestrator",
-    packageSize: { repoSizeKb: 1103823, languages: { "Rust": 4539554, "TypeScript": 2547137, "Shell": 157050, "Python": 123325, "JavaScript": 121399, "HTML": 106850, "CSS": 33230, "Just": 17855, "PowerShell": 7964, "Dockerfile": 6623, "Nix": 5170, "Batchfile": 5050, "HCL": 42 } },
+    packageSize: { repoSizeKb: 1106828, languages: { "Rust": 4619008, "TypeScript": 2602883, "Shell": 155297, "JavaScript": 127642, "Python": 123325, "HTML": 106850, "CSS": 33230, "Just": 18690, "PowerShell": 7964, "Dockerfile": 6623, "Nix": 5170, "Batchfile": 5050, "HCL": 42 } },
     strengths: [
       "Linux Foundation AAIF founding member — governance entirely outside any model vendor",
       "Provider-agnostic: any OpenAI-compatible endpoint, local models via Ollama",
@@ -3609,19 +3618,19 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     githubStars: "22K+",
     metrics: {
       stars: [
-        { date: "2026-03", value: 21673 },
+        { date: "2026-03", value: 21871 },
       ],
       mentionsPositive: [
         { date: "2026-03", value: 0 },
       ],
     },
-    repoHealth: { lastPushAt: "2026-03-20T03:05:05Z", lastPushDays: 0, openIssues: 347, forks: 1367, archived: false, contributors: 102 },
-    daysOld: 302,
+    repoHealth: { lastPushAt: "2026-03-23T23:44:48Z", lastPushDays: 0, openIssues: 343, forks: 1389, archived: false, contributors: 103 },
+    daysOld: 306,
     complexity: 5,
     tags: ["cli", "coding"],
     skillType: "Connector",
     skillTier: "Composite",
-    packageSize: { repoSizeKb: 24149, languages: { "Go": 1570258, "Go Template": 29820, "JavaScript": 10347, "CSS": 4257, "HTML": 4039, "Shell": 706 } },
+    packageSize: { repoSizeKb: 24307, languages: { "Go": 1570425, "Go Template": 29820, "JavaScript": 10347, "CSS": 4257, "HTML": 4039, "Shell": 706 } },
     strengths: [
       "Best terminal UX in the category — Charmbracelet has 25K+ apps built on Bubble Tea",
       "Multi-model: any OpenAI-compatible API, not locked to one provider",
@@ -3678,19 +3687,19 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     githubStars: "21K+",
     metrics: {
       stars: [
-        { date: "2026-03", value: 20788 },
+        { date: "2026-03", value: 20966 },
       ],
       mentionsPositive: [
         { date: "2026-03", value: 0 },
       ],
     },
-    repoHealth: { lastPushAt: "2026-03-20T03:52:44Z", lastPushDays: 0, openIssues: 616, forks: 1842, archived: false, contributors: 364 },
-    daysOld: 267,
+    repoHealth: { lastPushAt: "2026-03-23T19:21:56Z", lastPushDays: 0, openIssues: 661, forks: 1870, archived: false, contributors: 365 },
+    daysOld: 270,
     complexity: 5,
     tags: ["cli", "coding"],
     skillType: "Connector",
     skillTier: "Orchestrator",
-    packageSize: { repoSizeKb: 73514, languages: { "TypeScript": 12966100, "JavaScript": 842083, "Java": 408903, "CSS": 83703, "Python": 44154, "HTML": 29215, "Shell": 25762, "Batchfile": 9959, "Dockerfile": 3378, "Makefile": 1330 } },
+    packageSize: { repoSizeKb: 73286, languages: { "TypeScript": 13123553, "JavaScript": 841911, "Java": 408903, "CSS": 83703, "Python": 44154, "HTML": 29215, "Shell": 25762, "Batchfile": 9959, "Dockerfile": 3378, "Makefile": 1330 } },
     strengths: [
       "Qwen3-Coder-Next: 70.6% SWE-bench Verified — highest open-weight model score in the category",
       "1,000 free daily requests via Qwen OAuth — best free tier for open-weight models",
@@ -3859,7 +3868,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     docsUrl: "https://browser-use.com",
     productUrl: "https://browser-use.com",
     relatedCategories: ["web-browsing"],
-    daysOld: 504,
+    daysOld: 508,
     complexity: 5,
     tags: ["browser", "web"],
     weekGrowth: 0.0153,
@@ -3876,12 +3885,12 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "Still evolving reliability for complex flows",
       "Heavier setup than MCP-based browser tools",
     ],
-    githubStars: "81K+",
-    packageSize: { repoSizeKb: 29642, languages: { "Python": 3189716, "Shell": 37706, "Dockerfile": 11201, "HTML": 7953 } },
-    repoHealth: { lastPushAt: "2026-03-20T03:35:34Z", lastPushDays: 0, openIssues: 225, forks: 9610, archived: false, contributors: 314 },
+    githubStars: "84K+",
+    packageSize: { repoSizeKb: 30011, languages: { "Python": 2989504, "Shell": 27436, "Dockerfile": 11201, "HTML": 7953 } },
+    repoHealth: { lastPushAt: "2026-03-23T23:44:28Z", lastPushDays: 0, openIssues: 215, forks: 9724, archived: false, contributors: 315 },
     metrics: {
       downloads: [
-        { date: "2026-03", value: 1071328 },
+        { date: "2026-03", value: 1130836 },
       ],
       stars: [
         { date: "2024-12", value: 10000 },
@@ -4020,7 +4029,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     verdict:
       "Highest raw downloads in category (1.38M npm/wk). Cross-browser (Chromium + Firefox + WebKit). CLI mode is the token-efficient choice — 4x reduction vs MCP confirmed by 13+ independent sources. Microsoft officially recommends CLI for coding agents.",
     relatedCategories: ["web-browsing"],
-    daysOld: 363,
+    daysOld: 367,
     complexity: 3,
     tags: ["browser", "web"],
     skillType: "Connector",
@@ -4036,11 +4045,11 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "Less vision-aware than Browser Use for visual tasks",
       "Accessibility snapshots miss visual layout information",
     ],
-    githubStars: "29K+",
-    packageSize: { repoSizeKb: 1797, languages: { "TypeScript": 78799, "CSS": 49316, "JavaScript": 12685, "Dockerfile": 2488, "HTML": 1384 } },
-    repoHealth: { lastPushAt: "2026-03-19T05:31:14Z", lastPushDays: 0, openIssues: 23, forks: 2364, archived: false, contributors: 63 },
+    githubStars: "30K+",
+    packageSize: { repoSizeKb: 1798, languages: { "TypeScript": 78799, "CSS": 49316, "JavaScript": 12685, "Dockerfile": 2488, "HTML": 1384 } },
+    repoHealth: { lastPushAt: "2026-03-20T15:13:11Z", lastPushDays: 3, openIssues: 27, forks: 2378, archived: false, contributors: 64 },
     metrics: {
-      downloads: [{ date: "2026-03", value: 29302 }],
+      downloads: [{ date: "2026-03", value: 29532 }],
       stars: [{ date: "2026-03", value: 29221 }],
       mentionsPositive: [
         { date: "2026-03", value: 1 },
@@ -4162,7 +4171,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     docsUrl: "https://stagehand.dev",
     productUrl: "https://stagehand.dev",
     relatedCategories: ["web-browsing"],
-    daysOld: 725,
+    daysOld: 729,
     complexity: 5,
     tags: ["browser", "web"],
     skillType: "Connector",
@@ -4178,10 +4187,10 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "Newer — less battle-tested in production agent loops",
     ],
     githubStars: "22K+",
-    packageSize: { repoSizeKb: 80017, languages: { "TypeScript": 3051067, "MDX": 902019, "JavaScript": 60206, "HTML": 2063 } },
-    repoHealth: { lastPushAt: "2026-03-20T00:36:19Z", lastPushDays: 0, openIssues: 170, forks: 1425, archived: false, contributors: 38 },
+    packageSize: { repoSizeKb: 80049, languages: { "TypeScript": 3056383, "MDX": 904501, "JavaScript": 60206, "HTML": 2063 } },
+    repoHealth: { lastPushAt: "2026-03-23T23:48:02Z", lastPushDays: 0, openIssues: 177, forks: 1431, archived: false, contributors: 38 },
     metrics: {
-      downloads: [{ date: "2026-03", value: 555291 }],
+      downloads: [{ date: "2026-03", value: 303034 }],
       stars: [{ date: "2026-03", value: 21538 }],
       mentionsPositive: [
         { date: "2026-03", value: 0 },
@@ -4284,7 +4293,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     docsUrl: "https://developer.chrome.com/blog/chrome-devtools-mcp-debug-your-browser-session",
     productUrl: "https://npmjs.org/package/chrome-devtools-mcp",
     relatedCategories: ["web-browsing"],
-    daysOld: 189,
+    daysOld: 193,
     complexity: 4,
     tags: ["browser", "web"],
     skillType: "Connector",
@@ -4300,11 +4309,11 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "Debugging-focused niche — less suitable for end-to-end UI testing flows",
       "18K token tool schema — slightly heavier than Playwright MCP's 13.7K",
     ],
-    githubStars: "30K+",
-    packageSize: { repoSizeKb: 4580, languages: { "TypeScript": 729381, "JavaScript": 33447, "HTML": 290 } },
-    repoHealth: { lastPushAt: "2026-03-20T00:30:21Z", lastPushDays: 0, openIssues: 88, forks: 1804, archived: false, contributors: 65 },
+    githubStars: "31K+",
+    packageSize: { repoSizeKb: 4630, languages: { "TypeScript": 727689, "JavaScript": 33447, "HTML": 290 } },
+    repoHealth: { lastPushAt: "2026-03-23T22:50:32Z", lastPushDays: 0, openIssues: 99, forks: 1832, archived: false, contributors: 67 },
     metrics: {
-      downloads: [{ date: "2026-03", value: 422720 }],
+      downloads: [{ date: "2026-03", value: 358383 }],
       stars: [{ date: "2026-03", value: 30073 }],
       mentionsPositive: [
         { date: "2026-03", value: 1 },
@@ -4389,7 +4398,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     docsUrl: "https://agent-browser.dev",
     productUrl: "https://agent-browser.dev",
     relatedCategories: ["web-browsing"],
-    daysOld: 67,
+    daysOld: 71,
     complexity: 5,
     tags: ["browser", "web"],
     skillType: "Connector",
@@ -4407,10 +4416,10 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "Does not work reliably against Cloudflare-protected sites",
     ],
     githubStars: "24K+",
-    packageSize: { repoSizeKb: 15270, languages: { "Rust": 1217850, "TypeScript": 30024, "JavaScript": 16819, "Shell": 9524, "HTML": 8982 } },
-    repoHealth: { lastPushAt: "2026-03-20T01:02:43Z", lastPushDays: 0, openIssues: 300, forks: 1399, archived: false, contributors: 86 },
+    packageSize: { repoSizeKb: 15244, languages: { "Rust": 1284293, "TypeScript": 30024, "JavaScript": 17687, "Shell": 9524, "HTML": 8982 } },
+    repoHealth: { lastPushAt: "2026-03-23T23:47:23Z", lastPushDays: 0, openIssues: 304, forks: 1449, archived: false, contributors: 90 },
     metrics: {
-      downloads: [{ date: "2026-03", value: 284258 }],
+      downloads: [{ date: "2026-03", value: 182801 }],
       stars: [{ date: "2026-03", value: 23394 }],
       mentionsPositive: [
         { date: "2026-03", value: 2 },
@@ -4495,7 +4504,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     docsUrl: "https://docs.skyvern.com",
     productUrl: "https://www.skyvern.com",
     relatedCategories: ["web-browsing"],
-    daysOld: 750,
+    daysOld: 754,
     complexity: 5,
     tags: ["browser", "web"],
     skillType: "Connector",
@@ -4513,10 +4522,10 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "Pricing opacity noted by independent reviewers",
     ],
     githubStars: "21K+",
-    packageSize: { repoSizeKb: 505261, languages: { "Python": 7702338, "TypeScript": 3275623, "MDX": 212529, "Jinja": 211346, "JavaScript": 115078, "HTML": 24540, "Shell": 16382, "CSS": 9739, "Dockerfile": 2580, "Mako": 635 } },
-    repoHealth: { lastPushAt: "2026-03-20T04:01:55Z", lastPushDays: 0, openIssues: 142, forks: 1855, archived: false, contributors: 84 },
+    packageSize: { repoSizeKb: 506381, languages: { "Python": 7741656, "TypeScript": 3296742, "Jinja": 217215, "MDX": 212529, "JavaScript": 123517, "HTML": 24540, "Shell": 16382, "CSS": 9739, "Dockerfile": 2580, "Mako": 635 } },
+    repoHealth: { lastPushAt: "2026-03-23T22:33:39Z", lastPushDays: 0, openIssues: 144, forks: 1861, archived: false, contributors: 84 },
     metrics: {
-      downloads: [{ date: "2026-03", value: 155404 }],
+      downloads: [{ date: "2026-03", value: 92397 }],
       stars: [{ date: "2026-03", value: 20823 }],
       mentionsPositive: [
         { date: "2026-03", value: 0 },
@@ -4596,13 +4605,13 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     verdict:
       "Best infrastructure pick for teams running browser automation at scale who need to reduce costs. Drop-in CDP replacement for Chrome headless in pipelines. Still beta — not a user-facing agent tool.",
     relatedCategories: ["web-browsing"],
-    repoHealth: { lastPushAt: "2026-03-20T03:38:52Z", lastPushDays: 0, openIssues: 84, forks: 854, archived: false, contributors: 31 },
-    daysOld: 1136,
+    repoHealth: { lastPushAt: "2026-03-23T23:41:28Z", lastPushDays: 0, openIssues: 82, forks: 963, archived: false, contributors: 33 },
+    daysOld: 1140,
     complexity: 5,
     tags: ["browser", "web"],
     skillType: "Connector",
     skillTier: "Atomic",
-    packageSize: { repoSizeKb: 11824, languages: { "Zig": 3507408, "HTML": 1174495, "Rust": 28830, "JavaScript": 14262, "Makefile": 2848, "Dockerfile": 2770, "Nix": 1960, "Go": 1143 } },
+    packageSize: { repoSizeKb: 12110, languages: { "Zig": 3582764, "HTML": 1193270, "Rust": 28830, "JavaScript": 14262, "Makefile": 2848, "Dockerfile": 2770, "Nix": 1960, "Go": 1143 } },
     strengths: [
       "11x faster, 9x less memory vs Chrome headless — independently benchmarked",
       "140 concurrent instances vs 15 for Chrome on same hardware",
@@ -4616,10 +4625,10 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "Not a complete browser — won't work for all websites",
       "Infrastructure layer, not a user-facing agent tool",
     ],
-    githubStars: "22K+",
+    githubStars: "24K+",
     metrics: {
       stars: [
-        { date: "2026-03", value: 22299 },
+        { date: "2026-03", value: 24173 },
       ],
       mentionsPositive: [
         { date: "2026-03", value: 0 },
@@ -4674,8 +4683,8 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     verdict:
       "Below cut line — only 2.7K stars, not production-ready by creator's own characterization. But founder pedigree (Selenium, Appium creator), 443-point HN thread, near-daily releases, and W3C standards-first architecture demand close tracking. The only Lane 2 tool with credible cross-browser (Firefox + Safari) story.",
     relatedCategories: ["web-browsing"],
-    repoHealth: { lastPushAt: "2026-03-18T19:46:00Z", lastPushDays: 1, openIssues: 28, forks: 155, archived: false, contributors: 4 },
-    daysOld: 98,
+    repoHealth: { lastPushAt: "2026-03-18T19:46:00Z", lastPushDays: 5, openIssues: 29, forks: 155, archived: false, contributors: 4 },
+    daysOld: 101,
     complexity: 5,
     tags: ["browser", "web"],
     skillType: "Connector",
@@ -4699,7 +4708,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     githubStars: "2.7K+",
     metrics: {
       stars: [
-        { date: "2026-03", value: 2717 },
+        { date: "2026-03", value: 2723 },
       ],
       mentionsPositive: [
         { date: "2026-03", value: 0 },
@@ -4753,13 +4762,13 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     verdict:
       "Lane 4 leader. Just crossed 10K stars. 314 HN pts with 206 comments is strong organic engagement. YC S24 backing. Privacy-first Chromium fork with built-in AI. Different market than Lanes 1-3 but clear leader in consumer agentic browsers.",
     relatedCategories: ["web-browsing"],
-    repoHealth: { lastPushAt: "2026-03-20T00:34:17Z", lastPushDays: 0, openIssues: 28, forks: 956, archived: false, contributors: 12 },
-    daysOld: 305,
+    repoHealth: { lastPushAt: "2026-03-23T21:38:08Z", lastPushDays: 0, openIssues: 30, forks: 972, archived: false, contributors: 12 },
+    daysOld: 309,
     complexity: 5,
     tags: ["browser", "web"],
     skillType: "Connector",
     skillTier: "Composite",
-    packageSize: { repoSizeKb: 139937, languages: { "TypeScript": 3263582, "C++": 973671, "Go": 208504, "HTML": 83134, "C": 57953, "Python": 40391, "Objective-C++": 39233, "CSS": 17618, "Shell": 4841, "JavaScript": 4152, "Makefile": 1208 } },
+    packageSize: { repoSizeKb: 139625, languages: { "TypeScript": 3384761, "C++": 973671, "Go": 209280, "HTML": 128820, "C": 57953, "Python": 40391, "Objective-C++": 39233, "CSS": 17618, "Shell": 4841, "JavaScript": 4152, "Makefile": 1208 } },
     strengths: [
       "Chromium fork with native AI agent integration — not a plugin or overlay",
       "YC-backed with weekly releases: 47 releases in ~10 months, v0.43.0 on 2026-03-12",
@@ -4777,7 +4786,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     githubStars: "10K+",
     metrics: {
       stars: [
-        { date: "2026-03", value: 10006 },
+        { date: "2026-03", value: 10095 },
       ],
       mentionsPositive: [
         { date: "2026-03", value: 0 },
@@ -4837,13 +4846,13 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     verdict:
       "#2 CRM lane, behind HubSpot. 26.6K npm/week is primarily Salesforce DX developer tooling (SFDX developers), not CRM product teams. Agentforce-gated open CRM access keeps PulseMCP low (~2K/wk). Right choice only for existing Salesforce Enterprise customers already committed to Agentforce.",
     relatedCategories: ["product-business-development"],
-    repoHealth: { lastPushAt: "2026-03-19T18:20:00Z", lastPushDays: 0, openIssues: 25, forks: 81, archived: false, contributors: 33 },
-    daysOld: 330,
+    repoHealth: { lastPushAt: "2026-03-23T10:34:49Z", lastPushDays: 0, openIssues: 25, forks: 81, archived: false, contributors: 33 },
+    daysOld: 334,
     complexity: 4,
     tags: ["business", "productivity"],
     skillType: "Connector",
     skillTier: "Pack",
-    packageSize: { repoSizeKb: 4712, languages: { "TypeScript": 1316248, "JavaScript": 18776, "Shell": 183 } },
+    packageSize: { repoSizeKb: 4728, languages: { "TypeScript": 1316248, "JavaScript": 18776, "Shell": 183 } },
     strengths: [
       "Official Salesforce backing with Agentforce platform integration",
       "26.6K npm/week — strong SFDX developer adoption",
@@ -4858,10 +4867,10 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "315 stars reflects enterprise distribution model",
       "No independent reviews or benchmarks yet",
     ],
-    githubStars: "321",
+    githubStars: "325",
     metrics: {
       downloads: [
-        { date: "2026-03", value: 26575 },
+        { date: "2026-03", value: 11722 },
       ],
       stars: [
         { date: "2026-03", value: 320 },
@@ -4972,13 +4981,13 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     verdict:
       "#15 in product-business-development. Niche but real — 2.5K npm/week shows genuine adoption. Fills the gap between spreadsheets and databases for non-dev business teams using Airtable as their project database.",
     relatedCategories: ["product-business-development"],
-    repoHealth: { lastPushAt: "2026-03-07T23:51:38Z", lastPushDays: 12, openIssues: 6, forks: 133, archived: false, contributors: 10 },
-    daysOld: 462,
+    repoHealth: { lastPushAt: "2026-03-21T11:26:25Z", lastPushDays: 2, openIssues: 6, forks: 133, archived: false, contributors: 10 },
+    daysOld: 466,
     complexity: 3,
     tags: ["business", "productivity"],
     skillType: "Connector",
     skillTier: "Atomic",
-    packageSize: { repoSizeKb: 242, languages: { "TypeScript": 104143, "JavaScript": 2454, "Shell": 1288, "Dockerfile": 924 } },
+    packageSize: { repoSizeKb: 302, languages: { "TypeScript": 104143, "JavaScript": 2454, "Shell": 1288, "Dockerfile": 924 } },
     strengths: [
       "2,476 npm/week — real adoption for a narrower tool",
       "Active development (last push 2026-03-07)",
@@ -4989,10 +4998,10 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "Community-built, no official Airtable backing",
       "Narrow scope compared to full operating-surface MCPs",
     ],
-    githubStars: "428",
+    githubStars: "429",
     metrics: {
       downloads: [
-        { date: "2026-03", value: 2476 },
+        { date: "2026-03", value: 1272 },
       ],
       stars: [
         { date: "2026-03", value: 428 },
@@ -5030,8 +5039,8 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     verdict:
       "#7 overall, #1 in project/PM lane. Feb 2026 PM upgrade (triage, backlog prioritization, initiative creation, milestone management) elevated from dev-only to full PM surface. Developer-first API returns clean typed objects — less context token waste than Jira. ~2,743 combined npm/wk, 12.9K PulseMCP/wk.",
     relatedCategories: ["product-business-development"],
-    repoHealth: { lastPushAt: "2025-05-01T19:45:31Z", lastPushDays: 322, openIssues: 18, forks: 54, archived: false, contributors: 3 },
-    daysOld: 471,
+    repoHealth: { lastPushAt: "2025-05-01T19:45:31Z", lastPushDays: 326, openIssues: 18, forks: 54, archived: false, contributors: 3 },
+    daysOld: 475,
     complexity: 2,
     tags: ["business", "productivity"],
     skillType: "Connector",
@@ -5052,7 +5061,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     githubStars: "347",
     metrics: {
       downloads: [
-        { date: "2026-03", value: 2074 },
+        { date: "2026-03", value: 1350 },
       ],
       stars: [
         { date: "2026-03", value: 347 },
@@ -5121,8 +5130,8 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     verdict:
       "#1 CRM lane for startup/SMB teams. 10.7K npm/wk (ahead of Exa), 12K PulseMCP/wk (6x Salesforce), 335K all-time (#93 global). Open ecosystem approach is closing the CRM gap vs Salesforce's Agentforce gate. Key caveat: currently read-only.",
     relatedCategories: ["product-business-development", "marketing"],
-    repoHealth: { lastPushAt: "2025-04-25T16:57:42Z", lastPushDays: 328, openIssues: 4, forks: 0, archived: false },
-    daysOld: 328,
+    repoHealth: { lastPushAt: "2025-04-25T16:57:42Z", lastPushDays: 332, openIssues: 4, forks: 0, archived: false },
+    daysOld: 332,
     complexity: 1,
     tags: ["business", "productivity", "marketing"],
     skillType: "Connector",
@@ -5144,7 +5153,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     githubStars: "3",
     metrics: {
       downloads: [
-        { date: "2026-03", value: 10713 },
+        { date: "2026-03", value: 6145 },
       ],
       stars: [
         { date: "2026-03", value: 3 },
@@ -5283,13 +5292,13 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "#4 overall, #1 product analytics lane. 5.7M all-time PulseMCP visits (#5 globally), 20.6K/wk. 27 tools across 7 categories. Unique: LLM analytics tracking and error tracking for AI pipelines. Open-source, self-hostable, MIT. Amplitude (#2) and Mixpanel (watch) now catalogued but gap is 100x+ on PulseMCP.",
     productUrl: "https://posthog.com",
     relatedCategories: ["product-business-development"],
-    repoHealth: { lastPushAt: "2026-03-20T04:01:21Z", lastPushDays: 0, openIssues: 3265, forks: 2418, archived: false, contributors: 443 },
-    daysOld: 2247,
+    repoHealth: { lastPushAt: "2026-03-23T23:47:50Z", lastPushDays: 0, openIssues: 3300, forks: 2430, archived: false, contributors: 447 },
+    daysOld: 2251,
     complexity: 5,
     tags: ["business", "productivity"],
     skillType: "Connector",
     skillTier: "Composite",
-    packageSize: { repoSizeKb: 4736100, languages: { "Python": 55084978, "TypeScript": 44483839, "Rust": 7780408, "C++": 744288, "JavaScript": 704556, "HTML": 430150, "Go": 425305, "SCSS": 418347, "Shell": 246396, "HCL": 54996, "Perl": 35898, "MDX": 32270, "ANTLR": 30966, "Dockerfile": 22780, "CSS": 14417, "Jinja": 13025, "PLpgSQL": 9521, "EJS": 4869, "Makefile": 3468, "Smarty": 3222, "CMake": 2197, "C": 585 } },
+    packageSize: { repoSizeKb: 4742307, languages: { "Python": 55840368, "TypeScript": 44880059, "Rust": 7832460, "C++": 863153, "JavaScript": 706648, "Go": 435767, "HTML": 431352, "SCSS": 418365, "Shell": 256339, "HCL": 54996, "Perl": 35898, "ANTLR": 34868, "MDX": 32270, "Dockerfile": 22780, "CSS": 14417, "Jinja": 13025, "PLpgSQL": 9521, "EJS": 4869, "Makefile": 3687, "Smarty": 3222, "CMake": 2197, "Ruby": 1261, "C": 585 } },
     strengths: [
       "#5 all-time globally on PulseMCP — 5.7M visits, larger than Firecrawl, Notion, or Zapier on that metric",
       "Full PM analytics stack: feature flags, experiments, error tracking, funnel analysis, session replay",
@@ -5305,7 +5314,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     githubStars: "32K+",
     metrics: {
       stars: [
-        { date: "2026-03", value: 32137 },
+        { date: "2026-03", value: 32191 },
       ],
       mentionsPositive: [
         { date: "2026-03", value: 0 },
@@ -5817,13 +5826,13 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     verdict:
       "Best pure multiplexer. Highest raw community traction among orchestrators (7.2K stars, 512 PH). Privacy-first (Apache 2.0, zero telemetry, BYOK). Simple and focused.",
     relatedCategories: ["teams-of-agents"],
-    repoHealth: { lastPushAt: "2026-03-20T03:46:28Z", lastPushDays: 0, openIssues: 393, forks: 536, archived: false, contributors: 48 },
-    daysOld: 149,
+    repoHealth: { lastPushAt: "2026-03-23T23:49:14Z", lastPushDays: 0, openIssues: 483, forks: 567, archived: false, contributors: 52 },
+    daysOld: 153,
     complexity: 5,
     tags: ["agents", "orchestration"],
     skillType: "Connector",
     skillTier: "Orchestrator",
-    packageSize: { repoSizeKb: 152885, languages: { "TypeScript": 6721105, "MDX": 225927, "Shell": 71081, "CSS": 36862, "JavaScript": 11912, "Swift": 8875, "HTML": 1930, "C++": 1612, "PLpgSQL": 1193, "Ruby": 746, "Python": 234 } },
+    packageSize: { repoSizeKb: 154738, languages: { "TypeScript": 7174529, "MDX": 277378, "Shell": 71362, "CSS": 37701, "JavaScript": 11912, "Swift": 8875, "HTML": 1876, "C++": 1612, "PLpgSQL": 1193, "Ruby": 746, "Python": 234 } },
     strengths: [
       "7,386 stars — highest among orchestration-layer tools",
       "512 Product Hunt upvotes — strong consumer validation",
@@ -5839,10 +5848,10 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "Bootstrapped 3-person team — execution risk",
       "Naming collision with Apache Superset",
     ],
-    githubStars: "7.5K+",
+    githubStars: "7.8K+",
     metrics: {
       stars: [
-        { date: "2026-03", value: 7478 },
+        { date: "2026-03", value: 7818 },
       ],
       mentionsPositive: [
         { date: "2026-03", value: 3 },
@@ -6451,13 +6460,13 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     verdict:
       "Watch list. Extraordinary star growth (10K in 10 weeks) but zero independent validation — no HN posts, no Reddit discussion, no reviews. Cannot rank until independent evidence appears. Potential star inflation flag.",
     relatedCategories: ["teams-of-agents"],
-    repoHealth: { lastPushAt: "2026-03-20T03:51:06Z", lastPushDays: 0, openIssues: 28, forks: 735, archived: false, contributors: 66 },
-    daysOld: 70,
+    repoHealth: { lastPushAt: "2026-03-23T23:42:48Z", lastPushDays: 0, openIssues: 15, forks: 761, archived: false, contributors: 66 },
+    daysOld: 73,
     complexity: 5,
     tags: ["agents", "orchestration"],
     skillType: "Connector",
     skillTier: "Orchestrator",
-    packageSize: { repoSizeKb: 22931, languages: { "TypeScript": 6904539, "JavaScript": 5168567, "Shell": 116093, "Python": 109079, "Dockerfile": 2038 } },
+    packageSize: { repoSizeKb: 24349, languages: { "TypeScript": 6904539, "JavaScript": 5168567, "Shell": 116093, "Python": 109079, "Dockerfile": 2038 } },
     strengths: [
       "10,110 stars in ~10 weeks — extraordinary growth rate",
       "32 agents, 5 execution modes including Swarm and Ultrapilot",
@@ -6473,7 +6482,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     githubStars: "11K+",
     metrics: {
       stars: [
-        { date: "2026-03", value: 10545 },
+        { date: "2026-03", value: 11072 },
       ],
       mentionsPositive: [
         { date: "2026-03", value: 0 },
@@ -6512,13 +6521,13 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     verdict:
       "Provisional #2 in automation — architecturally differentiated as the auth/integration layer FOR AI agents. 27K stars but zero HN traction is an anomalous trust signal. Drops to #4-5 if independent usage evidence doesn't emerge. Use Composio inside n8n or alongside other workflow tools, not as a replacement.",
     relatedCategories: ["teams-of-agents", "automation"],
-    repoHealth: { lastPushAt: "2026-03-19T21:10:02Z", lastPushDays: 0, openIssues: 76, forks: 4483, archived: false, contributors: 44 },
-    daysOld: 755,
+    repoHealth: { lastPushAt: "2026-03-23T23:43:29Z", lastPushDays: 0, openIssues: 84, forks: 4489, archived: false, contributors: 44 },
+    daysOld: 759,
     complexity: 5,
     tags: ["agents", "orchestration", "automation"],
     skillType: "Connector",
     skillTier: "Orchestrator",
-    packageSize: { repoSizeKb: 311974, languages: { "TypeScript": 3152500, "Python": 988926, "Shell": 39001, "JavaScript": 32555, "Makefile": 1527, "Dockerfile": 994 } },
+    packageSize: { repoSizeKb: 312315, languages: { "TypeScript": 3160783, "Python": 988926, "Shell": 39001, "JavaScript": 32555, "Makefile": 1527, "Dockerfile": 994 } },
     strengths: [
       "850+ integrations via hosted MCP servers with managed OAuth — solves agent auth at scale",
       "27,441 stars, 857 commits/30d — highest development velocity in automation category",
@@ -6537,7 +6546,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     githubStars: "27K+",
     metrics: {
       stars: [
-        { date: "2026-03", value: 27444 },
+        { date: "2026-03", value: 27484 },
       ],
       mentionsPositive: [
         { date: "2026-03", value: 1 },
@@ -6643,13 +6652,13 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     docsUrl: "https://langchain-ai.github.io/langgraph/",
     productUrl: "https://www.langchain.com/langgraph",
     relatedCategories: ["teams-of-agents"],
-    repoHealth: { lastPushAt: "2026-03-20T00:41:36Z", lastPushDays: 0, openIssues: 456, forks: 4645, archived: false, contributors: 275 },
-    daysOld: 953,
+    repoHealth: { lastPushAt: "2026-03-23T22:35:40Z", lastPushDays: 0, openIssues: 470, forks: 4689, archived: false, contributors: 275 },
+    daysOld: 957,
     complexity: 5,
     tags: ["agents", "orchestration"],
     skillType: "Expertise",
     skillTier: "Composite",
-    packageSize: { repoSizeKb: 511595, languages: { "Python": 4401919, "Makefile": 15726, "TypeScript": 8335, "JavaScript": 3882 } },
+    packageSize: { repoSizeKb: 512209, languages: { "Python": 4403527, "Makefile": 15726, "TypeScript": 8335, "JavaScript": 3882 } },
     strengths: [
       "40.2M PyPI downloads/month — highest in category by 7×",
       "Independently-verified Fortune 500 deployments: LinkedIn, Uber, Replit, Elastic, Klarna, Cloudflare, Coinbase, Home Depot, Workday",
@@ -6666,7 +6675,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     githubStars: "27K+",
     metrics: {
       downloads: [
-        { date: "2026-03", value: 9901864 },
+        { date: "2026-03", value: 9805044 },
       ],
       stars: [
         { date: "2026-03", value: 26901 },
@@ -6743,13 +6752,13 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     docsUrl: "https://docs.crewai.com",
     productUrl: "https://www.crewai.com",
     relatedCategories: ["teams-of-agents"],
-    repoHealth: { lastPushAt: "2026-03-20T01:36:36Z", lastPushDays: 0, openIssues: 407, forks: 6293, archived: false, contributors: 284 },
-    daysOld: 875,
+    repoHealth: { lastPushAt: "2026-03-23T23:33:55Z", lastPushDays: 0, openIssues: 446, forks: 6356, archived: false, contributors: 285 },
+    daysOld: 878,
     complexity: 5,
     tags: ["agents", "orchestration"],
     skillType: "Connector",
     skillTier: "Orchestrator",
-    packageSize: { repoSizeKb: 218256, languages: { "Python": 7415226, "JavaScript": 83380, "CSS": 24684, "Jinja": 6549, "Dockerfile": 114 } },
+    packageSize: { repoSizeKb: 219819, languages: { "Python": 7503221, "JavaScript": 83380, "CSS": 24684, "Jinja": 6549, "Dockerfile": 114 } },
     strengths: [
       "5.7M PyPI downloads/month — 3× growth in 6 months",
       "Named Fortune 500 customers: PwC, IBM, Capgemini, NVIDIA, DocuSign (multi-source confirmed)",
@@ -6767,7 +6776,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     githubStars: "47K+",
     metrics: {
       downloads: [
-        { date: "2026-03", value: 1439037 },
+        { date: "2026-03", value: 1436578 },
       ],
       stars: [
         { date: "2026-03", value: 46591 },
@@ -6845,13 +6854,13 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     docsUrl: "https://openai.github.io/openai-agents-python/",
     productUrl: "https://platform.openai.com/docs/agents",
     relatedCategories: ["teams-of-agents"],
-    repoHealth: { lastPushAt: "2026-03-20T03:57:54Z", lastPushDays: 0, openIssues: 71, forks: 3295, archived: false, contributors: 230 },
-    daysOld: 374,
+    repoHealth: { lastPushAt: "2026-03-23T22:30:43Z", lastPushDays: 0, openIssues: 70, forks: 3316, archived: false, contributors: 232 },
+    daysOld: 377,
     complexity: 5,
     tags: ["agents", "orchestration"],
     skillType: "Expertise",
     skillTier: "Composite",
-    packageSize: { repoSizeKb: 21013, languages: { "Python": 4814276, "Shell": 7314, "Makefile": 1790, "PowerShell": 883 } },
+    packageSize: { repoSizeKb: 21081, languages: { "Python": 4865923, "Shell": 14978, "PowerShell": 6476, "Makefile": 1790 } },
     strengths: [
       "17.9M PyPI downloads/month — 3× CrewAI, closing on LangGraph",
       "Minimalist API: 4 primitives (Agents, Handoffs, Guardrails, Tracing) — learnable in an afternoon",
@@ -6869,7 +6878,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     githubStars: "20K+",
     metrics: {
       downloads: [
-        { date: "2026-03", value: 4621307 },
+        { date: "2026-03", value: 4555093 },
       ],
       stars: [
         { date: "2026-03", value: 20129 },
@@ -6925,13 +6934,13 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     docsUrl: "https://mastra.ai/docs",
     productUrl: "https://mastra.ai",
     relatedCategories: ["teams-of-agents"],
-    repoHealth: { lastPushAt: "2026-03-20T04:09:33Z", lastPushDays: 0, openIssues: 386, forks: 1755, archived: false, contributors: 358 },
-    daysOld: 590,
+    repoHealth: { lastPushAt: "2026-03-23T23:49:17Z", lastPushDays: 0, openIssues: 410, forks: 1777, archived: false, contributors: 358 },
+    daysOld: 594,
     complexity: 5,
     tags: ["agents", "orchestration"],
     skillType: "Expertise",
     skillTier: "Composite",
-    packageSize: { repoSizeKb: 1082320, languages: { "TypeScript": 34481742, "JavaScript": 254319, "CSS": 6272, "Shell": 4571, "HTML": 4078 } },
+    packageSize: { repoSizeKb: 1089259, languages: { "TypeScript": 34918364, "JavaScript": 251572, "CSS": 6272, "Shell": 4571, "HTML": 4146 } },
     strengths: [
       "2.0M npm downloads/month — only JS-native framework at this scale",
       "22,115 GitHub stars; perfect 52/52 weekly commit cadence; 15,971 total commits",
@@ -6949,7 +6958,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     githubStars: "22K+",
     metrics: {
       stars: [
-        { date: "2026-03", value: 22150 },
+        { date: "2026-03", value: 22260 },
       ],
       mentionsPositive: [
         { date: "2026-03", value: 9 },
@@ -7013,13 +7022,13 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     docsUrl: "https://google.github.io/adk-python/",
     productUrl: "https://cloud.google.com/vertex-ai/generative-ai/docs/adk",
     relatedCategories: ["teams-of-agents"],
-    repoHealth: { lastPushAt: "2026-03-19T23:54:01Z", lastPushDays: 0, openIssues: 609, forks: 3101, archived: false, contributors: 259 },
-    daysOld: 352,
+    repoHealth: { lastPushAt: "2026-03-23T23:04:37Z", lastPushDays: 0, openIssues: 625, forks: 3116, archived: false, contributors: 259 },
+    daysOld: 356,
     complexity: 5,
     tags: ["agents", "orchestration"],
     skillType: "Expertise",
     skillTier: "Composite",
-    packageSize: { repoSizeKb: 47839, languages: { "Python": 9476245, "Jupyter Notebook": 307012, "HTML": 59190, "Shell": 10177, "JavaScript": 1769, "Mako": 704 } },
+    packageSize: { repoSizeKb: 47934, languages: { "Python": 9523876, "Jupyter Notebook": 307012, "HTML": 59190, "Shell": 10696, "JavaScript": 1769, "Mako": 704 } },
     strengths: [
       "4.4M PyPI downloads/month — fastest absolute star growth (18.5K in <12 months)",
       "Multi-language: Python, TypeScript, Go, Java — widest language breadth in category",
@@ -7034,10 +7043,10 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "Bi-weekly release cadence may introduce instability",
       "Named customers from Google-controlled publications only",
     ],
-    githubStars: "18K+",
+    githubStars: "19K+",
     metrics: {
       downloads: [
-        { date: "2026-03", value: 1235218 },
+        { date: "2026-03", value: 1317823 },
       ],
       stars: [
         { date: "2026-03", value: 18476 },
@@ -7095,13 +7104,13 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     docsUrl: "https://strandsagents.com/latest/",
     productUrl: "https://aws.amazon.com/bedrock/agents/",
     relatedCategories: ["teams-of-agents"],
-    repoHealth: { lastPushAt: "2026-03-19T21:46:51Z", lastPushDays: 0, openIssues: 428, forks: 724, archived: false, contributors: 101 },
-    daysOld: 309,
+    repoHealth: { lastPushAt: "2026-03-23T07:59:46Z", lastPushDays: 0, openIssues: 440, forks: 733, archived: false, contributors: 102 },
+    daysOld: 313,
     complexity: 2,
     tags: ["agents", "orchestration"],
     skillType: "Connector",
     skillTier: "Composite",
-    packageSize: { repoSizeKb: 3382, languages: { "Python": 3712242 } },
+    packageSize: { repoSizeKb: 3329, languages: { "Python": 3712532 } },
     strengths: [
       "Official AWS SDK — supported tooling for Bedrock teams",
       "Internal AWS usage: Amazon Q Developer, AWS Glue, VPC Reachability Analyzer",
@@ -7115,10 +7124,10 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "AWS Bedrock lock-in — not model-agnostic",
       "All benchmark data from AWS-controlled publications, no third-party reproduction",
     ],
-    githubStars: "5.3K+",
+    githubStars: "5.4K+",
     metrics: {
       downloads: [
-        { date: "2026-03", value: 1218940 },
+        { date: "2026-03", value: 1258364 },
       ],
       stars: [
         { date: "2026-03", value: 5335 },
@@ -7173,8 +7182,8 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     docsUrl: "https://huggingface.co/docs/smolagents",
     productUrl: "https://huggingface.co/smolagents",
     relatedCategories: ["teams-of-agents"],
-    repoHealth: { lastPushAt: "2026-03-13T18:25:52Z", lastPushDays: 6, openIssues: 439, forks: 2380, archived: false, contributors: 199 },
-    daysOld: 469,
+    repoHealth: { lastPushAt: "2026-03-13T18:25:52Z", lastPushDays: 10, openIssues: 451, forks: 2392, archived: false, contributors: 199 },
+    daysOld: 473,
     complexity: 3,
     tags: ["agents", "orchestration"],
     skillType: "Expertise",
@@ -7195,7 +7204,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     githubStars: "26K+",
     metrics: {
       downloads: [
-        { date: "2026-03", value: 119999 },
+        { date: "2026-03", value: 115912 },
       ],
       stars: [
         { date: "2026-03", value: 26160 },
@@ -7239,13 +7248,13 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     docsUrl: "https://docs.n8n.io",
     productUrl: "https://n8n.io",
     relatedCategories: ["teams-of-agents", "automation"],
-    repoHealth: { lastPushAt: "2026-03-20T02:04:07Z", lastPushDays: 0, openIssues: 1423, forks: 55975, archived: false, contributors: 583 },
-    daysOld: 2462,
+    repoHealth: { lastPushAt: "2026-03-23T22:55:38Z", lastPushDays: 0, openIssues: 1433, forks: 56089, archived: false, contributors: 586 },
+    daysOld: 2466,
     complexity: 5,
     tags: ["agents", "orchestration", "automation"],
     skillType: "Connector",
     skillTier: "Orchestrator",
-    packageSize: { repoSizeKb: 424523, languages: { "TypeScript": 58017283, "Vue": 4671589, "SCSS": 327851, "JavaScript": 269176, "Python": 230535, "Handlebars": 67329, "Dockerfile": 12459, "HCL": 6777, "Shell": 2648, "Mermaid": 2535, "HTML": 2052, "Just": 1672, "Open Policy Agent": 450, "CSS": 356, "Rich Text Format": 267, "Batchfile": 71 } },
+    packageSize: { repoSizeKb: 426850, languages: { "TypeScript": 58604842, "Vue": 4709069, "SCSS": 329029, "JavaScript": 270171, "Python": 230535, "Handlebars": 75950, "Dockerfile": 12459, "HCL": 6777, "Shell": 2648, "Mermaid": 2535, "HTML": 2052, "Just": 1672, "Open Policy Agent": 450, "CSS": 356, "Rich Text Format": 267, "Batchfile": 71 } },
     strengths: [
       "179,860 GitHub stars — largest OSS workflow repo by 2×",
       "3,000+ enterprise customers, ~200,000 active users",
@@ -7257,10 +7266,10 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "AI agent features are a newer layer on a mature workflow platform — not a ground-up agent framework",
       "Visual/low-code paradigm does not replace code-first frameworks like LangGraph/CrewAI for complex agent architectures",
     ],
-    githubStars: "180K+",
+    githubStars: "181K+",
     metrics: {
       stars: [
-        { date: "2026-03", value: 180098 },
+        { date: "2026-03", value: 180706 },
       ],
       mentionsPositive: [
         { date: "2026-03", value: 27 },
@@ -7366,9 +7375,9 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     relatedCategories: ["teams-of-agents"],
     skillType: "Expertise",
     skillTier: "Composite",
-    repoHealth: { lastPushAt: "2026-03-20T00:32:28Z", lastPushDays: 0, openIssues: 586, forks: 1792, archived: false, contributors: 390 },
-    packageSize: { repoSizeKb: 167060, languages: { "Python": 8662062, "Shell": 12702, "TypeScript": 5744, "Makefile": 5396 } },
-    daysOld: 636,
+    repoHealth: { lastPushAt: "2026-03-23T22:43:40Z", lastPushDays: 0, openIssues: 604, forks: 1809, archived: false, contributors: 390 },
+    packageSize: { repoSizeKb: 168856, languages: { "Python": 8662602, "Shell": 12702, "TypeScript": 5744, "Makefile": 5396 } },
+    daysOld: 640,
     complexity: 5,
     tags: ["agents", "orchestration"],
     strengths: [
@@ -7387,7 +7396,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     githubStars: "16K+",
     metrics: {
       downloads: [
-        { date: "2026-03", value: 4216460 },
+        { date: "2026-03", value: 3924440 },
       ],
       stars: [
         { date: "2026-03", value: 15590 },
@@ -7447,9 +7456,9 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     relatedCategories: ["teams-of-agents"],
     skillType: "Expertise",
     skillTier: "Composite",
-    repoHealth: { lastPushAt: "2026-03-20T02:33:54Z", lastPushDays: 0, openIssues: 507, forks: 4517, archived: false, contributors: 404 },
-    packageSize: { repoSizeKb: 97956, languages: { "C#": 15916681, "Python": 7412977, "Jupyter Notebook": 342845, "TypeScript": 75580, "Bicep": 13093, "CSS": 12698, "PowerShell": 7156, "HTML": 6461, "Handlebars": 3360, "Makefile": 3335, "F#": 2611, "JavaScript": 1602, "Smalltalk": 676, "Shell": 332, "Batchfile": 162 } },
-    daysOld: 1116,
+    repoHealth: { lastPushAt: "2026-03-23T19:54:34Z", lastPushDays: 0, openIssues: 501, forks: 4520, archived: false, contributors: 404 },
+    packageSize: { repoSizeKb: 97155, languages: { "C#": 15860968, "Python": 7412977, "Jupyter Notebook": 342845, "TypeScript": 75580, "Bicep": 13093, "CSS": 12698, "PowerShell": 7156, "HTML": 6461, "Handlebars": 3360, "Makefile": 3335, "F#": 2611, "JavaScript": 1602, "Smalltalk": 676, "Shell": 332, "Batchfile": 162 } },
+    daysOld: 1120,
     complexity: 5,
     tags: ["agents", "orchestration"],
     strengths: [
@@ -7468,7 +7477,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     githubStars: "28K+",
     metrics: {
       downloads: [
-        { date: "2026-03", value: 666975 },
+        { date: "2026-03", value: 659455 },
       ],
       stars: [
         { date: "2026-03", value: 27511 },
@@ -7522,9 +7531,9 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     relatedCategories: ["teams-of-agents"],
     skillType: "Expertise",
     skillTier: "Composite",
-    repoHealth: { lastPushAt: "2026-03-19T23:58:42Z", lastPushDays: 0, openIssues: 677, forks: 5139, archived: false, contributors: 404 },
-    packageSize: { repoSizeKb: 277612, languages: { "Python": 23842942, "Shell": 40531, "Batchfile": 25295, "PowerShell": 5503, "HTML": 4468, "TeX": 3111 } },
-    daysOld: 1415,
+    repoHealth: { lastPushAt: "2026-03-23T21:48:56Z", lastPushDays: 0, openIssues: 696, forks: 5151, archived: false, contributors: 406 },
+    packageSize: { repoSizeKb: 277753, languages: { "Python": 23870224, "Shell": 40531, "Batchfile": 25295, "PowerShell": 5503, "HTML": 4468, "TeX": 3111 } },
+    daysOld: 1419,
     complexity: 5,
     tags: ["agents", "orchestration"],
     strengths: [
@@ -7542,7 +7551,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     githubStars: "39K+",
     metrics: {
       downloads: [
-        { date: "2026-03", value: 396256 },
+        { date: "2026-03", value: 432846 },
       ],
       stars: [
         { date: "2026-03", value: 38806 },
@@ -7587,9 +7596,9 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     relatedCategories: ["teams-of-agents"],
     skillType: "Expertise",
     skillTier: "Composite",
-    repoHealth: { lastPushAt: "2026-03-18T22:16:35Z", lastPushDays: 1, openIssues: 687, forks: 8425, archived: false, contributors: 532 },
-    packageSize: { repoSizeKb: 148617, languages: { "Python": 4305050, "C#": 1754112, "TypeScript": 868342, "HTML": 21662, "JavaScript": 15184, "Jupyter Notebook": 8972, "CSS": 8326, "Dockerfile": 4327, "PowerShell": 3167, "Shell": 2140 } },
-    daysOld: 944,
+    repoHealth: { lastPushAt: "2026-03-21T10:57:12Z", lastPushDays: 2, openIssues: 699, forks: 8438, archived: false, contributors: 532 },
+    packageSize: { repoSizeKb: 148843, languages: { "Python": 4305050, "C#": 1754112, "TypeScript": 868342, "HTML": 21662, "JavaScript": 15184, "Jupyter Notebook": 8972, "CSS": 8326, "Dockerfile": 4327, "PowerShell": 3167, "Shell": 2140 } },
+    daysOld: 948,
     complexity: 5,
     tags: ["agents", "orchestration"],
     strengths: [
@@ -7607,7 +7616,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     githubStars: "56K+",
     metrics: {
       downloads: [
-        { date: "2026-03", value: 357534 },
+        { date: "2026-03", value: 354661 },
       ],
       stars: [
         { date: "2026-03", value: 55898 },
@@ -7696,9 +7705,9 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     relatedCategories: ["teams-of-agents"],
     skillType: "Connector",
     skillTier: "Orchestrator",
-    repoHealth: { lastPushAt: "2026-03-20T03:22:55Z", lastPushDays: 0, openIssues: 219, forks: 3434, archived: false, contributors: 43 },
-    packageSize: { repoSizeKb: 396687, languages: { "TypeScript": 34526737, "MDX": 13811133, "CSS": 71861, "Python": 54070, "HTML": 35607, "JavaScript": 19634, "PLpgSQL": 18334, "Go Template": 16858, "Dockerfile": 11486, "Shell": 8655 } },
-    daysOld: 438,
+    repoHealth: { lastPushAt: "2026-03-23T23:47:40Z", lastPushDays: 0, openIssues: 222, forks: 3447, archived: false, contributors: 44 },
+    packageSize: { repoSizeKb: 414993, languages: { "TypeScript": 34619713, "MDX": 13811136, "CSS": 71861, "Python": 54070, "HTML": 35607, "JavaScript": 19634, "PLpgSQL": 18334, "Go Template": 16858, "Dockerfile": 11486, "Shell": 8655 } },
+    daysOld: 442,
     complexity: 5,
     tags: ["agents", "orchestration"],
     strengths: [
@@ -7715,7 +7724,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     githubStars: "27K+",
     metrics: {
       stars: [
-        { date: "2026-03", value: 27061 },
+        { date: "2026-03", value: 27148 },
       ],
       mentionsPositive: [
         { date: "2026-03", value: 2 },
@@ -8159,18 +8168,18 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     verdict:
       "The SkillBench play for social media. Strongest open-source signal in marketing (27.3K stars), HN traction (42pts Show HN), viable business ($17K MRR, ~472 subscribers, 80% margins). Agent CLI makes it skills-ecosystem-native. Narrow scope (social scheduling only) but dominates that lane.",
     relatedCategories: ["marketing"],
-    githubStars: "27K+",
+    githubStars: "28K+",
     metrics: {
       stars: [
-        { date: "2026-03", value: 27460 },
+        { date: "2026-03", value: 27552 },
       ],
       mentionsPositive: [
         { date: "2026-03", value: 3 },
       ],
     },
-    repoHealth: { lastPushAt: "2026-03-18T03:45:33Z", lastPushDays: 2, openIssues: 226, forks: 4851, archived: false, contributors: 65 },
-    packageSize: { repoSizeKb: 44209, languages: { "TypeScript": 2690454, "JavaScript": 539771, "CSS": 398701, "SCSS": 21561, "Shell": 6721 } },
-    daysOld: 985,
+    repoHealth: { lastPushAt: "2026-03-23T17:31:23Z", lastPushDays: 0, openIssues: 219, forks: 4871, archived: false, contributors: 66 },
+    packageSize: { repoSizeKb: 44665, languages: { "TypeScript": 2690909, "JavaScript": 539771, "CSS": 398701, "SCSS": 21561, "Shell": 6721 } },
+    daysOld: 989,
     complexity: 5,
     tags: ["marketing"],
     skillType: "Connector",
@@ -8308,9 +8317,9 @@ export const skills: Record<SkillSlug, SkillRecord> = {
         { date: "2026-03", value: 0 },
       ],
     },
-    repoHealth: { lastPushAt: "2026-03-17T08:30:58Z", lastPushDays: 2, openIssues: 0, forks: 9, archived: false, contributors: 4 },
+    repoHealth: { lastPushAt: "2026-03-17T08:30:58Z", lastPushDays: 6, openIssues: 0, forks: 9, archived: false, contributors: 4 },
     packageSize: { repoSizeKb: 1340, languages: { "TypeScript": 389883, "JavaScript": 5625, "Shell": 2211, "Dockerfile": 412 } },
-    daysOld: 163,
+    daysOld: 167,
     complexity: 4,
     tags: ["marketing"],
     skillType: "Connector",
@@ -8484,15 +8493,15 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     githubStars: "5.3K+",
     metrics: {
       stars: [
-        { date: "2026-03", value: 5301 },
+        { date: "2026-03", value: 5304 },
       ],
       mentionsPositive: [
         { date: "2026-03", value: 27 },
       ],
     },
-    repoHealth: { lastPushAt: "2026-03-19T12:58:25Z", lastPushDays: 0, openIssues: 95, forks: 189, archived: false, contributors: 60 },
-    packageSize: { repoSizeKb: 74504, languages: { "Go": 330959, "Makefile": 2501, "Dockerfile": 755 } },
-    daysOld: 3329,
+    repoHealth: { lastPushAt: "2026-03-20T19:41:04Z", lastPushDays: 3, openIssues: 96, forks: 192, archived: false, contributors: 60 },
+    packageSize: { repoSizeKb: 74507, languages: { "Go": 330959, "Makefile": 2501, "Dockerfile": 755 } },
+    daysOld: 3333,
     complexity: 4,
     tags: ["content", "writing", "docs"],
     skillType: "Guardian",
@@ -8575,15 +8584,15 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     githubStars: "10K+",
     metrics: {
       stars: [
-        { date: "2026-03", value: 10112 },
+        { date: "2026-03", value: 10134 },
       ],
       mentionsPositive: [
         { date: "2026-03", value: 2 },
       ],
     },
-    repoHealth: { lastPushAt: "2026-03-19T21:16:07Z", lastPushDays: 0, openIssues: 358, forks: 299, archived: false, contributors: 87 },
-    packageSize: { repoSizeKb: 36571, languages: { "Rust": 2965388, "TypeScript": 364731, "Svelte": 163203, "JavaScript": 33886, "Just": 24295, "HTML": 16430, "CSS": 9498, "TeX": 6702, "Kotlin": 5305, "PHP": 5271, "Typst": 3731, "Nix": 2893, "Clojure": 1869, "Solidity": 1755, "Dockerfile": 1509, "Shell": 1298, "Groovy": 1032, "Lua": 938, "Haskell": 918, "Java": 898, "Python": 694, "PowerShell": 497, "Zig": 451, "Ink": 399, "Ruby": 364, "C++": 326, "C": 96, "C#": 3 } },
-    daysOld: 880,
+    repoHealth: { lastPushAt: "2026-03-23T21:31:35Z", lastPushDays: 0, openIssues: 359, forks: 310, archived: false, contributors: 94 },
+    packageSize: { repoSizeKb: 37601, languages: { "Rust": 2997260, "TypeScript": 368010, "Svelte": 163203, "JavaScript": 33886, "Just": 24295, "HTML": 17151, "CSS": 9498, "TeX": 6704, "Kotlin": 5305, "PHP": 5271, "Typst": 3731, "Nix": 2893, "Clojure": 1869, "Solidity": 1755, "Dockerfile": 1509, "Shell": 1298, "Groovy": 1032, "Lua": 938, "Haskell": 918, "Java": 898, "Python": 694, "PowerShell": 497, "Zig": 451, "Ink": 399, "Ruby": 364, "C++": 326, "C": 96, "C#": 3 } },
+    daysOld: 883,
     complexity: 5,
     tags: ["content", "writing"],
     skillType: "Guardian",
@@ -8658,15 +8667,15 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     githubStars: "14K+",
     metrics: {
       stars: [
-        { date: "2026-03", value: 14184 },
+        { date: "2026-03", value: 14201 },
       ],
       mentionsPositive: [
         { date: "2026-03", value: 0 },
       ],
     },
-    repoHealth: { lastPushAt: "2026-03-19T20:30:48Z", lastPushDays: 0, openIssues: 2097, forks: 1490, archived: false, contributors: 269 },
-    packageSize: { repoSizeKb: 6118130, languages: { "Java": 11352429, "HTML": 731254, "Python": 95836, "Shell": 90020, "Perl": 82062, "Awk": 19779, "XSLT": 18181, "CSS": 9058, "Batchfile": 1823, "Lex": 1418, "Gnuplot": 750 } },
-    daysOld: 4606,
+    repoHealth: { lastPushAt: "2026-03-23T15:45:05Z", lastPushDays: 0, openIssues: 2097, forks: 1491, archived: false, contributors: 269 },
+    packageSize: { repoSizeKb: 6116278, languages: { "Java": 11352669, "HTML": 731254, "Python": 95836, "Shell": 90020, "Perl": 82062, "Awk": 19779, "XSLT": 18181, "CSS": 9058, "Batchfile": 1823, "Lex": 1418, "Gnuplot": 750 } },
+    daysOld: 4610,
     complexity: 5,
     tags: ["content", "writing"],
     skillType: "Guardian",
@@ -9043,9 +9052,9 @@ export const skills: Record<SkillSlug, SkillRecord> = {
         { date: "2026-03", value: 16 },
       ],
     },
-    repoHealth: { lastPushAt: "2024-11-27T17:45:46Z", lastPushDays: 477, openIssues: 28, forks: 216, archived: false, contributors: 45 },
+    repoHealth: { lastPushAt: "2024-11-27T17:45:46Z", lastPushDays: 481, openIssues: 28, forks: 216, archived: false, contributors: 45 },
     packageSize: { repoSizeKb: 5913, languages: { "JavaScript": 28001 } },
-    daysOld: 3869,
+    daysOld: 3873,
     complexity: 2,
     tags: ["content", "writing"],
     skillType: "Guardian",
@@ -9094,9 +9103,9 @@ export const skills: Record<SkillSlug, SkillRecord> = {
         { date: "2026-03", value: 1 },
       ],
     },
-    repoHealth: { lastPushAt: "2025-03-10T04:04:12Z", lastPushDays: 375, openIssues: 25, forks: 191, archived: false, contributors: 39 },
+    repoHealth: { lastPushAt: "2025-03-10T04:04:12Z", lastPushDays: 378, openIssues: 25, forks: 191, archived: false, contributors: 39 },
     packageSize: { repoSizeKb: 190, languages: { "JavaScript": 28530, "Dockerfile": 154 } },
-    daysOld: 4347,
+    daysOld: 4350,
     complexity: 2,
     tags: ["content", "writing"],
     skillType: "Guardian",
@@ -9138,15 +9147,15 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     githubStars: "4.5K+",
     metrics: {
       stars: [
-        { date: "2026-03", value: 4519 },
+        { date: "2026-03", value: 4520 },
       ],
       mentionsPositive: [
         { date: "2026-03", value: 0 },
       ],
     },
-    repoHealth: { lastPushAt: "2026-03-18T20:40:53Z", lastPushDays: 1, openIssues: 247, forks: 181, archived: false, contributors: 85 },
+    repoHealth: { lastPushAt: "2026-03-18T20:40:53Z", lastPushDays: 5, openIssues: 247, forks: 181, archived: false, contributors: 85 },
     packageSize: { repoSizeKb: 4925, languages: { "JavaScript": 249832, "HTML": 241413, "Python": 226760, "SCSS": 30668, "Nix": 5505, "CSS": 2558, "Ruby": 161, "Procfile": 83 } },
-    daysOld: 4083,
+    daysOld: 4086,
     complexity: 5,
     tags: ["content", "writing"],
     skillType: "Guardian",
@@ -9222,13 +9231,13 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     docsUrl: "https://brave.com/search/api/",
     productUrl: "https://brave.com/search/api/",
     relatedCategories: ["search-news"],
-    repoHealth: { lastPushAt: "2026-03-17T20:23:19Z", lastPushDays: 2, openIssues: 20, forks: 140, archived: false, contributors: 17 },
-    daysOld: 280,
+    repoHealth: { lastPushAt: "2026-03-23T01:10:33Z", lastPushDays: 0, openIssues: 20, forks: 141, archived: false, contributors: 17 },
+    daysOld: 284,
     complexity: 3,
     tags: ["search", "research"],
     skillType: "Connector",
     skillTier: "Composite",
-    packageSize: { repoSizeKb: 715, languages: { "TypeScript": 110876, "Dockerfile": 772, "JavaScript": 521 } },
+    packageSize: { repoSizeKb: 716, languages: { "TypeScript": 110876, "Dockerfile": 772, "JavaScript": 521 } },
     strengths: [
       "Independent index (40B pages) — only independent commercial search API after Bing API shutdown (Aug 2025)",
       "Fastest latency in independent benchmark (669ms)",
@@ -9244,10 +9253,10 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "No deep research endpoint — pure search only",
       "MCP server stars (799) lag Exa (4,031) and Firecrawl (5,809)",
     ],
-    githubStars: "800",
+    githubStars: "819",
     metrics: {
       stars: [
-        { date: "2026-03", value: 800 },
+        { date: "2026-03", value: 819 },
       ],
       mentionsPositive: [
         { date: "2026-03", value: 0 },
@@ -9347,13 +9356,13 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "#4 in search-news — the only option where no query ever leaves your infrastructure. 26,644 stars, active development. Not independently benchmarked on quality, but unmatched on privacy and cost.",
     docsUrl: "https://docs.searxng.org",
     relatedCategories: ["search-news"],
-    repoHealth: { lastPushAt: "2026-03-18T14:15:52Z", lastPushDays: 1, openIssues: 225, forks: 2623, archived: false, contributors: 335 },
-    daysOld: 1802,
+    repoHealth: { lastPushAt: "2026-03-23T13:56:41Z", lastPushDays: 0, openIssues: 229, forks: 2644, archived: false, contributors: 335 },
+    daysOld: 1806,
     complexity: 5,
     tags: ["search", "research"],
     skillType: "Connector",
     skillTier: "Composite",
-    packageSize: { repoSizeKb: 108851, languages: { "Python": 1697152, "Shell": 136715, "HTML": 117813, "Less": 87456, "TypeScript": 61352, "Emacs Lisp": 6854, "Dockerfile": 3786, "Makefile": 2718, "XSLT": 1426, "Edge": 750 } },
+    packageSize: { repoSizeKb: 111441, languages: { "Python": 1697608, "Shell": 136715, "HTML": 117813, "Less": 87456, "TypeScript": 61600, "Emacs Lisp": 6854, "Dockerfile": 3786, "Makefile": 2718, "XSLT": 1426, "Edge": 750 } },
     strengths: [
       "Zero cost — no API keys, no per-query charges",
       "Full data sovereignty — queries never leave your infrastructure",
@@ -9371,7 +9380,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     githubStars: "27K+",
     metrics: {
       stars: [
-        { date: "2026-03", value: 26817 },
+        { date: "2026-03", value: 27069 },
       ],
       mentionsPositive: [
         { date: "2026-03", value: 12 },
@@ -9544,8 +9553,8 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "#6 in search-news — effectively dead. No commits since May 2025 (10+ months). ReaderLM-v2 is strong for edge/on-device but hosted API only. Firecrawl is a strict superset. Do not recommend for new projects.",
     docsUrl: "https://jina.ai/reader",
     relatedCategories: ["search-news"],
-    repoHealth: { lastPushAt: "2025-05-08T07:21:34Z", lastPushDays: 315, openIssues: 126, forks: 780, archived: false, contributors: 7 },
-    daysOld: 709,
+    repoHealth: { lastPushAt: "2025-05-08T07:21:34Z", lastPushDays: 319, openIssues: 126, forks: 782, archived: false, contributors: 7 },
+    daysOld: 712,
     complexity: 4,
     tags: ["search", "research"],
     skillType: "Connector",
@@ -9566,7 +9575,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     githubStars: "10K+",
     metrics: {
       stars: [
-        { date: "2026-03", value: 10294 },
+        { date: "2026-03", value: 10350 },
       ],
       mentionsPositive: [
         { date: "2026-03", value: 0 },
@@ -9628,13 +9637,13 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     verdict:
       "#7 in search-news — the open-source self-hosted choice. 62K stars, Apache-2.0, actively maintained (v0.8.5 released 2026-03-18). ScrapeOps rates 'best open source' (7/10). Fork count nearly matches Firecrawl (6,353 vs 6,516) showing heavy dev usage. Wins on license, cost, and developer control.",
     relatedCategories: ["search-news"],
-    repoHealth: { lastPushAt: "2026-03-18T15:36:14Z", lastPushDays: 1, openIssues: 32, forks: 6353, archived: false, contributors: 57 },
-    daysOld: 679,
+    repoHealth: { lastPushAt: "2026-03-21T06:26:50Z", lastPushDays: 2, openIssues: 45, forks: 6383, archived: false, contributors: 57 },
+    daysOld: 683,
     complexity: 5,
     tags: ["search", "research"],
     skillType: "Connector",
     skillTier: "Atomic",
-    packageSize: { repoSizeKb: 149098, languages: { "Python": 3227112, "JavaScript": 10278, "Shell": 9301, "Dockerfile": 6178 } },
+    packageSize: { repoSizeKb: 149200, languages: { "Python": 3227112, "JavaScript": 10278, "Shell": 9301, "Dockerfile": 6178 } },
     strengths: [
       "Apache-2.0 license — best in category for enterprise embedding",
       "62,249 GitHub stars (#2 in category)",
@@ -9655,7 +9664,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     githubStars: "62K+",
     metrics: {
       downloads: [
-        { date: "2026-03", value: 367716 },
+        { date: "2026-03", value: 345494 },
       ],
       stars: [
         { date: "2026-03", value: 62250 },
@@ -10209,8 +10218,8 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     docsUrl: "https://www.hyperbrowser.ai/",
     productUrl: "https://www.hyperbrowser.ai/",
     relatedCategories: ["search-news"],
-    repoHealth: { lastPushAt: "2025-11-20T01:32:08Z", lastPushDays: 120, openIssues: 7, forks: 66, archived: false, contributors: 6 },
-    daysOld: 387,
+    repoHealth: { lastPushAt: "2025-11-20T01:32:08Z", lastPushDays: 123, openIssues: 7, forks: 66, archived: false, contributors: 6 },
+    daysOld: 391,
     complexity: 3,
     tags: ["search", "research"],
     skillType: "Connector",
@@ -10230,10 +10239,10 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "Only 5 contributors — low bus factor",
       "Early stage — no GitHub releases found",
     ],
-    githubStars: "750",
+    githubStars: "751",
     metrics: {
       stars: [
-        { date: "2026-03", value: 750 },
+        { date: "2026-03", value: 751 },
       ],
       mentionsPositive: [
         { date: "2026-03", value: 0 },
@@ -10283,8 +10292,8 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     docsUrl: "https://docs.scrapegraphai.com/api-reference/introduction",
     productUrl: "https://scrapegraphai.com/",
     relatedCategories: ["search-news"],
-    repoHealth: { lastPushAt: "2026-03-18T23:54:49Z", lastPushDays: 1, openIssues: 0, forks: 2021, archived: false, contributors: 117 },
-    daysOld: 782,
+    repoHealth: { lastPushAt: "2026-03-18T23:54:49Z", lastPushDays: 4, openIssues: 1, forks: 2023, archived: false, contributors: 117 },
+    daysOld: 786,
     complexity: 4,
     tags: ["search", "research"],
     skillType: "Connector",
@@ -10307,7 +10316,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     githubStars: "23K+",
     metrics: {
       stars: [
-        { date: "2026-03", value: 23057 },
+        { date: "2026-03", value: 23110 },
       ],
       mentionsPositive: [
         { date: "2026-03", value: 0 },
@@ -11233,15 +11242,15 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     githubStars: "14K+",
     metrics: {
       stars: [
-        { date: "2026-03", value: 14109 },
+        { date: "2026-03", value: 14118 },
       ],
       mentionsPositive: [
         { date: "2026-03", value: 0 },
       ],
     },
-    repoHealth: { lastPushAt: "2026-03-18T16:38:54Z", lastPushDays: 1, openIssues: 5, forks: 1366, archived: false, contributors: 31 },
-    packageSize: { repoSizeKb: 321388, languages: { "TypeScript": 10346946, "MDX": 306917, "Rust": 29003, "CSS": 24188, "Dockerfile": 6055, "HTML": 1627, "Shell": 403, "JavaScript": 292 } },
-    daysOld: 913,
+    repoHealth: { lastPushAt: "2026-03-23T21:57:49Z", lastPushDays: 0, openIssues: 6, forks: 1365, archived: false, contributors: 31 },
+    packageSize: { repoSizeKb: 320983, languages: { "TypeScript": 10635882, "MDX": 306917, "Rust": 29003, "CSS": 24188, "Dockerfile": 6055, "HTML": 1627, "Shell": 403, "JavaScript": 292 } },
+    daysOld: 917,
     complexity: 5,
     tags: ["business"],
     skillType: "Connector",
@@ -11293,18 +11302,18 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     verdict:
       "First MCP-native ERP server — directly relevant to Claude-native business workflows. 31 tools for invoicing, expenses, and business ops via natural language. But only 3 GitHub stars — too early to recommend for production. Worth watching for the MCP ecosystem angle.",
     relatedCategories: ["business"],
-    githubStars: "3",
+    githubStars: "4",
     metrics: {
       stars: [
-        { date: "2026-03", value: 3 },
+        { date: "2026-03", value: 4 },
       ],
       mentionsPositive: [
         { date: "2026-03", value: 0 },
       ],
     },
-    repoHealth: { lastPushAt: "2026-03-19T03:41:01Z", lastPushDays: 1, openIssues: 0, forks: 1, archived: false, contributors: 1 },
-    packageSize: { repoSizeKb: 218, languages: { "TypeScript": 168629, "JavaScript": 10509 } },
-    daysOld: 36,
+    repoHealth: { lastPushAt: "2026-03-21T04:01:48Z", lastPushDays: 2, openIssues: 0, forks: 1, archived: false, contributors: 1 },
+    packageSize: { repoSizeKb: 303, languages: { "TypeScript": 234262, "JavaScript": 10578 } },
+    daysOld: 39,
     complexity: 3,
     tags: ["business"],
     skillType: "Connector",
@@ -11354,9 +11363,9 @@ export const skills: Record<SkillSlug, SkillRecord> = {
         { date: "2026-03", value: 0 },
       ],
     },
-    repoHealth: { lastPushAt: "2025-10-04T12:47:08Z", lastPushDays: 166, openIssues: 0, forks: 5, archived: false, contributors: 1 },
+    repoHealth: { lastPushAt: "2025-10-04T12:47:08Z", lastPushDays: 170, openIssues: 0, forks: 6, archived: false, contributors: 1 },
     packageSize: { repoSizeKb: 43468, languages: { "TypeScript": 23170, "JavaScript": 3972, "HTML": 371, "CSS": 23 } },
-    daysOld: 282,
+    daysOld: 286,
     complexity: 2,
     tags: ["business"],
     skillType: "Generator",
@@ -11696,7 +11705,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     githubStars: "26K+",
     metrics: {
       downloads: [
-        { date: "2026-03", value: 15658 },
+        { date: "2026-03", value: 14191 },
       ],
       stars: [
         { date: "2026-03", value: 25846 },
@@ -11705,9 +11714,9 @@ export const skills: Record<SkillSlug, SkillRecord> = {
         { date: "2026-03", value: 5 },
       ],
     },
-    repoHealth: { lastPushAt: "2026-03-14T13:16:21Z", lastPushDays: 5, openIssues: 174, forks: 3436, archived: false, contributors: 234 },
+    repoHealth: { lastPushAt: "2026-03-14T13:16:21Z", lastPushDays: 9, openIssues: 192, forks: 3465, archived: false, contributors: 234 },
     packageSize: { repoSizeKb: 43291, languages: { "Python": 714770, "TypeScript": 361538, "JavaScript": 91982, "CSS": 81503, "HCL": 24833, "HTML": 23371, "Dockerfile": 4500, "Procfile": 146 } },
-    daysOld: 1042,
+    daysOld: 1046,
     complexity: 5,
     tags: ["research"],
     skillType: "Generator",
@@ -11778,18 +11787,18 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     verdict:
       "#5 in research. Open-source disruptor — HLE 32.9 exceeds OpenAI's 26.6 on the same benchmark, runs on consumer hardware via MoE. Called 'the DeepSeek moment for AI agents' by VentureBeat. Ranked below GPT Researcher due to less proven adoption data.",
     relatedCategories: ["research"],
-    githubStars: "18K+",
+    githubStars: "19K+",
     metrics: {
       stars: [
-        { date: "2026-03", value: 18486 },
+        { date: "2026-03", value: 18529 },
       ],
       mentionsPositive: [
         { date: "2026-03", value: 0 },
       ],
     },
-    repoHealth: { lastPushAt: "2026-02-27T13:12:11Z", lastPushDays: 20, openIssues: 81, forks: 1425, archived: false, contributors: 30 },
+    repoHealth: { lastPushAt: "2026-02-27T13:12:11Z", lastPushDays: 24, openIssues: 81, forks: 1429, archived: false, contributors: 30 },
     packageSize: { repoSizeKb: 309493, languages: { "Python": 1099417, "Shell": 25290, "Dockerfile": 1177 } },
-    daysOld: 434,
+    daysOld: 438,
     complexity: 4,
     tags: ["research"],
     skillType: "Generator",
@@ -11874,15 +11883,15 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     githubStars: "28K+",
     metrics: {
       stars: [
-        { date: "2026-03", value: 28016 },
+        { date: "2026-03", value: 28034 },
       ],
       mentionsPositive: [
         { date: "2026-03", value: 0 },
       ],
     },
-    repoHealth: { lastPushAt: "2025-09-30T18:07:21Z", lastPushDays: 170, openIssues: 93, forks: 2556, archived: false, contributors: 26 },
+    repoHealth: { lastPushAt: "2025-09-30T18:07:21Z", lastPushDays: 174, openIssues: 91, forks: 2555, archived: false, contributors: 26 },
     packageSize: { repoSizeKb: 8212, languages: { "Python": 455495 } },
-    daysOld: 725,
+    daysOld: 729,
     complexity: 2,
     tags: ["research"],
     skillType: "Generator",
@@ -12249,9 +12258,9 @@ export const skills: Record<SkillSlug, SkillRecord> = {
         { date: "2026-03", value: 0 },
       ],
     },
-    repoHealth: { lastPushAt: "2026-03-19T22:21:38Z", lastPushDays: 0, openIssues: 509, forks: 2530, archived: false, contributors: 433 },
-    packageSize: { repoSizeKb: 100991, languages: { "Java": 7181075, "Vue": 1912680, "TypeScript": 752476, "JavaScript": 110241, "SCSS": 67950, "PLpgSQL": 21288, "Shell": 10757, "Makefile": 9688, "Python": 8631, "Dockerfile": 3893, "Batchfile": 3701, "CSS": 2172, "HTML": 1555 } },
-    daysOld: 2399,
+    repoHealth: { lastPushAt: "2026-03-23T23:27:14Z", lastPushDays: 0, openIssues: 502, forks: 2531, archived: false, contributors: 434 },
+    packageSize: { repoSizeKb: 101076, languages: { "Java": 7188832, "Vue": 1903153, "TypeScript": 809175, "JavaScript": 110241, "SCSS": 67950, "PLpgSQL": 21288, "Shell": 10757, "Makefile": 9688, "Python": 8631, "Dockerfile": 3893, "Batchfile": 3701, "CSS": 2172, "HTML": 1555 } },
+    daysOld: 2403,
     complexity: 5,
     tags: ["automation"],
     strengths: [
@@ -12325,9 +12334,9 @@ export const skills: Record<SkillSlug, SkillRecord> = {
         { date: "2026-03", value: 0 },
       ],
     },
-    repoHealth: { lastPushAt: "2026-03-20T04:07:02Z", lastPushDays: 0, openIssues: 635, forks: 3435, archived: false, contributors: 419 },
-    packageSize: { repoSizeKb: 422904, languages: { "TypeScript": 28980871, "HTML": 175666, "CSS": 85182, "Shell": 31243, "JavaScript": 8458, "MDX": 6121, "Dockerfile": 5204, "Go Template": 1832 } },
-    daysOld: 1203,
+    repoHealth: { lastPushAt: "2026-03-23T18:53:12Z", lastPushDays: 0, openIssues: 611, forks: 3450, archived: false, contributors: 429 },
+    packageSize: { repoSizeKb: 426132, languages: { "TypeScript": 29242825, "HTML": 175666, "CSS": 85182, "Shell": 31243, "JavaScript": 8458, "MDX": 6121, "Dockerfile": 5204, "Go Template": 1832 } },
+    daysOld: 1206,
     complexity: 5,
     tags: ["automation"],
     strengths: [
@@ -12397,15 +12406,15 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     githubStars: "14K+",
     metrics: {
       downloads: [
-        { date: "2026-03", value: 258609 },
+        { date: "2026-03", value: 150041 },
       ],
       mentionsPositive: [
         { date: "2026-03", value: 0 },
       ],
     },
-    repoHealth: { lastPushAt: "2026-03-18T14:36:32Z", lastPushDays: 1, openIssues: 233, forks: 1093, archived: false, contributors: 132 },
-    packageSize: { repoSizeKb: 157913, languages: { "TypeScript": 14542913, "JavaScript": 87741, "Shell": 39478, "ANTLR": 27543, "CSS": 18875, "Go Template": 18236, "Dockerfile": 12044, "PLpgSQL": 11589, "Python": 8108 } },
-    daysOld: 1205,
+    repoHealth: { lastPushAt: "2026-03-23T17:58:12Z", lastPushDays: 0, openIssues: 236, forks: 1102, archived: false, contributors: 132 },
+    packageSize: { repoSizeKb: 157699, languages: { "TypeScript": 14800038, "JavaScript": 87741, "Shell": 39478, "ANTLR": 27543, "CSS": 18875, "Go Template": 18236, "Dockerfile": 12044, "PLpgSQL": 11589, "Python": 8108 } },
+    daysOld: 1209,
     complexity: 5,
     tags: ["automation"],
     strengths: [
@@ -12472,15 +12481,15 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     githubStars: "5.1K+",
     metrics: {
       downloads: [
-        { date: "2026-03", value: 499492 },
+        { date: "2026-03", value: 289024 },
       ],
       mentionsPositive: [
         { date: "2026-03", value: 27 },
       ],
     },
-    repoHealth: { lastPushAt: "2026-03-20T02:01:14Z", lastPushDays: 0, openIssues: 135, forks: 271, archived: false, contributors: 43 },
-    packageSize: { repoSizeKb: 359653, languages: { "Go": 6518192, "TypeScript": 4382866, "Lua": 198084, "CSS": 25820, "JavaScript": 14163, "Shell": 11355, "CUE": 11207, "MDX": 4360, "Makefile": 3945, "Nix": 3671, "Dockerfile": 1385, "Emacs Lisp": 612, "HTML": 126 } },
-    daysOld: 1746,
+    repoHealth: { lastPushAt: "2026-03-23T23:49:24Z", lastPushDays: 0, openIssues: 132, forks: 273, archived: false, contributors: 43 },
+    packageSize: { repoSizeKb: 360308, languages: { "Go": 6610587, "TypeScript": 4403381, "Lua": 198239, "CSS": 25820, "JavaScript": 14163, "Shell": 11355, "CUE": 11207, "MDX": 4360, "Makefile": 3945, "Nix": 3671, "Dockerfile": 1385, "Emacs Lisp": 612, "HTML": 126 } },
+    daysOld: 1750,
     complexity: 5,
     tags: ["automation"],
     strengths: [
@@ -12546,15 +12555,15 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     githubStars: "16K+",
     metrics: {
       downloads: [
-        { date: "2026-03", value: 51129 },
+        { date: "2026-03", value: 25500 },
       ],
       mentionsPositive: [
         { date: "2026-03", value: 0 },
       ],
     },
-    repoHealth: { lastPushAt: "2026-03-19T22:03:11Z", lastPushDays: 0, openIssues: 691, forks: 895, archived: false, contributors: 148 },
-    packageSize: { repoSizeKb: 379327, languages: { "HTML": 10834035, "Rust": 8209582, "Svelte": 7597740, "TypeScript": 4887248, "JavaScript": 617798, "Python": 465908, "Shell": 96992, "CSS": 86191, "PLpgSQL": 46329, "PowerShell": 25211, "Dockerfile": 25173, "Nix": 20071, "Nushell": 19449, "Go": 6261, "C": 2097, "RenderScript": 1 } },
-    daysOld: 1415,
+    repoHealth: { lastPushAt: "2026-03-23T23:44:18Z", lastPushDays: 0, openIssues: 700, forks: 896, archived: false, contributors: 148 },
+    packageSize: { repoSizeKb: 375581, languages: { "HTML": 10834035, "Rust": 8282558, "Svelte": 7602328, "TypeScript": 4987655, "JavaScript": 619186, "Python": 465908, "Shell": 97044, "CSS": 86191, "PLpgSQL": 46329, "PowerShell": 25211, "Dockerfile": 25173, "Nix": 20071, "Nushell": 19656, "Go": 6261, "C": 2097, "RenderScript": 1 } },
+    daysOld: 1418,
     complexity: 5,
     tags: ["automation"],
     strengths: [
@@ -12623,15 +12632,15 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     githubStars: "11K+",
     metrics: {
       downloads: [
-        { date: "2026-03", value: 43963 },
+        { date: "2026-03", value: 26729 },
       ],
       mentionsPositive: [
         { date: "2026-03", value: 0 },
       ],
     },
-    repoHealth: { lastPushAt: "2026-03-20T00:33:00Z", lastPushDays: 0, openIssues: 4366, forks: 5617, archived: false, contributors: 251 },
-    packageSize: { repoSizeKb: 670808, languages: { "JavaScript": 32218059, "TypeScript": 1314218, "Shell": 2894, "HTML": 568, "Makefile": 195 } },
-    daysOld: 2249,
+    repoHealth: { lastPushAt: "2026-03-23T23:18:36Z", lastPushDays: 0, openIssues: 4378, forks: 5621, archived: false, contributors: 253 },
+    packageSize: { repoSizeKb: 671335, languages: { "JavaScript": 32249179, "TypeScript": 1314218, "Shell": 2894, "HTML": 568, "Makefile": 195 } },
+    daysOld: 2252,
     complexity: 5,
     tags: ["automation"],
     strengths: [
@@ -12687,9 +12696,9 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     productUrl: "https://marimo.io",
     pypiPackage: "marimo",
     relatedCategories: ["data-analytics"],
-    repoHealth: { lastPushAt: "2026-03-19T22:44:10Z", lastPushDays: 0, openIssues: 578, forks: 982, archived: false, contributors: 261 },
-    packageSize: { repoSizeKb: 205998, languages: { "Python": 10520967, "TypeScript": 6460522, "CSS": 111505, "HTML": 60503, "JavaScript": 35553, "Shell": 14213, "Jupyter Notebook": 13594, "MDX": 9807, "Makefile": 4563, "Dockerfile": 1500, "TeX": 209, "Vim Script": 30 } },
-    daysOld: 948,
+    repoHealth: { lastPushAt: "2026-03-23T23:38:45Z", lastPushDays: 0, openIssues: 583, forks: 990, archived: false, contributors: 263 },
+    packageSize: { repoSizeKb: 206521, languages: { "Python": 10645468, "TypeScript": 6487119, "CSS": 111505, "HTML": 60503, "JavaScript": 36622, "Shell": 14213, "Jupyter Notebook": 13594, "MDX": 9807, "Makefile": 4563, "Dockerfile": 1500, "TeX": 209, "Vim Script": 30 } },
+    daysOld: 952,
     complexity: 5,
     strengths: [
       "Reactive DAG execution — only re-runs affected cells, guarantees code/outputs/state consistency",
@@ -12708,7 +12717,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     ],
     githubStars: "20K+",
     metrics: {
-      stars: [{ date: "2026-03", value: 443698 }],
+      stars: [{ date: "2026-03", value: 437647 }],
       downloads: [{ date: "2026-03", value: 1900000 }],
       mentionsPositive: [{ date: "2026-03", value: 0 }],
     },
@@ -12780,9 +12789,9 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "Best AI-powered data visualization tool — Microsoft Research quality, fully open source. Fills a niche no other tool covers: conversational, iterative chart building from raw data.",
     docsUrl: "https://github.com/microsoft/data-formulator#readme",
     relatedCategories: ["data-analytics"],
-    repoHealth: { lastPushAt: "2026-03-19T20:48:50Z", lastPushDays: 0, openIssues: 55, forks: 1382, archived: false, contributors: 27 },
-    packageSize: { repoSizeKb: 26748, languages: { "TypeScript": 3166931, "Python": 775311, "SCSS": 19702, "HTML": 8886, "CSS": 1193, "JavaScript": 1172, "Batchfile": 499, "Shell": 482 } },
-    daysOld: 650,
+    repoHealth: { lastPushAt: "2026-03-23T17:58:05Z", lastPushDays: 0, openIssues: 58, forks: 1383, archived: false, contributors: 27 },
+    packageSize: { repoSizeKb: 26666, languages: { "TypeScript": 3166931, "Python": 775311, "SCSS": 19702, "HTML": 8886, "CSS": 1193, "JavaScript": 1172, "Batchfile": 499, "Shell": 482 } },
+    daysOld: 654,
     complexity: 5,
     strengths: [
       "Microsoft Research backing with MIT license — best combo of institutional credibility and open access",
@@ -12799,7 +12808,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     ],
     githubStars: "15K+",
     metrics: {
-      stars: [{ date: "2026-03", value: 15139 }],
+      stars: [{ date: "2026-03", value: 15162 }],
       mentionsPositive: [{ date: "2026-03", value: 0 }],
     },
     evidence: [
@@ -12845,9 +12854,9 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     productUrl: "https://evidence.dev",
     npmPackage: "@evidence-dev/evidence",
     relatedCategories: ["data-analytics"],
-    repoHealth: { lastPushAt: "2026-02-18T20:43:42Z", lastPushDays: 29, openIssues: 257, forks: 328, archived: false, contributors: 76 },
+    repoHealth: { lastPushAt: "2026-02-18T20:43:42Z", lastPushDays: 33, openIssues: 257, forks: 328, archived: false, contributors: 76 },
     packageSize: { repoSizeKb: 296488, languages: { "JavaScript": 1057201, "Svelte": 812891, "TypeScript": 144094, "CSS": 20544, "HTML": 5026 } },
-    daysOld: 1758,
+    daysOld: 1761,
     complexity: 5,
     strengths: [
       "SQL + Markdown authoring — no JS/Python required",
@@ -12864,7 +12873,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     ],
     githubStars: "6.0K+",
     metrics: {
-      stars: [{ date: "2026-03", value: 17605 }],
+      stars: [{ date: "2026-03", value: 11075 }],
       downloads: [{ date: "2026-03", value: 7700 }],
       mentionsPositive: [{ date: "2026-03", value: 0 }],
     },
@@ -12908,9 +12917,9 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     productUrl: "https://observablehq.com/framework/",
     npmPackage: "@observablehq/framework",
     relatedCategories: ["data-analytics"],
-    repoHealth: { lastPushAt: "2026-03-02T21:46:55Z", lastPushDays: 17, openIssues: 178, forks: 187, archived: false, contributors: 39 },
+    repoHealth: { lastPushAt: "2026-03-02T21:46:55Z", lastPushDays: 21, openIssues: 178, forks: 188, archived: false, contributors: 39 },
     packageSize: { repoSizeKb: 44439, languages: { "TypeScript": 744508, "HTML": 179478, "JavaScript": 104711, "CSS": 40482, "Go Template": 8127, "Shell": 252, "Python": 58, "R": 17 } },
-    daysOld: 904,
+    daysOld: 908,
     complexity: 5,
     strengths: [
       "D3.js lineage — strongest visualization pedigree in the category",
@@ -12926,7 +12935,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     ],
     githubStars: "3.4K+",
     metrics: {
-      stars: [{ date: "2026-03", value: 3825 }],
+      stars: [{ date: "2026-03", value: 3464 }],
       downloads: [{ date: "2026-03", value: 16700 }],
       mentionsPositive: [{ date: "2026-03", value: 0 }],
     },
@@ -12973,9 +12982,9 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     productUrl: "https://streamlit.io",
     pypiPackage: "streamlit",
     relatedCategories: ["data-analytics"],
-    repoHealth: { lastPushAt: "2026-03-20T02:40:49Z", lastPushDays: 0, openIssues: 1308, forks: 4149, archived: false, contributors: 319 },
-    packageSize: { repoSizeKb: 917831, languages: { "Python": 10100807, "TypeScript": 6433959, "JavaScript": 38145, "Makefile": 29625, "Shell": 9779, "HTML": 9296, "SCSS": 3714, "Dockerfile": 1121, "CSS": 146 } },
-    daysOld: 2400,
+    repoHealth: { lastPushAt: "2026-03-23T23:07:38Z", lastPushDays: 0, openIssues: 1306, forks: 4157, archived: false, contributors: 319 },
+    packageSize: { repoSizeKb: 918328, languages: { "Python": 10150073, "TypeScript": 6454217, "JavaScript": 38019, "Makefile": 29633, "Shell": 9779, "HTML": 9296, "SCSS": 3714, "Dockerfile": 1121, "CSS": 146 } },
+    daysOld: 2403,
     complexity: 5,
     strengths: [
       "Dominant market position: 44K stars, 31.8M monthly downloads, 319 contributors",
@@ -12991,7 +13000,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     ],
     githubStars: "44K+",
     metrics: {
-      stars: [{ date: "2026-03", value: 7094945 }],
+      stars: [{ date: "2026-03", value: 7083926 }],
       downloads: [{ date: "2026-03", value: 31800000 }],
       mentionsPositive: [{ date: "2026-03", value: 0 }],
     },
@@ -13033,9 +13042,9 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     docsUrl: "https://github.com/plexe-ai/plexe#readme",
     pypiPackage: "plexe",
     relatedCategories: ["data-analytics"],
-    repoHealth: { lastPushAt: "2026-03-06T11:41:05Z", lastPushDays: 13, openIssues: 13, forks: 253, archived: false, contributors: 9 },
+    repoHealth: { lastPushAt: "2026-03-06T11:41:05Z", lastPushDays: 17, openIssues: 14, forks: 253, archived: false, contributors: 9 },
     packageSize: { repoSizeKb: 8787, languages: { "Python": 932306, "Makefile": 18758, "Dockerfile": 5499, "Shell": 2427 } },
-    daysOld: 438,
+    daysOld: 442,
     complexity: 5,
     strengths: [
       "Uniquely differentiated: natural language → trained ML model — no other tool does this",
@@ -13052,7 +13061,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     ],
     githubStars: "2.6K+",
     metrics: {
-      stars: [{ date: "2026-03", value: 388 }],
+      stars: [{ date: "2026-03", value: 377 }],
       downloads: [{ date: "2026-03", value: 2800 }],
       mentionsPositive: [{ date: "2026-03", value: 0 }],
     },
@@ -13087,9 +13096,9 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "High name recognition but stale and problematic. 5 months without commits, documented hallucination risk, custom license. Good for quick throwaway exploration only — not suitable for anything where correctness matters.",
     pypiPackage: "pandasai",
     relatedCategories: ["data-analytics"],
-    repoHealth: { lastPushAt: "2025-10-28T10:02:13Z", lastPushDays: 142, openIssues: 22, forks: 2295, archived: false, contributors: 112 },
+    repoHealth: { lastPushAt: "2025-10-28T10:02:13Z", lastPushDays: 146, openIssues: 21, forks: 2297, archived: false, contributors: 112 },
     packageSize: { repoSizeKb: 57432, languages: { "Python": 735019, "Makefile": 3843, "Dockerfile": 299 } },
-    daysOld: 1062,
+    daysOld: 1066,
     complexity: 4,
     strengths: [
       "High name recognition — 23.4K stars, 263K monthly downloads",
@@ -13107,7 +13116,7 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     ],
     githubStars: "23K+",
     metrics: {
-      stars: [{ date: "2026-03", value: 38014 }],
+      stars: [{ date: "2026-03", value: 35396 }],
       downloads: [{ date: "2026-03", value: 263000 }],
       mentionsPositive: [{ date: "2026-03", value: 0 }],
     },
@@ -13157,15 +13166,15 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     githubStars: "11K+",
     metrics: {
       downloads: [
-        { date: "2026-03", value: 309170 },
+        { date: "2026-03", value: 202229 },
       ],
       mentionsPositive: [
         { date: "2026-03", value: 0 },
       ],
     },
-    repoHealth: { lastPushAt: "2026-03-20T03:00:20Z", lastPushDays: 0, openIssues: 3, forks: 629, archived: false, contributors: 159 },
-    packageSize: { repoSizeKb: 128904, languages: { "TypeScript": 2038649, "MDX": 453589, "CSS": 64829, "JavaScript": 24307, "Python": 13180, "Shell": 1985, "Go": 529, "C#": 452 } },
-    daysOld: 990,
+    repoHealth: { lastPushAt: "2026-03-23T18:19:09Z", lastPushDays: 0, openIssues: 4, forks: 638, archived: false, contributors: 160 },
+    packageSize: { repoSizeKb: 128707, languages: { "TypeScript": 2040932, "MDX": 456510, "CSS": 64829, "JavaScript": 24307, "Python": 13180, "Shell": 1985, "Go": 529, "C#": 452 } },
+    daysOld: 994,
     strengths: [
       "Fastest-growing docs framework — 3x YoY npm growth (309K/week)",
       "Exceptional maintenance: 5 open issues for 11K stars",
@@ -13237,18 +13246,18 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     verdict:
       "The developer experience leader. Zero client-side JS by default, Go-compiled dev server starts in half the time of Docusaurus. 8.1K stars, 200K npm/week (doubled YoY), 283 contributors. Real migration trend from Docusaurus (Distr, W3C). Critical gap: no built-in versioned docs.",
     relatedCategories: ["documentation"],
-    githubStars: "8.1K+",
+    githubStars: "8.2K+",
     metrics: {
       downloads: [
-        { date: "2026-03", value: 200375 },
+        { date: "2026-03", value: 120144 },
       ],
       mentionsPositive: [
         { date: "2026-03", value: 0 },
       ],
     },
-    repoHealth: { lastPushAt: "2026-03-19T18:32:59Z", lastPushDays: 0, openIssues: 30, forks: 923, archived: false, contributors: 295 },
-    packageSize: { repoSizeKb: 28229, languages: { "TypeScript": 1008547, "Astro": 105830, "CSS": 33798, "HTML": 24347, "JavaScript": 15242, "MDX": 8129, "Dockerfile": 408 } },
-    daysOld: 1099,
+    repoHealth: { lastPushAt: "2026-03-23T18:38:38Z", lastPushDays: 0, openIssues: 28, forks: 928, archived: false, contributors: 296 },
+    packageSize: { repoSizeKb: 28151, languages: { "TypeScript": 1009274, "Astro": 105830, "CSS": 33798, "HTML": 24347, "JavaScript": 15242, "MDX": 8129, "Dockerfile": 408 } },
+    daysOld: 1103,
     strengths: [
       "Zero client-side JavaScript by default — performance king",
       "Go-compiled dev server — fastest startup in the category",
@@ -13319,15 +13328,15 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     githubStars: "64K+",
     metrics: {
       downloads: [
-        { date: "2026-03", value: 765169 },
+        { date: "2026-03", value: 414355 },
       ],
       mentionsPositive: [
         { date: "2026-03", value: 0 },
       ],
     },
-    repoHealth: { lastPushAt: "2026-03-20T00:23:43Z", lastPushDays: 0, openIssues: 360, forks: 9787, archived: false, contributors: 1308 },
-    packageSize: { repoSizeKb: 1044946, languages: { "TypeScript": 3005314, "JavaScript": 62547, "CSS": 56365, "XSLT": 6685, "AppleScript": 2898, "EJS": 513 } },
-    daysOld: 3194,
+    repoHealth: { lastPushAt: "2026-03-20T17:56:47Z", lastPushDays: 3, openIssues: 356, forks: 9783, archived: false, contributors: 1308 },
+    packageSize: { repoSizeKb: 1045668, languages: { "TypeScript": 3005314, "JavaScript": 62547, "CSS": 56365, "XSLT": 6685, "AppleScript": 2898, "EJS": 513 } },
+    daysOld: 3198,
     strengths: [
       "Largest docs framework by stars (64.2K) and downloads (765K npm/week)",
       "Built-in versioned docs — battle-tested at scale",
@@ -13393,15 +13402,15 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     githubStars: "3.6K+",
     metrics: {
       downloads: [
-        { date: "2026-03", value: 89216 },
+        { date: "2026-03", value: 52701 },
       ],
       mentionsPositive: [
         { date: "2026-03", value: 13 },
       ],
     },
-    repoHealth: { lastPushAt: "2026-03-20T04:07:11Z", lastPushDays: 0, openIssues: 367, forks: 291, archived: false, contributors: 163 },
-    packageSize: { repoSizeKb: 2685745, languages: { "TypeScript": 22815820, "Python": 1901989, "Java": 1857748, "MDX": 1110628, "Go": 573649, "C#": 464753, "Rust": 235753, "PHP": 167426, "JavaScript": 139000, "Swift": 114040, "Ruby": 84289, "Shell": 25599, "Dockerfile": 21704, "PowerShell": 1023, "Go Template": 739, "Makefile": 443, "CSS": 212 } },
-    daysOld: 1448,
+    repoHealth: { lastPushAt: "2026-03-23T22:00:47Z", lastPushDays: 0, openIssues: 344, forks: 291, archived: false, contributors: 164 },
+    packageSize: { repoSizeKb: 2694157, languages: { "TypeScript": 23028923, "Python": 1941795, "Java": 1862632, "MDX": 1110628, "C#": 620487, "Go": 578179, "Rust": 258413, "PHP": 167426, "JavaScript": 145814, "Swift": 114040, "Ruby": 84289, "Shell": 25167, "Dockerfile": 23316, "PowerShell": 1023, "Go Template": 739, "Makefile": 443, "CSS": 212 } },
+    daysOld: 1452,
     strengths: [
       "Only tool that generates both docs AND production SDKs (9 languages) from a single spec",
       "Acquired by Postman — access to 500K+ companies (98% of Fortune 500)",
@@ -13526,15 +13535,15 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     githubStars: "26K+",
     metrics: {
       downloads: [
-        { date: "2026-03", value: 1155512 },
+        { date: "2026-03", value: 592825 },
       ],
       mentionsPositive: [
         { date: "2026-03", value: 0 },
       ],
     },
-    repoHealth: { lastPushAt: "2026-02-07T06:18:05Z", lastPushDays: 40, openIssues: 437, forks: 2388, archived: false, contributors: 228 },
+    repoHealth: { lastPushAt: "2026-02-07T06:18:05Z", lastPushDays: 44, openIssues: 437, forks: 2388, archived: false, contributors: 228 },
     packageSize: { repoSizeKb: 62450, languages: { "TypeScript": 545922, "JavaScript": 5788, "Shell": 2516, "HTML": 1974, "Dockerfile": 1731 } },
-    daysOld: 3793,
+    daysOld: 3797,
     strengths: [
       "1.15M npm/week — highest raw download count for any API docs renderer",
       "25.6K stars — massive installed base",
@@ -13599,15 +13608,15 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     githubStars: "26K+",
     metrics: {
       downloads: [
-        { date: "2026-03", value: 4283289 },
+        { date: "2026-03", value: 4195490 },
       ],
       mentionsPositive: [
         { date: "2026-03", value: 0 },
       ],
     },
-    repoHealth: { lastPushAt: "2026-03-19T15:41:17Z", lastPushDays: 0, openIssues: 1, forks: 4056, archived: false, contributors: 330 },
-    packageSize: { repoSizeKb: 146481, languages: { "Python": 924991, "HTML": 590371, "TypeScript": 512260, "SCSS": 289498, "JavaScript": 22878, "CSS": 10155, "Dockerfile": 3000 } },
-    daysOld: 3703,
+    repoHealth: { lastPushAt: "2026-03-22T15:57:47Z", lastPushDays: 1, openIssues: 1, forks: 4058, archived: false, contributors: 330 },
+    packageSize: { repoSizeKb: 146512, languages: { "Python": 924991, "HTML": 590371, "TypeScript": 512260, "SCSS": 289498, "JavaScript": 22878, "CSS": 10155, "Dockerfile": 3000 } },
+    daysOld: 3707,
     strengths: [
       "4.2M PyPI weekly downloads — highest raw download count of any docs tool globally",
       "26.3K stars — massive community",
@@ -13671,15 +13680,15 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     githubStars: "29K+",
     metrics: {
       downloads: [
-        { date: "2026-03", value: 118813 },
+        { date: "2026-03", value: 63952 },
       ],
       mentionsPositive: [
         { date: "2026-03", value: 0 },
       ],
     },
-    repoHealth: { lastPushAt: "2026-03-17T14:00:41Z", lastPushDays: 2, openIssues: 1376, forks: 9262, archived: false, contributors: 615 },
-    packageSize: { repoSizeKb: 641501, languages: { "JavaScript": 1717152, "SCSS": 75303, "HTML": 13360, "Shell": 4695, "Dockerfile": 1736, "CSS": 326 } },
-    daysOld: 5361,
+    repoHealth: { lastPushAt: "2026-03-21T10:27:54Z", lastPushDays: 2, openIssues: 1377, forks: 9260, archived: false, contributors: 615 },
+    packageSize: { repoSizeKb: 642146, languages: { "JavaScript": 1717152, "SCSS": 75303, "HTML": 13360, "Shell": 4695, "Dockerfile": 1736, "CSS": 326 } },
+    daysOld: 5365,
     strengths: [
       "Universal standard — every API docs tool benchmarks against it",
       "28.7K stars, 603K npm/week combined (react + vanilla)",
@@ -13838,9 +13847,9 @@ export const skills: Record<SkillSlug, SkillRecord> = {
         { date: "2026-03", value: 0 },
       ],
     },
-    repoHealth: { lastPushAt: "2026-03-19T15:52:32Z", lastPushDays: 0, openIssues: 62, forks: 2003, archived: false, contributors: 232 },
-    packageSize: { repoSizeKb: 90025, languages: { "Python": 2116838, "TypeScript": 1295602, "PowerShell": 48940, "Shell": 39418, "CSS": 22373, "JavaScript": 6500, "HTML": 6133, "Dockerfile": 3164 } },
-    daysOld: 1141,
+    repoHealth: { lastPushAt: "2026-03-23T20:53:57Z", lastPushDays: 0, openIssues: 66, forks: 2007, archived: false, contributors: 232 },
+    packageSize: { repoSizeKb: 90189, languages: { "Python": 2116838, "TypeScript": 1295602, "PowerShell": 48940, "Shell": 39418, "CSS": 22373, "JavaScript": 6500, "HTML": 6133, "Dockerfile": 3164 } },
+    daysOld: 1145,
     strengths: [
       "17.8K stars — strong community signal",
       "256pts Show HN — strongest HN reception in documentation category",
@@ -13896,15 +13905,15 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     githubStars: "14K+",
     metrics: {
       downloads: [
-        { date: "2026-03", value: 113419 },
+        { date: "2026-03", value: 67340 },
       ],
       mentionsPositive: [
         { date: "2026-03", value: 10 },
       ],
     },
-    repoHealth: { lastPushAt: "2026-03-17T21:03:17Z", lastPushDays: 2, openIssues: 313, forks: 1413, archived: false, contributors: 188 },
+    repoHealth: { lastPushAt: "2026-03-17T21:03:17Z", lastPushDays: 6, openIssues: 313, forks: 1412, archived: false, contributors: 188 },
     packageSize: { repoSizeKb: 40791, languages: { "TypeScript": 595535, "CSS": 16611, "JavaScript": 1388, "MDX": 332 } },
-    daysOld: 2103,
+    daysOld: 2107,
     strengths: [
       "13.7K stars — established community",
       "113K npm/week — still widely used",
@@ -13949,9 +13958,9 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "#1 SAST skill. Best-in-class OSS SAST with official MCP server. 46% vuln detection in DryRun benchmark (vs SonarQube 19%). AST-based rules are transparent and auditable. Rising mindshare (1.6% → 2.6%). LinkedIn rebuilt SAST pipeline around it. The default recommendation for code scanning via AI agents.",
     relatedCategories: ["security"],
     githubStars: "641",
-    repoHealth: { lastPushAt: "2025-10-28T22:32:31Z", lastPushDays: 142, openIssues: 28, forks: 57, archived: true, contributors: 18 },
+    repoHealth: { lastPushAt: "2025-10-28T22:32:31Z", lastPushDays: 146, openIssues: 28, forks: 57, archived: true, contributors: 18 },
     packageSize: { repoSizeKb: 950, languages: { "Python": 63713, "Makefile": 4004, "Dockerfile": 1367, "Smarty": 855 } },
-    daysOld: 367,
+    daysOld: 371,
     complexity: 3,
     strengths: [
       "Official MCP server — first-class agent integration",
@@ -14064,9 +14073,9 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "#3 SAST. Best for GitHub-native shops — zero extra setup via the official GitHub MCP Server. Copilot Autofix auto-generates fixes from CodeQL alerts. GitHub Security Lab Taskflow Agent found ~30 real CVEs. If you're all-in on GitHub, this jumps to #1.",
     relatedCategories: ["security", "coding-clis"],
     githubStars: "28K+",
-    repoHealth: { lastPushAt: "2026-03-19T12:47:46Z", lastPushDays: 0, openIssues: 315, forks: 3773, archived: false, contributors: 112 },
-    packageSize: { repoSizeKb: 52028, languages: { "Go": 1854172, "TypeScript": 40996, "Shell": 34146, "Dockerfile": 1632, "HTML": 1338 } },
-    daysOld: 380,
+    repoHealth: { lastPushAt: "2026-03-23T18:00:14Z", lastPushDays: 0, openIssues: 314, forks: 3798, archived: false, contributors: 112 },
+    packageSize: { repoSizeKb: 52038, languages: { "Go": 1854172, "TypeScript": 40996, "Shell": 34146, "Dockerfile": 1632, "HTML": 1338 } },
+    daysOld: 384,
     complexity: 5,
     strengths: [
       "Zero extra setup for GitHub users — CodeQL alerts flow through GitHub MCP Server",
@@ -14197,9 +14206,9 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "#1 secret detection. Purpose-built secret scanning MCP with 500+ detectors and hard merge gates for AI-generated code. State of Secrets Sprawl 2026 report (81% surge in AI-service key leaks, 24,008 secrets in MCP configs) is the definitive source on the problem. The default recommendation for secret scanning in agent workflows.",
     relatedCategories: ["security"],
     githubStars: "34",
-    repoHealth: { lastPushAt: "2026-03-16T15:46:04Z", lastPushDays: 3, openIssues: 13, forks: 11, archived: false, contributors: 8 },
-    packageSize: { repoSizeKb: 1418, languages: { "Python": 692923, "Dockerfile": 2603, "Makefile": 1460, "Shell": 145 } },
-    daysOld: 309,
+    repoHealth: { lastPushAt: "2026-03-23T12:45:30Z", lastPushDays: 0, openIssues: 15, forks: 12, archived: false, contributors: 8 },
+    packageSize: { repoSizeKb: 1538, languages: { "Python": 692927, "Dockerfile": 2603, "Makefile": 1505, "Shell": 145 } },
+    daysOld: 313,
     complexity: 5,
     strengths: [
       "500+ secret detectors — broadest coverage in the category",
@@ -14251,9 +14260,9 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "Best for credential verification in CI/CD pipelines. 18K+ stars, 800+ secret types, and unique active credential verification (tells you which leaks are still dangerous). Scans beyond git (S3, Docker, Slack). No official MCP server is the gap — use in CI/CD rather than agent workflows.",
     relatedCategories: ["security"],
     githubStars: "25K+",
-    repoHealth: { lastPushAt: "2026-03-19T20:36:11Z", lastPushDays: 0, openIssues: 397, forks: 2262, archived: false, contributors: 183 },
-    packageSize: { repoSizeKb: 46596, languages: { "Go": 10802982, "Shell": 15060, "Makefile": 1956, "Dockerfile": 621, "Gnuplot": 264 } },
-    daysOld: 3365,
+    repoHealth: { lastPushAt: "2026-03-23T22:43:08Z", lastPushDays: 0, openIssues: 399, forks: 2269, archived: false, contributors: 183 },
+    packageSize: { repoSizeKb: 46660, languages: { "Go": 10803726, "Shell": 15060, "Makefile": 1956, "Dockerfile": 621, "Gnuplot": 264 } },
+    daysOld: 3369,
     complexity: 5,
     strengths: [
       "18K+ stars — strong community trust",
@@ -14293,10 +14302,10 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     verdict:
       "Best pre-commit secret scanner. 24.4K stars — most-starred in the category. 150+ patterns, fastest scanner. The community default. No official MCP server — use as pre-commit hook, not agent integration.",
     relatedCategories: ["security"],
-    githubStars: "25K+",
-    repoHealth: { lastPushAt: "2026-03-12T15:30:50Z", lastPushDays: 7, openIssues: 352, forks: 1964, archived: false, contributors: 232 },
-    packageSize: { repoSizeKb: 6362, languages: { "Go": 693202, "Go Template": 137825, "Shell": 2496, "Makefile": 831, "Python": 769, "Dockerfile": 463 } },
-    daysOld: 2973,
+    githubStars: "26K+",
+    repoHealth: { lastPushAt: "2026-03-21T02:23:42Z", lastPushDays: 2, openIssues: 349, forks: 1967, archived: false, contributors: 232 },
+    packageSize: { repoSizeKb: 6375, languages: { "Go": 693202, "Go Template": 137825, "Shell": 2496, "Makefile": 831, "Python": 769, "Dockerfile": 463 } },
+    daysOld: 2977,
     complexity: 5,
     strengths: [
       "24.4K stars — most-starred secret scanner",
@@ -14387,9 +14396,9 @@ export const skills: Record<SkillSlug, SkillRecord> = {
       "#2 agent/MCP security scanner. Most comprehensive OSS red teaming tool — ClawScan, Agent Scan, Skills Scan, MCP scan, jailbreak eval. 3,264 stars (highest in agent security). 43 AI framework components, 589 CVEs cataloged. Best for OSS-first teams wanting breadth without commercial dependencies.",
     relatedCategories: ["security"],
     githubStars: "3.3K+",
-    repoHealth: { lastPushAt: "2026-03-20T03:39:55Z", lastPushDays: 0, openIssues: 17, forks: 325, archived: false, contributors: 31 },
-    packageSize: { repoSizeKb: 120108, languages: { "Python": 1183953, "Go": 515381, "Shell": 10565, "Dockerfile": 2386, "HTML": 454 } },
-    daysOld: 449,
+    repoHealth: { lastPushAt: "2026-03-23T07:00:49Z", lastPushDays: 0, openIssues: 17, forks: 328, archived: false, contributors: 32 },
+    packageSize: { repoSizeKb: 126188, languages: { "Python": 1465593, "Go": 597313, "Shell": 10565, "Dockerfile": 2386, "HTML": 454 } },
+    daysOld: 453,
     complexity: 5,
     strengths: [
       "3,264 stars — highest in agent security sub-category",
@@ -14430,15 +14439,15 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     verdict:
       "#3 agent/MCP security scanner. Best behavioral analysis — 3 scanning engines (Yara, LLM-as-judge, Cisco AI Defense) detect semantic threats that pattern matching misses. 852 stars. Enterprise-backed (Cisco) and open source.",
     relatedCategories: ["security"],
-    githubStars: "852",
+    githubStars: "854",
     metrics: {
       stars: [
-        { date: "2026-03", value: 852 },
+        { date: "2026-03", value: 854 },
       ],
     },
-    repoHealth: { lastPushAt: "2026-03-17T22:23:10Z", lastPushDays: 2, openIssues: 19, forks: 96, archived: false, contributors: 20 },
-    packageSize: { repoSizeKb: 4007, languages: { "Python": 1901600, "YARA": 40006, "Open Policy Agent": 5084 } },
-    daysOld: 177,
+    repoHealth: { lastPushAt: "2026-03-23T22:19:14Z", lastPushDays: 0, openIssues: 19, forks: 97, archived: false, contributors: 21 },
+    packageSize: { repoSizeKb: 4491, languages: { "Python": 1901600, "YARA": 40006, "Open Policy Agent": 5084 } },
+    daysOld: 180,
     complexity: 4,
     strengths: [
       "3 scanning engines: Yara, LLM-as-judge, Cisco AI Defense",
@@ -14479,15 +14488,15 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     verdict:
       "First-mover MCP security scanner. 548 stars, 134 pts HN. Simpler than Snyk Agent Scan or Tencent AI-Infra-Guard but battle-tested. Good for teams wanting a lightweight, proven scanner without enterprise overhead.",
     relatedCategories: ["security"],
-    githubStars: "548",
+    githubStars: "550",
     metrics: {
       stars: [
-        { date: "2026-03", value: 548 },
+        { date: "2026-03", value: 550 },
       ],
     },
-    repoHealth: { lastPushAt: "2025-04-26T05:50:35Z", lastPushDays: 327, openIssues: 5, forks: 32, archived: false, contributors: 1 },
+    repoHealth: { lastPushAt: "2025-04-26T05:50:35Z", lastPushDays: 331, openIssues: 5, forks: 32, archived: false, contributors: 1 },
     packageSize: { repoSizeKb: 73, languages: { "TypeScript": 29347, "JavaScript": 17960 } },
-    daysOld: 339,
+    daysOld: 342,
     complexity: 2,
     strengths: [
       "First mover in MCP security scanning — battle-tested",
@@ -14529,12 +14538,12 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     githubStars: "7.6K+",
     metrics: {
       stars: [
-        { date: "2026-03", value: 7568 },
+        { date: "2026-03", value: 7638 },
       ],
     },
-    repoHealth: { lastPushAt: "2026-03-06T22:35:52Z", lastPushDays: 13, openIssues: 73, forks: 1667, archived: false, contributors: 2 },
+    repoHealth: { lastPushAt: "2026-03-06T22:35:52Z", lastPushDays: 17, openIssues: 73, forks: 1681, archived: false, contributors: 2 },
     packageSize: { repoSizeKb: 2131, languages: { "Python": 952513 } },
-    daysOld: 252,
+    daysOld: 256,
     complexity: 2,
     strengths: [
       "7,561 stars — largest security MCP repo",
@@ -14574,10 +14583,10 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     verdict:
       "#2 offensive security. Curated collection of pentesting MCP servers (SQLMap, FFUF, NMAP, Masscan). 569 stars. Better organized than HexStrike but narrower scope. For authorized pentesting only.",
     relatedCategories: ["security"],
-    githubStars: "569",
-    repoHealth: { lastPushAt: "2026-02-22T21:01:45Z", lastPushDays: 25, openIssues: 34, forks: 101, archived: false, contributors: 4 },
+    githubStars: "573",
+    repoHealth: { lastPushAt: "2026-02-22T21:01:45Z", lastPushDays: 29, openIssues: 35, forks: 101, archived: false, contributors: 4 },
     packageSize: { repoSizeKb: 228, languages: { "TypeScript": 118535, "JavaScript": 83118, "Shell": 13477, "Dockerfile": 1383 } },
-    daysOld: 350,
+    daysOld: 354,
     complexity: 4,
     strengths: [
       "Well-curated collection of proven pentesting tools via MCP",
@@ -14617,15 +14626,15 @@ export const skills: Record<SkillSlug, SkillRecord> = {
     verdict:
       "#3 offensive security. MCP servers for Nmap, Ghidra, Nuclei, SQLMap, Hashcat. 481 stars. Differentiates on reverse engineering / binary analysis. Best for security researchers working with binaries and protocols.",
     relatedCategories: ["security"],
-    githubStars: "482",
+    githubStars: "487",
     metrics: {
       stars: [
-        { date: "2026-03", value: 482 },
+        { date: "2026-03", value: 487 },
       ],
     },
-    repoHealth: { lastPushAt: "2026-03-10T13:06:53Z", lastPushDays: 9, openIssues: 4, forks: 64, archived: false, contributors: 7 },
+    repoHealth: { lastPushAt: "2026-03-10T13:06:53Z", lastPushDays: 13, openIssues: 3, forks: 64, archived: false, contributors: 7 },
     packageSize: { repoSizeKb: 269, languages: { "Python": 345257, "Dockerfile": 50562, "Shell": 23432, "CSS": 12533, "HTML": 9315, "JavaScript": 5025 } },
-    daysOld: 72,
+    daysOld: 76,
     complexity: 4,
     strengths: [
       "Reverse engineering focus — Ghidra integration via MCP",
@@ -18883,6 +18892,102 @@ export const categories: Record<CategorySlug, CategoryRecord> = {
       "A major data MCP server (BigQuery, Snowflake) gains standalone traction → new entry at #3–5",
     ],
   },
+  "personal-assistants": {
+    slug: "personal-assistants",
+    name: "Personal Assistants",
+    deck: "How do I interact with AI for everyday tasks? ChatGPT, Claude, Gemini, and emerging contenders like OpenClaw.",
+    verdict: [],
+    meta: [],
+    ranking: [],
+    observedOutputs: [],
+    liveSignals: [],
+    headToHead: [],
+    whatChangesThis: [],
+  },
+  "memory-systems": {
+    slug: "memory-systems",
+    name: "Memory Systems",
+    deck: "How do agents remember context across sessions? Vector DBs, context management, and persistent memory for AI workflows.",
+    verdict: [],
+    meta: [],
+    ranking: [],
+    observedOutputs: [],
+    liveSignals: [],
+    headToHead: [],
+    whatChangesThis: [],
+  },
+  "performance": {
+    slug: "performance",
+    name: "Performance",
+    deck: "How do I profile, benchmark, and optimize AI/agent workloads? Speed and efficiency tools for production deployments.",
+    verdict: [],
+    meta: [],
+    ranking: [],
+    observedOutputs: [],
+    liveSignals: [],
+    headToHead: [],
+    whatChangesThis: [],
+  },
+  "analytics-llm-tracing": {
+    slug: "analytics-llm-tracing",
+    name: "Analytics & LLM Tracing",
+    deck: "How do I observe and trace LLM calls and agent runs? PostHog, Braintrust, LangSmith, Helicone, and more.",
+    verdict: [],
+    meta: [],
+    ranking: [],
+    observedOutputs: [],
+    liveSignals: [],
+    headToHead: [],
+    whatChangesThis: [],
+  },
+  "web-dev-ui-frameworks": {
+    slug: "web-dev-ui-frameworks",
+    name: "Web Development & UI Frameworks",
+    deck: "How do I build AI-powered UIs? Frontend frameworks and tools for shipping AI products — Vercel AI SDK, Streamlit, v0, Bolt, Lovable.",
+    verdict: [],
+    meta: [],
+    ranking: [],
+    observedOutputs: [],
+    liveSignals: [],
+    headToHead: [],
+    whatChangesThis: [],
+  },
+  "agent-harnesses": {
+    slug: "agent-harnesses",
+    name: "Agent Harnesses",
+    deck: "How do I orchestrate and run agents? Frameworks for building, deploying, and managing AI agent workflows — LangChain, CrewAI, Pydantic AI, Claude Agent SDK.",
+    verdict: [],
+    meta: [],
+    ranking: [],
+    observedOutputs: [],
+    liveSignals: [],
+    headToHead: [],
+    whatChangesThis: [],
+  },
+  "knowledge-management": {
+    slug: "knowledge-management",
+    name: "Knowledge Management",
+    deck: "How do I organize and retrieve team knowledge? Notion, Google Workspace, Obsidian — the foundations MCP tools build on.",
+    verdict: [],
+    meta: [],
+    ranking: [],
+    observedOutputs: [],
+    liveSignals: [],
+    headToHead: [],
+    whatChangesThis: [],
+  },
+  "ai-adoption": {
+    slug: "ai-adoption",
+    name: "AI Adoption & Best Practices",
+    deck: "How do I adopt AI effectively? Meta-tracking, best practices, ecosystem navigation. SkillPack itself lives in this problem space.",
+    verdict: [],
+    meta: [],
+    ranking: [],
+    observedOutputs: [],
+    liveSignals: [],
+    headToHead: [],
+    whatChangesThis: [],
+  },
 };
 
 export const platforms: Record<PlatformSlug, PlatformRecord> = {
@@ -18986,6 +19091,14 @@ export const categoryList = [
   categories["security"],
   categories["documentation"],
   categories["data-analytics"],
+  categories["personal-assistants"],
+  categories["memory-systems"],
+  categories["performance"],
+  categories["analytics-llm-tracing"],
+  categories["web-dev-ui-frameworks"],
+  categories["agent-harnesses"],
+  categories["knowledge-management"],
+  categories["ai-adoption"],
 ];
 
 export const skillList = Object.values(skills);

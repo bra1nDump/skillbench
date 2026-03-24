@@ -30,7 +30,7 @@ export function TopSkillHero() {
               <span className="select-all text-white">npx skills add skillbench/topskill</span>
             </div>
             <Link
-              href="/skills/topskill"
+              href="/solutions/topskill"
               className="inline-flex items-center gap-1.5 rounded bg-[var(--accent)] px-4 py-2.5 font-mono text-[11px] font-bold uppercase tracking-widest text-white transition-colors hover:bg-[var(--accent)]/90"
             >
               View skill →

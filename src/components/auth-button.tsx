@@ -29,11 +29,13 @@ export function AuthButton({ session }: { session: Session | null }) {
   }
 
   return (
-    <Link
-      href="/sign-in"
-      className="flex w-full items-center justify-center gap-1.5 bg-[#E63946] py-[11px] font-mono text-[12px] font-bold tracking-wider text-white cursor-pointer transition-colors hover:bg-[#c5303b]"
+    <a
+      href="https://github.com/bra1nDump/skillbench/"
+      target="_blank"
+      rel="noreferrer"
+      className="flex w-full items-center justify-center gap-1.5 bg-[#171717] border border-[#333] py-[11px] font-mono text-[12px] font-bold tracking-wider text-white cursor-pointer transition-colors hover:bg-[#222]"
     >
-      <span className="text-[14px] leading-none">+</span> PUBLISH YOUR SKILL
-    </Link>
+      ★ STAR ON GITHUB
+    </a>
   );
 }

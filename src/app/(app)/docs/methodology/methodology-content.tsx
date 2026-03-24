@@ -225,7 +225,7 @@ export function MethodologyContent() {
             Methodology
           </h1>
           <p className="mt-3 max-w-2xl text-[16px] leading-7 text-gray-500">
-            How SkillPack measures, scores, and ranks every AI skill in the
+            How SkillPack measures, scores, and ranks every solution in the
             catalog. All metrics are computed from public data — GitHub APIs,
             package registries, and community signals.
           </p>
@@ -239,10 +239,10 @@ export function MethodologyContent() {
           </p>
           <SectionTitle>What we measure and why</SectionTitle>
           <P>
-            Every skill in the SkillPack catalog is evaluated across multiple
+            Every solution in the SkillPack catalog is evaluated across multiple
             dimensions: trust, complexity, tier, type, evidence quality, and
             community traction. The goal is to give developers a fast, honest
-            signal about whether a skill is worth adopting — backed by verifiable
+            signal about whether a solution is worth adopting — backed by verifiable
             public data, not marketing claims.
           </P>
           <P>
@@ -284,21 +284,22 @@ export function MethodologyContent() {
           </p>
           <SectionTitle>Composite health signal (0–100)</SectionTitle>
           <P>
-            The trust score is a weighted composite of four sub-scores, each
+            The trust score is a weighted composite of five sub-scores, each
             normalized to 0–100. It&apos;s computed at display-time from the
             latest data — never cached or stale.
           </P>
 
           <FormulaBlock>
-            score = (freshness × 0.30) + (community × 0.25) + (adoption × 0.25)
-            + (evidence × 0.20)
+            score = (freshness × 0.25) + (community × 0.25) + (adoption × 0.25)
+            + (evidence × 0.15) + (momentum × 0.10)
           </FormulaBlock>
 
           <div className="mt-6 space-y-2">
-            <WeightBar label="Freshness" pct={30} color="#059669" />
+            <WeightBar label="Freshness" pct={25} color="#059669" />
             <WeightBar label="Community" pct={25} color="#3b82f6" />
             <WeightBar label="Adoption" pct={25} color="#8b5cf6" />
-            <WeightBar label="Evidence" pct={20} color="#E63946" />
+            <WeightBar label="Evidence" pct={15} color="#E63946" />
+            <WeightBar label="Momentum" pct={10} color="#f59e0b" />
           </div>
 
           <h3 className="mt-8 text-[15px] font-bold text-gray-800">
@@ -312,9 +313,9 @@ export function MethodologyContent() {
             headers={["Last push", "Score"]}
             rows={[
               ["< 7 days", "100"],
-              ["< 30 days", "80"],
-              ["< 90 days", "50"],
-              ["< 180 days", "20"],
+              ["< 30 days", "85"],
+              ["< 90 days", "60"],
+              ["< 180 days", "30"],
               ["≥ 180 days", "0"],
               ["No data", "50 (neutral)"],
             ]}
@@ -325,41 +326,40 @@ export function MethodologyContent() {
           </h3>
           <P>
             Measures star velocity — the growth rate between the two most recent
-            data points. Falls back to absolute star count when insufficient
-            history.
+            data points. Uses a continuous scale instead of step thresholds.
+            Falls back to log-scale absolute star count when insufficient history.
           </P>
           <ThresholdTable
             headers={["Growth %", "Score"]}
             rows={[
               ["≥ 20%", "100"],
-              ["≥ 10%", "85"],
-              ["≥ 5%", "70"],
-              ["≥ 1%", "55"],
-              ["≥ 0% (flat)", "40"],
-              ["Declining", "20"],
+              ["0–20%", "45–100 (continuous)"],
+              ["Declining", "20–45 (continuous)"],
             ]}
           />
           <P>
             <strong className="text-gray-700">Fallback</strong> (fewer than 2
-            data points): ≥50K stars → 100, ≥10K → 80, ≥1K → 60, ≥100 → 40,
-            &lt;100 → 20.
+            data points): uses log-scale based on absolute star count.
+            100 stars → ~40, 1K → ~60, 10K → ~80, 50K+ → 100.
           </P>
 
           <h3 className="mt-8 text-[15px] font-bold text-gray-800">
             Adoption component
           </h3>
           <P>
-            Weekly download count from npm or PyPI, scored on a log scale.
+            Weekly download count from npm or PyPI, scored on a continuous log scale.
+            For solutions without a package (GitHub-only tools), GitHub stars are
+            used as an adoption proxy.
           </P>
           <ThresholdTable
             headers={["Weekly downloads", "Score"]}
             rows={[
               ["≥ 100,000", "100"],
-              ["≥ 10,000", "80"],
-              ["≥ 1,000", "60"],
-              ["≥ 100", "40"],
-              ["< 100", "20"],
-              ["No data", "30"],
+              ["Log scale", "20 + 20 × log₁₀(downloads)"],
+              ["No package, ≥10K stars", "70"],
+              ["No package, ≥1K stars", "55"],
+              ["No package, ≥100 stars", "40"],
+              ["No package, <100 stars", "30"],
             ]}
           />
 
@@ -367,14 +367,25 @@ export function MethodologyContent() {
             Evidence component
           </h3>
           <P>
-            Ratio of strong evidence to total evidence items collected by our
-            research pipeline.
+            Based on the ratio of strong evidence to total evidence items collected
+            by our research pipeline. Scales from 30 (all moderate) to 100 (all strong).
           </P>
           <FormulaBlock>
-            evidence_score = (strong_count / total_count) × 100
+            evidence_score = 30 + (strong_count / total_count) × 70
           </FormulaBlock>
           <P>
-            If a skill has zero evidence items, this component scores 0.
+            If a solution has zero evidence items, this component scores 40 (neutral)
+            rather than 0 — absence of evidence is not punitive.
+          </P>
+
+          <h3 className="mt-8 text-[15px] font-bold text-gray-800">
+            Momentum component
+          </h3>
+          <P>
+            Rewards solutions with accelerating growth. Compares the most recent
+            star growth period against the one before it. Accelerating growth
+            scores up to 100, decelerating growth scores down to 20. Solutions
+            with fewer than 3 data points score 50 (neutral).
           </P>
 
           <h3 className="mt-8 text-[15px] font-bold text-gray-800">

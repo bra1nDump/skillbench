@@ -39,11 +39,25 @@ const CATEGORIES = [
   "security",
   "documentation",
   "data-analytics",
+  "personal-assistants",
+  "memory-systems",
+  "performance",
+  "analytics-llm-tracing",
+  "web-dev-ui-frameworks",
+  "agent-harnesses",
+  "knowledge-management",
+  "ai-adoption",
 ];
 
 // ---------------------------------------------------------------------------
 // CLI arg parsing
 // ---------------------------------------------------------------------------
+// Curated set: 3 established + 3 new categories for high-quality example runs
+const SAMPLE_CATEGORIES = [
+  "coding-clis", "web-browsing", "search-news",       // established
+  "agent-harnesses", "memory-systems", "personal-assistants", // new
+];
+
 function parseArgs() {
   const args = process.argv.slice(2);
   const opts = { categories: [], loop: false, interval: 60, concurrency: 1 };
@@ -55,6 +69,9 @@ function parseArgs() {
         break;
       case "--all":
         opts.categories = [...CATEGORIES];
+        break;
+      case "--sample":
+        opts.categories = [...SAMPLE_CATEGORIES];
         break;
       case "--loop":
         opts.loop = true;
@@ -72,7 +89,7 @@ function parseArgs() {
   }
 
   if (opts.categories.length === 0) {
-    console.error("Usage: ralph --category <slug> | --all [--loop] [--interval <min>] [--parallel <N>]");
+    console.error("Usage: ralph --category <slug> | --all | --sample [--loop] [--interval <min>] [--parallel <N>]");
     process.exit(1);
   }
 
@@ -129,7 +146,7 @@ function formatDuration(seconds) {
   return `${m}m ${s}s`;
 }
 
-async function runClaude({ systemPromptFile, prompt, stage, timeoutMin = 30 }) {
+async function runClaude({ systemPromptFile, prompt, stage, timeoutMin = 30, model = "sonnet" }) {
   // Build the full prompt: agent personality + task
   let fullPrompt = "";
 
@@ -142,16 +159,16 @@ async function runClaude({ systemPromptFile, prompt, stage, timeoutMin = 30 }) {
 
   const args = [
     "-p",
+    "--model", model,
     "--allowedTools", ALLOWED_TOOLS,
-    "--verbose",
   ];
 
   const promptPreview = prompt.split("\n").find((l) => l.startsWith("TASK:"))?.slice(0, 100) || prompt.slice(0, 80);
 
   log(stage, "Spawning claude subprocess…");
+  log(stage, `  Model: ${model}`);
   log(stage, `  Prompt: ${systemPromptFile ? systemPromptFile.split(/[/\\]/).pop() : "(inline)"} + ${formatBytes(fullPrompt.length)}`);
   log(stage, `  Task: ${promptPreview}…`);
-  log(stage, `  Tools: ${ALLOWED_TOOLS}`);
   log(stage, `  Timeout: ${timeoutMin} min`);
   const start = Date.now();
 
@@ -310,6 +327,7 @@ IMPORTANT: Write your findings to ${outDir}/findings.md using the structure from
     systemPromptFile: resolve(ROOT, "agents/rank.md"),
     prompt,
     stage,
+    model: "opus",
   });
 
   const findingsPath = resolve(outDir, "findings.md");
@@ -350,18 +368,32 @@ Based on these findings, update src/lib/catalog.ts for the "${category}" categor
 
 CRITICAL RULE — every contender in a category ranking MUST have a full skill entry:
 - Every ranking item MUST use "skillSlug" pointing to a skill entry in the skills object — NEVER use "externalUrl" alone.
-- If a contender does not yet have a skill entry, CREATE one with at minimum: slug, name, repo/repoUrl (if available), summary, verdict, relatedCategories, strengths, weaknesses, and evidence.
+- If a contender does not yet have a skill entry, CREATE one with at minimum: slug, name, repo/repoUrl (if available), summary, verdict, gettingStarted, relatedCategories, strengths, weaknesses, and evidence.
+- For every skill you touch, if gettingStarted is missing or empty, add it: a short practical guide (2-3 sentences) on the best way to start using this tool — install command, key first step, what to try first. This is NOT the verdict — it's actionable setup advice.
 - The skill slug should be kebab-case (e.g. "brave-search-api", "salesforce-mcp").
 - Add the new slug to the SkillSlug union type at the top of catalog.ts.
 - This ensures every skill on the site has its own internal page at /skills/[slug].
 
 Also run: npm run metrics:collect to refresh star counts.
 
+CHANGELOG — after updating catalog.ts, append entries to src/data/changelog-entries.json for every meaningful change you made. Read the existing JSON array first, then append new objects and write back. Each entry:
+{
+  "date": "${new Date().toISOString().slice(0, 10)}",
+  "type": "<ranking-change|new-contender|score-change|downgrade|category-added>",
+  "slug": "<solution-slug or null>",
+  "problem": "${category}",
+  "title": "<short headline, e.g. 'Cursor added to coding-clis at #2'>",
+  "detail": "<one sentence why this matters>",
+  "source": "pipeline"
+}
+Only log significant changes — ranking moves, new contenders, downgrades. Do NOT log minor evidence additions or metric refreshes.
+
 Be conservative — only change what the evidence supports. Preserve the existing TypeScript types.`;
 
   return await runClaude({
     prompt,
     stage,
+    model: "opus",
   });
 }
 

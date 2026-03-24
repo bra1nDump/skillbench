@@ -2,6 +2,11 @@
 /**
  * Collect HN mention counts for all skills and update catalog.ts.
  * Queries HN Algolia API for stories mentioning each skill (last 7 days, >5 pts).
+ *
+ * Note: Twitter/X and Reddit data is collected through the Ralph pipeline agents
+ * (discover + deep-dive), not this script. Those agents use x-twitter and
+ * reddit-search skills when available.
+ *
  * Usage: node scripts/collect-mentions.mjs
  */
 import fs from "node:fs";
@@ -44,9 +49,9 @@ async function fetchMentions(skillName) {
   const query = encodeURIComponent(skillName);
   const url =
     `https://hn.algolia.com/api/v1/search?query=${query}` +
-    `&tags=story` +
+    "&tags=story" +
     `&numericFilters=created_at_i>${SEVEN_DAYS_AGO},points>5` +
-    `&hitsPerPage=0`;
+    "&hitsPerPage=0";
 
   const res = await fetch(url, {
     headers: { "User-Agent": "skillbench-metrics/1.0" },
@@ -121,11 +126,8 @@ function updateSkillMentions(source, slug, count) {
     const metricsMatch = updatedBlock.match(metricsBlockRegex);
 
     if (metricsMatch) {
-      // metrics block exists — find its closing } and insert mentionsPositive before it
       const metricsStart = updatedBlock.indexOf(metricsMatch[0]);
-      // Find the closing brace of metrics: look for "\n    }," or "\n    }" pattern
       const afterMetrics = updatedBlock.slice(metricsStart);
-      // Match the closing } of the metrics object (at 4-space indent level)
       const closingMatch = afterMetrics.search(/\n\s{4}\},?\n/);
 
       if (closingMatch !== -1) {
@@ -139,18 +141,17 @@ function updateSkillMentions(source, slug, count) {
           updatedBlock.slice(insertPoint);
       }
     } else {
-      // No metrics block at all — insert one after githubStars line
       const starsLineMatch = updatedBlock.match(/githubStars:\s*"[^"]*",?\n/);
 
       if (starsLineMatch) {
         const insertPoint =
           updatedBlock.indexOf(starsLineMatch[0]) + starsLineMatch[0].length;
         const metricsBlock =
-          `    metrics: {\n` +
-          `      mentionsPositive: [\n` +
+          "    metrics: {\n" +
+          "      mentionsPositive: [\n" +
           `        { date: "${CURRENT_MONTH}", value: ${count} },\n` +
-          `      ],\n` +
-          `    },\n`;
+          "      ],\n" +
+          "    },\n";
 
         updatedBlock =
           updatedBlock.slice(0, insertPoint) +
@@ -171,7 +172,8 @@ async function main() {
     process.exit(1);
   }
 
-  console.log(`Found ${skills.length} skills. Fetching HN mentions (7d, >5 pts)...\n`);
+  console.log(`Found ${skills.length} skills. Fetching HN mentions (7d, >5 pts)...`);
+  console.log("Note: Twitter/X and Reddit data is collected via Ralph pipeline agents.\n");
 
   let source = fs.readFileSync(CATALOG_PATH, "utf-8");
   let success = 0;
@@ -182,13 +184,13 @@ async function main() {
       const count = await fetchMentions(name);
 
       source = updateSkillMentions(source, slug, count);
-      console.log(`[hn] ${name} → ${count} mentions (7d, >5 pts)`);
+      console.log(`  ${name} → ${count} mentions (hn, 7d, >5 pts)`);
       success++;
 
       // Rate limit courtesy delay (200ms)
       await new Promise((r) => setTimeout(r, 200));
     } catch (err) {
-      console.error(`[hn] ${name}: ERROR ${err.message}`);
+      console.error(`  ${name}: ERROR ${err.message}`);
       failed++;
     }
   }

@@ -1,72 +1,68 @@
-import { skillList } from "./catalog";
-import { parseStars } from "./parse-stars";
+import { getSkill } from "./catalog";
 import { computeTrustScore } from "./trust-score";
 
-export type ChangelogItem = {
-  slug: string;
-  name: string;
-  type: "stars-growth" | "downloads-growth";
-  detail: string;
-  trustScore: number;
-  delta: number;
+import rawEntries from "@/data/changelog-entries.json";
+
+// --------------------------------------------------------------------------
+// Types
+// --------------------------------------------------------------------------
+
+export type ChangelogEntryType =
+  | "ranking-change"   // solution moved up/down in a problem ranking
+  | "new-contender"    // new solution added to catalog
+  | "score-change"     // trust score significantly changed
+  | "downgrade"        // solution downgraded (maintenance mode, etc.)
+  | "category-added"   // new problem space added
+  | "system";          // meta / system events
+
+export type ChangelogEntry = {
+  date: string;           // ISO date "2026-03-24"
+  type: ChangelogEntryType;
+  slug: string | null;    // solution slug, null for system/category events
+  problem: string | null; // problem slug if relevant
+  title: string;          // short headline
+  detail: string;         // one-sentence explanation
+  source: "pipeline" | "manual";
 };
 
-export function getTopMovers(limit = 3): ChangelogItem[] {
-  const items: ChangelogItem[] = [];
+export type ChangelogItem = {
+  date: string;
+  slug: string | null;
+  name: string;
+  type: ChangelogEntryType;
+  title: string;
+  detail: string;
+  trustScore: number | null;
+};
 
-  for (const skill of skillList) {
-    const stars = skill.metrics?.stars;
+// --------------------------------------------------------------------------
+// Read entries from JSON + enrich with live trust scores
+// --------------------------------------------------------------------------
 
-    if (stars && stars.length >= 2) {
-      const prev = stars[stars.length - 2].value;
-      const latest = stars[stars.length - 1].value;
-      const delta = latest - prev;
+function loadEntries(): ChangelogItem[] {
+  const entries = rawEntries as ChangelogEntry[];
 
-      if (delta > 0) {
-        items.push({
-          slug: skill.slug,
-          name: skill.name,
-          type: "stars-growth",
-          detail: `+${delta.toLocaleString()} stars`,
-          trustScore: computeTrustScore(skill),
-          delta,
-        });
-      }
-    }
-  }
+  return entries
+    .sort((a, b) => b.date.localeCompare(a.date))
+    .map((entry) => {
+      const skill = entry.slug ? getSkill(entry.slug) : null;
 
-  return items
-    .sort((a, b) => b.delta - a.delta)
-    .slice(0, limit);
+      return {
+        date: entry.date,
+        slug: entry.slug,
+        name: skill?.name ?? entry.title,
+        type: entry.type,
+        title: entry.title,
+        detail: entry.detail,
+        trustScore: skill ? computeTrustScore(skill) : null,
+      };
+    });
 }
 
-export function getDownloadMovers(limit = 3): ChangelogItem[] {
-  const items: ChangelogItem[] = [];
+// --------------------------------------------------------------------------
+// Public API
+// --------------------------------------------------------------------------
 
-  for (const skill of skillList) {
-    const dl = skill.metrics?.downloads;
-
-    if (dl && dl.length >= 2) {
-      const prev = dl[dl.length - 2].value;
-      const latest = dl[dl.length - 1].value;
-      const delta = latest - prev;
-
-      if (delta > 0 && prev > 0) {
-        const pct = Math.round((delta / prev) * 100);
-
-        items.push({
-          slug: skill.slug,
-          name: skill.name,
-          type: "downloads-growth",
-          detail: `+${pct}% downloads`,
-          trustScore: computeTrustScore(skill),
-          delta: pct,
-        });
-      }
-    }
-  }
-
-  return items
-    .sort((a, b) => b.delta - a.delta)
-    .slice(0, limit);
+export function getAllChanges(limit = 30): ChangelogItem[] {
+  return loadEntries().slice(0, limit);
 }

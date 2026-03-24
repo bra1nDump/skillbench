@@ -1,5 +1,7 @@
 import { IBM_Plex_Mono, Lato } from "next/font/google";
 
+import { PostHogProvider } from "@/components/posthog-provider";
+
 import type { Metadata } from "next";
 
 import "./globals.css";
@@ -32,7 +34,7 @@ export default function RootLayout({
       <body
         className={`${lato.variable} ${ibmPlexMono.variable} antialiased`}
       >
-        {children}
+        <PostHogProvider>{children}</PostHogProvider>
       </body>
     </html>
   );

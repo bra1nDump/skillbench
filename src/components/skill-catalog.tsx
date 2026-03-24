@@ -1,36 +1,12 @@
 "use client";
 
-import Link from "next/link";
 import { useMemo, useState } from "react";
 
 import { SkillRow } from "./skill-row";
 
 import type { SkillRowData } from "./skill-row";
 
-const TABS = [
-  { id: "trending", label: "Trending", desc: "Fastest star growth this period" },
-  { id: "new", label: "New", desc: "Added or updated in the last 30 days" },
-  { id: "all", label: "All", desc: "Every skill in the catalog" },
-] as const;
-
-type TabId = (typeof TABS)[number]["id"];
-
-type SortKey = "trust" | "tier" | "complexity" | "updated" | "installs" | null;
-type SortDir = "asc" | "desc";
-
-const TIER_ORDER = { Atomic: 1, Composite: 2, Orchestrator: 3, Pack: 4 };
-
 const PAGE_SIZE = 20;
-
-const COLUMNS: { key: SortKey; label: string; tip?: string }[] = [
-  { key: null, label: "SKILL" },
-  { key: "tier", label: "TIER", tip: "Atomic → Composite → Orchestrator → Pack. Measures how many moving parts the skill coordinates." },
-  { key: "trust", label: "TRUST", tip: "0-100 score based on stars, evidence quality, repo health, and community signals." },
-  { key: "complexity", label: "COMPLEXITY", tip: "1-5 dots. How much setup, config, and expertise the skill demands to run." },
-  { key: "updated", label: "UPDATED", tip: "How recently the repo received a push." },
-  { key: "installs", label: "INSTALLS", tip: "Weekly downloads from npm / PyPI." },
-  { key: null, label: "" },
-];
 
 type CategoryOption = { slug: string; name: string };
 
@@ -43,25 +19,10 @@ export function SkillCatalog({
   activeCategoryName?: string;
   categories?: CategoryOption[];
 }) {
-  const [activeTab, setActiveTab] = useState<TabId>("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [searchFocused, setSearchFocused] = useState(false);
   const [showCount, setShowCount] = useState(PAGE_SIZE);
-  const [sortKey, setSortKey] = useState<SortKey>(null);
-  const [sortDir, setSortDir] = useState<SortDir>("desc");
   const [categoryFilter, setCategoryFilter] = useState<string | null>(null);
-  const [typeFilter, setTypeFilter] = useState<string | null>(null);
-
-  const handleSort = (key: SortKey) => {
-    if (!key) return;
-    if (sortKey === key) {
-      setSortDir((d) => (d === "desc" ? "asc" : "desc"));
-    } else {
-      setSortKey(key);
-      setSortDir("desc");
-    }
-    setShowCount(PAGE_SIZE);
-  };
 
   const filteredSkills = useMemo(() => {
     let list = [...skills];
@@ -75,7 +36,7 @@ export function SkillCatalog({
           s.name.toLowerCase().includes(q) ||
           (s.tags?.some((t) => t.includes(q)) ?? false) ||
           (s.repo?.toLowerCase().includes(q) ?? false) ||
-          (s.skillType?.toLowerCase().includes(q) ?? false),
+          (s.bestFor?.toLowerCase().includes(q) ?? false),
       );
     }
 
@@ -84,77 +45,39 @@ export function SkillCatalog({
       list = list.filter((s) => s.relatedCategories?.includes(categoryFilter));
     }
 
-    // Type filter
-    if (typeFilter) {
-      list = list.filter((s) => s.skillType === typeFilter);
-    }
-
-    // Tab filtering
-    switch (activeTab) {
-      case "trending":
-        list = list
-          .filter((s) => s.weekGrowth != null && s.weekGrowth > 0);
-        break;
-      case "new":
-        list = list
-          .filter((s) => (s.daysOld != null && s.daysOld <= 30) || (s.freshnessDays != null && s.freshnessDays <= 30));
-        break;
-    }
-
-    // Column sort (overrides tab default sort)
-    if (sortKey) {
-      const dir = sortDir === "desc" ? -1 : 1;
-
-      list.sort((a, b) => {
-        let av: number, bv: number;
-
-        switch (sortKey) {
-          case "trust":
-            av = a.trustScore ?? 0; bv = b.trustScore ?? 0; break;
-          case "tier":
-            av = TIER_ORDER[a.skillTier as keyof typeof TIER_ORDER] ?? 0;
-            bv = TIER_ORDER[b.skillTier as keyof typeof TIER_ORDER] ?? 0; break;
-          case "complexity":
-            av = a.complexity ?? 0; bv = b.complexity ?? 0; break;
-          case "updated":
-            av = a.freshnessDays ?? 9999; bv = b.freshnessDays ?? 9999;
-            return (av - bv) * dir; // lower = fresher, so invert
-          case "installs":
-            av = a.installs ?? 0; bv = b.installs ?? 0; break;
-          default:
-            return 0;
-        }
-        return (bv - av) * dir;
-      });
-    } else {
-      // Default tab sort
-      switch (activeTab) {
-        case "trending":
-          list.sort((a, b) => (b.weekGrowth ?? 0) - (a.weekGrowth ?? 0)); break;
-        case "new":
-          list.sort((a, b) => (a.freshnessDays ?? a.daysOld ?? 999) - (b.freshnessDays ?? b.daysOld ?? 999)); break;
-        default:
-          list.sort((a, b) => (b.trustScore ?? 0) - (a.trustScore ?? 0));
-      }
-    }
+    // Sort by SkillPack score descending
+    list.sort((a, b) => (b.trustScore ?? 0) - (a.trustScore ?? 0));
 
     return list;
-  }, [skills, activeTab, searchQuery, sortKey, sortDir, categoryFilter, typeFilter]);
+  }, [skills, searchQuery, categoryFilter]);
 
   const visibleSkills = filteredSkills.slice(0, showCount);
   const hasMore = showCount < filteredSkills.length;
 
   return (
     <div className="px-8 pb-16 pt-5">
-      {/* Header + search + publish */}
+      {/* Header + filters */}
       <div className="mb-3 flex items-center justify-between">
         <h2 className="font-mono text-[14px] font-bold uppercase tracking-[1.5px] text-gray-900">
-          {activeCategoryName ?? "All Skills"}
+          {activeCategoryName ?? "Leaderboard"}
           <span className="ml-2 font-normal text-gray-400">
             {filteredSkills.length}
           </span>
         </h2>
         <div className="flex items-center gap-2.5">
+          {/* Problem filter */}
+          {categories && categories.length > 0 && (
+            <select
+              value={categoryFilter ?? ""}
+              onChange={(e) => { setCategoryFilter(e.target.value || null); setShowCount(PAGE_SIZE); }}
+              className="cursor-pointer rounded border border-[var(--border)] bg-white px-2 py-1.5 font-mono text-[10px] text-gray-600 hover:border-gray-400 focus:border-gray-500 focus:outline-none"
+            >
+              <option value="">All problems</option>
+              {categories.map((c) => (
+                <option key={c.slug} value={c.slug}>{c.name}</option>
+              ))}
+            </select>
+          )}
           {/* Search */}
           <div
             className={`flex w-60 items-center gap-1.5 border px-2.5 py-1.5 transition-colors ${
@@ -164,7 +87,7 @@ export function SkillCatalog({
             <span className="text-[11px] text-gray-400">⌕</span>
             <input
               type="text"
-              placeholder="Search..."
+              placeholder="Search solutions..."
               value={searchQuery}
               onChange={(e) => {
                 setSearchQuery(e.target.value);
@@ -183,116 +106,25 @@ export function SkillCatalog({
               </span>
             )}
           </div>
-          {/* Publish button */}
-          <Link
-            href="/publish"
-            className="flex items-center gap-1 bg-[#E63946] px-4 py-2 font-mono text-[11px] font-bold tracking-wide text-white transition-colors hover:bg-[#c5303b]"
-          >
-            <span className="text-[13px] leading-none">+</span> PUBLISH YOUR SKILL
-          </Link>
         </div>
       </div>
 
-      {/* Tabs */}
-      <div className="flex gap-0 border-b border-[var(--border)]">
-        {TABS.map((tab) => (
-          <button
-            key={tab.id}
-            type="button"
-            onClick={() => {
-              setActiveTab(tab.id);
-              setSortKey(null);
-              setShowCount(PAGE_SIZE);
-            }}
-            className={`-mb-px cursor-pointer border-b-2 px-3.5 py-2 font-mono text-[11px] transition-all ${
-              activeTab === tab.id
-                ? "border-gray-900 font-bold text-gray-900"
-                : "border-transparent text-gray-400 hover:text-gray-600"
-            }`}
-          >
-            {tab.label}
-          </button>
-        ))}
-      </div>
-
-      {/* Filters row */}
-      {categories && categories.length > 0 && (
-        <div className="flex flex-wrap items-center gap-2 border-b border-[var(--border)] bg-[var(--surface)] px-3.5 py-2">
-          <select
-            value={categoryFilter ?? ""}
-            onChange={(e) => { setCategoryFilter(e.target.value || null); setShowCount(PAGE_SIZE); }}
-            className="cursor-pointer rounded border border-[var(--border)] bg-white px-2 py-1 font-mono text-[10px] text-gray-600 hover:border-gray-400 focus:border-gray-500 focus:outline-none"
-          >
-            <option value="">All categories</option>
-            {categories.map((c) => (
-              <option key={c.slug} value={c.slug}>{c.name}</option>
-            ))}
-          </select>
-          <select
-            value={typeFilter ?? ""}
-            onChange={(e) => { setTypeFilter(e.target.value || null); setShowCount(PAGE_SIZE); }}
-            className="cursor-pointer rounded border border-[var(--border)] bg-white px-2 py-1 font-mono text-[10px] text-gray-600 hover:border-gray-400 focus:border-gray-500 focus:outline-none"
-          >
-            <option value="">All types</option>
-            {["Expertise", "Generator", "Guardian", "Connector"].map((t) => (
-              <option key={t} value={t}>{t}</option>
-            ))}
-          </select>
-          {(categoryFilter || typeFilter) && (
-            <button
-              type="button"
-              onClick={() => { setCategoryFilter(null); setTypeFilter(null); }}
-              className="cursor-pointer font-mono text-[10px] text-gray-400 hover:text-gray-600"
-            >
-              Clear
-            </button>
-          )}
-        </div>
-      )}
-
-      {/* Tab description */}
-      <div className="flex items-center justify-between border-b border-[var(--border)] bg-[var(--surface)] px-3.5 py-1.5">
-        <span className="font-mono text-[10px] text-gray-500">
-          {TABS.find((t) => t.id === activeTab)?.desc}
-        </span>
-        <span className="font-mono text-[10px] text-gray-400">
-          {filteredSkills.length} skill{filteredSkills.length !== 1 ? "s" : ""}
-        </span>
-      </div>
-
-      {/* Column headers — sortable */}
+      {/* Column headers */}
       <div
-        className="grid items-center gap-2 border-b border-[var(--border)] px-3.5 py-1.5"
+        className="hidden items-center gap-4 border-b border-[var(--border)] px-3.5 py-1.5 sm:grid"
         style={{
-          gridTemplateColumns:
-            "minmax(160px, 1.6fr) 56px 52px 72px 52px 58px 56px",
+          gridTemplateColumns: "minmax(180px, 1.2fr) minmax(120px, 1fr) 52px",
         }}
       >
-        {COLUMNS.map((col) => (
-          <span
-            key={col.label || "_empty"}
-            onClick={() => handleSort(col.key)}
-            className={`group/tip relative font-mono text-[9px] font-bold tracking-wider select-none ${
-              col.key
-                ? "cursor-pointer transition-colors hover:text-gray-700"
-                : ""
-            } ${sortKey === col.key ? "text-gray-900" : "text-gray-400"}`}
-          >
-            {col.label}
-            {col.tip && <span className="ml-0.5 text-gray-300 group-hover/tip:text-gray-500">?</span>}
-            {sortKey === col.key && (
-              <span className="ml-0.5">{sortDir === "desc" ? "↑" : "↓"}</span>
-            )}
-            {col.tip && (
-              <span className="absolute top-full left-0 z-50 hidden pt-1 group-hover/tip:block">
-                <span className="block w-48 rounded bg-gray-900 px-2.5 py-2 text-[10px] font-normal leading-snug tracking-normal text-gray-200 shadow-lg">
-                  {col.tip}
-                  <a href="/docs/methodology" className="mt-1 block text-[var(--accent)] hover:underline">How we measure →</a>
-                </span>
-              </span>
-            )}
-          </span>
-        ))}
+        <span className="font-mono text-[9px] font-bold tracking-wider text-gray-400">
+          SOLUTION
+        </span>
+        <span className="font-mono text-[9px] font-bold tracking-wider text-gray-400">
+          WHY USE THIS
+        </span>
+        <span className="font-mono text-[9px] font-bold tracking-wider text-gray-400 text-right">
+          SCORE
+        </span>
       </div>
 
       {/* Rows */}
@@ -316,13 +148,12 @@ export function SkillCatalog({
       {/* Empty state */}
       {filteredSkills.length === 0 && (
         <div className="py-12 text-center">
-          <p className="text-[14px] text-gray-400">No skills match that filter</p>
+          <p className="text-[14px] text-gray-400">No solutions match that filter</p>
           <button
             type="button"
             onClick={() => {
               setSearchQuery("");
-              setActiveTab("all");
-              setSortKey(null);
+              setCategoryFilter(null);
             }}
             className="mt-2 cursor-pointer font-mono text-[12px] font-semibold text-[var(--accent)]"
           >
@@ -331,24 +162,27 @@ export function SkillCatalog({
         </div>
       )}
 
-      {/* Bottom publish CTA */}
+      {/* Bottom CTA — Install + Subscribe + Star */}
       {!hasMore && filteredSkills.length > 0 && (
-        <div className="mt-8 flex items-center justify-between bg-[var(--dark-bg)] p-6 text-white">
+        <div className="mt-8 flex flex-col gap-4 bg-[var(--dark-bg)] p-6 text-white sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-[14px] font-black">
-              Built a skill? Share it with the community.
+              Get the best solutions for your project.
             </p>
             <p className="mt-1 text-[12px] text-gray-500">
-              Every skill gets rated, retention-tracked, and ranked the moment
-              it&apos;s published.
+              One command analyzes your codebase and installs top-rated solutions.
             </p>
           </div>
-          <Link
-            href="/publish"
-            className="shrink-0 bg-[#E63946] px-6 py-2.5 font-mono text-[12px] font-bold tracking-wider text-white transition-colors hover:bg-[#c5303b]"
-          >
-            PUBLISH YOUR SKILL →
-          </Link>
+          <div className="flex items-center gap-3">
+            <a
+              href="https://github.com/bra1nDump/skillbench/"
+              target="_blank"
+              rel="noreferrer"
+              className="shrink-0 border border-[#333] px-4 py-2.5 font-mono text-[11px] font-bold tracking-wider text-white transition-colors hover:bg-[#222]"
+            >
+              ★ STAR ON GITHUB
+            </a>
+          </div>
         </div>
       )}
     </div>

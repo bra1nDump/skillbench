@@ -130,8 +130,8 @@ export default function SkillPackPage() {
             <P>
               Your project profile is matched against SkillPack&apos;s ranked
               catalog across{" "}
-              <Link href="/categories/coding-clis" className="text-[var(--accent)] hover:underline">
-                15 categories
+              <Link href="/problems/coding-clis" className="text-[var(--accent)] hover:underline">
+                15 problem spaces
               </Link>
               . Only skills above the cut line — those with real evidence, strong
               trust scores, and active maintenance — are considered.
@@ -381,7 +381,7 @@ export default function SkillPackPage() {
                   <td className="px-4 py-2 text-gray-600">{need}</td>
                   <td className="px-4 py-2">
                     <Link
-                      href={`/categories/${cat.toLowerCase().replace(/ & /g, "-").replace(/ /g, "-")}`}
+                      href={`/problems/${cat.toLowerCase().replace(/ & /g, "-").replace(/ /g, "-")}`}
                       className="text-[var(--accent)] hover:underline"
                     >
                       {cat}

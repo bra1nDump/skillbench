@@ -15,7 +15,12 @@
       "Bash(node -e \":*)",
       "Bash(npx skills:*)",
       "Bash(mkdir -p c:/Projects/Work/skillbench/src/app/api/auth/[...nextauth])",
-      "Bash(mkdir -p c:/Projects/Work/skillbench/src/app/api/skills/[id])"
+      "Bash(mkdir -p c:/Projects/Work/skillbench/src/app/api/skills/[id])",
+      "Bash(while read:*)",
+      "Bash(do echo:*)",
+      "Read(//c/Projects/Work/skillbench/**)",
+      "Bash(done)",
+      "Bash(npm audit:*)"
     ]
   },
   "enabledPlugins": {

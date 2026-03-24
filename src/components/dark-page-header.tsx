@@ -1,11 +1,16 @@
 import Link from "next/link";
 
+import type { ScoreLabel } from "@/lib/score-labels";
+import { labelClassName } from "@/lib/score-labels";
+
 interface DarkPageHeaderProps {
   backLink?: { href: string; label: string };
   title: string;
   subtitle?: string;
   badge?: { text: string; variant: "active" | "watch" | "stale" };
   stats?: { label: string; value: string }[];
+  labels?: ScoreLabel[];
+  aside?: React.ReactNode;
   children?: React.ReactNode;
 }
 
@@ -15,6 +20,8 @@ export function DarkPageHeader({
   subtitle,
   badge,
   stats,
+  labels,
+  aside,
   children,
 }: DarkPageHeaderProps) {
   return (
@@ -51,10 +58,30 @@ export function DarkPageHeader({
               {subtitle}
             </p>
           )}
+
+          {/* Score labels */}
+          {labels && labels.length > 0 && (
+            <div className="mt-3 flex flex-wrap gap-2">
+              {labels.map((label) => (
+                <span
+                  key={label.text}
+                  className={`rounded px-2 py-0.5 font-mono text-[11px] font-semibold uppercase tracking-wider ${labelClassName(label.color)}`}
+                >
+                  {label.text}
+                </span>
+              ))}
+            </div>
+          )}
+
           {children}
         </div>
 
-        {stats && stats.length > 0 && (
+        {/* Right side: aside (screenshot) or stats */}
+        {aside ? (
+          <div className="w-full max-w-[360px] max-h-55 shrink-0 overflow-hidden rounded-lg border border-[#262626]">
+            {aside}
+          </div>
+        ) : stats && stats.length > 0 ? (
           <div className="flex flex-wrap gap-3 lg:flex-shrink-0">
             {stats.map((s) => (
               <div
@@ -68,7 +95,7 @@ export function DarkPageHeader({
               </div>
             ))}
           </div>
-        )}
+        ) : null}
       </div>
     </div>
   );

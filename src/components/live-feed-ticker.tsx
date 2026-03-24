@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 export type FeedEvent = {
   skill: string;
@@ -25,21 +25,32 @@ const EVENT_TEXT_COLORS: Record<string, string> = {
 
 export function LiveFeedTicker({ events }: { events: FeedEvent[] }) {
   const ref = useRef<HTMLDivElement>(null);
-  const [pos, setPos] = useState(0);
-
-  useEffect(() => {
-    const iv = setInterval(() => setPos((p) => p + 0.5), 30);
-
-    return () => clearInterval(iv);
-  }, []);
+  const posRef = useRef(0);
+  const rafRef = useRef<number>(0);
 
   useEffect(() => {
     const el = ref.current;
-
     if (!el) return;
-    if (pos >= el.scrollWidth / 2) setPos(0);
-    el.scrollLeft = pos;
-  }, [pos]);
+
+    let lastTime = 0;
+    const speed = 0.5; // px per 16ms frame
+
+    function tick(time: number) {
+      if (lastTime) {
+        const delta = time - lastTime;
+        posRef.current += speed * (delta / 16);
+        if (el!.scrollWidth > 0 && posRef.current >= el!.scrollWidth / 2) {
+          posRef.current = 0;
+        }
+        el!.scrollLeft = posRef.current;
+      }
+      lastTime = time;
+      rafRef.current = requestAnimationFrame(tick);
+    }
+
+    rafRef.current = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafRef.current);
+  }, []);
 
   if (events.length === 0) return null;
 
@@ -67,9 +78,15 @@ export function LiveFeedTicker({ events }: { events: FeedEvent[] }) {
             {ev.event}
           </span>
           <span className="font-mono text-[10px] text-gray-500">{ev.detail}</span>
-          <span className="font-mono text-[10px] text-gray-400">{ev.time}</span>
+          {ev.time && <span className="font-mono text-[10px] text-gray-400">{ev.time}</span>}
         </div>
       ))}
+      {/* Subscribe CTA at end of ticker */}
+      <div className="flex flex-shrink-0 items-center gap-2 border-r border-[var(--border)] px-3.5 py-1.5">
+        <span className="font-mono text-[10px] font-bold text-[var(--accent)]">
+          Subscribe to leaderboard shifts →
+        </span>
+      </div>
     </div>
   );
 }

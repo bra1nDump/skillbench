@@ -15,15 +15,15 @@ export function DarkHero() {
             </span>
           </div>
           <h1 className="text-[28px] font-black leading-[1.15] tracking-[-0.5px]">
-            SkillPack is a skill.
+            SkillPack is a solution.
             <br />
             <span className="text-gray-400">
-              It reads your project. Picks the best skills. Installs them.
+              It reads your project. Picks the best solutions. Installs them.
             </span>
           </h1>
           <p className="mt-2 max-w-[420px] text-[12.5px] leading-[1.55] text-[var(--dark-muted)]">
-            One skill that analyzes your codebase — framework, dependencies,
-            structure — then selects the highest-rated skills from the catalog,
+            One command that analyzes your codebase — framework, dependencies,
+            structure — then selects the highest-rated solutions from the leaderboard,
             resolves conflicts, and installs everything.
           </p>
           <Link
@@ -38,7 +38,7 @@ export function DarkHero() {
         <div className="min-w-[380px] flex-shrink-0 rounded border border-[var(--dark-border)] bg-[var(--dark-surface)] p-4 font-mono text-[12px] leading-[1.85] text-gray-400">
           <span className="text-gray-400"># One command. That&apos;s it.</span>
           <br />
-          <span className="text-[var(--accent)]">$</span> claude plugin install{" "}
+          <span className="text-[var(--accent)]">$</span> npx skills add{" "}
           <span className="font-semibold text-white">skillpack</span>
           <br />
           <br />
@@ -49,13 +49,13 @@ export function DarkHero() {
           </span>
           <br />
           <span className="text-gray-400">
-            ▸ Selecting 7 skills, avg ★4.7
+            ▸ Selecting 7 solutions, avg ★4.7
           </span>
           <br />
           <span className="text-gray-400">▸ No conflicts found</span>
           <br />
           <span className="text-emerald-500">
-            ✓ Installed: Full-Stack Next.js (7 skills)
+            ✓ Installed: Full-Stack Next.js (7 solutions)
           </span>
         </div>
       </div>

@@ -20,7 +20,7 @@ export function TrendingSkills({ skills }: { skills: TrendingSkillItem[] }) {
       {skills.map((skill) => (
         <Link
           key={skill.slug}
-          href={`/skills/${skill.slug}`}
+          href={`/solutions/${skill.slug}`}
           className="group flex items-center gap-3 rounded-lg border border-(--border) bg-(--surface) p-3 transition-all hover:border-(--border-hover) hover:bg-(--surface-2)"
         >
           <div className="min-w-0 flex-1">

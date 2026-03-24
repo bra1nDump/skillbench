@@ -39,22 +39,5 @@ export function getUnderrated(limit = 20): SkillRecord[] {
     .slice(0, limit);
 }
 
-/** Category icon map */
-export const categoryIcons: Record<string, string> = {
-  "all":                        "◎",
-  "coding-clis":                "⌨",
-  "web-browsing":               "◉",
-  "product-business-development": "▲",
-  "teams-of-agents":            "◈",
-  "ux-ui":                      "◇",
-  "software-factories":         "▤",
-  "search-news":                "◎",
-  "marketing":                  "▸",
-  "business":                   "△",
-  "content-writing":            "¶",
-  "research":                   "◎",
-  "automation":                 "⚡",
-  "security":                   "▣",
-  "documentation":              "☰",
-  "data-analytics":             "◫",
-};
+/** Category icon names — maps to lucide-react components */
+export { categoryIconMap } from "./category-icons";

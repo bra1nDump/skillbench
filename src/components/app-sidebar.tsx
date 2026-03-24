@@ -6,7 +6,8 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { categoryList, skillList } from "@/lib/catalog";
-import { categoryIcons } from "@/lib/skill-filters";
+import { categoryIconMap } from "@/lib/category-icons";
+import { CircleDot, Newspaper } from "lucide-react";
 
 import { AuthButton } from "./auth-button";
 
@@ -24,50 +25,42 @@ function SidebarContent({ onNavigate, session }: { onNavigate?: () => void; sess
           </span>
         </Link>
         <p className="mt-[5px] font-mono text-[9px] uppercase tracking-[2px] text-[#525252]">
-          Skills and Agents
+          Agentic Meta-Tracking
         </p>
       </div>
 
-      {/* PUBLISH CTA / User info */}
+      {/* Primary CTA */}
       <div className="px-[18px] pt-[14px] pb-[10px]" onClick={onNavigate}>
         <AuthButton session={session} />
       </div>
 
-      {/* Main nav */}
-      <div className="py-2">
-        {[
-          { href: "/community", label: "Community", icon: "★" },
-          { href: "/bundles", label: "Bundles", icon: "▤" },
-          { href: "/platforms", label: "Platforms", icon: "◇" },
-          { href: "/compare", label: "Compare", icon: "⇔" },
-        ].map((item) => (
-          <Link
-            key={item.href}
-            href={item.href}
-            onClick={onNavigate}
-            className={`flex items-center gap-2 border-l-2 px-[18px] py-2 text-[12.5px] transition-colors ${
-              pathname === item.href || pathname.startsWith(item.href + "/")
-                ? "border-[var(--accent)] bg-[#171717] font-semibold text-white"
-                : "border-transparent text-[#A3A3A3] hover:bg-[#111] hover:text-white"
-            }`}
-          >
-            <span className="text-[11px] opacity-50">{item.icon}</span>
-            {item.label}
-          </Link>
-        ))}
+      {/* Changelog link */}
+      <div className="px-[18px] pt-[10px] pb-[6px]">
+        <Link
+          href="/changelog"
+          onClick={onNavigate}
+          className={`flex items-center gap-2 text-[12.5px] transition-colors ${
+            pathname === "/changelog"
+              ? "font-semibold text-white"
+              : "text-[#A3A3A3] hover:text-white"
+          }`}
+        >
+          <Newspaper className="h-3.5 w-3.5 opacity-50" />
+          Changelog
+        </Link>
       </div>
 
       {/* Separator */}
       <div className="mx-[18px] border-t border-[#262626]" />
 
-      {/* Browse — categories */}
+      {/* Browse — problems */}
       <div className="flex-1 overflow-y-auto pt-1">
         <p className="px-[18px] py-[6px] font-mono text-[9px] font-bold uppercase tracking-[1.5px] text-[#525252]">
-          Browse
+          Problems
         </p>
         {categoryList.map((cat) => {
-          const isActive = pathname === `/categories/${cat.slug}`;
-          const icon = categoryIcons[cat.slug] ?? "◎";
+          const isActive = pathname === `/problems/${cat.slug}`;
+          const IconComponent = categoryIconMap[cat.slug] ?? CircleDot;
           const count = skillList.filter((s) =>
             s.relatedCategories.includes(cat.slug),
           ).length;
@@ -75,7 +68,7 @@ function SidebarContent({ onNavigate, session }: { onNavigate?: () => void; sess
           return (
             <Link
               key={cat.slug}
-              href={`/categories/${cat.slug}`}
+              href={`/problems/${cat.slug}`}
               onClick={onNavigate}
               className={`flex items-center gap-2.5 border-l-2 px-[18px] py-[9px] text-[12.5px] transition-colors ${
                 isActive
@@ -83,9 +76,7 @@ function SidebarContent({ onNavigate, session }: { onNavigate?: () => void; sess
                   : "border-transparent text-[#A3A3A3] hover:bg-[#111] hover:text-white"
               }`}
             >
-              <span className="w-[18px] text-center text-[12px] opacity-70">
-                {icon}
-              </span>
+              <IconComponent className="h-3.5 w-3.5 shrink-0 opacity-70" />
               <span className="flex-1">{cat.name}</span>
               <span
                 className={`font-mono text-[10px] ${isActive ? "text-[#A3A3A3]" : "text-[#737373]"}`}

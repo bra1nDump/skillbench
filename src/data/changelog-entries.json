@@ -7,5 +7,77 @@
     "title": "Changelog launched",
     "detail": "SkillPack now tracks major leaderboard shifts, new entries, and re-rankings in real time.",
     "source": "manual"
+  },
+  {
+    "date": "2026-03-25",
+    "type": "ranking-change",
+    "slug": "gemini-cli",
+    "problem": "coding-clis",
+    "title": "Gemini CLI moves to #2 in coding-clis",
+    "detail": "Weekly v0.35.0 releases plus doc-verified 1M context / 1K free requests pushed Gemini ahead of Codex CLI in the coding-clis ranking.",
+    "source": "pipeline"
+  },
+  {
+    "date": "2026-03-25",
+    "type": "ranking-change",
+    "slug": "copilot-cli",
+    "problem": "coding-clis",
+    "title": "Copilot CLI jumps to #3 in coding-clis",
+    "detail": "The v1.0.11 release, Reddit GA thread, and demo tweet proved Copilot CLI's adoption signal, so it now sits ahead of Codex CLI despite the ongoing PromptArmor security warning.",
+    "source": "pipeline"
+  },
+  {
+    "date": "2026-03-25",
+    "type": "ranking-change",
+    "slug": "aider",
+    "problem": "coding-clis",
+    "title": "Aider promoted to #4 in coding-clis (was #10)",
+    "detail": "5.7M total installs, 200-250K/month, 15B tokens/week, and battle-tested reliability earn Aider a Tier 2 placement. Category pioneer with the strongest open-source terminal coding track record.",
+    "source": "pipeline"
+  },
+  {
+    "date": "2026-03-25",
+    "type": "ranking-change",
+    "slug": "copilot-cli",
+    "problem": "coding-clis",
+    "title": "Copilot CLI demoted to #5 in coding-clis (was #4)",
+    "detail": "200-250K actual CLI installs from a 15M subscriber base is a 1.5% conversion rate — developers aren't switching. Malware incident and request limits dampen enthusiasm.",
+    "source": "pipeline"
+  },
+  {
+    "date": "2026-03-25",
+    "type": "ranking-change",
+    "slug": "openhands",
+    "problem": "coding-clis",
+    "title": "OpenHands drops to #7 in coding-clis (was #5)",
+    "detail": "No evidence of widespread individual developer adoption despite 69.7K stars and strong benchmarking (OpenHands Index). Low HN traction and cloud-first latency weigh it down.",
+    "source": "pipeline"
+  },
+  {
+    "date": "2026-03-25",
+    "type": "ranking-change",
+    "slug": "cline-cli",
+    "problem": "coding-clis",
+    "title": "Cline drops to #8 in coding-clis (was #6)",
+    "detail": "The Feb 2026 'Clinejection' supply chain attack (~4K machines affected) is the most severe trust incident in the coding agent category, pushing Cline below Goose and OpenHands.",
+    "source": "pipeline"
+  },
+  {
+    "date": "2026-03-25",
+    "type": "new-contender",
+    "slug": "devin",
+    "problem": "coding-clis",
+    "title": "Devin 2.2 enters coding-clis at #9",
+    "detail": "SaaS autonomous agent with 67% PR merge rate (up from 34% YoY), GUI computer use, and Devin Review self-QA. Different workflow (web dashboard + Slack) but addresses the same problem space.",
+    "source": "pipeline"
+  },
+  {
+    "date": "2026-03-25",
+    "type": "new-contender",
+    "slug": "grok-build",
+    "problem": "coding-clis",
+    "title": "Grok Build added to coding-clis (below cut line)",
+    "detail": "xAI's waitlist-only coding agent with unique 8-parallel-agent architecture and Arena Mode. Too early to rank — no public access after 10+ weeks — but design is worth tracking.",
+    "source": "pipeline"
   }
 ]

@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 
+import { captureSearchDebounced } from "@/lib/analytics";
+
 type SearchItem = {
   label: string;
   name: string;
@@ -72,8 +74,18 @@ export function Search({ items, dark }: { items: SearchItem[]; dark?: boolean })
           type="text"
           value={query}
           onChange={(e) => {
-            setQuery(e.target.value);
+            const value = e.target.value;
+            setQuery(value);
             setOpen(true);
+            if (value.length >= 2) {
+              const q = value.toLowerCase();
+              const count = items.filter(
+                (item) =>
+                  item.name.toLowerCase().includes(q) ||
+                  item.summary.toLowerCase().includes(q),
+              ).length;
+              captureSearchDebounced(value, count, "header");
+            }
           }}
           onFocus={() => setOpen(true)}
           placeholder="Search skills, categories, bundles..."

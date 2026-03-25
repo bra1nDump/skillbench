@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { DarkPageHeader } from "@/components/dark-page-header";
 import { ReadmePeek } from "@/components/readme-peek";
 import { TrackSolutionView } from "@/components/track-view";
+import { TrackedLink } from "@/components/tracked-link";
 import { TrustBadge } from "@/components/trust-badge";
 import { VideoEmbed } from "@/components/video-embed";
 import { categoryList, getSkill, skillList } from "@/lib/catalog";
@@ -131,28 +132,27 @@ export default async function SolutionPage({ params }: PageProps) {
               {skill.repo && skill.repoUrl && (
               <p>
                 GitHub:{" "}
-                <a href={skill.repoUrl} target="_blank" rel="noreferrer" className="text-gray-800 transition-colors hover:text-[var(--accent)]">
+                <TrackedLink href={skill.repoUrl} linkType="github" skillSlug={skill.slug} className="text-gray-800 transition-colors hover:text-[var(--accent)]">
                   {skill.repo}
-                </a>
+                </TrackedLink>
               </p>
               )}
               {skill.docsUrl ? (
                 <p>
                   Docs:{" "}
-                  <a href={skill.docsUrl} target="_blank" rel="noreferrer" className="text-gray-800 transition-colors hover:text-[var(--accent)]">
+                  <TrackedLink href={skill.docsUrl} linkType="docs" skillSlug={skill.slug} className="text-gray-800 transition-colors hover:text-[var(--accent)]">
                     {new URL(skill.docsUrl).hostname}
-                  </a>
+                  </TrackedLink>
                 </p>
               ) : null}
               <p className="mt-4 border-t border-[var(--border)] pt-4">
-                <a
+                <TrackedLink
                   href="https://github.com/bra1nDump/skillbench/"
-                  target="_blank"
-                  rel="noreferrer"
+                  linkType="github"
                   className="font-mono text-[11px] text-[#737373] transition-colors hover:text-[var(--accent)]"
                 >
                   Found via SkillPack? ★ Star us on GitHub
-                </a>
+                </TrackedLink>
               </p>
             </div>
           </div>
@@ -294,14 +294,14 @@ export default async function SolutionPage({ params }: PageProps) {
                       {item.date}
                     </span>
                   </div>
-                  <a
+                  <TrackedLink
                     href={item.url}
-                    target="_blank"
-                    rel="noreferrer"
+                    linkType="evidence"
+                    skillSlug={skill.slug}
                     className="mt-3 inline-block text-[15px] font-medium text-gray-800 transition-colors hover:text-gray-900"
                   >
                     {item.title}
-                  </a>
+                  </TrackedLink>
                   <p className="mt-2 text-[15px] leading-6 text-gray-500">
                     {item.gist}
                   </p>

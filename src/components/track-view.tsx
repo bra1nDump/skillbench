@@ -2,11 +2,12 @@
 
 import { useEffect } from "react";
 
-import { trackProblemOpen, trackSolutionOpen } from "./posthog-provider";
+import { captureEvent } from "@/lib/analytics";
+import { EVENTS } from "@/lib/analytics-events";
 
 export function TrackSolutionView({ slug, name, score }: { slug: string; name: string; score: number }) {
   useEffect(() => {
-    trackSolutionOpen(slug, name, score);
+    captureEvent(EVENTS.SOLUTION_VIEWED, { slug, name, trustScore: score });
   }, [slug, name, score]);
 
   return null;
@@ -14,7 +15,7 @@ export function TrackSolutionView({ slug, name, score }: { slug: string; name: s
 
 export function TrackProblemView({ slug, name }: { slug: string; name: string }) {
   useEffect(() => {
-    trackProblemOpen(slug, name);
+    captureEvent(EVENTS.PROBLEM_VIEWED, { slug, name });
   }, [slug, name]);
 
   return null;

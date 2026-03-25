@@ -36,3 +36,6 @@ Output:
 - include concise reasons for each rank
 - include "what would change this ranking" at the end
 ```
+
+Active directive (2026-03-25):
+- Generate the coding-clis ranking from the latest discover/deep-dive packets and write it to `agent-runs/2026-03-25_03-54_run_coding-clis/rank_coding-clis/findings.md`.

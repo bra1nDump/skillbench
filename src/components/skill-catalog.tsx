@@ -2,6 +2,9 @@
 
 import { useMemo, useState } from "react";
 
+import { captureEvent, captureSearchDebounced } from "@/lib/analytics";
+import { EVENTS } from "@/lib/analytics-events";
+
 import { SkillRow } from "./skill-row";
 
 import type { SkillRowData } from "./skill-row";
@@ -69,7 +72,14 @@ export function SkillCatalog({
           {categories && categories.length > 0 && (
             <select
               value={categoryFilter ?? ""}
-              onChange={(e) => { setCategoryFilter(e.target.value || null); setShowCount(PAGE_SIZE); }}
+              onChange={(e) => {
+                const value = e.target.value || null;
+                setCategoryFilter(value);
+                setShowCount(PAGE_SIZE);
+                if (value) {
+                  captureEvent(EVENTS.FILTER_APPLIED, { filterType: "category", value });
+                }
+              }}
               className="cursor-pointer rounded border border-[var(--border)] bg-white px-2 py-1.5 font-mono text-[10px] text-gray-600 hover:border-gray-400 focus:border-gray-500 focus:outline-none"
             >
               <option value="">All problems</option>
@@ -90,8 +100,12 @@ export function SkillCatalog({
               placeholder="Search solutions..."
               value={searchQuery}
               onChange={(e) => {
-                setSearchQuery(e.target.value);
+                const value = e.target.value;
+                setSearchQuery(value);
                 setShowCount(PAGE_SIZE);
+                if (value.length >= 2) {
+                  captureSearchDebounced(value, filteredSkills.length, "catalog");
+                }
               }}
               onFocus={() => setSearchFocused(true)}
               onBlur={() => setSearchFocused(false)}

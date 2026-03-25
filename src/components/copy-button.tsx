@@ -2,16 +2,23 @@
 
 import { useState } from "react";
 
+import { captureEvent } from "@/lib/analytics";
+import { EVENTS } from "@/lib/analytics-events";
+
+import type { EventProperties } from "@/lib/analytics-events";
+
 type CopyButtonProps = {
   text: string;
   label?: string;
   className?: string;
+  trackAs?: EventProperties[typeof EVENTS.COPY_CLICKED]["contentType"];
 };
 
 export function CopyButton({
   text,
   label = "Copy",
   className = "",
+  trackAs,
 }: CopyButtonProps) {
   const [copied, setCopied] = useState(false);
 
@@ -19,6 +26,9 @@ export function CopyButton({
     await navigator.clipboard.writeText(text);
     setCopied(true);
     window.setTimeout(() => setCopied(false), 1500);
+    if (trackAs) {
+      captureEvent(EVENTS.COPY_CLICKED, { contentType: trackAs });
+    }
   }
 
   return (

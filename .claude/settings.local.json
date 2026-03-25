@@ -20,7 +20,8 @@
       "Bash(do echo:*)",
       "Read(//c/Projects/Work/skillbench/**)",
       "Bash(done)",
-      "Bash(npm audit:*)"
+      "Bash(npm audit:*)",
+      "Bash(npx vercel:*)"
     ]
   },
   "enabledPlugins": {

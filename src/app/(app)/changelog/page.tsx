@@ -1,8 +1,8 @@
-import Link from "next/link";
-
 import { CopyButton } from "@/components/copy-button";
 import { DarkPageHeader } from "@/components/dark-page-header";
 import { SubscribeForm } from "@/components/subscribe-form";
+import { TrackedChangelogLink } from "@/components/tracked-changelog-link";
+import { UnsubscribeTrigger } from "@/components/unsubscribe-trigger";
 import { getAllChanges } from "@/lib/changelog";
 
 import type { ChangelogEntryType } from "@/lib/changelog";
@@ -30,6 +30,7 @@ export default function ChangelogPage() {
 
   return (
     <>
+      <UnsubscribeTrigger />
       <DarkPageHeader
         title="Changelog"
         subtitle="Major leaderboard shifts, new entries, and re-rankings. We deep-research the internet so you don't have to."
@@ -66,12 +67,14 @@ export default function ChangelogPage() {
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center gap-2">
                       {item.slug ? (
-                        <Link
-                          href={`/solutions/${item.slug}`}
+                        <TrackedChangelogLink
+                          slug={item.slug}
+                          type={item.type}
+                          title={item.title}
                           className="text-[15px] font-semibold text-gray-900 transition-colors hover:text-[var(--accent)]"
                         >
                           {item.title}
-                        </Link>
+                        </TrackedChangelogLink>
                       ) : (
                         <span className="text-[15px] font-semibold text-gray-900">
                           {item.title}
@@ -127,7 +130,7 @@ export default function ChangelogPage() {
             <p className="flex-1 font-mono text-[12px] leading-5 text-gray-700">
               {AI_PROMPT}
             </p>
-            <CopyButton text={AI_PROMPT} />
+            <CopyButton text={AI_PROMPT} trackAs="ai_prompt" />
           </div>
         </section>
       </main>

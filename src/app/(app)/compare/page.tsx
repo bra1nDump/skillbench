@@ -7,6 +7,8 @@ import { Suspense, useCallback, useMemo, useState } from "react";
 import { CompareEvidenceChart, CompareStarsChart } from "@/components/charts/compare-chart";
 import { DarkCTA } from "@/components/dark-cta";
 import { DarkPageHeader } from "@/components/dark-page-header";
+import { captureEvent } from "@/lib/analytics";
+import { EVENTS } from "@/lib/analytics-events";
 import { compareSkills } from "@/lib/compare-data";
 
 import type { CompareSkill } from "@/lib/compare-data";
@@ -70,16 +72,31 @@ function CompareContent() {
     (slug: string) => {
       setFilterText("");
       updateUrl(slug, []);
+      const cat = allCategories.find((c) => c.slug === slug);
+      if (cat) {
+        captureEvent(EVENTS.COMPARE_CATEGORY_SELECTED, {
+          categorySlug: slug,
+          categoryName: cat.name,
+        });
+      }
     },
     [updateUrl],
   );
 
   const toggleSkill = useCallback(
     (slug: string) => {
-      const next = selectedSlugs.includes(slug)
+      const isRemoving = selectedSlugs.includes(slug);
+      const next = isRemoving
         ? selectedSlugs.filter((s) => s !== slug)
         : [...selectedSlugs, slug];
       updateUrl(selectedCategory, next);
+      const skill = compareSkills.find((s) => s.slug === slug);
+      captureEvent(EVENTS.COMPARE_SKILL_TOGGLED, {
+        skillSlug: slug,
+        skillName: skill?.name ?? slug,
+        action: isRemoving ? "removed" : "added",
+        totalSelected: next.length,
+      });
     },
     [selectedSlugs, selectedCategory, updateUrl],
   );

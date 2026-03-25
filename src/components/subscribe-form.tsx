@@ -2,11 +2,12 @@
 
 import { useState } from "react";
 
-import { trackSubscribe } from "./posthog-provider";
+import { captureEvent, identifyUser } from "@/lib/analytics";
+import { EVENTS } from "@/lib/analytics-events";
 
 export function SubscribeForm({ variant = "dark" }: { variant?: "dark" | "light" }) {
   const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "already" | "error">("idle");
   const [message, setMessage] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -23,8 +24,13 @@ export function SubscribeForm({ variant = "dark" }: { variant?: "dark" | "light"
       const data = await res.json();
       if (res.ok) {
         setStatus("success");
-        setMessage("Subscribed! You'll get notified on major leaderboard shifts.");
-        trackSubscribe(email);
+        setMessage("You're in! We'll notify you on major leaderboard shifts.");
+        captureEvent(EVENTS.SUBSCRIBED, { email });
+        identifyUser(email);
+        setEmail("");
+      } else if (res.status === 409) {
+        setStatus("already");
+        setMessage("You're already subscribed.");
         setEmail("");
       } else {
         setStatus("error");
@@ -45,6 +51,15 @@ export function SubscribeForm({ variant = "dark" }: { variant?: "dark" | "light"
       </p>
     );
   }
+
+  if (status === "already") {
+    return (
+      <p className={`font-mono text-[12px] ${isDark ? "text-amber-400" : "text-amber-600"}`}>
+        {message}
+      </p>
+    );
+  }
+
 
   return (
     <form onSubmit={handleSubmit} className="flex items-center gap-2">

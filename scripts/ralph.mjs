@@ -13,7 +13,7 @@
  */
 
 import { execSync, spawn } from "node:child_process";
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, unlinkSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -60,7 +60,7 @@ const SAMPLE_CATEGORIES = [
 
 function parseArgs() {
   const args = process.argv.slice(2);
-  const opts = { categories: [], loop: false, interval: 60, concurrency: 1 };
+  const opts = { categories: [], loop: false, interval: 60, concurrency: 1, engine: "claude" };
 
   for (let i = 0; i < args.length; i++) {
     switch (args[i]) {
@@ -82,6 +82,9 @@ function parseArgs() {
       case "--parallel":
         opts.concurrency = parseInt(args[++i], 10) || 3;
         break;
+      case "--codex":
+        opts.engine = "codex";
+        break;
       default:
         console.error(`Unknown arg: ${args[i]}`);
         process.exit(1);
@@ -89,7 +92,7 @@ function parseArgs() {
   }
 
   if (opts.categories.length === 0) {
-    console.error("Usage: ralph --category <slug> | --all | --sample [--loop] [--interval <min>] [--parallel <N>]");
+    console.error("Usage: ralph --category <slug> | --all | --sample [--loop] [--interval <min>] [--parallel <N>] [--codex]");
     process.exit(1);
   }
 
@@ -146,35 +149,83 @@ function formatDuration(seconds) {
   return `${m}m ${s}s`;
 }
 
-async function runClaude({ systemPromptFile, prompt, stage, timeoutMin = 30, model = "sonnet" }) {
-  // Build the full prompt: agent personality + task
-  let fullPrompt = "";
+// Engine is set globally from CLI args
+let ENGINE = "claude";
+
+// Model mapping: codex uses OpenAI model names
+const CODEX_MODEL_MAP = {
+  "sonnet": "gpt-5.1-codex-mini",  // research (discover, deep-dive, screenshots)
+  "opus": "gpt-5.1-codex",         // ranking & catalog updates
+};
+
+function buildPrompt(systemPromptFile, prompt) {
+  let full = "";
 
   if (systemPromptFile) {
-    const systemPrompt = readFileSync(systemPromptFile, "utf-8");
-
-    fullPrompt += `<system-instructions>\n${systemPrompt}\n</system-instructions>\n\n`;
+    full += `<system-instructions>\n${readFileSync(systemPromptFile, "utf-8")}\n</system-instructions>\n\n`;
   }
-  fullPrompt += prompt;
+  full += prompt;
 
-  const args = [
-    "-p",
-    "--model", model,
-    "--allowedTools", ALLOWED_TOOLS,
-  ];
+  return full;
+}
+
+function buildCodexArgs(fullPrompt, model, stage) {
+  const codexModel = CODEX_MODEL_MAP[model] || "o3";
+
+  // Replace Claude-specific tool references with shell equivalents
+  const adapted = fullPrompt
+    .replace(/WebFetch/g, "curl -sS -L")
+    .replace(/WebSearch/g, "web search via curl or browsing");
+
+  // Write prompt to temp file in agent-runs/ — Windows CLI arg limit is ~8KB
+  const tmpDir = resolve(ROOT, "agent-runs", ".tmp");
+
+  ensureDir(tmpDir);
+  const promptFile = resolve(tmpDir, `codex-prompt-${Date.now()}-${stage.toLowerCase()}.txt`);
+
+  writeFileSync(promptFile, adapted, "utf-8");
+
+  return {
+    cmd: "codex",
+    args: ["exec", "--model", codexModel, "--sandbox", "danger-full-access", `"Read the file ${promptFile} with cat, then execute every instruction in it. Start by running: cat ${promptFile.replace(/\\/g, "/")}"`],
+    promptFile,
+    displayModel: codexModel,
+  };
+}
+
+function buildClaudeArgs(model) {
+  return {
+    cmd: "claude",
+    args: ["-p", "--model", model, "--allowedTools", ALLOWED_TOOLS],
+    promptFile: null,
+    displayModel: model,
+  };
+}
+
+function cleanupPromptFile(filePath) {
+  if (!filePath || !existsSync(filePath)) return;
+
+  try { unlinkSync(filePath); } catch { /* ignore */ }
+}
+
+async function runClaude({ systemPromptFile, prompt, stage, timeoutMin = 30, model = "sonnet" }) {
+  const engine = ENGINE;
+  const fullPrompt = buildPrompt(systemPromptFile, prompt);
+  const { cmd, args, promptFile, displayModel } = engine === "codex"
+    ? buildCodexArgs(fullPrompt, model, stage)
+    : buildClaudeArgs(model);
 
   const promptPreview = prompt.split("\n").find((l) => l.startsWith("TASK:"))?.slice(0, 100) || prompt.slice(0, 80);
 
-  log(stage, "Spawning claude subprocess…");
-  log(stage, `  Model: ${model}`);
+  log(stage, `Spawning ${engine} subprocess…`);
+  log(stage, `  Model: ${displayModel}`);
   log(stage, `  Prompt: ${systemPromptFile ? systemPromptFile.split(/[/\\]/).pop() : "(inline)"} + ${formatBytes(fullPrompt.length)}`);
   log(stage, `  Task: ${promptPreview}…`);
   log(stage, `  Timeout: ${timeoutMin} min`);
   const start = Date.now();
 
-  // Async spawn to allow parallel pipelines
   const result = await new Promise((resolve) => {
-    const child = spawn("claude", args, {
+    const child = spawn(cmd, args, {
       cwd: ROOT,
       stdio: ["pipe", "pipe", "pipe"],
       shell: true,
@@ -186,7 +237,9 @@ async function runClaude({ systemPromptFile, prompt, stage, timeoutMin = 30, mod
     child.stdout.on("data", (d) => { stdout += d.toString(); });
     child.stderr.on("data", (d) => { stderr += d.toString(); });
 
-    child.stdin.write(fullPrompt);
+    if (engine !== "codex") {
+      child.stdin.write(fullPrompt);
+    }
     child.stdin.end();
 
     const timer = setTimeout(() => {
@@ -199,6 +252,8 @@ async function runClaude({ systemPromptFile, prompt, stage, timeoutMin = 30, mod
       resolve({ status: code, signal, stdout, stderr });
     });
   });
+
+  cleanupPromptFile(promptFile);
 
   const elapsedSec = (Date.now() - start) / 1000;
   const elapsed = elapsedSec.toFixed(1);
@@ -400,28 +455,35 @@ Be conservative — only change what the evidence supports. Preserve the existin
 async function stageScreenshots(category) {
   const stage = "SCREENSHOTS";
 
-  const prompt = `TASK: Find and install real product-in-use screenshots for skills in the "${category}" category.
-
-Step 1 — read src/lib/catalog.ts and find all skills where relatedCategories includes "${category}".
-For each skill, note its slug and repo (e.g. "anthropics/claude-code").
-
-Step 2 — for each skill, check if public/screenshots/{slug}.png already exists.
-If it exists, view the image to decide: does it show the product ACTIVELY BEING USED (terminal output, real workflow, agent completing a task)? If yes AND image is high quality (not blurry, width >= 800px), skip. Otherwise replace it.
-
-Step 3 — for each skill needing a screenshot:
-a) Search for product-in-use screenshots:
+  const searchStep = ENGINE === "codex"
+    ? `a) Fetch the raw README and extract image URLs:
+   curl -sS -L "https://raw.githubusercontent.com/{repo}/main/README.md" -o /tmp/readme_tmp.md
+   (try "master" branch if "main" returns 404)
+   Look for embedded images: lines matching ![...](...) — extract the image URLs.
+   These are usually the best product-in-use shots.`
+    : `a) Search for product-in-use screenshots:
    - WebFetch the raw README: https://raw.githubusercontent.com/{repo}/main/README.md
      Look for embedded images (![...](...)) that show the tool in action
    - WebFetch the raw README on "master" branch too if "main" returns 404
    - WebSearch: '"{skill name}" screenshot terminal' and '"{skill name}" demo in use'
-   - Check official docs page if docsUrl exists
+   - Check official docs page if docsUrl exists`;
 
-b) Download up to 5 candidate images:
-   mkdir -p public/screenshots/candidates/{slug}
-   curl -L -sS -o "public/screenshots/candidates/{slug}/c1.png" "URL1" --max-time 15
-   (repeat for each candidate, c1 through c5)
+  const qualityStep = ENGINE === "codex"
+    ? `c) QUALITY CHECK — after downloading, verify file size:
+   ls -la public/screenshots/candidates/{slug}/
+   REJECT any file under 50KB — these are thumbnails/badges/icons.
+   If ImageMagick is available, also run: identify "public/screenshots/candidates/{slug}/cN.png"
+   and reject images smaller than 800x400 pixels.
 
-c) QUALITY CHECK — after downloading, verify resolution:
+d) Pick the best candidate — prefer:
+   - Images from README (usually show product in use)
+   - Larger file size (higher quality)
+   - PNG or JPG format
+   If no candidate is >50KB, skip this skill.
+
+e) Install winner:
+   cp "public/screenshots/candidates/{slug}/cN.png" "public/screenshots/{slug}.png"`
+    : `c) QUALITY CHECK — after downloading, verify resolution:
    Use: identify "public/screenshots/candidates/{slug}/cN.png" or file size check.
    REJECT any image smaller than 800x400 pixels or under 50KB — these are thumbnails/badges.
 
@@ -431,13 +493,35 @@ d) View each remaining candidate and score 1-10:
    - 1-4: Landing page, logo, badge, or unrelated
 
 e) Install winner (score >= 7):
-   cp "public/screenshots/candidates/{slug}/cN.png" "public/screenshots/{slug}.png"
+   cp "public/screenshots/candidates/{slug}/cN.png" "public/screenshots/{slug}.png"`;
+
+  const toolNote = ENGINE === "codex"
+    ? "- Use curl for ALL HTTP requests. Do NOT use WebFetch or WebSearch — they are not available."
+    : "- Use WebFetch and WebSearch for finding images, curl for downloading.";
+
+  const prompt = `TASK: Find and install real product-in-use screenshots for skills in the "${category}" category.
+
+Step 1 — read src/lib/catalog.ts and find all skills where relatedCategories includes "${category}".
+For each skill, note its slug and repo (e.g. "anthropics/claude-code").
+
+Step 2 — for each skill, check if public/screenshots/{slug}.png already exists.
+If it exists, check file size (must be >50KB). If it looks good, skip. Otherwise replace it.
+
+Step 3 — for each skill needing a screenshot:
+${searchStep}
+
+b) Download up to 5 candidate images:
+   mkdir -p public/screenshots/candidates/{slug}
+   curl -L -sS -o "public/screenshots/candidates/{slug}/c1.png" "URL1" --max-time 15
+   (repeat for each candidate, c1 through c5)
+
+${qualityStep}
 
 IMPORTANT RULES:
-- Minimum resolution: 800x400 pixels. NEVER install a low-res or thumbnail image.
+${toolNote}
 - Prioritize README images — they are usually the best product-in-use shots.
 - EVERY skill must have a screenshot attempt. Do not skip skills.
-- Skip installing only if no candidate scores 7+ AND meets minimum resolution.`;
+- Skip installing only if no candidate meets the minimum quality bar.`;
 
   return await runClaude({
     systemPromptFile: resolve(ROOT, "agents/screenshot-scout.md"),
@@ -770,6 +854,11 @@ function printSummary(researchResults, finalResults) {
 // ---------------------------------------------------------------------------
 async function main() {
   const opts = parseArgs();
+
+  ENGINE = opts.engine;
+  if (ENGINE === "codex") {
+    log("INIT", `Using Codex CLI engine (research: ${CODEX_MODEL_MAP.sonnet}, ranking: ${CODEX_MODEL_MAP.opus})`);
+  }
 
   const runOnce = async () => {
     const researchResults = [];

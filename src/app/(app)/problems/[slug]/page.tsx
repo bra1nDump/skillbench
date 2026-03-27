@@ -1,10 +1,12 @@
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Fragment } from "react";
 
+import { InlineMarkdown } from "@/components/bold-text";
 import { DarkPageHeader } from "@/components/dark-page-header";
+import { SkillRow } from "@/components/skill-row";
 import { TrackProblemView } from "@/components/track-view";
 import { categoryList, getCategory, getSkill } from "@/lib/catalog";
+import { getScreenshotUrl } from "@/lib/screenshots";
 import { computeTrustScore } from "@/lib/trust-score";
 
 import type { Metadata } from "next";
@@ -59,10 +61,19 @@ export default async function ProblemPage({ params }: PageProps) {
           <div className="mt-6 space-y-3">
             {category.ranking.map((item, idx) => {
               const skill = item.skillSlug ? getSkill(item.skillSlug) : null;
-              const href = skill ? `/solutions/${skill.slug}` : item.externalUrl;
-              const external = Boolean(item.externalUrl && !skill);
               const prevItem = idx > 0 ? category.ranking[idx - 1] : null;
               const showCutLine = item.belowCutLine && !prevItem?.belowCutLine;
+
+              // Build other category ranks for this skill
+              const otherRanks = skill
+                ? categoryList
+                    .filter((c) => c.slug !== slug)
+                    .map((c) => {
+                      const entry = c.ranking.find((r) => r.skillSlug === skill.slug);
+                      return entry ? { slug: c.slug, name: c.name, rank: Number(entry.rank) } : null;
+                    })
+                    .filter(Boolean) as { slug: string; name: string; rank: number }[]
+                : [];
 
               return (
                 <Fragment key={item.rank}>
@@ -75,47 +86,60 @@ export default async function ProblemPage({ params }: PageProps) {
                       <div className="h-px flex-1 bg-amber-100" />
                     </div>
                   ) : null}
-                  <div className={`flex gap-4 rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5 transition-colors hover:border-[var(--border-hover)]${item.belowCutLine ? " opacity-50" : ""}`}>
-                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-gray-50 font-mono text-lg font-bold text-gray-500">
-                      {item.rank}
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <div className="flex items-center gap-2">
-                        {href ? (
-                          external ? (
-                            <a href={href} target="_blank" rel="noreferrer" className="text-base font-semibold text-gray-900 transition-colors hover:text-[var(--accent)]">
-                              {item.contender}
-                            </a>
-                          ) : (
-                            <Link href={href} className="text-base font-semibold text-gray-900 transition-colors hover:text-[var(--accent)]">
-                              {item.contender}
-                            </Link>
-                          )
-                        ) : (
-                          <span className="text-base font-semibold text-gray-900">{item.contender}</span>
-                        )}
-                        {skill?.official ? (
-                          <span className="rounded bg-[var(--accent)]/10 px-1.5 py-0.5 font-mono text-[13px] uppercase tracking-wider text-[var(--accent)]">
-                            Official
-                          </span>
-                        ) : null}
+                  {skill ? (
+                    <SkillRow
+                      variant="expanded"
+                      skill={{
+                        slug: skill.slug,
+                        name: skill.name,
+                        trustScore: computeTrustScore(skill),
+                        bestFor: item.bestFor,
+                        why: item.why,
+                        rank: Number(item.rank),
+                        belowCutLine: item.belowCutLine,
+                        screenshotUrl: getScreenshotUrl(skill.slug),
+                        categoryRanks: otherRanks,
+                        summary: skill.summary,
+                      }}
+                    />
+                  ) : (
+                    <div className={`flex gap-4 rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5${item.belowCutLine ? " opacity-50" : ""}`}>
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gray-50 font-mono text-lg font-bold text-gray-500">
+                        {item.rank}
                       </div>
-                      <p className="mt-1 text-[15px] text-gray-500">
-                        <span className="font-medium text-gray-500">Best for:</span> {item.bestFor}
-                      </p>
-                      <p className="mt-1 text-[13px] leading-5 text-gray-500">{item.why}</p>
-                      {item.watch ? (
-                        <p className="mt-2 text-[13px] text-amber-600">
-                          ⚡ {item.watch}
+                      <div className="min-w-0 flex-1">
+                        <span className="text-base font-semibold text-gray-900">{item.contender}</span>
+                        <p className="mt-1 text-[15px] text-gray-500">
+                          <span className="font-medium">Best for:</span> {item.bestFor}
                         </p>
-                      ) : null}
+                        <p className="mt-1 text-[13px] leading-5 text-gray-500">{item.why}</p>
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </Fragment>
               );
             })}
           </div>
         </section>
+
+        {/* How to start */}
+        {category.howToStart && category.howToStart.length > 0 ? (
+          <section className="border-t border-[var(--border)] py-14">
+            <p className="font-mono text-[13px] uppercase tracking-widest text-[var(--accent)]">
+              How to start
+            </p>
+            <div className="mt-5 space-y-3">
+              {category.howToStart.map((step) => (
+                <div key={step} className="flex items-start gap-3">
+                  <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[var(--accent)]" />
+                  <p className="text-[15px] leading-6 text-gray-500">
+                    <InlineMarkdown text={step} />
+                  </p>
+                </div>
+              ))}
+            </div>
+          </section>
+        ) : null}
 
         {/* Head to head */}
         {category.headToHead.length > 0 ? (

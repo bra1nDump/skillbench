@@ -21,7 +21,8 @@
       "Read(//c/Projects/Work/skillbench/**)",
       "Bash(done)",
       "Bash(npm audit:*)",
-      "Bash(npx vercel:*)"
+      "Bash(npx vercel:*)",
+      "Bash(head -80 /c/Projects/Work/skillbench/src/app/\\\\\\(app\\\\\\)/solutions/[slug]/page.tsx)"
     ]
   },
   "enabledPlugins": {

@@ -127,7 +127,7 @@ export function SkillCatalog({
       <div
         className="hidden items-center gap-4 border-b border-[var(--border)] px-3.5 py-1.5 sm:grid"
         style={{
-          gridTemplateColumns: "minmax(180px, 1.2fr) minmax(120px, 1fr) 52px",
+          gridTemplateColumns: "minmax(140px, 0.9fr) minmax(120px, 1fr) 52px",
         }}
       >
         <span className="font-mono text-[9px] font-bold tracking-wider text-gray-400">
@@ -176,29 +176,6 @@ export function SkillCatalog({
         </div>
       )}
 
-      {/* Bottom CTA — Install + Subscribe + Star */}
-      {!hasMore && filteredSkills.length > 0 && (
-        <div className="mt-8 flex flex-col gap-4 bg-[var(--dark-bg)] p-6 text-white sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <p className="text-[14px] font-black">
-              Get the best solutions for your project.
-            </p>
-            <p className="mt-1 text-[12px] text-gray-500">
-              One command analyzes your codebase and installs top-rated solutions.
-            </p>
-          </div>
-          <div className="flex items-center gap-3">
-            <a
-              href="https://github.com/bra1nDump/skillbench/"
-              target="_blank"
-              rel="noreferrer"
-              className="shrink-0 border border-[#333] px-4 py-2.5 font-mono text-[11px] font-bold tracking-wider text-white transition-colors hover:bg-[#222]"
-            >
-              ★ STAR ON GITHUB
-            </a>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

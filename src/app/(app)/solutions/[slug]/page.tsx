@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import { BoldText, InlineMarkdown } from "@/components/bold-text";
 import { DarkPageHeader } from "@/components/dark-page-header";
 import { ReadmePeek } from "@/components/readme-peek";
 import { TrackSolutionView } from "@/components/track-view";
@@ -9,6 +10,7 @@ import { TrackedLink } from "@/components/tracked-link";
 import { TrustBadge } from "@/components/trust-badge";
 import { VideoEmbed } from "@/components/video-embed";
 import { categoryList, getSkill, skillList } from "@/lib/catalog";
+import { getRecentChangesForSolution } from "@/lib/changelog";
 import { fetchGitHubReadme } from "@/lib/github-readme";
 import { getScoreLabels } from "@/lib/score-labels";
 import { getScreenshotUrl } from "@/lib/screenshots";
@@ -55,6 +57,7 @@ export default async function SolutionPage({ params }: PageProps) {
   const relatedCategories = categoryList.filter((category) => skill.relatedCategories.includes(category.slug));
   const screenshotUrl = getScreenshotUrl(skill.slug);
   const labels = getScoreLabels(skill);
+  const recentChanges = getRecentChangesForSolution(skill.slug);
 
   return (
       <>
@@ -76,6 +79,40 @@ export default async function SolutionPage({ params }: PageProps) {
         ) : undefined}
       />
       <main className="mx-auto w-full max-w-6xl px-6 py-10 sm:px-8">
+        {/* Shipped last month */}
+        {recentChanges.length > 0 && (
+          <section className="border-t border-[var(--border)] py-14">
+            <p className="font-mono text-[13px] uppercase tracking-widest text-[var(--accent)]">
+              Shipped last month
+            </p>
+            <div className="mt-5 space-y-2">
+              {recentChanges.map((change) => (
+                <div key={`${change.date}-${change.title}`} className="flex items-start gap-3">
+                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]" />
+                  <div className="min-w-0">
+                    <p className="text-[15px] leading-6 text-gray-700">
+                      {change.title}
+                    </p>
+                    <p className="mt-0.5 text-[12px] text-gray-400">
+                      {change.detail} · {change.date}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            {skill.repoUrl && (
+              <a
+                href={`${skill.repoUrl}/releases`}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-4 inline-flex items-center gap-1 font-mono text-[11px] font-bold tracking-wide text-[var(--accent)] transition-colors hover:text-gray-900"
+              >
+                ALL RELEASES →
+              </a>
+            )}
+          </section>
+        )}
+
         {/* Where it wins / Where to be skeptical */}
         <section className="grid gap-8 border-t border-[var(--border)] py-14 lg:grid-cols-2">
           <div>
@@ -86,7 +123,9 @@ export default async function SolutionPage({ params }: PageProps) {
               {skill.strengths.map((item) => (
                 <div key={item} className="flex items-start gap-3">
                   <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-emerald-500" />
-                  <p className="text-[15px] leading-6 text-gray-700">{item}</p>
+                  <p className="text-[15px] leading-6 text-gray-700">
+                    <BoldText text={item} />
+                  </p>
                 </div>
               ))}
             </div>
@@ -99,7 +138,9 @@ export default async function SolutionPage({ params }: PageProps) {
               {skill.weaknesses.map((item) => (
                 <div key={item} className="flex items-start gap-3">
                   <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-amber-500" />
-                  <p className="text-[15px] leading-6 text-gray-700">{item}</p>
+                  <p className="text-[15px] leading-6 text-gray-700">
+                    <BoldText text={item} />
+                  </p>
                 </div>
               ))}
             </div>
@@ -113,14 +154,18 @@ export default async function SolutionPage({ params }: PageProps) {
               <p className="font-mono text-[13px] uppercase tracking-widest text-[var(--accent)]">
                 Editorial verdict
               </p>
-              <p className="mt-5 text-[15px] leading-7 text-gray-700">{skill.verdict}</p>
+              <p className="mt-5 text-[15px] leading-7 text-gray-700">
+                <BoldText text={skill.verdict} />
+              </p>
             </div>
             {skill.gettingStarted && (
               <div>
                 <p className="font-mono text-[13px] uppercase tracking-widest text-[var(--accent)]">
                   How to get started
                 </p>
-                <p className="mt-5 text-[15px] leading-7 text-gray-700">{skill.gettingStarted}</p>
+                <p className="mt-5 text-[15px] leading-7 text-gray-700">
+                  <InlineMarkdown text={skill.gettingStarted} />
+                </p>
               </div>
             )}
           </div>

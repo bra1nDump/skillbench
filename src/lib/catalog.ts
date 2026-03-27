@@ -352,6 +352,7 @@ export type CategoryRecord = {
     gist: string;
   }>;
   whatChangesThis: string[];
+  howToStart?: string[];
   videos?: Array<{
     title: string;
     youtubeId: string;

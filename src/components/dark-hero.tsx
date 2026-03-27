@@ -1,24 +1,18 @@
 import Link from "next/link";
 
+import { CtaBanner } from "./cta-banner";
+
 export function DarkHero() {
   return (
-    <div className="bg-[var(--dark-bg)] px-8 py-7 text-white">
+    <div className="bg-[var(--dark-bg)] px-8 py-8 text-white">
       <div className="mx-auto flex max-w-[1100px] flex-col gap-10 lg:flex-row lg:items-start">
         {/* Left: value prop */}
         <div className="min-w-0 flex-1">
-          <div className="mb-3 flex gap-2">
-            <span className="rounded bg-[var(--accent)] px-2 py-0.5 font-mono text-[9px] font-bold uppercase tracking-wider text-white">
-              The Product
-            </span>
-            <span className="rounded border border-[var(--dark-border)] px-2 py-0.5 font-mono text-[9px] font-bold uppercase tracking-wider text-gray-400">
-              One Install
-            </span>
-          </div>
           <h1 className="text-[28px] font-black leading-[1.15] tracking-[-0.5px]">
-            SkillPack is a solution.
+            SkillPack reads your project.
             <br />
             <span className="text-gray-400">
-              It reads your project. Picks the best solutions. Installs them.
+              Picks the best solutions. Installs them.
             </span>
           </h1>
           <p className="mt-2 max-w-[420px] text-[12.5px] leading-[1.55] text-[var(--dark-muted)]">
@@ -34,30 +28,44 @@ export function DarkHero() {
           </Link>
         </div>
 
-        {/* Right: CLI demo */}
-        <div className="min-w-[380px] flex-shrink-0 rounded border border-[var(--dark-border)] bg-[var(--dark-surface)] p-4 font-mono text-[12px] leading-[1.85] text-gray-400">
-          <span className="text-gray-400"># One command. That&apos;s it.</span>
-          <br />
-          <span className="text-[var(--accent)]">$</span> npx skills add{" "}
-          <span className="font-semibold text-white">skillpack</span>
+        {/* Right: CLI demo — real output */}
+        <div className="min-w-[380px] flex-shrink-0 rounded border border-[var(--dark-border)] bg-[var(--dark-surface)] p-4 font-mono text-[12px] leading-[1.7] text-gray-400">
+          <span className="text-[var(--accent)]">$</span>{" "}
+          <span className="font-semibold text-white">/skillpack</span>
           <br />
           <br />
-          <span className="text-gray-400">▸ Analyzing project...</span>
+          <span className="text-white">● Analyzing your project...</span>
           <br />
-          <span className="text-gray-400">
-            ▸ Detected Next.js 15 + Prisma + Vitest
-          </span>
+          <span className="text-gray-500">  Next.js 16 + Tailwind v4 + TypeScript</span>
           <br />
-          <span className="text-gray-400">
-            ▸ Selecting 7 solutions, avg ★4.7
-          </span>
           <br />
-          <span className="text-gray-400">▸ No conflicts found</span>
+          <span className="text-white">● Recommended for your stack:</span>
+          <br />
+          <br />
+          <span className="text-gray-500">  Coding</span>
+          <br />
+          <span className="text-white">  tailwind-design-system</span>
+          <span className="ml-2 text-gray-600">24.8K installs · Trust 82</span>
+          <br />
+          <span className="text-white">  webapp-testing</span>
+          <span className="ml-2 text-gray-600">34.3K installs · Trust 76</span>
+          <br />
+          <br />
+          <span className="text-gray-500">  SEO</span>
+          <br />
+          <span className="text-white">  seo-audit</span>
+          <span className="ml-2 text-gray-600">56.9K installs · Trust 71</span>
+          <br />
           <br />
           <span className="text-emerald-500">
-            ✓ Installed: Full-Stack Next.js (7 solutions)
+            3 skills matched — ranked by evidence
           </span>
         </div>
+      </div>
+
+      {/* CTA: Install + Star + Subscribe — part of hero */}
+      <div className="mx-auto mt-8 max-w-[1100px]">
+        <CtaBanner variant={5} />
       </div>
     </div>
   );

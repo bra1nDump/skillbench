@@ -66,3 +66,17 @@ function loadEntries(): ChangelogItem[] {
 export function getAllChanges(limit = 30): ChangelogItem[] {
   return loadEntries().slice(0, limit);
 }
+
+/** Recent changes for a specific solution (last 30 days, max 6 items). */
+export function getRecentChangesForSolution(
+  slug: string,
+  maxItems = 6,
+): ChangelogItem[] {
+  const cutoff = new Date();
+  cutoff.setDate(cutoff.getDate() - 30);
+  const cutoffStr = cutoff.toISOString().slice(0, 10);
+
+  return loadEntries()
+    .filter((item) => item.slug === slug && item.date >= cutoffStr)
+    .slice(0, maxItems);
+}

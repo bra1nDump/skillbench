@@ -30,7 +30,7 @@ export function AuthButton({ session }: { session: Session | null }) {
 
   return (
     <a
-      href="https://github.com/bra1nDump/skillbench/"
+      href="https://github.com/bra1nDump/skillpack/"
       target="_blank"
       rel="noreferrer"
       className="flex w-full items-center justify-center gap-1.5 bg-[#171717] border border-[#333] py-[11px] font-mono text-[12px] font-bold tracking-wider text-white cursor-pointer transition-colors hover:bg-[#222]"

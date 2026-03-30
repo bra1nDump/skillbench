@@ -192,7 +192,7 @@ export default async function SolutionPage({ params }: PageProps) {
               ) : null}
               <p className="mt-4 border-t border-[var(--border)] pt-4">
                 <TrackedLink
-                  href="https://github.com/bra1nDump/skillbench/"
+                  href="https://github.com/bra1nDump/skillpack/"
                   linkType="github"
                   className="font-mono text-[11px] text-[#737373] transition-colors hover:text-[var(--accent)]"
                 >

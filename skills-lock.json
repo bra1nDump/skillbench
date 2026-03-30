@@ -6,12 +6,7 @@
       "sourceType": "github",
       "computedHash": "0f8ce1e492a92ec8cff1b109faed36ff8dcced155e69db5b650f26e8ea4730fd"
     },
-    "topskill": {
-      "source": "C:\\Projects\\Work\\skillbench\\skills\\topskill",
-      "sourceType": "local",
-      "computedHash": "a04b85f9ec7e17ba45fc0ee5ce0290a9dbed9dae957b7e58951b1f70c1a3f9b5"
-    },
-    "x-twitter": {
+"x-twitter": {
       "source": "alberduris/skills",
       "sourceType": "github",
       "computedHash": "423584944fdd1cfcb98f3b17a9e2a631df87cbccc19e1b37779040797621e084"

@@ -4,8 +4,8 @@ import { useState } from "react";
 
 import { SubscribeForm } from "./subscribe-form";
 
-const GITHUB_URL = "https://github.com/bra1nDump/skillbench/";
-const INSTALL_CMD = "npx skills add bra1nDump/skillbench@skillpack";
+const GITHUB_URL = "https://github.com/bra1nDump/skillpack/";
+const INSTALL_CMD = "npx skills add bra1nDump/skillpack@skillpack";
 
 /**
  * CTA banner with 3 actions: Install, Subscribe, Star on GitHub.

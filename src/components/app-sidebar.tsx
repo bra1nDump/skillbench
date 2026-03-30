@@ -93,7 +93,7 @@ function SidebarContent({ onNavigate, session }: { onNavigate?: () => void; sess
         {[
           { label: "Docs", href: "/docs/methodology" },
           { label: "SkillPack", href: "/skillpack" },
-          { label: "GitHub", href: "https://github.com/bra1nDump/skillbench/" },
+          { label: "GitHub", href: "https://github.com/bra1nDump/skillpack/" },
         ].map((l) => (
           <Link
             key={l.label}

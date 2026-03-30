@@ -107,7 +107,7 @@ export default function SkillPackPage() {
         <div className="mt-6 inline-flex items-center gap-3 rounded-lg border border-[var(--dark-border)] bg-[var(--dark-bg)] px-5 py-3">
           <span className="font-mono text-[14px] text-gray-400">$</span>
           <code className="font-mono text-[14px] font-semibold text-white">
-            npx skills add bra1nDump/skillbench@skillpack
+            npx skills add bra1nDump/skillpack@skillpack
           </code>
           <span className="rounded bg-emerald-500/20 px-2 py-0.5 font-mono text-[10px] font-bold text-emerald-400">
             READY
@@ -205,7 +205,7 @@ export default function SkillPackPage() {
           Option 1: Via the skills CLI
         </h3>
         <CodeBlock>
-          <span className="text-[var(--accent)]">$</span> npx skills add bra1nDump/skillbench@skillpack -g -y
+          <span className="text-[var(--accent)]">$</span> npx skills add bra1nDump/skillpack@skillpack -g -y
         </CodeBlock>
         <P>
           This installs SkillPack globally so it&apos;s available in any project.
@@ -426,7 +426,7 @@ export default function SkillPackPage() {
         </div>
         <div className="shrink-0 rounded border border-[var(--dark-border)] bg-[var(--dark-surface)] px-5 py-2.5 font-mono text-[13px]">
           <span className="text-gray-500">$ </span>
-          <span className="font-semibold text-white">npx skills add bra1nDump/skillbench@skillpack</span>
+          <span className="font-semibold text-white">npx skills add bra1nDump/skillpack@skillpack</span>
         </div>
       </div>
     </main>

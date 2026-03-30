@@ -556,7 +556,7 @@ export function LandingContent() {
               Docs
             </Link>
             <a
-              href="https://github.com/bra1nDump/skillbench/"
+              href="https://github.com/bra1nDump/skillpack/"
               target="_blank"
               rel="noreferrer"
               className="hover:text-[#A3A3A3]"

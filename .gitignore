@@ -44,6 +44,14 @@ yarn-error.log*
 next-env.d.ts
 .env.local
 
+# installed skills (only skillpack should be tracked)
+.agents/skills/reddit-search/
+.agents/skills/x-twitter/
+.agents/skills/integration-nextjs-app-router/
+.claude/skills/reddit-search/
+.claude/skills/x-twitter/
+.claude/skills/integration-nextjs-app-router/
+
 # ralph pipeline temp files
 agent-runs/.tmp/
 .codex-prompt-*

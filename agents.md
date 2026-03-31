@@ -3,6 +3,7 @@
 ## Change priority protocol
 
 When told to change something, ALWAYS follow this order:
+
 1. **Update human-steering-history.md** — log the decision as stated
 2. **Update docs** (agents.md, specification.md, agent prompts) — reflect the new rule
 3. **Make code changes** — implement in catalog.ts, components, pages

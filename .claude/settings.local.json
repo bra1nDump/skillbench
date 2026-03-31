@@ -22,7 +22,10 @@
       "Bash(done)",
       "Bash(npm audit:*)",
       "Bash(npx vercel:*)",
-      "Bash(head -80 /c/Projects/Work/skillbench/src/app/\\\\\\(app\\\\\\)/solutions/[slug]/page.tsx)"
+      "Bash(head -80 /c/Projects/Work/skillbench/src/app/\\\\\\(app\\\\\\)/solutions/[slug]/page.tsx)",
+      "Bash(ls -la /c/Projects/Work/skillbench/src/app/\\\\\\(app\\\\\\)/)",
+      "Bash(grep '^ *| \"\"\"\"[^\"\"\"\"]*\"\"\"\"' src/lib/catalog.ts)",
+      "Bash(node -e \"const {skillList} = require\\(''./src/lib/catalog''\\); console.log\\(''Total skills:'', skillList.length\\)\")"
     ]
   },
   "enabledPlugins": {

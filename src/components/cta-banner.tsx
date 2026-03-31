@@ -9,8 +9,8 @@ const INSTALL_CMD = "npx skills add bra1nDump/skillpack@skillpack";
 
 /**
  * CTA banner with 3 actions: Install, Subscribe, Star on GitHub.
- * Supports multiple layout variants for A/B testing.
- */
+*/
+
 export function CtaBanner({
   variant = 1,
 }: {

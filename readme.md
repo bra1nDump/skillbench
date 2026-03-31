@@ -16,6 +16,21 @@ Static Next.js app for researching and ranking agent skills by category.
 - `src/app/bundles/[slug]/page.tsx` — bundle pages (3 persona stacks)
 - `src/app/platforms/[slug]/page.tsx` — platform pages (5 platforms)
 
+## Setup
+
+```bash
+npm install
+```
+
+### Required skills for agents
+
+The research agents (`agents/discover.md`, `agents/deep-dive.md`) use third-party Claude skills for social data. Install them after cloning:
+
+```bash
+npx skills add alberduris/skills           # x-twitter
+npx skills add kirkluokun/awesome-a-stock-openclawskills  # reddit-search
+```
+
 ## Commands
 
 ```bash

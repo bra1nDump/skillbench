@@ -2,6 +2,14 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { skillList } from "@/lib/catalog";
+
+/* ─── dynamic skill count rounded down to nearest 100 ─── */
+function getSkillCountLabel() {
+  const count = skillList.length;
+  const rounded = Math.floor(count / 100) * 100;
+  return rounded > 0 ? `${rounded}+` : `${count}`;
+}
 
 /* ─── transform rows data ─── */
 const TRANSFORMS = [
@@ -128,7 +136,7 @@ export function LandingContent() {
                   skill<span className="text-[#E63946]">pack</span>
                 </div>
                 <div className="font-mono text-[11px] font-semibold text-[#059669]">
-                  free — 847+ skills
+                  free — {getSkillCountLabel()} skills
                 </div>
                 <div className="mt-2.5 text-[11px] text-[#A3A3A3]">
                   Picks the right skills<br />for your project
@@ -369,7 +377,7 @@ export function LandingContent() {
                 <div className="mt-2 text-[14px] font-bold text-[#059669]">
                   Free. Open standard.
                 </div>
-                <div className="mt-2 text-[12px] text-[#737373]">847+ community-rated skills</div>
+                <div className="mt-2 text-[12px] text-[#737373]">{getSkillCountLabel()} community-rated skills</div>
               </div>
             </div>
           </div>
@@ -464,24 +472,82 @@ export function LandingContent() {
                   </div>
                 </div>
                 <div className="ml-[42px]">
-                  <div className="rounded-[10px] border border-[#05966933] bg-[#0D1117] p-4.5 font-mono text-[13px] leading-[1.9] text-[#C9D1D9]">
+                  <div className="rounded-[10px] border border-[#05966933] bg-[#0D1117] p-4.5 font-mono text-[11.5px] leading-[1.7] text-[#C9D1D9]">
                     <span className="text-[#6E7681]"># open your project folder, then run:</span>
                     <br />
-                    <span className="text-[#E63946]">$</span> npx skillpack init
+                    <span className="text-[#E63946]">$</span>{" "}
+                    <span className="text-white">/skillpack</span>
                     <br />
                     <br />
-                    <span className="text-[#7EE787]">→</span> Detected:{" "}
-                    <span className="text-[#79C0FF]">Next.js 15 + Prisma + Tailwind</span>
+                    <span className="text-white">● Analyzing your project...</span>
                     <br />
-                    <span className="text-[#7EE787]">→</span> Agent:{" "}
-                    <span className="text-[#79C0FF]">
-                      {agent === "codex" ? "OpenAI Codex" : "Claude Code"}
+                    <span className="text-[#6E7681]">
+                      {"  "}TypeScript monorepo (React + Fastify + Prisma + Telegram)
                     </span>
                     <br />
-                    <span className="text-[#7EE787]">→</span> Installing 6 skills (avg ★4.7)...
                     <br />
-                    <span className="font-semibold text-[#7EE787]">
-                      ✓ Done — your agent is now an expert
+                    <span className="text-white">SkillPack Recommendations</span>
+                    <br />
+                    <br />
+                    <span className="text-[#6E7681]">Already Covered</span>
+                    <br />
+                    <span className="text-[#C9D1D9]">
+                      {"  "}{agent === "codex" ? "OpenAI Codex" : "Claude Code"}{" "}
+                      <span className="text-[#6E7681]">(Trust: 98, #1 in Coding CLIs)</span>{" "}
+                      <span className="text-[#7EE787]">✓</span>
+                    </span>
+                    <br />
+                    <br />
+                    <span className="text-white">Recommended Installs</span>
+                    <br />
+                    {/* mini table */}
+                    <div className="mt-1 overflow-hidden rounded border border-[#30363D]">
+                      <div className="grid grid-cols-[80px_130px_50px_40px_1fr] border-b border-[#30363D] bg-[#161B22] px-2 py-1 text-[10px] text-[#8B949E]">
+                        <span>Category</span>
+                        <span>Tool</span>
+                        <span>Trust</span>
+                        <span>Rank</span>
+                        <span>Why</span>
+                      </div>
+                      {[
+                        { cat: "Web Browsing", tool: "Playwright MCP", trust: 93, rank: "#3", why: "Browser automation & frontend testing" },
+                        { cat: "Search", tool: "Exa MCP Server", trust: 87, rank: "#3", why: "Semantic search — 940K weekly downloads" },
+                      ].map((r) => (
+                        <div key={r.tool} className="grid grid-cols-[80px_130px_50px_40px_1fr] border-b border-[#21262D] px-2 py-1 text-[10.5px]">
+                          <span className="text-[#8B949E]">{r.cat}</span>
+                          <span className="text-white">{r.tool}</span>
+                          <span className="text-[#C9D1D9]">{r.trust}</span>
+                          <span className="text-[#C9D1D9]">{r.rank}</span>
+                          <span className="text-[#8B949E]">{r.why}</span>
+                        </div>
+                      ))}
+                    </div>
+                    <br />
+                    <span className="text-[#6E7681]">Considered but Skipped</span>
+                    <div className="mt-1 overflow-hidden rounded border border-[#30363D]">
+                      <div className="grid grid-cols-[80px_130px_50px_1fr] border-b border-[#30363D] bg-[#161B22] px-2 py-1 text-[10px] text-[#8B949E]">
+                        <span>Category</span>
+                        <span>Tool</span>
+                        <span>Trust</span>
+                        <span>Reason Skipped</span>
+                      </div>
+                      {[
+                        { cat: "UX/UI", tool: "Framelink Figma MCP", trust: 86, reason: "Only useful if you use Figma for designs" },
+                        { cat: "Security", tool: "TruffleHog", trust: 88, reason: "Useful but your .env setup looks standard" },
+                      ].map((r) => (
+                        <div key={r.tool} className="grid grid-cols-[80px_130px_50px_1fr] border-b border-[#21262D] px-2 py-1 text-[10.5px]">
+                          <span className="text-[#8B949E]">{r.cat}</span>
+                          <span className="text-white">{r.tool}</span>
+                          <span className="text-[#C9D1D9]">{r.trust}</span>
+                          <span className="text-[#8B949E]">{r.reason}</span>
+                        </div>
+                      ))}
+                    </div>
+                    <br />
+                    <span className="text-[#C9D1D9]">2 skills, avg trust score: 90. No conflicts detected.</span>
+                    <br />
+                    <span className="text-[#7EE787]">
+                      Install both? Or adjust the selection?
                     </span>
                   </div>
                 </div>
@@ -514,7 +580,7 @@ export function LandingContent() {
                 href="/"
                 className="block rounded-lg bg-black py-4 text-center font-mono text-[14px] font-bold text-white"
               >
-                Browse 847+ skills on skillpack.co →
+                Browse {getSkillCountLabel()} skills on skillpack.co →
               </Link>
             </div>
 

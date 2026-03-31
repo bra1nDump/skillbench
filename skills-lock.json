@@ -6,7 +6,12 @@
       "sourceType": "github",
       "computedHash": "0f8ce1e492a92ec8cff1b109faed36ff8dcced155e69db5b650f26e8ea4730fd"
     },
-"x-twitter": {
+    "skillpack": {
+      "source": "bra1nDump/skillpack",
+      "sourceType": "github",
+      "computedHash": "6e2a616968680c4e38a9273d42217aa45456a3a437c59d68eda5a82406922b77"
+    },
+    "x-twitter": {
       "source": "alberduris/skills",
       "sourceType": "github",
       "computedHash": "423584944fdd1cfcb98f3b17a9e2a631df87cbccc19e1b37779040797621e084"
